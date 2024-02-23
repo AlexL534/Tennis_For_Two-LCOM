@@ -6,7 +6,7 @@ int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
   if(lsb==NULL){
     return EXIT_FAILURE;
   }
-  *lsb=val & 1;
+  *lsb=val & 0XFF;
 
   return EXIT_SUCCESS;
 }
@@ -15,7 +15,7 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
   if(msb==NULL){
     return EXIT_FAILURE;
   }
-  *msb=(val>>15) & 1;
+  *msb=(val>>8) & 0XFF;
 
   return EXIT_SUCCESS;
 }
