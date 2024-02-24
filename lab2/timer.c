@@ -99,7 +99,6 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
       else if(conf.count_mode == 7){
         conf.count_mode = 3;
       }
-      printf("%u\n",conf.count_mode);
       break;
 
     //Configures the timer's counting base
