@@ -6,10 +6,57 @@
 #include "i8254.h"
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
 
-  return 1;
+  //Get Timer configuration
+  uint8_t conf = 0;
+  if(timer_get_conf(timer, &conf) != 0){
+    return EXIT_FAILURE;
+  }
+
+  conf &= 0x0F; //resets 4 first bits
+
+  //Insert the timer we want to configure
+  switch(timer){
+    case 0:
+      conf |= TIMER_SEL0;
+      break;
+    case 1:
+      conf |= TIMER_SEL1;
+      break;
+    case 2:
+      conf |= TIMER_SEL2;
+      break;
+  }
+
+  //Insert Initialization Mode
+  conf |= TIMER_LSB_MSB;
+
+
+  //write command on the control register
+  if(sys_outb(TIMER_CTRL, conf) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //calculates the div value and separates the lsb and msb
+  uint16_t div = TIMER_FREQ/freq;
+  uint8_t lsb = 0;
+  uint8_t msb = 0;
+  if(util_get_LSB(div,&lsb) != 0){
+    return EXIT_FAILURE;
+  }
+  if(util_get_MSB(div,&msb) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //inserts the lsb and msb in the timer
+  if(sys_outb(TIMER_0 + timer, lsb) != 0){
+    return EXIT_FAILURE;
+  }
+  if(sys_outb(TIMER_0 + timer, msb) != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {

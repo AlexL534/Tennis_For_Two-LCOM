@@ -38,7 +38,7 @@ int(timer_test_read_config)(uint8_t timer, enum timer_status_field field) {
   }
 
   //Prints the configuration
-  if(timer_display_conf(timer, st, field)){
+  if(timer_display_conf(timer, st, field) != 0){
     return EXIT_FAILURE;
   }
 
