@@ -5,6 +5,7 @@
 
 #include "i8254.h"
 
+uint32_t count=0;
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //Get Timer configuration
   uint8_t conf = 0;
@@ -76,13 +77,13 @@ int (timer_unsubscribe_int)() {
   //printf("%s is not yet implemented!\n", __func__);
 
   /*Call the sys_irqrmpolicy(int *hook_id) where hook_id is the same as the bit_no*/
-  return 1;
+
 }
 
 void (timer_int_handler)() {
   /* To be implemented by the students */
   //printf("%s is not yet implemented!\n", __func__);
-
+  count++;
   /*Increments a global variable*/
 }
 
