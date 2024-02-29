@@ -5,6 +5,8 @@
 
 #include "i8254.h"
 
+uint8_t hook_id = 0;
+
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //Get Timer configuration
   uint8_t conf = 0;
@@ -68,7 +70,10 @@ int (timer_subscribe_int)(uint8_t *bit_no) {
   Use TIMER0_IRQ macro defined in the i8254.h file for the irq_line
   policy is  IRQ_REENABLE*/
 
-  return 1;
+  if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, bit_no) != 0)
+    return EXIT_FAILURE;
+
+  return EXIT_SUCCESS;
 }
 
 int (timer_unsubscribe_int)() {
@@ -76,7 +81,12 @@ int (timer_unsubscribe_int)() {
   //printf("%s is not yet implemented!\n", __func__);
 
   /*Call the sys_irqrmpolicy(int *hook_id) where hook_id is the same as the bit_no*/
-  return 1;
+
+  if(sys_irqrmpolicy(&hook_id) != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
 
 void (timer_int_handler)() {
