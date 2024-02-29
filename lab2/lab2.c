@@ -57,7 +57,13 @@ int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
 
 int(timer_test_int)(uint8_t time) {
   /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  //printf("%s is not yet implemented!\n", __func__);
+
+  /*Time parameter is the time the function will run.
+  Use loop desbribe in the lab's assignment
+  When global variable reaches 60 (beacause the rate is 60hz) print's an interrupt
+  Global counter / time could be the condition to exit the loop*/
+
 
   return 1;
 }
