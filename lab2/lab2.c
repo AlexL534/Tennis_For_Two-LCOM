@@ -57,19 +57,23 @@ int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
 }
 
 int(timer_test_int)(uint8_t time) {
-  /* To be implemented by the students */
-  //printf("%s is not yet implemented!\n", __func__);
 
-
-
+  if(time == 0){
+    return EXIT_FAILURE;
+  }
+  
   int ipc_status;
   message msg;
   int r = 0;
   uint8_t bit_no;
+
+  //subscribes the interrupt
   timer_subscribe_int(&bit_no);
+
+  //sets the bit mask
   uint8_t irq_set = BIT(bit_no);
 
- while(time) {  /*You may want to use a different condition */
+ while(time) { 
     /*Get a request message. */
 
      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
@@ -96,6 +100,7 @@ int(timer_test_int)(uint8_t time) {
      }
  }
 
+//unsubscribes the interrupt
  timer_unsubscribe_int();
 
 

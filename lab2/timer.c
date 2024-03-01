@@ -9,6 +9,12 @@ int hook_id = 0;
 int counter = 0;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
+
+  if(TIMER_FREQ/freq > BIT(16) - 1){
+    printf("Frequency is not allowed\n");
+    return EXIT_FAILURE;
+  }
+
   //Get Timer configuration
   uint8_t conf = 0;
   if(timer_get_conf(timer, &conf) != 0){
