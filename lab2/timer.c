@@ -5,7 +5,8 @@
 
 #include "i8254.h"
 
-uint8_t hook_id = 0;
+int hook_id = 0;
+int counter = 0;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //Get Timer configuration
@@ -62,38 +63,22 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
-    /* To be implemented by the students */
-  //printf("%s is not yet implemented!\n", __func__);
-
-  /*initialize the hook_id value with the bit_no value
-  Then call the sys_irqsetpolicy(int irq_line, int policy, int *hook_id)
-  Use TIMER0_IRQ macro defined in the i8254.h file for the irq_line
-  policy is  IRQ_REENABLE*/
-
-  if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, bit_no) != 0)
+  *bit_no = hook_id;
+  if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id) != 0)
     return EXIT_FAILURE;
-
   return EXIT_SUCCESS;
 }
 
 int (timer_unsubscribe_int)() {
-  /* To be implemented by the students */
-  //printf("%s is not yet implemented!\n", __func__);
-
   /*Call the sys_irqrmpolicy(int *hook_id) where hook_id is the same as the bit_no*/
-
   if(sys_irqrmpolicy(&hook_id) != 0){
     return EXIT_FAILURE;
   }
-
   return EXIT_SUCCESS;
 }
 
 void (timer_int_handler)() {
-  /* To be implemented by the students */
-  //printf("%s is not yet implemented!\n", __func__);
-
-  /*Increments a global variable*/
+  counter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
