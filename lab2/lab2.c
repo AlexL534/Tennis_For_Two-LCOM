@@ -7,6 +7,7 @@
 extern int counter;
 
 
+>>>>>>> 7fff3bb48e081e60cfbb8e20f76286207be541bf
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");

@@ -8,6 +8,7 @@
 int hook_id = 0;
 int counter = 0;
 
+>>>>>>> 7fff3bb48e081e60cfbb8e20f76286207be541bf
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //Get Timer configuration
   uint8_t conf = 0;
@@ -75,6 +76,7 @@ int (timer_unsubscribe_int)() {
     return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;
+>>>>>>> 7fff3bb48e081e60cfbb8e20f76286207be541bf
 }
 
 void (timer_int_handler)() {
