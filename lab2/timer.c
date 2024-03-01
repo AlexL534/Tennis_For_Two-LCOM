@@ -5,8 +5,8 @@
 
 #include "i8254.h"
 
-int hook_id = 0;
-int counter = 0;
+static int hook_id = 0;
+static int counter = 0;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 
@@ -69,6 +69,7 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
+  //calls the sys_irqsetpolicy (initializes the interrupts)
   *bit_no = hook_id;
   if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id) != 0)
     return EXIT_FAILURE;
@@ -84,6 +85,7 @@ int (timer_unsubscribe_int)() {
 }
 
 void (timer_int_handler)() {
+  //incremnets the global counter
   counter++;
 }
 
