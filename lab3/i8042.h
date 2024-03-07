@@ -39,6 +39,11 @@
 
 #define KBD_ESC_BREAK   0x81     /*ESC breakcode*/
 
+#define KBD_BREAKCODE   BIT(7)
+#define KBD_MAKECODE    0x00
+
+#define DELAY_US    20000
+
 
 
 
