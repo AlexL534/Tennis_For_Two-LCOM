@@ -1,0 +1,9 @@
+kdb
+lab3
+utils
+kdb.o
+lab3.o
+utils.o
+output.txt
+trace.txt
+.gdbinit
