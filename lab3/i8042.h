@@ -11,6 +11,7 @@
  */
 
 /* I/O port adresses*/
+#define IRQ_KEYBOARD 1
 
 #define KBC_OUT_BUF   0x60    /*Out buffer (to read scancodes from the keyboard and return values)*/
 #define KBC_ST_REG    0x64    /*Used to read the KBC state*/
@@ -41,6 +42,8 @@
 
 #define KBD_BREAKCODE   BIT(7)
 #define KBD_MAKECODE    0x00
+
+#define KBD_TWOBYTES    0xE0
 
 #define DELAY_US    20000
 
