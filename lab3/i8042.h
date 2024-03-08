@@ -45,6 +45,8 @@
 
 #define KBD_TWOBYTES    0xE0
 
+#define KBD_ENABLE      0X01
+
 #define DELAY_US    20000
 
 
