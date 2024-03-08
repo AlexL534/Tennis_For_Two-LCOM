@@ -83,7 +83,6 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-
   while(scancode != KBD_ESC_BREAK){
           
         kbc_ih();
