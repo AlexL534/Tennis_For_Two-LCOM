@@ -4,7 +4,7 @@
 #include "kbd.h"
 
 uint8_t scancode = 0;
-int hook_id = 0;
+int KBD_hook_id = 0;
 uint32_t counter_KBD = 0;
 
 void (kbc_ih)() {
@@ -41,7 +41,7 @@ int (kbc_read_status)(uint8_t *status){
             return EXIT_SUCCESS;
         }
         attempts--;
-        //tickdelay(micros_to_ticks(DELAY_US));
+        tickdelay(micros_to_ticks(DELAY_US));
     }
 
     return EXIT_FAILURE;
@@ -63,16 +63,16 @@ int (kbc_read_scancode)(uint8_t *value, uint8_t *status){
 
 int (kbc_subscribe_int)(uint8_t *bit_no){
     *bit_no = IRQ_KEYBOARD; 
-    hook_id = *bit_no;
+    KBD_hook_id = *bit_no;
 
-    if(sys_irqsetpolicy(IRQ_KEYBOARD, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id) != 0)
+    if(sys_irqsetpolicy(IRQ_KEYBOARD, IRQ_REENABLE | IRQ_EXCLUSIVE, &KBD_hook_id) != 0)
 
         return EXIT_FAILURE;
   return EXIT_SUCCESS;
 }
 
 int (kbc_unsubscribe_int)(){
-    if(sys_irqrmpolicy(&hook_id) != 0){
+    if(sys_irqrmpolicy(&KBD_hook_id) != 0){
     return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;

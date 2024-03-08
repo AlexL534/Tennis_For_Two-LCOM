@@ -6,10 +6,11 @@
 #include <stdint.h>
 #include "kbd.h"
 #include "i8042.h"
+#include "timer.c"
 
 extern uint8_t scancode;
-extern int hook_id;
 extern uint32_t counter_KBD;
+extern int counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -106,8 +107,66 @@ int(kbd_test_poll)() {
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  
+  uint8_t cnt = n;
+  int last_counter = 0;
+  int ipc_status;
+  message msg;
+  int r = 0;
+  uint8_t bit_no;
 
-  return 1;
+  if(kbc_subscribe_int(&bit_no) != 0){
+      return EXIT_FAILURE;
+  }
+
+  uint8_t KBD_bit = BIT(bit_no);
+  if(timer_subscribe_int(&bit_no) != 0){
+    return EXIT_FAILURE;
+  }
+
+
+  uint8_t TIMER_bit = BIT(bit_no);
+
+  while((scancode != KBD_ESC_BREAK) && cnt){
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+        }
+         if (is_ipc_notify(ipc_status)) { /* received notification */
+         switch (_ENDPOINT_P(msg.m_source)) {
+             case HARDWARE: /* hardware interrupt notification */				
+                 if (msg.m_notify.interrupts & KBD_bit) { /* subscribed interrupt */
+                       kbc_ih();
+                       kbd_print_scancode(!(scancode & KBD_BREAKCODE), (scancode == KBD_TWOBYTES) ? 2 : 1, &scancode);
+                       cnt = n;
+                       last_counter = counter;
+                 }
+                 if(msg.m_notify.interrupts & TIMER_bit){ 
+                      timer_int_handler();
+                       if((counter - last_counter) % 60 == 0){
+                          cnt--;
+                       }
+                       }
+                 break;
+             default:
+                 break; /* no other notifications expected: do nothing */	
+         }
+     } else { /* received a standard message, not a notification */
+         /* no standard messages expected: do nothing */
+     }
+}
+
+  if(kbc_unsubscribe_int() != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(timer_unsubscribe_int() != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(kbd_print_no_sysinb(counter_KBD) != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
