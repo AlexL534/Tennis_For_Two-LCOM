@@ -33,19 +33,23 @@
 #define KBC_RD_CM_B   0x20    /*Read Command Byte*/
 #define KBC_WRT_CM_B  0x60    /*Write Command Byte*/
 #define KBC_CHECK     0xAA    /*Check KBC (Self-test)*/
+
+/*Keyboard specific commands*/
 #define KDB_KB_INTER  0xAB    /*Check Keyboard Interface*/
 #define KDB_DISABLE_INTER   0xAD  /*Disable KBD Interface*/
 #define KDB_ENABLE_INTER    0xAE  /*Enable KBD Interface*/
-
-
 #define KBD_ESC_BREAK   0x81     /*ESC breakcode*/
 
-#define KBD_BREAKCODE   BIT(7)
-#define KBD_MAKECODE    0x00
+#define KBD_BREAKCODE   BIT(7)  /*Indentify the breack code*/
+#define KBD_MAKECODE    0x00    /*Identify the makecode*/
+#define KBD_TWOBYTES    0xE0    /*Verify if the code uses two bytes*/
+#define KBD_ENABLE      0X01    /*Verifies if the KBD is enable*/
 
-#define KBD_TWOBYTES    0xE0
-
-#define KBD_ENABLE      0X01
+/*Mouse specific commands*/
+#define MOUSE_DISABLE   0xA7      /*Disables the mouse*/
+#define MOUSE_ENABLE    0xA8      /*Enables the mouse*/
+#define MOUSE_CHECK_INTER 0xA9
+#define MOUSE_WRITE_BYTE  0xD4    /*Commands the KBC to Send its arguments to the mouse*/
 
 #define DELAY_US    20000
 
