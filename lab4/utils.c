@@ -21,6 +21,9 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
 }
 
 int (util_sys_inb)(int port, uint8_t *value) {
+  if(value == NULL){
+    return EXIT_FAILURE;
+  }
   uint32_t aux = 0;
   if(sys_inb(port,&aux)!=0){
     return EXIT_FAILURE;

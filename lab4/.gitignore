@@ -1,0 +1,8 @@
+lab4
+lab4.o
+mouse.o
+output.txt
+trace.txt
+utils.o
+kbc.o
+.gdbinit
