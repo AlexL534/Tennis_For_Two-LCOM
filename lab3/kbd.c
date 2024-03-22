@@ -61,7 +61,6 @@ int (kbc_subscribe_int)(uint8_t *bit_no){
     KBD_hook_id = *bit_no;
 
     if(sys_irqsetpolicy(IRQ_KEYBOARD, IRQ_REENABLE | IRQ_EXCLUSIVE, &KBD_hook_id) != 0)
-
         return EXIT_FAILURE;
   return EXIT_SUCCESS;
 }
@@ -126,7 +125,7 @@ int(kbc_write_command)(uint8_t *command, int port){
             return EXIT_FAILURE;
         }
         if( (status & KBC_OBF) == 0 ) {
-            sys_outb(port, *command); /* no args command */
+            sys_outb(port, *command);
             return EXIT_SUCCESS;
         }
         tickdelay(micros_to_ticks(DELAY_US)); // e.g. tickdelay()

@@ -6,6 +6,9 @@
 #include "mouse.h"
 #include "i8042.h"
 #include "timer.c"
+#include "state_machine.h"
+#include "state_machine.c"
+
 
 extern uint8_t byte_index;
 extern struct packet mouse_packet;
@@ -181,14 +184,66 @@ int (mouse_test_async)(uint8_t idle_time) {
   return EXIT_SUCCESS;
 }
 
-/*
-int (mouse_test_gesture)() {
 
-}
-*/
+int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
+  int ipc_status;
+  message msg;
+  int r = 0;
+  uint8_t bit_no;
 
-int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
-    /* This year you need not implement this. */
-    printf("%s(%u, %u): under construction\n", __func__, period, cnt);
-    return 1;
+//enbles mouse data report
+  if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+    return EXIT_FAILURE;
+  }
+
+//Enable mouse interrupts
+  if(mouse_subscribe_int(&bit_no) != 0){
+      return EXIT_FAILURE;
+  }
+
+
+  uint8_t irq_set = BIT(bit_no);
+  
+  //condition to exit is execute the inverted v shape
+  while(get_Current_State() != END){
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+        }
+
+         if (is_ipc_notify(ipc_status)) { /* received notification */
+         switch (_ENDPOINT_P(msg.m_source)) {
+             case HARDWARE: /* hardware interrupt notification */				
+                 if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */    
+                       mouse_ih();
+                       mouse_insert_byte();
+                       if(byte_index == 3){
+                          mouse_insert_in_packet();
+                          mouse_print_packet(&mouse_packet);
+                          state_machine(&mouse_packet, x_len, tolerance);
+                          byte_index = 0;
+                       }
+                 }
+                 break;
+             default:
+                 break; /* no other notifications expected: do nothing */	
+         }
+     } else { /* received a standard message, not a notification */
+         /* no standard messages expected: do nothing */
+     }
 }
+
+//Disables mouse interrupts
+  if(mouse_unsubscribe_int() != 0){
+    return EXIT_FAILURE;
+  }
+
+  //Disables mouse data report
+  if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
+}
+
+
