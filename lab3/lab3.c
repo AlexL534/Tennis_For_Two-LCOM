@@ -8,6 +8,7 @@
 #include "i8042.h"
 #include "timer.c"
 
+
 extern uint8_t scancode;
 extern uint32_t counter_KBD;
 extern int counter;
@@ -83,13 +84,11 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  while(scancode != KBD_ESC_BREAK){
-          
-        kbc_ih();
-        if(scancode == 0){
-          continue;
-        }
+  while(scancode != KBD_ESC_BREAK){  
+        
+      if(kbc_read_scancode() == 0){
         kbd_print_scancode(!(scancode & KBD_BREAKCODE), (scancode == KBD_TWOBYTES) ? 2 : 1, &scancode);
+      }
   }
 
   if(kbc_activate() != 0){
@@ -117,13 +116,12 @@ int(kbd_test_timed_scan)(uint8_t n) {
   if(kbc_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
-
   uint8_t KBD_bit = BIT(bit_no);
+
+
   if(timer_subscribe_int(&bit_no) != 0){
     return EXIT_FAILURE;
   }
-
-
   uint8_t TIMER_bit = BIT(bit_no);
 
   while((scancode != KBD_ESC_BREAK) && cnt){

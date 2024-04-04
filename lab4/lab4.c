@@ -88,7 +88,7 @@ int (mouse_test_packet)(uint32_t cnt) {
      }
 }
 
-//Disables mouse interrupts
+  //Disables mouse interrupts
   if(mouse_unsubscribe_int() != 0){
     return EXIT_FAILURE;
   }

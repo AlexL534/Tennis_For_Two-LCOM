@@ -37,7 +37,7 @@ int (mouse_read_byte)(){
     while(maxIterations){
       //reads the status
       if(mouse_read_status(&status) != 0){
-        EXIT_FAILURE;
+        return EXIT_FAILURE;
       }
 
       //checks if there was an error

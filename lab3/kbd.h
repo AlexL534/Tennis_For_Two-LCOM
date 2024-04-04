@@ -1,6 +1,6 @@
 #include <lcom/lcf.h>
 
-int (kbc_read_status)();
+int (kbc_read_status)(uint8_t *status);
 int (kbc_read_scancode)();
 int (kbc_subscribe_int)(uint8_t *bit_no);
 int (kbc_unsubscribe_int)();
