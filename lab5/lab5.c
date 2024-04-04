@@ -5,6 +5,12 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include "graphics.h"
+#include "kbd.c"
+#include "utils.c"
+#include "i8042.h"
+
+extern uint8_t scancode;
 
 // Any header files included below this line should have been created by you
 
@@ -32,20 +38,93 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int(video_test_init)(uint16_t mode, uint8_t delay) {
-  /* To be completed */
-  printf("%s(0x%03x, %u): under construction\n", __func__, mode, delay);
+int(KBD_wait_ESC)() {
+  
+  int ipc_status;
+  message msg;
+  int r = 0;
+  uint8_t bit_no;
 
-  return 1;
+  if(kbc_subscribe_int(&bit_no) != 0){
+      return EXIT_FAILURE;
+  }
+
+  uint8_t irq_set = BIT(bit_no);
+
+  while(scancode != KBD_ESC_BREAK){
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+        }
+
+         if (is_ipc_notify(ipc_status)) { /* received notification */
+         switch (_ENDPOINT_P(msg.m_source)) {
+             case HARDWARE: /* hardware interrupt notification */				
+                 if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
+                       kbc_ih();
+                 }
+                 break;
+             default:
+                 break; /* no other notifications expected: do nothing */	
+         }
+     } else { /* received a standard message, not a notification */
+         /* no standard messages expected: do nothing */
+     }
+}
+
+  if(kbc_unsubscribe_int() != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
+}
+int(video_test_init)(uint16_t mode, uint8_t delay) {
+  
+  //initializes the graphics mode
+  if(intialize_graphics_mode(mode) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //delays for a few seconds
+  sleep(delay);
+
+  //resets the graphics mode to text mode
+  if(vg_exit() != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
 
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
-  /* To be completed */
-  printf("%s(0x%03X, %u, %u, %u, %u, 0x%08x): under construction\n",
-         __func__, mode, x, y, width, height, color);
+  
+  
+  //Map the vram
+  if(map_VRAM(mode) != 0){
+    return EXIT_FAILURE;
+  }
 
-  return 1;
+  //Initializes the graphics mode
+  if(intialize_graphics_mode(mode) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //draws the rectangle
+  if(vg_draw_rectangle(x,y,width,height,color) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //wait esc
+  if(KBD_wait_ESC() != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(vg_exit() != 0){
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
