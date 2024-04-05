@@ -9,6 +9,29 @@ static unsigned h_res;	        /* Horizontal resolution in pixels */
 static unsigned v_res;	        /* Vertical resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
 
+//getters =====================================================
+vbe_mode_info_t (get_mode_inf)(){
+  return mode_info;
+}
+
+unsigned (get_hres)(){
+  return h_res;
+}
+
+unsigned (get_vres)(){
+  return v_res;
+}
+
+unsigned (get_bits_per_pixel)(){
+  return bits_per_pixel;
+}
+
+unsigned (get_bytes_per_pixel)(){
+  return (bits_per_pixel + 7) / 8;
+}
+
+
+
 //initializes the Minix Graphics mode
 int (intialize_graphics_mode)(uint16_t mode){
   reg86_t r;
@@ -41,7 +64,7 @@ int (map_VRAM)(uint16_t mode){
   v_res = mode_info.YResolution;
 
   //calculates the buffer size (we add 7 because we need to round by excess)
-  unsigned int size = (h_res * v_res * ((bits_per_pixel + 7)/8));
+  unsigned int size = (h_res * v_res * get_bytes_per_pixel());
 
   //calculate the memory base and limit
   struct minix_mem_range mr;
@@ -79,7 +102,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
 
   //calculates the vram index
   // hres * y is the number of bits needed to reach line y. Then we add x to get the index in that line
-  unsigned int vram_index = (h_res * y  + x) * ((bits_per_pixel + 7)/8);
+  unsigned int vram_index = (h_res * y  + x) * get_bytes_per_pixel();
 
   if(memcpy(&video_mem[vram_index], &color, (bits_per_pixel + 7)/8) == NULL){
     return EXIT_FAILURE;

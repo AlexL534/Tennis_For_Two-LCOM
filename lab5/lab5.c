@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "graphics.h"
+#include "VBE.h"
 #include "kbd.c"
 #include "utils.c"
 #include "i8042.h"
@@ -128,11 +129,55 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  /* To be completed */
-  printf("%s(0x%03x, %u, 0x%08x, %d): under construction\n", __func__,
-         mode, no_rectangles, first, step);
+  //Map the vram
+  if(map_VRAM(mode) != 0){
+    return EXIT_FAILURE;
+  }
 
-  return 1;
+  //Initializes the graphics mode
+  if(intialize_graphics_mode(mode) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //finds the width and height of each rectangle
+  uint16_t rectangle_width = get_hres() / no_rectangles;
+  uint16_t rectangle_height = get_vres() / no_rectangles;
+
+  for(int i = 0; i < no_rectangles; i++){
+    for(int j = 0; j < no_rectangles; j++){
+
+      uint32_t color;
+      if(mode == VBE_INDEXED_COLOR){
+        color = (first + (i * no_rectangles + j) * step) % (1 << get_bits_per_pixel());
+      }
+      else{
+        uint32_t red = ( ((1 << get_mode_inf().RedMaskSize) - 1) & (first >> get_mode_inf().RedFieldPosition) + j * step) % (1 << get_mode_inf().RedMaskSize);
+
+	      uint32_t green = (((1 << get_mode_inf().GreenMaskSize) - 1) & (first >> get_mode_inf().GreenFieldPosition) + i * step) % (1 << get_mode_inf().GreenMaskSize);
+
+	      uint32_t blue = (((1 << get_mode_inf().BlueMaskSize) - 1) & (first >> get_mode_inf().BlueFieldPosition) + (j + i) * step) % (1 << get_mode_inf().BlueMaskSize);
+
+        color = (red << get_mode_inf().RedFieldPosition) | (green << get_mode_inf().GreenFieldPosition) | (blue << get_mode_inf().BlueFieldPosition);
+      }
+
+      printf("color = %u\n", color );
+      if(vg_draw_rectangle(j * rectangle_width, i * rectangle_height, rectangle_width, rectangle_height, color) != 0){
+        return EXIT_FAILURE;
+      }
+    }
+  }
+
+  //wait esc
+  if(KBD_wait_ESC() != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(vg_exit() != 0){
+    return EXIT_FAILURE;
+  }
+  
+
+  return EXIT_SUCCESS;
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {

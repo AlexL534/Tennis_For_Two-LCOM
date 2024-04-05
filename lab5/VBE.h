@@ -5,5 +5,7 @@
 #define VBE_SET_LINER_MODE BIT(14)
 #define VBE_SERVICE 0x10
 
+#define VBE_INDEXED_COLOR 0x105
+
 
 #endif
