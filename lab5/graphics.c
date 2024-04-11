@@ -137,3 +137,23 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 
   return EXIT_SUCCESS;
 }
+
+//draws a xpm image on the screen
+int (draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
+  xpm_image_t img; // pixmap and metadata
+  uint8_t *map; // pixmap itself
+
+  // get the pixmap from the XPM
+  map = xpm_load(xpm, XPM_INDEXED, &img);
+
+  //loops throught the pixmap and draws the color on the screen
+  for(int i = 0; i < img.height; i++){
+    for(int j = 0; j < img.width; j++){
+      if(vg_draw_pixel(x + j, y + i, *map) != 0){
+        return EXIT_FAILURE;
+      };
+      map++;
+    }
+  }
+  return EXIT_SUCCESS;
+}
