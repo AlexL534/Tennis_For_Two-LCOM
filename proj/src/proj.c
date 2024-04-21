@@ -5,7 +5,7 @@
 #include "rtc.h"
 #include "kbd.h"
 #include "i8042.h"
-#include "Court_rec.xpm"
+#include "xpms/Court_rec.xpm"
 #include "VBE.h"
 #include "video.h"
 
