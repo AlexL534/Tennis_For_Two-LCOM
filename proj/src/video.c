@@ -1,6 +1,7 @@
 #include <lcom/lcf.h>
-#include "graphics.h"
+#include "video.h"
 #include "VBE.h"
+#include <lcom/xpm.h>
 
 static vbe_mode_info_t mode_info;
 static char *video_mem;		/* Process (virtual) address to which VRAM is mapped */
@@ -93,7 +94,6 @@ int (map_VRAM)(uint16_t mode){
 
 //draws a pixel in the screen
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
-  
   //verify if the coordinates are legal
   if((x > h_res) || (y > v_res) || ( x < 0) || (y < 0)){
     printf("Invalid Coordinates\n");
@@ -141,13 +141,11 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 }
 
 //draws a xpm image on the screen
-int (draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
+int (draw_xpm)(xpm_map_t xpm, enum xpm_image_type type, uint16_t x, uint16_t y){
   xpm_image_t img; // pixmap and metadata
-  uint8_t *map; // pixmap itself
-
+  uint32_t *map; // pixmap itself
   // get the pixmap from the XPM
-  map = xpm_load(xpm, XPM_INDEXED, &img);
-
+  map = (uint32_t *) xpm_load(xpm, type, &img);
   //loops throught the pixmap and draws the color on the screen
   for(int i = 0; i < img.height; i++){
     for(int j = 0; j < img.width; j++){

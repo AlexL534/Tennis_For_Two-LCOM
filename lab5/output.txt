@@ -1,3 +1,0 @@
-Day = 20
-Month = 4
-Year = 24

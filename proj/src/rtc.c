@@ -3,6 +3,8 @@
 
 int (get_date)(uint8_t *day, uint8_t *month, uint8_t *year){
 
+  set_binary();
+
   //read the day information
   if(read_RTC(DAY, day) != 0){
     return EXIT_FAILURE;
@@ -23,13 +25,23 @@ int (get_date)(uint8_t *day, uint8_t *month, uint8_t *year){
 
 int (set_binary)(){
   //sets the values in the RTC to binary
+
+  //firstly read the current config
   uint8_t value = 0;
   if(sys_outb(RTC_ADDR_REG, REG_B) != 0){
     return EXIT_FAILURE;
   }
+  if(util_sys_inb(RTC_DATA_REG, &value) != 0){
+    return EXIT_FAILURE;
+  }
 
+  //update value
   value = value | REG_B_DM;
 
+  //insert the updated value
+  if(sys_outb(RTC_ADDR_REG, REG_B) != 0){
+    return EXIT_FAILURE;
+  }
   if(sys_outb(RTC_DATA_REG, value) != 0){
     return EXIT_FAILURE;
   }
@@ -40,7 +52,7 @@ int (set_binary)(){
 int (read_RTC)(uint8_t command, uint8_t *output){
 
   //firstly checks if the RTC is updating (UIP) 
-  uint8_t updating;
+  uint8_t updating = 0;
   if(sys_outb(RTC_ADDR_REG, REG_A) != 0){
     return EXIT_FAILURE;
   }
@@ -53,7 +65,7 @@ int (read_RTC)(uint8_t command, uint8_t *output){
   }
 
   //check if the values are in binary
-  uint8_t bin;
+  uint8_t bin = 0;
   if(sys_outb(RTC_ADDR_REG, REG_B) != 0){
     return EXIT_FAILURE;
   }
@@ -61,11 +73,9 @@ int (read_RTC)(uint8_t command, uint8_t *output){
     return EXIT_FAILURE;
   }
 
-  if(!(bin & REG_B_DM)) {
+  if((bin & REG_B_DM) == 0) {
     //the values are in BCD and need to be set to binary
-    if(set_binary() != 0){
-      return EXIT_FAILURE;
-    }
+    return EXIT_FAILURE;
   }
 
   //If the rtc isn't updating, reads the value
@@ -78,3 +88,5 @@ int (read_RTC)(uint8_t command, uint8_t *output){
 
   return EXIT_SUCCESS;
 }
+
+

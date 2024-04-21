@@ -9,6 +9,7 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "lab5.h": "c",
-    "lcf.h": "c"
+    "lcf.h": "c",
+    "graphics.h": "c"
   },
 }
