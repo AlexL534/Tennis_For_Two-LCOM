@@ -6,6 +6,7 @@
 #include "kbd.h"
 #include "i8042.h"
 #include "xpms/Court_rec.xpm"
+#include "xpms/player1/move/move1.xpm"
 #include "VBE.h"
 #include "video.h"
 
@@ -87,7 +88,11 @@ int (proj_main_loop)(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  if(draw_xpm((xpm_map_t) court, XPM_8_8_8_8, 0, 0) != 0){
+  if(draw_xpm((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, 0, 0) != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(draw_xpm((xpm_map_t) move1_xpm, XPM_8_8_8_8, 300, 500) != 0){
     return EXIT_FAILURE;
   }
 
