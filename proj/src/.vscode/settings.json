@@ -12,6 +12,7 @@
     "kbd.h": "c",
     "i8042.h": "c",
     "vbe.h": "c",
-    "video.h": "c"
+    "video.h": "c",
+    "*.xpm": "c"
   },
 }

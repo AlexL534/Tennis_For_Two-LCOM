@@ -67,9 +67,13 @@
 #define MOUSE_ACK           0xFA
 #define MOUSE_NACK          0xFE
 #define MOUSE_ERROR         0xFC
-
-
 #define MOUSE_CONTROL   BIT(3)  /*Bit used to see if the value is a new packt or not*/
+
+/*List of makecodes*/
+#define ARROW_LEFT 0x4b
+#define ARROW_RIGHT 0x4d
+#define ARROW_UP 0x48
+#define ARROW_DOWN 0x50
 
 #define DELAY_US    20000
 

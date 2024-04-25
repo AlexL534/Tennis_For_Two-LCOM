@@ -1,27 +1,28 @@
-#ifdef STATES_H
+#ifndef STATES_H
 #define STATES_H
 
-enum Game_state{
+typedef enum{
   GAME,
   START_MENU,
   PAUSE_MENU
-}
+} Game_state;
 
-enum Player_direction{
+typedef enum {
   LEFT,
   RIGHT
-};
+} Player_direction;
 
-enum Player_state{
+typedef enum {
   MOVE,
   START,
   HIT,
-};
+  STOP
+} Player_state;
 
-enum Ball_direction{
+typedef enum {
   UP,
   DOWN
-}
+} Ball_direction;
 
 
 #endif

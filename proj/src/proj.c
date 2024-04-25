@@ -5,10 +5,10 @@
 #include "devices/rtc.h"
 #include "devices/kbd.h"
 #include "devices/i8042.h"
-#include "xpms/Court_rec.xpm"
-#include "xpms/player1/move/move1.xpm"
+#include "xpms.h"
 #include "devices/VBE.h"
 #include "devices/video.h"
+#include "game.h"
 
 extern uint8_t scancode;
 
@@ -78,8 +78,7 @@ int(KBD_wait_ESC)() {
 }
 
 int (proj_main_loop)(int argc, char **argv) {
-  if(map_VRAM(VBE_MODE_8888
-  ) != 0){
+  if(map_VRAM(VBE_MODE_8888) != 0){
     return EXIT_FAILURE;
   }
 
@@ -92,15 +91,11 @@ int (proj_main_loop)(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  if(draw_xpm((xpm_map_t) move1_xpm, XPM_8_8_8_8, 300, 500) != 0){
+  if(gameLoop() != 0){
     return EXIT_FAILURE;
   }
 
-  //wait esc
-  if(KBD_wait_ESC() != 0){
-    return EXIT_FAILURE;
-  }
-
+  
   //exits the graphics mode
   if(vg_exit() != 0){
     return EXIT_FAILURE;

@@ -1,66 +1,1224 @@
 @lcflib.a:2019, lcf_start
   proj_main_loop(argc, argv)
 > proj_main_loop(0, [NULL])
-  @devices/video.c:58, map_VRAM
+  @/home/lcom/labs/proj/src/devices//video.c:58, map_VRAM
     vbe_get_mode_info(mode, &mode_info)
-  > vbe_get_mode_info(0x14c, addr: 0x83706b8)
-  < vbe_get_mode_info(0x14c, addr: 0x83706b8 [0xe0000000, 1152x864, 8:8:8 (32) <3.79688 MiB>]) -> (ret: 0)
-  @devices/video.c:77, map_VRAM
+  > vbe_get_mode_info(0x14c, addr: 0x8383278)
+  < vbe_get_mode_info(0x14c, addr: 0x8383278 [0xe0000000, 1152x864, 8:8:8 (32) <3.79688 MiB>]) -> (ret: 0)
+  @/home/lcom/labs/proj/src/devices//video.c:77, map_VRAM
     sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
   > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff790 [0xe0000000 - 0xe03cc000 <3.79688 MiB>])
   < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
-  @devices/video.c:83, map_VRAM
+  @/home/lcom/labs/proj/src/devices//video.c:83, map_VRAM
     vm_map_phys(SELF, (void *)mr.mr_base, size)
   < vm_map_phys(SELF, addr: 0xe0000000, 3.79688 MiB) -> (ret: 0xef62f000)
-  @devices/video.c:43, intialize_graphics_mode
+  @/home/lcom/labs/proj/src/devices//video.c:43, intialize_graphics_mode
     sys_int86(&r)
   > sys_int86(addr: 0xeffff770 [AX: 4f02, BX: 414c, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
   < sys_int86(addr: 0xeffff770 [AX: 004f, BX: 414c, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
-  @devices/video.c:149, draw_xpm
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
     xpm_load(xpm, type, &img)
-  > xpm_load(addr: 0x8368988, XPM_8_8_8_8, addr: 0xeffff780)
-  < xpm_load(addr: 0x8368988, XPM_8_8_8_8, addr: 0xeffff780 [1152x864 : 3981312 bytes]) -> (ret: 0x83c0000)
-  @devices/video.c:149, draw_xpm
-    xpm_load(xpm, type, &img)
-  > xpm_load(addr: 0x836f3d8, XPM_8_8_8_8, addr: 0xeffff780)
-  < xpm_load(addr: 0x836f3d8, XPM_8_8_8_8, addr: 0xeffff780 [101x150 : 60600 bytes]) -> (ret: 0x8394000)
+  > xpm_load(addr: 0x83737fc, XPM_8_8_8_8, addr: 0xeffff780)
+  < xpm_load(addr: 0x83737fc, XPM_8_8_8_8, addr: 0xeffff780 [1152x864 : 3981312 bytes]) -> (ret: 0x83d3000)
+  @player1.c:24, createPlayer1
+    xpm_load((xpm_map_t) move1_xpm, XPM_8_8_8_8, &img)
+  > xpm_load(addr: 0x8380c9c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x8380c9c, XPM_8_8_8_8, addr: 0xeffff6e0 [101x150 : 60600 bytes]) -> (ret: 0x83a8000)
+  @player1.c:31, createPlayer1
+    xpm_load((xpm_map_t) move2_xpm, XPM_8_8_8_8, &img)
+  > xpm_load(addr: 0x8381300, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x8381300, XPM_8_8_8_8, addr: 0xeffff6e0 [101x150 : 60600 bytes]) -> (ret: 0x83b7000)
+  @player1.c:37, createPlayer1
+    xpm_load((xpm_map_t) move1_rev_xpm, XPM_8_8_8_8, &img)
+  > xpm_load(addr: 0x8381958, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x8381958, XPM_8_8_8_8, addr: 0xeffff6e0 [101x150 : 60600 bytes]) -> (ret: 0x879f000)
+  @player1.c:42, createPlayer1
+    xpm_load((xpm_map_t) move2_rev_xpm, XPM_8_8_8_8, &img)
+  > xpm_load(addr: 0x8381fb0, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x8381fb0, XPM_8_8_8_8, addr: 0xeffff6e0 [101x150 : 60600 bytes]) -> (ret: 0x87ae000)
   @devices/kbd.c:75, kbd_subscribe_int
     sys_irqsetpolicy(IRQ_KEYBOARD, IRQ_REENABLE | IRQ_EXCLUSIVE, &KBD_hook_id)
-  > sys_irqsetpolicy(1, 3, addr: 0x83706ac [1])
-  < sys_irqsetpolicy(1, 3, addr: 0x83706ac [10]) -> (ret: 0)
-  @proj.c:53, KBD_wait_ESC
+  > sys_irqsetpolicy(1, 3, addr: 0x838326c [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x838326c [10]) -> (ret: 0)
+  @game.c:23, gameLoop
+    timer_subscribe_int(&bit_no)
+  > timer_subscribe_int(addr: 0xeffff73f [1])
+    @/home/lcom/labs/proj/src/devices//timer.c:83, timer_subscribe_int
+      sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id)
+    > sys_irqsetpolicy(0, 1, addr: 0x8383274 [0])
+    < sys_irqsetpolicy(0, 1, addr: 0x8383274 [11]) -> (ret: 0)
+  < timer_subscribe_int(addr: 0xeffff73f [0]) -> (ret: 0)
+  @game.c:29, gameLoop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
-  @proj.c:62, KBD_wait_ESC
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x87dc000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x8ba8000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x8f74000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x9340000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
     kbc_ih()
     @devices/utils.c:33, util_sys_inb
       sys_inb(port, &aux)
-    > sys_inb(0x64, addr: 0xeffff634)
-    < sys_inb(0x64, addr: 0xeffff634 [0x1d = 0b00011101])
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
     @devices/utils.c:33, util_sys_inb
       sys_inb(port, &aux)
-    > sys_inb(0x60, addr: 0xeffff634)
-    < sys_inb(0x60, addr: 0xeffff634 [0x01 = 0b00000001])
-  @proj.c:53, KBD_wait_ESC
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x970c000)
+  @game.c:29, gameLoop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
-  @proj.c:62, KBD_wait_ESC
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
     kbc_ih()
     @devices/utils.c:33, util_sys_inb
       sys_inb(port, &aux)
-    > sys_inb(0x64, addr: 0xeffff634)
-    < sys_inb(0x64, addr: 0xeffff634 [0x1d = 0b00011101])
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
     @devices/utils.c:33, util_sys_inb
       sys_inb(port, &aux)
-    > sys_inb(0x60, addr: 0xeffff634)
-    < sys_inb(0x60, addr: 0xeffff634 [0x81 = 0b10000001])
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x9ad8000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x9ea4000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xa270000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xa63c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcd = 0b11001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xaa08000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xadd4000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xb1a0000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xb56c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcd = 0b11001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xb938000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xbd04000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xc0d0000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xc49c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcd = 0b11001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xc868000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xcc34000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xd000000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xd3cc000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcd = 0b11001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xd798000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xdb64000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xdf30000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xe2fc000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcd = 0b11001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xe6c8000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xea94000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4b = 0b01001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xee60000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xf22c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcb = 0b11001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xf5f8000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xf9c4000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4b = 0b01001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0xfd90000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x1015c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcb = 0b11001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x10528000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x108f4000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4b = 0b01001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x10cc0000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x1108c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcb = 0b11001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x11458000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x11824000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4b = 0b01001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x11bf0000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x11fbc000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcb = 0b11001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x12388000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x12754000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4b = 0b01001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x12b20000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x12eec000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcb = 0b11001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x132b8000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x13684000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4b = 0b01001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x13a50000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x13e1c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcb = 0b11001011])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x141e8000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x145b4000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x14980000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x14d4c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xcd = 0b11001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x15118000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x154e4000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x158b0000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0xe0 = 0b11100000])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x15c7c000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x4d = 0b01001101])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x16048000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x01 = 0b00000001])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x16414000)
+  @game.c:29, gameLoop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff740, addr: 0xeffff788)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @game.c:38, gameLoop
+    kbc_ih()
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x64, addr: 0xeffff624)
+    < sys_inb(0x64, addr: 0xeffff624 [0x1d = 0b00011101])
+    @devices/utils.c:33, util_sys_inb
+      sys_inb(port, &aux)
+    > sys_inb(0x60, addr: 0xeffff624)
+    < sys_inb(0x60, addr: 0xeffff624 [0x81 = 0b10000001])
+  @game.c:42, gameLoop
+    timer_int_handler()
+  @/home/lcom/labs/proj/src/devices//video.c:149, draw_xpm
+    xpm_load(xpm, type, &img)
+  > xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0)
+  < xpm_load(addr: 0x837a24c, XPM_8_8_8_8, addr: 0xeffff6e0 [1152x864 : 3981312 bytes]) -> (ret: 0x167e0000)
   @devices/kbd.c:81, kbd_unsubscribe_int
     sys_irqrmpolicy(&KBD_hook_id)
-  > sys_irqrmpolicy(addr: 0x83706ac [10])
-  < sys_irqrmpolicy(addr: 0x83706ac [10]) -> (ret: 0)
-  @proj.c:105, proj_main_loop
+  > sys_irqrmpolicy(addr: 0x838326c [10])
+  < sys_irqrmpolicy(addr: 0x838326c [10]) -> (ret: 0)
+  @game.c:63, gameLoop
+    timer_unsubscribe_int()
+    @/home/lcom/labs/proj/src/devices//timer.c:90, timer_unsubscribe_int
+      sys_irqrmpolicy(&hook_id)
+    > sys_irqrmpolicy(addr: 0x8383274 [11])
+    < sys_irqrmpolicy(addr: 0x8383274 [11]) -> (ret: 0)
+  @proj.c:100, proj_main_loop
     vg_exit()
   < vg_exit() -> (ret: 0)
 < proj_main_loop(0, [NULL]) -> (ret: 0)
