@@ -2,13 +2,13 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "rtc.h"
-#include "kbd.h"
-#include "i8042.h"
+#include "devices/rtc.h"
+#include "devices/kbd.h"
+#include "devices/i8042.h"
 #include "xpms/Court_rec.xpm"
 #include "xpms/player1/move/move1.xpm"
-#include "VBE.h"
-#include "video.h"
+#include "devices/VBE.h"
+#include "devices/video.h"
 
 extern uint8_t scancode;
 
@@ -43,7 +43,7 @@ int(KBD_wait_ESC)() {
   int r = 0;
   uint8_t bit_no;
 
-  if(kbc_subscribe_int(&bit_no) != 0){
+  if(kbd_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
 
@@ -70,7 +70,7 @@ int(KBD_wait_ESC)() {
      }
 }
 
-  if(kbc_unsubscribe_int() != 0){
+  if(kbd_unsubscribe_int() != 0){
     return EXIT_FAILURE;
   }
 

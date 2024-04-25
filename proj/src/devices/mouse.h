@@ -13,5 +13,9 @@ void (mouse_ih)();
 void (mouse_insert_byte)();
 void (mouse_insert_in_packet)();
 uint16_t (convert_to_2sComplement)(uint8_t mouse_byte);
+int (get_mouse_hook_id)();
+uint8_t (get__mouse_byte_index)();
+uint8_t (get_current_byte)();
+struct packet (get_mouse_packet)();
 
 #endif

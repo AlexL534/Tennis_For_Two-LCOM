@@ -11,7 +11,7 @@
 
 
 extern uint8_t byte_index;
-extern struct packet mouse_packet;
+extern struct packet packet;
 extern int counter;
 
 // Any header files included below this line should have been created by you
@@ -74,7 +74,7 @@ int (mouse_test_packet)(uint32_t cnt) {
                        mouse_insert_byte();
                        if(byte_index == 3){
                           mouse_insert_in_packet();
-                          mouse_print_packet(&mouse_packet);
+                          mouse_print_packet(&packet);
                           byte_index = 0;
                           cnt--;
                        }
@@ -152,7 +152,7 @@ int (mouse_test_async)(uint8_t idle_time) {
                        mouse_insert_byte();
                        if(byte_index == 3){
                           mouse_insert_in_packet();
-                          mouse_print_packet(&mouse_packet);
+                          mouse_print_packet(&packet);
                           byte_index = 0;
                        }
 
@@ -219,8 +219,8 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
                        mouse_insert_byte();
                        if(byte_index == 3){
                           mouse_insert_in_packet();
-                          mouse_print_packet(&mouse_packet);
-                          state_machine(&mouse_packet, x_len, tolerance);
+                          mouse_print_packet(&packet);
+                          state_machine(&packet, x_len, tolerance);
                           byte_index = 0;
                        }
                  }

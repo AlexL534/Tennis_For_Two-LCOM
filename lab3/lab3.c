@@ -44,7 +44,7 @@ int(kbd_test_scan)() {
   int r = 0;
   uint8_t bit_no;
 
-  if(kbc_subscribe_int(&bit_no) != 0){
+  if(kbd_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
 
@@ -72,7 +72,7 @@ int(kbd_test_scan)() {
      }
 }
 
-  if(kbc_unsubscribe_int() != 0){
+  if(kbd_unsubscribe_int() != 0){
     return EXIT_FAILURE;
   }
 
@@ -86,12 +86,12 @@ int(kbd_test_scan)() {
 int(kbd_test_poll)() {
   while(scancode != KBD_ESC_BREAK){  
         
-      if(kbc_read_scancode() == 0){
+      if(kbd_read_scancode() == 0){
         kbd_print_scancode(!(scancode & KBD_BREAKCODE), (scancode == KBD_TWOBYTES) ? 2 : 1, &scancode);
       }
   }
 
-  if(kbc_activate() != 0){
+  if(kbd_activate() != 0){
     return EXIT_FAILURE;
   };
 
@@ -113,7 +113,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
   int r = 0;
   uint8_t bit_no;
 
-  if(kbc_subscribe_int(&bit_no) != 0){
+  if(kbd_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
   uint8_t KBD_bit = BIT(bit_no);
@@ -153,7 +153,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
      }
 }
 
-  if(kbc_unsubscribe_int() != 0){
+  if(kbd_unsubscribe_int() != 0){
     return EXIT_FAILURE;
   }
 

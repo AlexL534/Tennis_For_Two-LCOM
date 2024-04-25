@@ -12,6 +12,7 @@
 
 /* I/O port adresses*/
 #define IRQ_KEYBOARD 1
+#define IRQ_MOUSE    12
 
 #define KBC_OUT_BUF   0x60    /*Out buffer (to read scancodes from the keyboard and return values)*/
 #define KBC_ST_REG    0x64    /*Used to read the KBC state*/
@@ -33,19 +34,42 @@
 #define KBC_RD_CM_B   0x20    /*Read Command Byte*/
 #define KBC_WRT_CM_B  0x60    /*Write Command Byte*/
 #define KBC_CHECK     0xAA    /*Check KBC (Self-test)*/
+
+/*Keyboard specific commands*/
 #define KDB_KB_INTER  0xAB    /*Check Keyboard Interface*/
 #define KDB_DISABLE_INTER   0xAD  /*Disable KBD Interface*/
 #define KDB_ENABLE_INTER    0xAE  /*Enable KBD Interface*/
-
-
 #define KBD_ESC_BREAK   0x81     /*ESC breakcode*/
 
-#define KBD_BREAKCODE   BIT(7)
-#define KBD_MAKECODE    0x00
+#define KBD_BREAKCODE   BIT(7)  /*Indentify the breack code*/
+#define KBD_MAKECODE    0x00    /*Identify the makecode*/
+#define KBD_TWOBYTES    0xE0    /*Verify if the code uses two bytes*/
+#define KBD_ENABLE      0X01    /*Verifies if the KBD is enable*/
 
-#define KBD_TWOBYTES    0xE0
+/*Mouse specific commands*/
+#define MOUSE_DISABLE   0xA7      /*Disables the mouse*/
+#define MOUSE_ENABLE    0xA8      /*Enables the mouse*/
+#define MOUSE_CHECK_INTER 0xA9
+#define MOUSE_WRITE_BYTE  0xD4    /*Commands the KBC to Send its arguments to the mouse*/
 
-#define KBD_ENABLE      0X01
+/*Mouse packet*/
+#define MOUSE_LB  BIT(0)
+#define MOUSE_RB  BIT(1)
+#define MOUSE_MB  BIT(2)
+#define MOUSE_MSB_X BIT(4)
+#define MOUSE_MSB_Y BIT(5)
+#define MOUSE_X_OVF BIT(6)
+#define MOUSE_Y_OVF BIT(7)
+
+/*Mouse data report*/
+#define MOUSE_DIS_DATA_REP  0xF5
+#define MOUSE_EN_DATA_REP   0xF4
+#define MOUSE_ACK           0xFA
+#define MOUSE_NACK          0xFE
+#define MOUSE_ERROR         0xFC
+
+
+#define MOUSE_CONTROL   BIT(3)  /*Bit used to see if the value is a new packt or not*/
 
 #define DELAY_US    20000
 

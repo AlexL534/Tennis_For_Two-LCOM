@@ -5,8 +5,16 @@
 
 #include "i8254.h"
 
-int hook_id = 0;
-int counter = 0;
+static int hook_id = 0;
+static int counter = 0;
+
+int (get_hook_id)(){
+    return hook_id;
+}
+
+int (get_counter)(){
+  return counter;
+}
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 
@@ -86,7 +94,7 @@ int (timer_unsubscribe_int)() {
 }
 
 void (timer_int_handler)() {
-  //incremnets the global counter
+  //increments the global counter
   counter++;
 }
 
@@ -113,63 +121,4 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   }
   return EXIT_SUCCESS;
 
-}
-
-int (timer_display_conf)(uint8_t timer, uint8_t st,
-                        enum timer_status_field field) {
-
-  union timer_status_field_val conf;
-  uint8_t init = 0;
-
-  switch(field){
-    //configures the entire Byte
-    case tsf_all:
-      conf.byte = st;
-      break;
-
-    //configures the timer's initialization mode
-    case tsf_initial:
-      init =  ((st << 2) >> 6) & (0x03);
-      
-      switch (init)
-      {
-      case 1:
-        conf.in_mode = LSB_only;
-        break;
-      case 2: 
-        conf.in_mode = MSB_only;
-        break;
-      case 3:
-        conf.in_mode = MSB_after_LSB;
-        break;
-      default:
-        conf.in_mode = INVAL_val;
-        break;
-      }
-      
-      break;
-
-    //Configures the timer's counting mode
-    case tsf_mode:
-      conf.count_mode = ((st << 4) >> 5) & (0x07);
-      if(conf.count_mode == 6){
-        conf.count_mode = 2;
-      }
-      else if(conf.count_mode == 7){
-        conf.count_mode = 3;
-      }
-      break;
-
-    //Configures the timer's counting base
-    case tsf_base:
-      if(st & TIMER_BCD){
-        conf.bcd = true;
-      }
-      else{
-        conf.bcd = false;
-      }
-      break;
-  }
-
-  return timer_print_config(timer, field, conf);
 }

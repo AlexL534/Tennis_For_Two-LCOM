@@ -31,7 +31,7 @@ unsigned (get_bytes_per_pixel)(){
   return (bits_per_pixel + 7) / 8;
 }
 
-
+// =================================================================
 
 //initializes the Minix Graphics mode
 int (intialize_graphics_mode)(uint16_t mode){
@@ -93,7 +93,7 @@ int (map_VRAM)(uint16_t mode){
 
 
 //draws a pixel in the screen
-int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
+int (vg_draw_color)(uint16_t x, uint16_t y, uint32_t color){
   //verify if the coordinates are legal
   if((x > h_res) || (y > v_res) || ( x < 0) || (y < 0)){
     printf("Invalid Coordinates\n");
@@ -109,6 +109,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
   if(memcpy(base_ptr, &color, get_bytes_per_pixel()) == NULL){
     return EXIT_FAILURE;
   }
+  
   return EXIT_SUCCESS;
 }
 
@@ -118,7 +119,7 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
 
   for(int i = 0; i < len; i++){
     //draws a pixel in a given coordinate
-    if(vg_draw_pixel(x + i, y, color) != 0){
+    if(vg_draw_color(x + i, y, color) != 0){
       return EXIT_FAILURE;
     }
   }
@@ -149,7 +150,7 @@ int (draw_xpm)(xpm_map_t xpm, enum xpm_image_type type, uint16_t x, uint16_t y){
   //loops throught the pixmap and draws the color on the screen
   for(int i = 0; i < img.height; i++){
     for(int j = 0; j < img.width; j++){
-      if(vg_draw_pixel(x + j, y + i, *map) != 0){
+      if(vg_draw_color(x + j, y + i, *map) != 0){
         return EXIT_FAILURE;
       };
       map++;

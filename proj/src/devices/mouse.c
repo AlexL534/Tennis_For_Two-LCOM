@@ -1,12 +1,29 @@
 #include "mouse.h"
 #include "i8042.h"
 
-int hook_id_mouse = 0;
-uint8_t byte_index = 0;            
-uint8_t current_byte;
-struct packet packet;
+static int hook_id_mouse = 0;
+static uint8_t byte_index = 0;            
+static uint8_t current_byte;
+static struct packet packet;
 
+//getter ==============================================
+int (get_mouse_hook_id)(){
+  return hook_id_mouse;
+}
 
+uint8_t (get__mouse_byte_index)(){
+  return byte_index;
+}
+
+uint8_t (get_current_byte)(){
+  return current_byte;
+}
+
+struct packet (get_mouse_packet)(){
+  return packet;
+}
+
+//====================================================
 
 void (mouse_ih)(){
 
