@@ -25,7 +25,7 @@ typedef struct{
 Player1 *(createPlayer1)();
 int (drawPlayer1)(Player1 *player1);
 void (updateDirection)(Player_direction direction, Player1 *player);
-void (movePlayer1)(Player1 *player);
+void (movePlayer1)(Player1 *player, Player_movement movement);
 void (moveAnim1)(Player1 *player1);
 void (destroyPlayer1)(Player1 *player1);
 

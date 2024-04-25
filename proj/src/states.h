@@ -8,9 +8,16 @@ typedef enum{
 } Game_state;
 
 typedef enum {
-  LEFT,
-  RIGHT
+  LEFTD,
+  RIGHTD
 } Player_direction;
+
+typedef enum{
+  LEFT_PLAYER,
+  RIGHT_PLAYER,
+  UP_PLAYER,
+  DOWN_PLAYER
+} Player_movement;
 
 typedef enum {
   MOVE,
@@ -20,8 +27,8 @@ typedef enum {
 } Player_state;
 
 typedef enum {
-  UP,
-  DOWN
+  UP_BALL,
+  DOWN_BALL
 } Ball_direction;
 
 

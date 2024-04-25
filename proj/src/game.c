@@ -1,6 +1,7 @@
 #include "game.h"
 
 static Player_state player_state = STOP;
+static Player_movement player_movement = RIGHT_PLAYER;
 //static Game_state game_state = GAME;
 static Player1 *player1;
 
@@ -9,6 +10,7 @@ extern int counter;
 int (gameLoop)(){
 
   player1 = createPlayer1();
+  drawPlayer1(player1);
 
   int ipc_status;
   message msg;
@@ -64,13 +66,25 @@ int (gameLoop)(){
 
 void (keyboardhandler)(){
   if(get_scancode() == ARROW_LEFT){
-    updateDirection(LEFT, player1);
+    updateDirection(LEFTD, player1);
     player_state = MOVE;
+    player_movement = LEFT_PLAYER;
   }
 
   else if(get_scancode() == ARROW_RIGHT){
-    updateDirection(RIGHT, player1);
+    updateDirection(RIGHTD, player1);
     player_state = MOVE;
+    player_movement = RIGHT_PLAYER;
+  }
+
+  else if(get_scancode() == ARROW_DOWN){
+    player_state = MOVE;
+    player_movement = DOWN_PLAYER;
+  }
+
+  else if(get_scancode() == ARROW_UP){
+    player_state = MOVE;
+    player_movement = UP_PLAYER;
   }
 
   else{
@@ -80,7 +94,7 @@ void (keyboardhandler)(){
 
 void (timerHandler)(){
     if(player_state == MOVE){
-      movePlayer1(player1);
+      movePlayer1(player1, player_movement);
       if(counter % 5 == 0){
         moveAnim1(player1);
       }

@@ -47,7 +47,7 @@ Player1 *(createPlayer1)(){
   player->isHitting = false;
   player->isStarting = false;
 
-  player->direction = RIGHT;
+  player->direction = RIGHTD;
 
   return player;
 }
@@ -70,19 +70,25 @@ void (updateDirection)(Player_direction direction, Player1 *player){
   player->direction = direction;
 }
 
-void (movePlayer1)(Player1 *player){
-  if(player->direction == RIGHT){
+void (movePlayer1)(Player1 *player, Player_movement movement){
+  if(movement == RIGHT_PLAYER){
     player->x += player->xspeed;
   };
-  if(player->direction == LEFT){
+  if(movement == LEFT_PLAYER){
     player->x -= player->xspeed;
+  }
+  if(movement == UP_PLAYER){
+    player->y -= player->yspeed;
+  }
+  if(movement == DOWN_PLAYER){
+    player->y += player->yspeed;
   }
 
   drawPlayer1(player);
 }
 
 void (moveAnim1)(Player1 *player){
-  if(player->direction == RIGHT){
+  if(player->direction == RIGHTD){
     player->currentSprite = player->move[moveanim];
   } else{
     player->currentSprite = player->moverev[moveanim];
