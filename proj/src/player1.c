@@ -12,8 +12,8 @@ Player1 *(createPlayer1)(){
 
   player->x = 400;
   player->y = 550;
-  player->xspeed = 1;
-  player->yspeed = 1;
+  player->xspeed = 3;
+  player->yspeed = 3;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -77,6 +77,8 @@ void (movePlayer1)(Player1 *player){
   if(player->direction == LEFT){
     player->x -= player->xspeed;
   }
+
+  drawPlayer1(player);
 }
 
 void (moveAnim1)(Player1 *player){

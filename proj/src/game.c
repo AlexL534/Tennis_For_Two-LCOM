@@ -1,6 +1,6 @@
 #include "game.h"
 
-static Player_state player_state = MOVE;
+static Player_state player_state = STOP;
 //static Game_state game_state = GAME;
 static Player1 *player1;
 
@@ -41,12 +41,6 @@ int (gameLoop)(){
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
                     timerHandler();
-                    /*
-                    if(draw_xpm((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, 0, 0) != 0){
-                      return EXIT_FAILURE;
-                    }
-                    */
-                    drawPlayer1(player1);
                  }
                  break;
              default:
@@ -85,10 +79,11 @@ void (keyboardhandler)(){
 }
 
 void (timerHandler)(){
-  if(counter % 10){
-    if(player_state != STOP){
-      printf("here");
+    if(player_state == MOVE){
       movePlayer1(player1);
+      if(counter % 5 == 0){
+        moveAnim1(player1);
+      }
     }
-  }
+
 }
