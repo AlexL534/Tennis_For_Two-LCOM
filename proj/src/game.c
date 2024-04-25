@@ -1,13 +1,18 @@
 #include "game.h"
+#include "background.h"
 
 static Player_state player_state = STOP;
 static Player_movement player_movement = RIGHT_PLAYER;
 //static Game_state game_state = GAME;
 static Player1 *player1;
 
+static uint32_t *background;
+
 extern int counter;
 
 int (gameLoop)(){
+  xpm_image_t img;
+  background = (uint32_t *) xpm_load((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, &img);
 
   player1 = createPlayer1();
   drawPlayer1(player1);
@@ -17,6 +22,7 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
+  timer_set_frequency(0, 30);
   if(kbd_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
@@ -94,7 +100,13 @@ void (keyboardhandler)(){
 
 void (timerHandler)(){
     if(player_state == MOVE){
+      
+      //erase the player
+      drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height);
+
+      //move the player and draws him in the new position
       movePlayer1(player1, player_movement);
+      
       if(counter % 5 == 0){
         moveAnim1(player1);
       }

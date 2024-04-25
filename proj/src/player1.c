@@ -1,5 +1,6 @@
 #include "player1.h"
 #include "devices/video.h"
+#include "color.h"
 
 static unsigned int moveanim = 0;
 
@@ -12,8 +13,8 @@ Player1 *(createPlayer1)(){
 
   player->x = 400;
   player->y = 550;
-  player->xspeed = 3;
-  player->yspeed = 3;
+  player->xspeed = 5;
+  player->yspeed = 5;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -59,7 +60,8 @@ int (drawPlayer1)(Player1 *player){
 
   for(int j =  player->y ; j < player->y + height; j++){
     for(int i = player->x ; i < player->x + width; i++){
-      vg_draw_color(i,j,*map);
+      if(*map != TRANSPARENCY_COLOR)
+        vg_draw_color(i,j,*map);
       map++;
     }
   }
