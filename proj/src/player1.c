@@ -73,18 +73,36 @@ void (updateDirection)(Player_direction direction, Player1 *player){
 }
 
 void (movePlayer1)(Player1 *player, Player_movement movement){
+  int new_x = player->x;
+  int new_y = player->y;
+
   if(movement == RIGHT_PLAYER){
-    player->x += player->xspeed;
+    new_x += player->xspeed;
   };
   if(movement == LEFT_PLAYER){
-    player->x -= player->xspeed;
+    new_x -= player->xspeed;
   }
   if(movement == UP_PLAYER){
-    player->y -= player->yspeed;
+    new_y -= player->yspeed;
   }
   if(movement == DOWN_PLAYER){
-    player->y += player->yspeed;
+    new_y += player->yspeed;
   }
+
+  if (new_x < MIN_X) {
+        new_x = MIN_X;
+    } else if (new_x + player->currentSprite.width > MAX_X) {
+        new_x = MAX_X - player->currentSprite.width;
+    }
+
+  if (new_y < MIN_Y) {
+        new_y = MIN_Y;
+    } else if (new_y + player->currentSprite.height > MAX_Y) {
+        new_y = MAX_Y - player->currentSprite.height;
+    }
+
+    player->x = new_x;
+    player->y = new_y;
 
   drawPlayer1(player);
 }

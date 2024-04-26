@@ -6,6 +6,11 @@
 #include "xpms.h"
 #include "sprite.h"
 
+#define MIN_X  0   
+#define MAX_X  1152
+#define MIN_Y  432-145 //player height is 150
+#define MAX_Y  864
+
 typedef struct{
   int x, y;
 
