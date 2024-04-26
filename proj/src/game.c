@@ -11,9 +11,11 @@ static uint32_t *background;
 extern int counter;
 
 int (gameLoop)(){
-  xpm_image_t img;
-  background = (uint32_t *) xpm_load((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, &img);
-
+  
+  if(loadBackground() != 0){
+    return EXIT_FAILURE;
+  }
+  
   player1 = createPlayer1();
   drawPlayer1(player1);
 
@@ -66,8 +68,26 @@ int (gameLoop)(){
     return EXIT_FAILURE;
   }
 
+  destroyElements();
+
   return EXIT_SUCCESS;
 
+}
+
+void (destroyElements)(){
+  destroyPlayer1(player1);
+  free(background);
+}
+
+int (loadBackground)(){
+  xpm_image_t img;
+  background = (uint32_t *) xpm_load((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, &img);
+
+  if(background == NULL)
+    return EXIT_FAILURE;
+
+  drawBackground(background);
+  return EXIT_SUCCESS;
 }
 
 void (keyboardhandler)(){
@@ -106,7 +126,7 @@ void (timerHandler)(){
 
       //move the player and draws him in the new position
       movePlayer1(player1, player_movement);
-      
+
       if(counter % 5 == 0){
         moveAnim1(player1);
       }

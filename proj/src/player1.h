@@ -15,6 +15,7 @@ typedef struct{
   int x, y;
 
   int xspeed, yspeed;
+  unsigned int moveanim;
 
   Sprite currentSprite;
   bool isHitting;
@@ -22,6 +23,10 @@ typedef struct{
 
   Sprite move[2];
   Sprite moverev[2];
+  Sprite hit[4];
+  Sprite hitrev[4];
+  Sprite start[6];
+  Sprite startrev[6];
 
   Player_direction direction;
 

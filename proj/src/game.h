@@ -15,9 +15,12 @@
 #include "xpms.h"
 
 
-int gameLoop();
-void timerHandler();
-void keyboardhandler();
+int (gameLoop)();
+void (timerHandler)();
+void (keyboardhandler)();
+
+void (destroyElements)();
+int (loadBackground)();
 
 
 #endif

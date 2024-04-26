@@ -2,7 +2,7 @@
 #include "devices/video.h"
 #include "color.h"
 
-static unsigned int moveanim = 0;
+//static unsigned int moveanim = 0;
 
 Player1 *(createPlayer1)(){
   Player1 *player = (Player1*)malloc(sizeof(Player1));
@@ -15,6 +15,7 @@ Player1 *(createPlayer1)(){
   player->y = 550;
   player->xspeed = 5;
   player->yspeed = 5;
+  player->moveanim = 0;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -44,6 +45,111 @@ Player1 *(createPlayer1)(){
   sprite->width = img.width;
   sprite->height = img.height;
   player->moverev[1] = *sprite;
+
+  //load the hit sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit1_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hit[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hit[1] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit3_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hit[2] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit4_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hit[3] = *sprite;
+
+  //load the hitrev sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit1_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hitrev[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hitrev[1] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit3_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hitrev[2] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit4_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hitrev[3] = *sprite;
+
+  //load the starting sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start1_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[1] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start3_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[2] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start4_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[3] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start5_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[4] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start6_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[5] = *sprite;
+
+  //load the start rev sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start1_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[1] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start3_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[2] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start4_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[3] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start5_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[4] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start6_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[5] = *sprite;
+
 
   player->isHitting = false;
   player->isStarting = false;
@@ -108,6 +214,7 @@ void (movePlayer1)(Player1 *player, Player_movement movement){
 }
 
 void (moveAnim1)(Player1 *player){
+  unsigned int moveanim = player->moveanim;
   if(player->direction == RIGHTD){
     player->currentSprite = player->move[moveanim];
   } else{
@@ -119,6 +226,8 @@ void (moveAnim1)(Player1 *player){
   if(moveanim == 2){
     moveanim = 0;
   }
+
+  player->moveanim = moveanim;
 }
 
 void (destroyPlayer1)(Player1 *player){

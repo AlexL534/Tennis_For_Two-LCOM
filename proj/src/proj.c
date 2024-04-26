@@ -87,9 +87,6 @@ int (proj_main_loop)(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  if(draw_xpm((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, 0, 0) != 0){
-    return EXIT_FAILURE;
-  }
 
   if(gameLoop() != 0){
     return EXIT_FAILURE;
