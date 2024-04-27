@@ -69,7 +69,7 @@ int (kbd_read_scancode)(){
 }
 
 int (kbd_subscribe_int)(uint8_t *bit_no){
-    *bit_no = IRQ_KEYBOARD; 
+    *bit_no = BIT(1); 
     KBD_hook_id = *bit_no;
 
     if(sys_irqsetpolicy(IRQ_KEYBOARD, IRQ_REENABLE | IRQ_EXCLUSIVE, &KBD_hook_id) != 0)

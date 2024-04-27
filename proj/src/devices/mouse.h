@@ -17,5 +17,6 @@ int (get_mouse_hook_id)();
 uint8_t (get__mouse_byte_index)();
 uint8_t (get_current_byte)();
 struct packet (get_mouse_packet)();
+void (reset_byte_index)();
 
 #endif

@@ -78,7 +78,7 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
   //calls the sys_irqsetpolicy (initializes the interrupts)
-  *bit_no = TIMER0_IRQ;
+  *bit_no = BIT(0);
   hook_id = *bit_no;
   if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id) != 0)
     return EXIT_FAILURE;

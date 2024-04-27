@@ -2,8 +2,6 @@
 #include "devices/video.h"
 #include "color.h"
 
-//static unsigned int moveanim = 0;
-
 Player1 *(createPlayer1)(){
   Player1 *player = (Player1*)malloc(sizeof(Player1));
 
@@ -16,6 +14,8 @@ Player1 *(createPlayer1)(){
   player->xspeed = 5;
   player->yspeed = 5;
   player->moveanim = 0;
+  player->startanim = 0;
+  player->hitanim = 0;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -150,10 +150,6 @@ Player1 *(createPlayer1)(){
   sprite->height = img.height;
   player->startrev[5] = *sprite;
 
-
-  player->isHitting = false;
-  player->isStarting = false;
-
   player->direction = RIGHTD;
 
   return player;
@@ -210,7 +206,6 @@ void (movePlayer1)(Player1 *player, Player_movement movement){
     player->x = new_x;
     player->y = new_y;
 
-  drawPlayer1(player);
 }
 
 void (moveAnim1)(Player1 *player){
@@ -228,6 +223,23 @@ void (moveAnim1)(Player1 *player){
   }
 
   player->moveanim = moveanim;
+}
+
+void(hitAnim1)(Player1 *player){
+  unsigned int hitanim = player->hitanim;
+  if(player->direction == RIGHTD){
+    player->currentSprite = player->hit[hitanim];
+  } else{
+    player->currentSprite = player->hitrev[hitanim];
+  }
+
+  hitanim++;
+
+  if(hitanim == 4){
+    hitanim = 0;
+  }
+
+  player->hitanim = hitanim;
 }
 
 void (destroyPlayer1)(Player1 *player){

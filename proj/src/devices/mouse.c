@@ -15,6 +15,10 @@ uint8_t (get__mouse_byte_index)(){
   return byte_index;
 }
 
+void (reset_byte_index)(){
+  byte_index = 0;
+}
+
 uint8_t (get_current_byte)(){
   return current_byte;
 }

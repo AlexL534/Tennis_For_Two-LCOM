@@ -16,8 +16,9 @@
 
 
 int (gameLoop)();
-void (timerHandler)();
-void (keyboardhandler)();
+int (timerHandler)();
+int (keyboardHandler)();
+int (mouseHandler)();
 
 void (destroyElements)();
 int (loadBackground)();

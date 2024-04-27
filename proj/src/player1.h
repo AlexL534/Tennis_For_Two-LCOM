@@ -15,11 +15,9 @@ typedef struct{
   int x, y;
 
   int xspeed, yspeed;
-  unsigned int moveanim;
+  unsigned int moveanim, hitanim, startanim;
 
   Sprite currentSprite;
-  bool isHitting;
-  bool isStarting;
 
   Sprite move[2];
   Sprite moverev[2];
@@ -37,6 +35,8 @@ int (drawPlayer1)(Player1 *player1);
 void (updateDirection)(Player_direction direction, Player1 *player);
 void (movePlayer1)(Player1 *player, Player_movement movement);
 void (moveAnim1)(Player1 *player1);
+void (hitAnim1)(Player1 *player1);
+void (startAnim1)(Player1 *player1);
 void (destroyPlayer1)(Player1 *player1);
 
 

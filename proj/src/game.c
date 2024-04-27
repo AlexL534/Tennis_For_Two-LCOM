@@ -24,6 +24,10 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
+  if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+    return EXIT_FAILURE;
+  }
+
   timer_set_frequency(0, 30);
   if(kbd_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
@@ -35,6 +39,11 @@ int (gameLoop)(){
   }
   uint8_t timer_mask = BIT(bit_no);
 
+  if(mouse_subscribe_int(&bit_no) != 0){
+    return EXIT_FAILURE;
+  }
+  uint8_t mouse_mask = BIT(bit_no);
+
   while( get_scancode() != KBD_ESC_BREAK){
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
@@ -43,10 +52,19 @@ int (gameLoop)(){
 
          if (is_ipc_notify(ipc_status)) { 
          switch (_ENDPOINT_P(msg.m_source)) {
-             case HARDWARE: 		
+             case HARDWARE:
+                  if(msg.m_notify.interrupts & mouse_mask){
+                    mouse_ih();
+                    mouse_insert_byte();
+                    if(get__mouse_byte_index() == 3){
+                      mouse_insert_in_packet();
+                      mouseHandler();
+                      reset_byte_index();
+                    }
+                 } 		
                  if (msg.m_notify.interrupts & kbc_mask) { 
                        kbc_ih();
-                       keyboardhandler();
+                       keyboardHandler();
                  }
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
@@ -65,6 +83,14 @@ int (gameLoop)(){
   }
 
   if(timer_unsubscribe_int() != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(mouse_unsubscribe_int() != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
     return EXIT_FAILURE;
   }
 
@@ -90,46 +116,90 @@ int (loadBackground)(){
   return EXIT_SUCCESS;
 }
 
-void (keyboardhandler)(){
-  if(get_scancode() == ARROW_LEFT){
-    updateDirection(LEFTD, player1);
-    player_state = MOVE;
-    player_movement = LEFT_PLAYER;
-  }
+int (keyboardHandler)(){
 
-  else if(get_scancode() == ARROW_RIGHT){
-    updateDirection(RIGHTD, player1);
-    player_state = MOVE;
-    player_movement = RIGHT_PLAYER;
-  }
-
-  else if(get_scancode() == ARROW_DOWN){
-    player_state = MOVE;
-    player_movement = DOWN_PLAYER;
-  }
-
-  else if(get_scancode() == ARROW_UP){
-    player_state = MOVE;
-    player_movement = UP_PLAYER;
-  }
-
-  else{
-    player_state = STOP;
-  }
-}
-
-void (timerHandler)(){
-    if(player_state == MOVE){
-      
-      //erase the player
-      drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height);
-
-      //move the player and draws him in the new position
-      movePlayer1(player1, player_movement);
-
-      if(counter % 5 == 0){
-        moveAnim1(player1);
-      }
+  if((player_state == MOVE) || (player_state == STOP)){
+    
+    if(get_scancode() == ARROW_LEFT){
+      updateDirection(LEFTD, player1);
+      player_state = MOVE;
+      player_movement = LEFT_PLAYER;
     }
 
+    else if(get_scancode() == ARROW_RIGHT){
+      updateDirection(RIGHTD, player1);
+      player_state = MOVE;
+      player_movement = RIGHT_PLAYER;
+    }
+
+    else if(get_scancode() == ARROW_DOWN){
+      player_state = MOVE;
+      player_movement = DOWN_PLAYER;
+    }
+
+    else if(get_scancode() == ARROW_UP){
+      player_state = MOVE;
+      player_movement = UP_PLAYER;
+    }
+
+    else{
+      player_state = STOP;
+    }
+  }
+
+  return EXIT_SUCCESS;
+}
+
+int (timerHandler)(){
+  switch (player_state)
+  {
+  case MOVE:
+    //erase the player
+    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
+      printf("Error while erasing the player1\n");
+      return EXIT_FAILURE;
+    };
+
+    //move the player and draws him in the new position
+    movePlayer1(player1, player_movement);
+
+    drawPlayer1(player1);
+
+    if(counter % 5 == 0){
+      moveAnim1(player1);
+    }
+    break;
+  case HIT:
+    //erase the player
+    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
+      printf("Error while erasing the player1\n");
+      return EXIT_FAILURE;
+    };
+
+    drawPlayer1(player1);
+
+    if(counter % 5 == 0){
+      hitAnim1(player1);
+
+      //the animation ended
+      if(player1->hitanim == 0){
+        player_state = STOP;
+      }
+    }
+    break;
+
+  default:
+
+    break;
+  }
+
+    return EXIT_SUCCESS;
+}
+
+int (mouseHandler)(){
+  if(get_mouse_packet().lb){
+    player_state = HIT;
+  }
+
+  return EXIT_SUCCESS;
 }
