@@ -11,8 +11,8 @@ Player1 *(createPlayer1)(){
 
   player->x = 400;
   player->y = 550;
-  player->xspeed = 5;
-  player->yspeed = 5;
+  player->xspeed = 8;
+  player->yspeed = 8;
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;

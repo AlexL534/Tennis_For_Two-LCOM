@@ -74,6 +74,10 @@
 #define ARROW_RIGHT 0x4d
 #define ARROW_UP 0x48
 #define ARROW_DOWN 0x50
+#define A_KEY 0X1E
+#define W_KEY 0X11
+#define S_KEY 0x1F
+#define D_KEY 0X20
 
 #define DELAY_US    20000
 

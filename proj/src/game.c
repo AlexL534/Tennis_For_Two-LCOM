@@ -120,24 +120,24 @@ int (keyboardHandler)(){
 
   if((player_state == MOVE) || (player_state == STOP)){
     
-    if(get_scancode() == ARROW_LEFT){
+    if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
       updateDirection(LEFTD, player1);
       player_state = MOVE;
       player_movement = LEFT_PLAYER;
     }
 
-    else if(get_scancode() == ARROW_RIGHT){
+    else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
       updateDirection(RIGHTD, player1);
       player_state = MOVE;
       player_movement = RIGHT_PLAYER;
     }
 
-    else if(get_scancode() == ARROW_DOWN){
+    else if((get_scancode() == ARROW_DOWN) || (get_scancode() == S_KEY)){
       player_state = MOVE;
       player_movement = DOWN_PLAYER;
     }
 
-    else if(get_scancode() == ARROW_UP){
+    else if((get_scancode() == ARROW_UP) || (get_scancode() == W_KEY)){
       player_state = MOVE;
       player_movement = UP_PLAYER;
     }
@@ -165,7 +165,7 @@ int (timerHandler)(){
 
     drawPlayer1(player1);
 
-    if(counter % 5 == 0){
+    if(counter % 2 == 0){
       moveAnim1(player1);
     }
     break;
@@ -178,7 +178,7 @@ int (timerHandler)(){
 
     drawPlayer1(player1);
 
-    if(counter % 5 == 0){
+    if(counter % 2 == 0){
       hitAnim1(player1);
 
       //the animation ended
@@ -186,6 +186,7 @@ int (timerHandler)(){
         player_state = STOP;
       }
     }
+
     break;
 
   default:
