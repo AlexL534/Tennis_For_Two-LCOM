@@ -10,7 +10,7 @@ Player1 *(createPlayer1)(){
   }
 
   player->x = 400;
-  player->y = 550;
+  player->y = 690;
   player->xspeed = 8;
   player->yspeed = 8;
   player->moveanim = 0;
@@ -28,7 +28,6 @@ Player1 *(createPlayer1)(){
   sprite->height = img.height;
   player->move[0] = *sprite;
 
-  player->currentSprite = *sprite;
 
   sprite->map = (uint32_t *) xpm_load((xpm_map_t) move2_xpm, XPM_8_8_8_8, &img);
   sprite->width = img.width;
@@ -93,6 +92,8 @@ Player1 *(createPlayer1)(){
   sprite->width = img.width;
   sprite->height = img.height;
   player->start[0] = *sprite;
+
+  player->currentSprite = *sprite;
 
   sprite->map = (uint32_t *) xpm_load((xpm_map_t) start2_xpm, XPM_8_8_8_8, &img);
   sprite->width = img.width;
@@ -240,6 +241,32 @@ void(hitAnim1)(Player1 *player){
   }
 
   player->hitanim = hitanim;
+}
+
+void (startAnim1)(Player1 *player){
+  unsigned int startanim = player->startanim;
+  if(player->direction == RIGHTD){
+    player->currentSprite = player->start[startanim];
+  } else{
+    player->currentSprite = player->startrev[startanim];
+  }
+
+  startanim++;
+
+  if(startanim == 6){
+    startanim = 0;
+  }
+
+  player->startanim = startanim;
+}
+
+void (chooseStartAnim1)(Player1 *player){
+  if(player->direction == RIGHTD){
+    player->currentSprite = player->start[0];
+  }
+  else{
+    player->currentSprite = player->startrev[0];
+  }
 }
 
 void (destroyPlayer1)(Player1 *player){

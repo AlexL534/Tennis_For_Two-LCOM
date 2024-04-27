@@ -37,6 +37,7 @@ void (movePlayer1)(Player1 *player, Player_movement movement);
 void (moveAnim1)(Player1 *player1);
 void (hitAnim1)(Player1 *player1);
 void (startAnim1)(Player1 *player1);
+void (chooseStartAnim1)(Player1 *player1);
 void (destroyPlayer1)(Player1 *player1);
 
 

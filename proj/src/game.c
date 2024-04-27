@@ -1,7 +1,7 @@
 #include "game.h"
 #include "background.h"
 
-static Player_state player_state = STOP;
+static Player_state player_state = CHOOSE_START_STOP;
 static Player_movement player_movement = RIGHT_PLAYER;
 //static Game_state game_state = GAME;
 static Player1 *player1;
@@ -146,6 +146,22 @@ int (keyboardHandler)(){
       player_state = STOP;
     }
   }
+  else if((player_state == CHOOSE_START) || (player_state == CHOOSE_START_STOP)){
+    if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
+      updateDirection(LEFTD, player1);
+      player_movement = LEFT_PLAYER;
+      player_state = CHOOSE_START;
+    }
+
+    else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
+      updateDirection(RIGHTD, player1);
+      player_movement = RIGHT_PLAYER;
+      player_state = CHOOSE_START;
+    }
+    else{
+      player_state = CHOOSE_START_STOP;
+    }
+  }
 
   return EXIT_SUCCESS;
 }
@@ -153,6 +169,7 @@ int (keyboardHandler)(){
 int (timerHandler)(){
   switch (player_state)
   {
+
   case MOVE:
     //erase the player
     if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
@@ -169,6 +186,7 @@ int (timerHandler)(){
       moveAnim1(player1);
     }
     break;
+
   case HIT:
     //erase the player
     if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
@@ -186,9 +204,39 @@ int (timerHandler)(){
         player_state = STOP;
       }
     }
+    break;
+
+  case CHOOSE_START:
+    //erase the player
+    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
+      printf("Error while erasing the player1\n");
+      return EXIT_FAILURE;
+    };
+
+    chooseStartAnim1(player1);
+    movePlayer1(player1, player_movement);
+    drawPlayer1(player1);
 
     break;
 
+  case START:
+    //erase the player
+    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
+      printf("Error while erasing the player1\n");
+      return EXIT_FAILURE;
+    };
+
+    drawPlayer1(player1);
+
+    if(counter % 2 == 0){
+      startAnim1(player1);
+
+      //the animation ended
+      if(player1->startanim == 0){
+        player_state = STOP;
+      }
+    }
+    break;
   default:
 
     break;
@@ -198,9 +246,15 @@ int (timerHandler)(){
 }
 
 int (mouseHandler)(){
-  if(get_mouse_packet().lb){
-    player_state = HIT;
+  if((player_state == CHOOSE_START) || (player_state == CHOOSE_START_STOP)){
+    if(get_mouse_packet().lb){
+      player_state = START;
   }
-
+  }
+  else{
+    if(get_mouse_packet().lb){
+      player_state = HIT;
+    }
+  }
   return EXIT_SUCCESS;
 }

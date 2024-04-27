@@ -22,6 +22,8 @@ typedef enum{
 typedef enum {
   MOVE,
   START,
+  CHOOSE_START,
+  CHOOSE_START_STOP,
   HIT,
   STOP
 } Player_state;
