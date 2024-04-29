@@ -14,5 +14,6 @@ unsigned (get_hres)();
 unsigned (get_vres)();
 unsigned (get_bits_per_pixel)();
 unsigned (get_bytes_per_pixel)();
+char* (get_video_mem)();
 
 #endif

@@ -11,6 +11,9 @@ static unsigned v_res;	        /* Vertical resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
 
 //getters =====================================================
+char *(get_video_mem)(){
+  return video_mem;
+}
 vbe_mode_info_t (get_mode_inf)(){
   return mode_info;
 }

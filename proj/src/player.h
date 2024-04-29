@@ -1,5 +1,5 @@
-#ifndef PLAYER1_H
-#define PLAYER1_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "states.h"
 #include <lcom/lcf.h>
@@ -28,17 +28,17 @@ typedef struct{
 
   Player_direction direction;
 
-} Player1;
+} Player;
 
-Player1 *(createPlayer1)();
-int (drawPlayer1)(Player1 *player1);
-void (updateDirection)(Player_direction direction, Player1 *player);
-void (movePlayer1)(Player1 *player, Player_movement movement);
-void (moveAnim1)(Player1 *player1);
-void (hitAnim1)(Player1 *player1);
-void (startAnim1)(Player1 *player1);
-void (chooseStartAnim1)(Player1 *player1);
-void (destroyPlayer1)(Player1 *player1);
+Player *(createPlayer)();
+int (drawPlayer)(Player *player1);
+void (updateDirection)(Player_direction direction, Player *player);
+void (movePlayer)(Player *player, Player_movement movement);
+void (moveAnim)(Player *player1);
+void (hitAnim)(Player *player1);
+void (startAnim)(Player *player1);
+void (chooseStartAnim)(Player *player1);
+void (destroyPlayer)(Player *player1);
 
 
 

@@ -1,9 +1,9 @@
-#include "player1.h"
+#include "player.h"
 #include "devices/video.h"
 #include "color.h"
 
-Player1 *(createPlayer1)(){
-  Player1 *player = (Player1*)malloc(sizeof(Player1));
+Player *(createPlayer)(){
+  Player *player = (Player*)malloc(sizeof(Player));
 
   if( player == NULL){
     return NULL;
@@ -11,8 +11,8 @@ Player1 *(createPlayer1)(){
 
   player->x = 400;
   player->y = 690;
-  player->xspeed = 8;
-  player->yspeed = 8;
+  player->xspeed = 6;
+  player->yspeed = 6;
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;
@@ -156,7 +156,7 @@ Player1 *(createPlayer1)(){
   return player;
 }
 
-int (drawPlayer1)(Player1 *player){
+int (drawPlayer)(Player *player){
   int width = player->currentSprite.width;
   int height = player->currentSprite.height;
   uint32_t *map = player->currentSprite.map;
@@ -171,27 +171,35 @@ int (drawPlayer1)(Player1 *player){
   return EXIT_SUCCESS;
 }
 
-void (updateDirection)(Player_direction direction, Player1 *player){
+void (updateDirection)(Player_direction direction, Player *player){
   player->direction = direction;
 }
 
-void (movePlayer1)(Player1 *player, Player_movement movement){
+void (movePlayer)(Player *player, Player_movement movement){
   int new_x = player->x;
   int new_y = player->y;
 
-  if(movement == RIGHT_PLAYER){
+  switch (movement)
+  {
+    //changes the player position accordingly to their movement
+  case RIGHT_PLAYER:
     new_x += player->xspeed;
-  };
-  if(movement == LEFT_PLAYER){
+    break;
+  case LEFT_PLAYER:
     new_x -= player->xspeed;
-  }
-  if(movement == UP_PLAYER){
+    break;
+  case UP_PLAYER:
     new_y -= player->yspeed;
-  }
-  if(movement == DOWN_PLAYER){
+    break;
+  case DOWN_PLAYER:
     new_y += player->yspeed;
+    break;
+  
+  default:
+    break;
   }
 
+  //corrects the player position to avoid it from going out of the screen
   if (new_x < MIN_X) {
         new_x = MIN_X;
     } else if (new_x + player->currentSprite.width > MAX_X) {
@@ -209,7 +217,7 @@ void (movePlayer1)(Player1 *player, Player_movement movement){
 
 }
 
-void (moveAnim1)(Player1 *player){
+void (moveAnim)(Player *player){
   unsigned int moveanim = player->moveanim;
   if(player->direction == RIGHTD){
     player->currentSprite = player->move[moveanim];
@@ -226,7 +234,7 @@ void (moveAnim1)(Player1 *player){
   player->moveanim = moveanim;
 }
 
-void(hitAnim1)(Player1 *player){
+void(hitAnim)(Player *player){
   unsigned int hitanim = player->hitanim;
   if(player->direction == RIGHTD){
     player->currentSprite = player->hit[hitanim];
@@ -243,7 +251,7 @@ void(hitAnim1)(Player1 *player){
   player->hitanim = hitanim;
 }
 
-void (startAnim1)(Player1 *player){
+void (startAnim)(Player *player){
   unsigned int startanim = player->startanim;
   if(player->direction == RIGHTD){
     player->currentSprite = player->start[startanim];
@@ -260,7 +268,7 @@ void (startAnim1)(Player1 *player){
   player->startanim = startanim;
 }
 
-void (chooseStartAnim1)(Player1 *player){
+void (chooseStartAnim)(Player *player){
   if(player->direction == RIGHTD){
     player->currentSprite = player->start[0];
   }
@@ -269,7 +277,7 @@ void (chooseStartAnim1)(Player1 *player){
   }
 }
 
-void (destroyPlayer1)(Player1 *player){
+void (destroyPlayer)(Player *player){
   if(player == NULL){
     return;
   }
