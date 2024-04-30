@@ -83,7 +83,7 @@ int (proj_main_loop)(int argc, char **argv) {
   }
 
   //Initializes the graphics mode
-  if(intialize_graphics_mode(VBE_MODE_8888) != 0){
+  if(initialize_graphics_mode(VBE_MODE_8888) != 0){
     return EXIT_FAILURE;
   }
 
