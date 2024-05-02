@@ -36,20 +36,6 @@ unsigned (get_bytes_per_pixel)(){
 
 // =================================================================
 
-//initializes the Minix Graphics mode
-int (initialize_graphics_mode)(uint16_t mode){
-  reg86_t r;
-  memset(&r, 0, sizeof(r));
-  r.ax = VBE_SET_VIDEO_MODE; // VBE call, function 02 -- set VBE mode
-  r.bx = VBE_SET_LINER_MODE | mode; // set bit 14: linear framebuffer
-  r.intno = VBE_SERVICE;
-  if( sys_int86(&r) != OK ) {
-    printf("set_vbe_mode: sys_int86() failed \n");
-    return EXIT_FAILURE;
-  }
-
-  return EXIT_SUCCESS;
-}
 
 //initializes the VRAM memory space
 int (map_VRAM)(uint16_t mode){
@@ -87,6 +73,22 @@ int (map_VRAM)(uint16_t mode){
 
   if(video_mem == MAP_FAILED){
     panic("couldn't map video memory");
+    return EXIT_FAILURE;
+  }
+
+  //initializes the Minix Graphics mode =============================
+  reg86_t reg;
+
+  memset(&r, 0, sizeof(r));
+
+  reg.ax = VBE_SET_VIDEO_MODE;
+   // VBE call, function 02 -- set VBE mode
+  reg.bx = VBE_SET_LINER_MODE | mode;
+   // set bit 14: linear framebuffer
+  reg.intno = VBE_SERVICE;
+
+  if( sys_int86(&reg) != OK ) {
+    printf("set_vbe_mode: sys_int86() failed \n");
     return EXIT_FAILURE;
   }
 

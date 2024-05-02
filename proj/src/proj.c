@@ -82,10 +82,6 @@ int (proj_main_loop)(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  //Initializes the graphics mode
-  if(initialize_graphics_mode(VBE_MODE_8888) != 0){
-    return EXIT_FAILURE;
-  }
 
 
   if(gameLoop() != 0){
