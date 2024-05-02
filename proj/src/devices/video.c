@@ -79,7 +79,7 @@ int (map_VRAM)(uint16_t mode){
   //initializes the Minix Graphics mode =============================
   reg86_t reg;
 
-  memset(&r, 0, sizeof(r));
+  memset(&reg, 0, sizeof(reg));
 
   reg.ax = VBE_SET_VIDEO_MODE;
    // VBE call, function 02 -- set VBE mode
