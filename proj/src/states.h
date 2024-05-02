@@ -33,5 +33,4 @@ typedef enum {
   DOWN_BALL
 } Ball_direction;
 
-
 #endif
