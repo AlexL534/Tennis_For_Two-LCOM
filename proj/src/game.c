@@ -72,6 +72,7 @@ int (gameLoop)(){
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
                     timerHandler();
+                    swap_buffer();
                  }
                  break;
              default:
@@ -107,6 +108,7 @@ void (destroyElements)(){
   destroyPlayer1(player1);
   destroyPlayer2(player2);
   free(background);
+  free_second_buffer();
 }
 
 int (loadBackground)(){
@@ -146,9 +148,10 @@ int (keyboardHandler)(){
       player1_movement = UP_PLAYER;
     }
 
-    else{
+    else if(stopPlayer(get_scancode(), player1_movement)){
       player1_state = STOP;
     }
+
   }
   else if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
     if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
@@ -168,6 +171,41 @@ int (keyboardHandler)(){
   }
 
   return EXIT_SUCCESS;
+}
+
+bool (stopPlayer)(uint8_t scancode, Player_movement movement){
+  switch (movement)
+  {
+  case UP_PLAYER:
+    if((scancode == (KBD_BREAKCODE | ARROW_UP)) || (scancode == (KBD_BREAKCODE | W_KEY))){
+      return true;
+    }
+    break;
+  
+  case DOWN_PLAYER:
+    if((scancode == (KBD_BREAKCODE | ARROW_DOWN)) || (scancode == (KBD_BREAKCODE | S_KEY))){
+      return true;
+    }
+    break;
+
+  case RIGHT_PLAYER:
+    if((scancode == (KBD_BREAKCODE | ARROW_RIGHT)) || (scancode == (KBD_BREAKCODE | D_KEY))){
+      return true;
+    }
+    break;
+
+  case LEFT_PLAYER:
+    if((scancode & (KBD_BREAKCODE | ARROW_LEFT)) || (scancode & (KBD_BREAKCODE | A_KEY))){
+      return true;
+    }
+    break;
+
+  default:
+
+    break;
+  }
+
+  return false;
 }
 
 int (timerHandler)(){

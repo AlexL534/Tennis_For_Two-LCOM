@@ -19,6 +19,7 @@ int (gameLoop)();
 int (timerHandler)();
 int (keyboardHandler)();
 int (mouseHandler)();
+bool (stopPlayer)(uint8_t scancode, Player_movement movement);
 
 void (destroyElements)();
 int (loadBackground)();

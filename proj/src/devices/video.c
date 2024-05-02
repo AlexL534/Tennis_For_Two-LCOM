@@ -5,6 +5,8 @@
 
 static vbe_mode_info_t mode_info;
 static char *video_mem;		/* Process (virtual) address to which VRAM is mapped */
+static char *second_buffer;
+//static char *base_mem;
 
 static unsigned h_res;	        /* Horizontal resolution in pixels */
 static unsigned v_res;	        /* Vertical resolution in pixels */
@@ -32,6 +34,10 @@ unsigned (get_bits_per_pixel)(){
 
 unsigned (get_bytes_per_pixel)(){
   return (bits_per_pixel + 7) / 8;
+}
+
+char* (get_second_buffer)(){
+  return second_buffer;
 }
 
 // =================================================================
@@ -70,6 +76,7 @@ int (map_VRAM)(uint16_t mode){
 
   /* Map memory */
   video_mem = vm_map_phys(SELF, (void *)mr.mr_base, size);
+  second_buffer = malloc(size);
 
   if(video_mem == MAP_FAILED){
     panic("couldn't map video memory");
@@ -109,13 +116,17 @@ int (vg_draw_color)(uint16_t x, uint16_t y, uint32_t color){
   // hres * y is the number of bits needed to reach line y. Then we add x to get the index in that line
   unsigned int vram_index = (h_res * y  + x) * get_bytes_per_pixel();
 
-  char * base_ptr = video_mem + vram_index;
+  char * base_ptr = second_buffer + vram_index;
 
   if(memcpy(base_ptr, &color, get_bytes_per_pixel()) == NULL){
     return EXIT_FAILURE;
   }
   
   return EXIT_SUCCESS;
+}
+
+void (swap_buffer)(){
+  memcpy(video_mem, second_buffer, h_res * v_res * get_bytes_per_pixel());
 }
 
 
@@ -162,4 +173,12 @@ int (draw_xpm)(xpm_map_t xpm, enum xpm_image_type type, uint16_t x, uint16_t y){
     }
   }
   return EXIT_SUCCESS;
+}
+
+void (free_second_buffer)(){
+  if(second_buffer == NULL){
+    return;
+  }
+
+  free(second_buffer);
 }

@@ -14,5 +14,8 @@ unsigned (get_vres)();
 unsigned (get_bits_per_pixel)();
 unsigned (get_bytes_per_pixel)();
 char* (get_video_mem)();
+void (swap_buffer)();
+char* (get_second_buffer)();
+void (free_second_buffer)();
 
 #endif
