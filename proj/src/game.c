@@ -1,10 +1,11 @@
 #include "game.h"
 #include "background.h"
 
-static Player_state player_state = CHOOSE_START_STOP;
-static Player_movement player_movement = RIGHT_PLAYER;
+static Player_state player1_state = CHOOSE_START_STOP;
+static Player_movement player1_movement = RIGHT_PLAYER;
 //static Game_state game_state = GAME;
-static Player1 *player1;
+static Player *player1;
+static Player *player2;
 
 static uint32_t *background;
 
@@ -17,7 +18,9 @@ int (gameLoop)(){
   }
   
   player1 = createPlayer1();
-  drawPlayer1(player1);
+  player2 = createPlayer2();
+  drawPlayer(player1);
+  draw_xpm((xpm_map_t) very_large_ball_xpm,XPM_8_8_8_8, 100,100 );
 
   int ipc_status;
   message msg;
@@ -28,7 +31,7 @@ int (gameLoop)(){
     return EXIT_FAILURE;
   }
 
-  timer_set_frequency(0, 30);
+  timer_set_frequency(0, 60);
   if(kbd_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
@@ -102,6 +105,7 @@ int (gameLoop)(){
 
 void (destroyElements)(){
   destroyPlayer1(player1);
+  destroyPlayer2(player2);
   free(background);
 }
 
@@ -118,48 +122,48 @@ int (loadBackground)(){
 
 int (keyboardHandler)(){
 
-  if((player_state == MOVE) || (player_state == STOP)){
+  if((player1_state == MOVE) || (player1_state == STOP)){
     
     if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
       updateDirection(LEFTD, player1);
-      player_state = MOVE;
-      player_movement = LEFT_PLAYER;
+      player1_state = MOVE;
+      player1_movement = LEFT_PLAYER;
     }
 
     else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
       updateDirection(RIGHTD, player1);
-      player_state = MOVE;
-      player_movement = RIGHT_PLAYER;
+      player1_state = MOVE;
+      player1_movement = RIGHT_PLAYER;
     }
 
     else if((get_scancode() == ARROW_DOWN) || (get_scancode() == S_KEY)){
-      player_state = MOVE;
-      player_movement = DOWN_PLAYER;
+      player1_state = MOVE;
+      player1_movement = DOWN_PLAYER;
     }
 
     else if((get_scancode() == ARROW_UP) || (get_scancode() == W_KEY)){
-      player_state = MOVE;
-      player_movement = UP_PLAYER;
+      player1_state = MOVE;
+      player1_movement = UP_PLAYER;
     }
 
     else{
-      player_state = STOP;
+      player1_state = STOP;
     }
   }
-  else if((player_state == CHOOSE_START) || (player_state == CHOOSE_START_STOP)){
+  else if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
     if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
       updateDirection(LEFTD, player1);
-      player_movement = LEFT_PLAYER;
-      player_state = CHOOSE_START;
+      player1_movement = LEFT_PLAYER;
+      player1_state = CHOOSE_START;
     }
 
     else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
       updateDirection(RIGHTD, player1);
-      player_movement = RIGHT_PLAYER;
-      player_state = CHOOSE_START;
+      player1_movement = RIGHT_PLAYER;
+      player1_state = CHOOSE_START;
     }
     else{
-      player_state = CHOOSE_START_STOP;
+      player1_state = CHOOSE_START_STOP;
     }
   }
 
@@ -167,73 +171,56 @@ int (keyboardHandler)(){
 }
 
 int (timerHandler)(){
-  switch (player_state)
-  {
-
-  case MOVE:
-    //erase the player
-    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
+    if(refreshBackground(background) != 0){
       printf("Error while erasing the player1\n");
       return EXIT_FAILURE;
     };
+  drawPlayer(player2);
+
+  switch (player1_state)
+  {
+
+  case MOVE:
 
     //move the player and draws him in the new position
-    movePlayer1(player1, player_movement);
+    movePlayer(player1, player1_movement);
 
-    drawPlayer1(player1);
+    
 
-    if(counter % 2 == 0){
-      moveAnim1(player1);
+    if(counter % 6 == 0){
+      moveAnim(player1);
     }
     break;
 
   case HIT:
-    //erase the player
-    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
 
-    drawPlayer1(player1);
-
-    if(counter % 2 == 0){
-      hitAnim1(player1);
+    if(counter % 3 == 0){
+      hitAnim(player1);
 
       //the animation ended
       if(player1->hitanim == 0){
-        player_state = STOP;
+        player1_state = STOP;
       }
     }
     break;
 
   case CHOOSE_START:
-    //erase the player
-    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
 
-    chooseStartAnim1(player1);
-    movePlayer1(player1, player_movement);
-    drawPlayer1(player1);
+
+    chooseStartAnim(player1);
+    movePlayer(player1, player1_movement);
 
     break;
 
   case START:
-    //erase the player
-    if(drawPortionOfBackground(background, player1->x, player1->y, player1->currentSprite.width,player1->currentSprite.height) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
 
-    drawPlayer1(player1);
 
-    if(counter % 2 == 0){
-      startAnim1(player1);
+    if(counter % 3 == 0){
+      startAnim(player1);
 
       //the animation ended
       if(player1->startanim == 0){
-        player_state = STOP;
+        player1_state = STOP;
       }
     }
     break;
@@ -242,18 +229,20 @@ int (timerHandler)(){
     break;
   }
 
+  drawPlayer(player1);
+
     return EXIT_SUCCESS;
 }
 
 int (mouseHandler)(){
-  if((player_state == CHOOSE_START) || (player_state == CHOOSE_START_STOP)){
+  if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
     if(get_mouse_packet().lb){
-      player_state = START;
+      player1_state = START;
   }
   }
   else{
     if(get_mouse_packet().lb){
-      player_state = HIT;
+      player1_state = HIT;
     }
   }
   return EXIT_SUCCESS;

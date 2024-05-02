@@ -85,6 +85,7 @@ int (kbd_unsubscribe_int)(){
 }
 
 int(kbd_activate)(){
+    //activates the kbd when we are using polling
     uint8_t command = KBC_RD_CM_B;
 
     if(kbd_write_command(&command,KBC_CMD_REG) != 0){

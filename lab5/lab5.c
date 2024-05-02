@@ -84,7 +84,7 @@ int(KBD_wait_ESC)() {
 int(video_test_init)(uint16_t mode, uint8_t delay) {
   
   //initializes the graphics mode
-  if(intialize_graphics_mode(mode) != 0){
+  if(initialize_graphics_mode(mode) != 0){
     return EXIT_FAILURE;
   }
 
@@ -109,7 +109,7 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
   }
 
   //Initializes the graphics mode
-  if(intialize_graphics_mode(mode) != 0){
+  if(initialize_graphics_mode(mode) != 0){
     return EXIT_FAILURE;
   }
 
@@ -138,7 +138,7 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
   }
 
   //Initializes the graphics mode
-  if(intialize_graphics_mode(mode) != 0){
+  if(initialize_graphics_mode(mode) != 0){
     return EXIT_FAILURE;
   }
 
@@ -193,7 +193,7 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
   }
 
   //Initializes the graphics mode
-  if(intialize_graphics_mode(VBE_INDEXED_COLOR) != 0){
+  if(initialize_graphics_mode(VBE_INDEXED_COLOR) != 0){
     return EXIT_FAILURE;
   }
 
@@ -222,7 +222,7 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
   }
 
   //Initializes the graphics mode
-  if(intialize_graphics_mode(VBE_INDEXED_COLOR) != 0){
+  if(initialize_graphics_mode(VBE_INDEXED_COLOR) != 0){
     return EXIT_FAILURE;
   }
 

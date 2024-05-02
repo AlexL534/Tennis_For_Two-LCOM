@@ -18,17 +18,8 @@ int (drawBackground)(uint32_t *background){
   return EXIT_SUCCESS;
 }
 
-int (drawPortionOfBackground)(uint32_t *background, uint16_t x, uint16_t y, uint16_t widht, uint16_t height){
+int (refreshBackground)(uint32_t *background){
   
-  uint32_t *ptr = background;
-  for(int i = y; i <= y + height; i++){
-    for(int j = x; j <= x + widht; j++){
-      if (i < (int)get_vres() - 1 && j < (int)get_hres() - 1)
-        if(vg_draw_color(j, i, *(ptr + (get_hres() * i + j))) != 0){
-          return EXIT_FAILURE;
-        };
-
-    }
-  }
+  memcpy(get_video_mem(), background, get_hres() * get_vres() * get_bytes_per_pixel());
   return EXIT_SUCCESS;
 }

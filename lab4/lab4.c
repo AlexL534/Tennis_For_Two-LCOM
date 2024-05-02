@@ -115,7 +115,7 @@ int (mouse_test_async)(uint8_t idle_time) {
     return EXIT_FAILURE;
   }
 
-  //susbcribes the interrupts for the mouse an timer, respectively
+  //subscribes the interrupts for the mouse and timer, respectively
   if(mouse_subscribe_int(&bit_no) != 0){
       return EXIT_FAILURE;
   }
@@ -138,7 +138,7 @@ int (mouse_test_async)(uint8_t idle_time) {
          switch (_ENDPOINT_P(msg.m_source)) {
              case HARDWARE: /* hardware interrupt notification */	
                   if (msg.m_notify.interrupts & timer_mask) { 
-                    //Timer nterruption
+                    //Timer interruption
                     timer_int_handler();
                     if ((counter - last_counter) % 60 == 0){ 
                       //1 second from the previous interrupt
@@ -168,7 +168,7 @@ int (mouse_test_async)(uint8_t idle_time) {
          /* no standard messages expected: do nothing */
      }
 }
-  //unsusbcribes the interrupts for the timer an mouse, respectively
+  //unsubscribes the interrupts for the timer and mouse, respectively
   if (timer_unsubscribe_int() != 0) {
         return EXIT_FAILURE;
   }
@@ -191,7 +191,7 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
   int r = 0;
   uint8_t bit_no;
 
-//enbles mouse data report
+//enables mouse data report
   if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
     return EXIT_FAILURE;
   }
@@ -204,7 +204,7 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
 
   uint8_t irq_set = BIT(bit_no);
   
-  //condition to exit is execute the inverted v shape
+  //condition to exit is to execute the inverted v shape
   while(get_Current_State() != END){
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
@@ -245,5 +245,3 @@ int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
 
   return EXIT_SUCCESS;
 }
-
-

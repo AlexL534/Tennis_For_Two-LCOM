@@ -3,7 +3,7 @@
 
 #include <lcom/lcf.h>
 #include "states.h"
-#include "player1.h"
+#include "player.h"
 
 #include "devices/i8042.h"
 #include "devices/i8254.h"

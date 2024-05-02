@@ -26,6 +26,26 @@
 #include "xpms/player1/start/start5_rev.xpm"
 #include "xpms/player1/start/start6_rev.xpm"
 
+#include "xpms/player2/hit/hit1_2.xpm"
+#include "xpms/player2/hit/hit1_2_rev.xpm"
+#include "xpms/player2/hit/hit2_2.xpm"
+#include "xpms/player2/hit/hit2_2_rev.xpm"
+#include "xpms/player2/move/move1_2.xpm"
+#include "xpms/player2/move/move1_2_rev.xpm"
+#include "xpms/player2/move/move2_2.xpm"
+#include "xpms/player2/move/move2_2_rev.xpm"
+#include "xpms/player2/start/start1_2.xpm"
+#include "xpms/player2/start/start1_2_rev.xpm"
+#include "xpms/player2/start/start2_2.xpm"
+#include "xpms/player2/start/start2_2_rev.xpm"
+#include "xpms/player2/start/start3_2.xpm"
+#include "xpms/player2/start/start3_2_rev.xpm"
+
 #include "xpms/Court_rec.xpm"
+
+#include "xpms/ball/small_ball.xpm"
+#include "xpms/ball/medium_ball.xpm"
+#include "xpms/ball/large_ball.xpm"
+#include "xpms/ball/very_large_ball.xpm"
 
 #endif
