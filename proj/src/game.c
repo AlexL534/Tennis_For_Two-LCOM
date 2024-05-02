@@ -5,6 +5,7 @@ static Player_state player1_state = CHOOSE_START_STOP;
 static Player_movement player1_movement = RIGHT_PLAYER;
 //static Game_state game_state = GAME;
 static Player *player1;
+static Player *player2;
 
 static uint32_t *background;
 
@@ -16,8 +17,10 @@ int (gameLoop)(){
     return EXIT_FAILURE;
   }
   
-  player1 = createPlayer();
+  player1 = createPlayer1();
+  player2 = createPlayer2();
   drawPlayer(player1);
+  draw_xpm((xpm_map_t) very_large_ball_xpm,XPM_8_8_8_8, 100,100 );
 
   int ipc_status;
   message msg;
@@ -101,7 +104,8 @@ int (gameLoop)(){
 }
 
 void (destroyElements)(){
-  destroyPlayer(player1);
+  destroyPlayer1(player1);
+  destroyPlayer2(player2);
   free(background);
 }
 
@@ -167,20 +171,21 @@ int (keyboardHandler)(){
 }
 
 int (timerHandler)(){
-  switch (player1_state)
-  {
-
-  case MOVE:
-    //erase the player
     if(refreshBackground(background) != 0){
       printf("Error while erasing the player1\n");
       return EXIT_FAILURE;
     };
+  drawPlayer(player2);
+
+  switch (player1_state)
+  {
+
+  case MOVE:
 
     //move the player and draws him in the new position
     movePlayer(player1, player1_movement);
 
-    drawPlayer(player1);
+    
 
     if(counter % 6 == 0){
       moveAnim(player1);
@@ -188,13 +193,6 @@ int (timerHandler)(){
     break;
 
   case HIT:
-    //erase the player
-    if(refreshBackground(background) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
-
-    drawPlayer(player1);
 
     if(counter % 3 == 0){
       hitAnim(player1);
@@ -207,26 +205,15 @@ int (timerHandler)(){
     break;
 
   case CHOOSE_START:
-    //erase the player
-    if(refreshBackground(background) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
+
 
     chooseStartAnim(player1);
     movePlayer(player1, player1_movement);
-    drawPlayer(player1);
 
     break;
 
   case START:
-    //erase the player
-    if(refreshBackground(background) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
 
-    drawPlayer(player1);
 
     if(counter % 3 == 0){
       startAnim(player1);
@@ -241,6 +228,8 @@ int (timerHandler)(){
 
     break;
   }
+
+  drawPlayer(player1);
 
     return EXIT_SUCCESS;
 }

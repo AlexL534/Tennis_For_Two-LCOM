@@ -37,7 +37,7 @@ unsigned (get_bytes_per_pixel)(){
 // =================================================================
 
 //initializes the Minix Graphics mode
-int (intialize_graphics_mode)(uint16_t mode){
+int (initialize_graphics_mode)(uint16_t mode){
   reg86_t r;
   memset(&r, 0, sizeof(r));
   r.ax = VBE_SET_VIDEO_MODE; // VBE call, function 02 -- set VBE mode

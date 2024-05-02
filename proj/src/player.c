@@ -2,7 +2,7 @@
 #include "devices/video.h"
 #include "color.h"
 
-Player *(createPlayer)(){
+Player *(createPlayer1)(){
   Player *player = (Player*)malloc(sizeof(Player));
 
   if( player == NULL){
@@ -16,6 +16,7 @@ Player *(createPlayer)(){
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;
+  player->player_numb = PLAYER1;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -156,6 +157,114 @@ Player *(createPlayer)(){
   return player;
 }
 
+Player *(createPlayer2)(){
+  Player *player = (Player*)malloc(sizeof(Player));
+
+  if( player == NULL){
+    return NULL;
+  }
+
+  player->x = 400;
+  player->y = 200;
+  player->xspeed = 6;
+  player->yspeed = 6;
+  player->moveanim = 0;
+  player->startanim = 0;
+  player->hitanim = 0;
+  player->player_numb = PLAYER2;
+
+  xpm_image_t img;
+  Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
+
+  sprite->map = (uint32_t *)malloc(sizeof(char*));
+
+  //load the move sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) move1_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->move[0] = *sprite;
+
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) move2_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->move[1] = *sprite;
+
+  //load the move_rev sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) move1_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->moverev[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) move2_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->moverev[1] = *sprite;
+
+  //load the hit sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit1_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hit[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit2_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hit[1] = *sprite;
+
+
+  //load the hitrev sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit1_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hitrev[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) hit2_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->hitrev[1] = *sprite;
+
+
+  //load the starting sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start1_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[0] = *sprite;
+
+  player->currentSprite = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start2_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[1] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start3_2_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->start[2] = *sprite;
+
+
+  //load the start rev sprites
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start1_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[0] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start2_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[1] = *sprite;
+
+  sprite->map = (uint32_t *) xpm_load((xpm_map_t) start3_2_rev_xpm, XPM_8_8_8_8, &img);
+  sprite->width = img.width;
+  sprite->height = img.height;
+  player->startrev[2] = *sprite;
+
+  player->direction = RIGHTD;
+
+  return player;
+}
+
 int (drawPlayer)(Player *player){
   int width = player->currentSprite.width;
   int height = player->currentSprite.height;
@@ -244,8 +353,15 @@ void(hitAnim)(Player *player){
 
   hitanim++;
 
-  if(hitanim == 4){
-    hitanim = 0;
+  if(player->player_numb == PLAYER1){
+    if(hitanim == 4){
+      hitanim = 0;
+    }
+  }
+  else if(player->player_numb == PLAYER2){
+    if(hitanim == 2){
+      hitanim = 0;
+    }
   }
 
   player->hitanim = hitanim;
@@ -261,8 +377,15 @@ void (startAnim)(Player *player){
 
   startanim++;
 
-  if(startanim == 6){
-    startanim = 0;
+  if(player->player_numb == PLAYER1){
+    if(startanim == 6){
+      startanim = 0;
+    }
+  }
+  else if(player->player_numb == PLAYER2){
+    if(startanim == 3){
+      startanim = 0;
+    }
   }
 
   player->startanim = startanim;
@@ -277,7 +400,13 @@ void (chooseStartAnim)(Player *player){
   }
 }
 
-void (destroyPlayer)(Player *player){
+void (destroyPlayer1)(Player *player){
+  //if the player isn't the player 1, changes function
+  if(player->player_numb == PLAYER2){
+    destroyPlayer2(player);
+    return;
+  }
+
   if(player == NULL){
     return;
   }
@@ -294,6 +423,76 @@ void (destroyPlayer)(Player *player){
     }
     if(player -> moverev[i].map){
       free(player -> moverev[i].map);
+    }
+  }
+
+  //free the allocated memory for the hit arrays
+  for(int i = 0; i < 4; i++){
+    if(player -> hit[i].map){
+      free(player ->hit[i].map);
+    }
+    if(player->hitrev[i].map){
+      free(player->hitrev[i].map);
+    }
+  }
+
+  //free the allocated memory for the start arrays
+  for(int i = 0; i < 6; i++){
+    if(player -> start[i].map){
+      free(player ->start[i].map);
+    }
+    if(player ->startrev[i].map){
+      free(player -> startrev[i].map);
+    }
+  }
+
+  free(player);
+  player = NULL;
+}
+
+void (destroyPlayer2)(Player * player){
+  //if the player isn't the player 2, changes function
+  if(player->player_numb == PLAYER1){
+    destroyPlayer1(player);
+    return;
+  }
+
+  if(player == NULL){
+    return;
+  }
+
+  //free the memory allocated for the currrent sprite
+  if(player -> currentSprite.map){
+    free(player -> currentSprite.map);
+  }
+
+  //free the allocated memory for the move arrays
+  for(int i = 0; i < 2 ; i++){
+    if(player -> move[i].map){
+      free(player -> move[i].map);
+    }
+    if(player -> moverev[i].map){
+      free(player -> moverev[i].map);
+    }
+  }
+
+  //free the allocated memory for the hit arrays
+  for(int i = 0; i < 2; i++){
+    if(player -> hit[i].map){
+      free(player ->hit[i].map);
+    }
+    if(player->hitrev[i].map){
+      free(player->hitrev[i].map);
+    }
+  }
+
+  //free the allocated memory for the start arrays
+  for(int i = 0; i < 3; i++){
+    if(player -> start[i].map){
+      free(player ->start[i].map);
+    }
+    if(player ->startrev[i].map){
+      free(player -> startrev[i].map);
     }
   }
 
