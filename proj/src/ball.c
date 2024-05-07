@@ -67,6 +67,24 @@ void (updateDirection)(Ball_direction direction, Ball *ball){
   ball->direction = direction;
 }
 
+
+bool (checkCollisionLine)(Ball *ball, uint32_t *background){
+  int width = ball->currentSprite.width;
+  int height = ball->currentSprite.height;
+
+  uint32_t *map = background;
+
+  for(int j = ball->y; j < ball->y + height; j++){
+    for(int i = ball->x; i < ball->x + width; i++){
+      if(*(map + (j * get_hres() + i)) == ENDLINE_COLOR){
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 void (destroyBall)(Ball *ball){
   if(ball == NULL){
     return;

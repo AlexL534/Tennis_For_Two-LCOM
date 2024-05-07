@@ -11,6 +11,27 @@
 #define MIN_Y  432-145 //player height is 150
 #define MAX_Y  864
 
+//HITBOX player 1 normal anim
+#define HIT_P1_X_MIN 65
+#define HIT_P1_Y_MIN 95
+#define HIT_P1_X_MAX 100
+#define HIT_P1_Y_MAX 135
+
+//HITBOX player 1 reverse anim (y is the same as the normal anim)
+#define HIT_REV_P1_X_MAX 35
+#define HIT_REV_P1_X_MIN 0
+
+//HITBOX player 2 normal anim
+#define HIT_P2_X_MIN 0
+#define HIT_P2_Y_MIN 30
+#define HIT_P2_X_MAX 100
+#define HIT_P2_Y_MAX 140
+
+//HITBOX player 2 reverse anim (y is the same as the normal anim)
+#define HIT_REV_P2_X_MAX 30
+#define HIT_REV_P2_X_MIN 0
+
+
 typedef enum{
   PLAYER1,
   PLAYER2

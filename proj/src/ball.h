@@ -25,7 +25,9 @@ typedef struct{
 
 Ball *(createBall)();
 int (drawBall)(Ball *ball);
-void(updateDirection)(Ball_direction direction, Ball *ball);
+void (updateDirection)(Ball_direction direction, Ball *ball);
+void (checkCollisionPlayer)(Ball *ball);
+bool (checkCollisionLine)(Ball *ball, uint32_t *backgorund);
 void (destroyBall)(Ball *ball);
 
 
