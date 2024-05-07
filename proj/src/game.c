@@ -111,6 +111,7 @@ int (gameLoop)(){
 void (destroyElements)(){
   destroyPlayer1(player1);
   destroyPlayer2(player2);
+  destroyBall(ball);
   free(background);
   free_second_buffer();
 }
@@ -144,7 +145,33 @@ int (timerHandler)(){
     return EXIT_FAILURE;
   }
 
+
+  if(checkCollisionLine(ball, background)){
+    resetBall(ball, PLAYER1);
+    resetPlayer(player1, true);
+    resetPlayer(player2, false);
+    return EXIT_SUCCESS;
+  }
+
+  if(player1 -> state == HIT){
+    collisionPlayer(ball, player1);
+  }
+
+  if(player2-> state == HIT){
+    collisionPlayer(ball, player2);
+  }
+
+  if((player1 ->state != CHOOSE_START) && (player1 ->state != CHOOSE_START_STOP) && (player2 ->state != CHOOSE_START) && (player2 ->state != CHOOSE_START_STOP)){
+    moveBall(ball);
+    
+    if(drawBall(ball) != 0){
+      return EXIT_FAILURE;
+    }
+  }
+  
   updatePlayerMovementsTimer(player1, counter);
+  
+
 
   if(drawPlayer(player1) != 0){
     return EXIT_FAILURE;
@@ -154,6 +181,12 @@ int (timerHandler)(){
 }
 
 int (mouseHandler)(){
-  updatePlayerMovementMouse(player1, get_mouse_packet().lb);
+  int newBallX = 9999; 
+  updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX);
+  
+  if(newBallX != 9999){
+    //the player started and the ball position needs to be updated
+    ball->x = newBallX;
+  }
   return EXIT_SUCCESS;
 }

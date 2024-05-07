@@ -10,11 +10,11 @@ Ball *(createBall)(){
   }
 
   ball->x = 550;
-  ball->y = 690;
+  ball->y = 680;
   ball->xspeed = 8;
   ball->yspeed = 8;
   ball->incline = 0;
-  ball->direction = UP_BALL_START;
+  ball->direction = UP_BALL;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -163,15 +163,15 @@ void (resetBall)(Ball *ball, Player_numb scoredPlayer){
   {
   case PLAYER1:
     ball->x = 550;
-    ball->y = 690;
+    ball->y = 680;
     ball->direction = UP_BALL;
     break;
   
   case PLAYER2:
     ball->x = 550;
-    ball->y = 690;
+    ball->y = 40;
     ball->direction = DOWN_BALL;
-    
+
   default:
     break;
   }

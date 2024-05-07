@@ -170,7 +170,7 @@ Player *(createPlayer2)(){
   }
 
   player->x = 500;
-  player->y = 50;
+  player->y = 150;
   player->xspeed = 6;
   player->yspeed = 6;
   player->moveanim = 0;
@@ -398,10 +398,18 @@ void (updatePlayerMovementsTimer)(Player *player, int counter){
   }
 }
 
-void (updatePlayerMovementMouse)(Player *player, bool isLB){
+void (updatePlayerMovementMouse)(Player *player, bool isLB, int *newBallX){
   if((player-> state == CHOOSE_START) || (player->state == CHOOSE_START_STOP)){
     if(isLB){
       player->state = START;
+
+      //calculate the initial position of the ball based on the player chose place to start
+      if(player->direction == RIGHTD){
+        *newBallX = player->x + 70;
+      }
+      else{
+         *newBallX = player->x + 10;
+      }
   }
   }
   else{

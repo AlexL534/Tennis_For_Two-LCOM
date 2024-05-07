@@ -71,7 +71,7 @@ void (updatePlayerDirection)(Player_direction direction, Player *player);
 void (get_current_hit_limits)(Player *player,int *x_min, int *x_max, int *y_min, int *y_max);
 void (changePlayerMovementKBD)(Player *player, uint8_t scancode);
 void (updatePlayerMovementsTimer)(Player *player, int counter);
-void (updatePlayerMovementMouse)(Player *player, bool isLB);
+void (updatePlayerMovementMouse)(Player *player, bool isLB, int *newBallX);
 bool (stopPlayer)(uint8_t scancode, Player_movement movement);
 void (movePlayer)(Player *player);
 void (moveAnim)(Player *player);
