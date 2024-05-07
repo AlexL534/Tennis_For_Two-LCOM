@@ -63,7 +63,7 @@ int (drawBall)(Ball *ball){
   return EXIT_SUCCESS;
 }
 
-void (updateDirection)(Ball_direction direction, Ball *ball){
+void (updateBallDirection)(Ball_direction direction, Ball *ball){
   ball->direction = direction;
 }
 
@@ -76,10 +76,10 @@ void (collisionPlayer)(Ball *ball, Player *player){
 
     //change the ball direction
     if((ball->direction == UP_BALL) && (player->player_numb == PLAYER2)){
-      ball->direction == DOWN_BALL;
+      ball->direction = DOWN_BALL;
     }
     else if((ball->direction == DOWN_BALL) && (player->player_numb == PLAYER1)){
-      ball->direction == UP_BALL;
+      ball->direction = UP_BALL;
     }
 
 
@@ -114,7 +114,7 @@ void (moveBall)(Ball *ball){
     }
 
   }
-  
+
   else if(ball->incline == 0){
     
     if(ball->direction == UP_BALL){

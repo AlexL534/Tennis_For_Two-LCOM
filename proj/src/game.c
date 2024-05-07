@@ -1,11 +1,10 @@
 #include "game.h"
 #include "background.h"
 
-static Player_state player1_state = CHOOSE_START_STOP;
-static Player_movement player1_movement = RIGHT_PLAYER;
 //static Game_state game_state = GAME;
 static Player *player1;
 static Player *player2;
+static Ball *ball;
 
 static uint32_t *background;
 
@@ -19,6 +18,7 @@ int (gameLoop)(){
   
   player1 = createPlayer1();
   player2 = createPlayer2();
+  ball = createBall();
   drawPlayer(player1);
   draw_xpm((xpm_map_t) very_large_ball_xpm,XPM_8_8_8_8, 100,100 );
 
@@ -123,91 +123,13 @@ int (loadBackground)(){
 }
 
 int (keyboardHandler)(){
-  printf("scancode %x\n", get_scancode());
 
-  if((player1_state == MOVE) || (player1_state == STOP)){
-    
-    if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
-      updateDirection(LEFTD, player1);
-      player1_state = MOVE;
-      player1_movement = LEFT_PLAYER;
-    }
-
-    else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
-      updateDirection(RIGHTD, player1);
-      player1_state = MOVE;
-      player1_movement = RIGHT_PLAYER;
-    }
-
-    else if((get_scancode() == ARROW_DOWN) || (get_scancode() == S_KEY)){
-      player1_state = MOVE;
-      player1_movement = DOWN_PLAYER;
-    }
-
-    else if((get_scancode() == ARROW_UP) || (get_scancode() == W_KEY)){
-      player1_state = MOVE;
-      player1_movement = UP_PLAYER;
-    }
-
-    else if(stopPlayer(get_scancode(), player1_movement)){
-      player1_state = STOP;
-    }
-
-  }
-  else if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
-    if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
-      updateDirection(LEFTD, player1);
-      player1_movement = LEFT_PLAYER;
-      player1_state = CHOOSE_START;
-    }
-
-    else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
-      updateDirection(RIGHTD, player1);
-      player1_movement = RIGHT_PLAYER;
-      player1_state = CHOOSE_START;
-    }
-    else{
-      player1_state = CHOOSE_START_STOP;
-    }
-  }
+  printf("here");
+  changeMovementKBD(player1, get_scancode());
 
   return EXIT_SUCCESS;
 }
 
-bool (stopPlayer)(uint8_t scancode, Player_movement movement){
-  switch (movement)
-  {
-  case UP_PLAYER:
-    if((scancode == (KBD_BREAKCODE | ARROW_UP)) || (scancode == (KBD_BREAKCODE | W_KEY))){
-      return true;
-    }
-    break;
-  
-  case DOWN_PLAYER:
-    if((scancode == (KBD_BREAKCODE | ARROW_DOWN)) || (scancode == (KBD_BREAKCODE | S_KEY))){
-      return true;
-    }
-    break;
-
-  case RIGHT_PLAYER:
-    if((scancode == (KBD_BREAKCODE | ARROW_RIGHT)) || (scancode == (KBD_BREAKCODE | D_KEY))){
-      return true;
-    }
-    break;
-
-  case LEFT_PLAYER:
-    if((scancode & (KBD_BREAKCODE | ARROW_LEFT)) || (scancode & (KBD_BREAKCODE | A_KEY))){
-      return true;
-    }
-    break;
-
-  default:
-
-    break;
-  }
-
-  return false;
-}
 
 int (timerHandler)(){
     if(refreshBackground(background) != 0){
@@ -216,13 +138,13 @@ int (timerHandler)(){
     };
   drawPlayer(player2);
 
-  switch (player1_state)
+  switch (player1->state)
   {
 
   case MOVE:
 
     //move the player and draws him in the new position
-    movePlayer(player1, player1_movement);
+    movePlayer(player1);
 
     
 
@@ -238,7 +160,7 @@ int (timerHandler)(){
 
       //the animation ended
       if(player1->hitanim == 0){
-        player1_state = STOP;
+        player1->state = STOP;
       }
     }
     break;
@@ -247,7 +169,7 @@ int (timerHandler)(){
 
 
     chooseStartAnim(player1);
-    movePlayer(player1, player1_movement);
+    movePlayer(player1);
 
     break;
 
@@ -259,7 +181,7 @@ int (timerHandler)(){
 
       //the animation ended
       if(player1->startanim == 0){
-        player1_state = STOP;
+        player1->state = STOP;
       }
     }
     break;
@@ -274,14 +196,14 @@ int (timerHandler)(){
 }
 
 int (mouseHandler)(){
-  if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
+  if((player1-> state == CHOOSE_START) || (player1->state == CHOOSE_START_STOP)){
     if(get_mouse_packet().lb){
-      player1_state = START;
+      player1->state = START;
   }
   }
   else{
     if(get_mouse_packet().lb){
-      player1_state = HIT;
+      player1->state = HIT;
     }
   }
   return EXIT_SUCCESS;

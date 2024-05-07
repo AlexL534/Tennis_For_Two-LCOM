@@ -4,6 +4,7 @@
 #include <lcom/lcf.h>
 #include "states.h"
 #include "player.h"
+#include "ball.h"
 
 #include "devices/i8042.h"
 #include "devices/i8254.h"
@@ -19,7 +20,6 @@ int (gameLoop)();
 int (timerHandler)();
 int (keyboardHandler)();
 int (mouseHandler)();
-bool (stopPlayer)(uint8_t scancode, Player_movement movement);
 
 void (destroyElements)();
 int (loadBackground)();

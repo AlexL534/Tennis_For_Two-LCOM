@@ -53,6 +53,8 @@ typedef struct{
   Sprite startrev[6];
 
   Player_direction direction;
+  Player_state state;
+  Player_movement movement;
   Player_numb player_numb;
 
 } Player;
@@ -60,9 +62,11 @@ typedef struct{
 Player *(createPlayer1)();
 Player *(createPlayer2)();
 int (drawPlayer)(Player *player1);
-void (updateDirection)(Player_direction direction, Player *player);
+void (updatePlayerDirection)(Player_direction direction, Player *player);
 void (get_current_hit_limits)(Player *player,int *x_min, int *x_max, int *y_min, int *y_max);
-void (movePlayer)(Player *player, Player_movement movement);
+void (changeMovementKBD)(Player *player, uint8_t scancode);
+bool (stopPlayer)(uint8_t scancode, Player_movement movement);
+void (movePlayer)(Player *player);
 void (moveAnim)(Player *player1);
 void (hitAnim)(Player *player1);
 void (startAnim)(Player *player1);

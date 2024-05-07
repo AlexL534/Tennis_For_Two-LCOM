@@ -1,6 +1,7 @@
 #include "player.h"
 #include "devices/video.h"
 #include "color.h"
+#include "devices/i8042.h"
 
 Player *(createPlayer1)(){
   Player *player = (Player*)malloc(sizeof(Player));
@@ -17,6 +18,8 @@ Player *(createPlayer1)(){
   player->startanim = 0;
   player->hitanim = 0;
   player->player_numb = PLAYER1;
+  player->movement = RIGHT_PLAYER;
+  player->state = CHOOSE_START_STOP;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -154,7 +157,6 @@ Player *(createPlayer1)(){
 
   player->direction = RIGHTD;
 
-  free(sprite->map);
   free(sprite);
 
   return player;
@@ -175,6 +177,8 @@ Player *(createPlayer2)(){
   player->startanim = 0;
   player->hitanim = 0;
   player->player_numb = PLAYER2;
+  player->movement = RIGHT_PLAYER;
+  player->state = STOP;
 
   xpm_image_t img;
   Sprite *sprite = (Sprite*)malloc(sizeof(Sprite));
@@ -198,6 +202,8 @@ Player *(createPlayer2)(){
   sprite->width = img.width;
   sprite->height = img.height;
   player->moverev[0] = *sprite;
+
+   player->currentSprite = *sprite;
 
   sprite->map = (uint32_t *) xpm_load((xpm_map_t) move2_2_rev_xpm, XPM_8_8_8_8, &img);
   sprite->width = img.width;
@@ -234,7 +240,7 @@ Player *(createPlayer2)(){
   sprite->height = img.height;
   player->start[0] = *sprite;
 
-  player->currentSprite = *sprite;
+ 
 
   sprite->map = (uint32_t *) xpm_load((xpm_map_t) start2_2_xpm, XPM_8_8_8_8, &img);
   sprite->width = img.width;
@@ -286,8 +292,91 @@ int (drawPlayer)(Player *player){
   return EXIT_SUCCESS;
 }
 
-void (updateDirection)(Player_direction direction, Player *player){
+void (updatePlayerDirection)(Player_direction direction, Player *player){
   player->direction = direction;
+}
+
+void (changeMovementKBD)(Player *player, uint8_t scancode){
+  if((player->state == MOVE) || (player->state == STOP)){
+    
+    if((scancode == ARROW_LEFT) || (scancode == A_KEY)){
+      updatePlayerDirection(LEFTD, player);
+      player->state = MOVE;
+      player->movement = LEFT_PLAYER;
+    }
+
+    else if((scancode == ARROW_RIGHT) || (scancode == D_KEY)){
+      updatePlayerDirection(RIGHTD, player);
+      player->state = MOVE;
+      player->movement = RIGHT_PLAYER;
+    }
+
+    else if((scancode == ARROW_DOWN) || (scancode == S_KEY)){
+      player->state = MOVE;
+      player->movement = DOWN_PLAYER;
+    }
+
+    else if((scancode == ARROW_UP) || (scancode == W_KEY)){
+      player->state = MOVE;
+      player->movement = UP_PLAYER;
+    }
+
+    else if(stopPlayer(scancode, player->movement)){
+      player->state = STOP;
+    }
+
+  }
+  else if((player->state == CHOOSE_START) || (player->state == CHOOSE_START_STOP)){
+    if((scancode == ARROW_LEFT) || (scancode == A_KEY)){
+      updatePlayerDirection(LEFTD, player);
+      player->movement = LEFT_PLAYER;
+      player->state = CHOOSE_START;
+    }
+
+    else if((scancode == ARROW_RIGHT) || (scancode == D_KEY)){
+      updatePlayerDirection(RIGHTD, player);
+      player->movement = RIGHT_PLAYER;
+      player->state = CHOOSE_START;
+    }
+    else{
+      player->state = CHOOSE_START_STOP;
+    }
+  }
+}
+
+bool (stopPlayer)(uint8_t scancode, Player_movement movement){
+  switch (movement)
+  {
+  case UP_PLAYER:
+    if((scancode == (KBD_BREAKCODE | ARROW_UP)) || (scancode == (KBD_BREAKCODE | W_KEY))){
+      return true;
+    }
+    break;
+  
+  case DOWN_PLAYER:
+    if((scancode == (KBD_BREAKCODE | ARROW_DOWN)) || (scancode == (KBD_BREAKCODE | S_KEY))){
+      return true;
+    }
+    break;
+
+  case RIGHT_PLAYER:
+    if((scancode == (KBD_BREAKCODE | ARROW_RIGHT)) || (scancode == (KBD_BREAKCODE | D_KEY))){
+      return true;
+    }
+    break;
+
+  case LEFT_PLAYER:
+    if((scancode & (KBD_BREAKCODE | ARROW_LEFT)) || (scancode & (KBD_BREAKCODE | A_KEY))){
+      return true;
+    }
+    break;
+
+  default:
+
+    break;
+  }
+
+  return false;
 }
 
 void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min, int *y_max){
@@ -325,11 +414,11 @@ void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min
   }
 }
 
-void (movePlayer)(Player *player, Player_movement movement){
+void (movePlayer)(Player *player){
   int new_x = player->x;
   int new_y = player->y;
 
-  switch (movement)
+  switch (player->movement)
   {
     //changes the player position accordingly to their movement
   case RIGHT_PLAYER:
