@@ -625,11 +625,13 @@ void (resetPlayer)(Player *player, bool hasScored){
     case PLAYER1:
       player->x = 500;
       player->y = 690;
+      player->currentSprite = player->start[0];
       break;
 
     case PLAYER2:
       player->x = 500;
       player->y = 50;
+      player->currentSprite = player->start[0];
       break;
     
     default:
@@ -645,11 +647,13 @@ void (resetPlayer)(Player *player, bool hasScored){
     case PLAYER1:
       player->x = 500;
       player->y = 590;
+      player->currentSprite = player->move[0];
       break;
 
     case PLAYER2:
       player->x = 500;
       player->y = 150;
+      player->currentSprite = player->move[0];
       break;
     
     default:

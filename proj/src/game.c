@@ -162,7 +162,13 @@ int (timerHandler)(){
   }
 
   if((player1 ->state != CHOOSE_START) && (player1 ->state != CHOOSE_START_STOP) && (player2 ->state != CHOOSE_START) && (player2 ->state != CHOOSE_START_STOP)){
-    moveBall(ball);
+    if((player1->state == START) || (player2->state == START)){
+      moveBall(ball,true);
+    }
+    else{
+      moveBall(ball,false);
+    }
+
     
     if(drawBall(ball) != 0){
       return EXIT_FAILURE;

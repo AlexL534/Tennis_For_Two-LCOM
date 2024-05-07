@@ -10,7 +10,7 @@ Ball *(createBall)(){
   }
 
   ball->x = 550;
-  ball->y = 680;
+  ball->y = 710;
   ball->xspeed = 8;
   ball->yspeed = 8;
   ball->incline = 0;
@@ -101,7 +101,7 @@ void (collisionPlayer)(Ball *ball, Player *player){
   }
 }
 
-void (moveBall)(Ball *ball){
+void (moveBall)(Ball *ball, bool slow){
 
   if(ball->incline < 0){
     ball->x -= ball->xspeed;
@@ -118,7 +118,12 @@ void (moveBall)(Ball *ball){
   else if(ball->incline == 0){
     
     if(ball->direction == UP_BALL){
-      ball->y -= ball->yspeed;
+      if(slow){
+        ball->y -= 1;
+      }
+      else{
+        ball->y -= ball->yspeed;
+      }
     }
     else{
       ball->y += ball->yspeed;
@@ -163,13 +168,13 @@ void (resetBall)(Ball *ball, Player_numb scoredPlayer){
   {
   case PLAYER1:
     ball->x = 550;
-    ball->y = 680;
+    ball->y = 710;
     ball->direction = UP_BALL;
     break;
   
   case PLAYER2:
     ball->x = 550;
-    ball->y = 40;
+    ball->y = 30;
     ball->direction = DOWN_BALL;
 
   default:
