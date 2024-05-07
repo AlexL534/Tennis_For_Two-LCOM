@@ -71,7 +71,11 @@ int (gameLoop)(){
                  }
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
-                    timerHandler();
+
+                    if(timerHandler() != 0){
+                      return EXIT_FAILURE;
+                    }
+
                     swap_buffer();
                  }
                  break;
@@ -124,8 +128,7 @@ int (loadBackground)(){
 
 int (keyboardHandler)(){
 
-  printf("here");
-  changeMovementKBD(player1, get_scancode());
+  changePlayerMovementKBD(player1, get_scancode());
 
   return EXIT_SUCCESS;
 }
@@ -136,75 +139,21 @@ int (timerHandler)(){
       printf("Error while erasing the player1\n");
       return EXIT_FAILURE;
     };
-  drawPlayer(player2);
 
-  switch (player1->state)
-  {
-
-  case MOVE:
-
-    //move the player and draws him in the new position
-    movePlayer(player1);
-
-    
-
-    if(counter % 6 == 0){
-      moveAnim(player1);
-    }
-    break;
-
-  case HIT:
-
-    if(counter % 3 == 0){
-      hitAnim(player1);
-
-      //the animation ended
-      if(player1->hitanim == 0){
-        player1->state = STOP;
-      }
-    }
-    break;
-
-  case CHOOSE_START:
-
-
-    chooseStartAnim(player1);
-    movePlayer(player1);
-
-    break;
-
-  case START:
-
-
-    if(counter % 3 == 0){
-      startAnim(player1);
-
-      //the animation ended
-      if(player1->startanim == 0){
-        player1->state = STOP;
-      }
-    }
-    break;
-  default:
-
-    break;
+  if(drawPlayer(player2) != 0){
+    return EXIT_FAILURE;
   }
 
-  drawPlayer(player1);
+  updatePlayerMovementsTimer(player1, counter);
+
+  if(drawPlayer(player1) != 0){
+    return EXIT_FAILURE;
+  };
 
     return EXIT_SUCCESS;
 }
 
 int (mouseHandler)(){
-  if((player1-> state == CHOOSE_START) || (player1->state == CHOOSE_START_STOP)){
-    if(get_mouse_packet().lb){
-      player1->state = START;
-  }
-  }
-  else{
-    if(get_mouse_packet().lb){
-      player1->state = HIT;
-    }
-  }
+  updatePlayerMovementMouse(player1, get_mouse_packet().lb);
   return EXIT_SUCCESS;
 }

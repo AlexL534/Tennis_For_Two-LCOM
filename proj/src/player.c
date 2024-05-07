@@ -296,7 +296,7 @@ void (updatePlayerDirection)(Player_direction direction, Player *player){
   player->direction = direction;
 }
 
-void (changeMovementKBD)(Player *player, uint8_t scancode){
+void (changePlayerMovementKBD)(Player *player, uint8_t scancode){
   if((player->state == MOVE) || (player->state == STOP)){
     
     if((scancode == ARROW_LEFT) || (scancode == A_KEY)){
@@ -340,6 +340,73 @@ void (changeMovementKBD)(Player *player, uint8_t scancode){
     }
     else{
       player->state = CHOOSE_START_STOP;
+    }
+  }
+}
+
+void (updatePlayerMovementsTimer)(Player *player, int counter){
+  switch (player->state)
+  {
+
+  case MOVE:
+
+    //move the player and draws him in the new position
+    movePlayer(player);
+
+    
+
+    if(counter % 6 == 0){
+      moveAnim(player);
+    }
+    break;
+
+  case HIT:
+
+    if(counter % 3 == 0){
+      hitAnim(player);
+
+      //the animation ended
+      if(player->hitanim == 0){
+        player->state = STOP;
+      }
+    }
+    break;
+
+  case CHOOSE_START:
+
+
+    chooseStartAnim(player);
+    movePlayer(player);
+
+    break;
+
+  case START:
+
+
+    if(counter % 3 == 0){
+      startAnim(player);
+
+      //the animation ended
+      if(player->startanim == 0){
+        player->state = STOP;
+      }
+    }
+    break;
+  default:
+
+    break;
+  }
+}
+
+void (updatePlayerMovementMouse)(Player *player, bool isLB){
+  if((player-> state == CHOOSE_START) || (player->state == CHOOSE_START_STOP)){
+    if(isLB){
+      player->state = START;
+  }
+  }
+  else{
+    if(isLB){
+      player->state = HIT;
     }
   }
 }
