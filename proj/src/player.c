@@ -290,6 +290,41 @@ void (updateDirection)(Player_direction direction, Player *player){
   player->direction = direction;
 }
 
+void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min, int *y_max){
+  switch (player->player_numb)
+  {
+  case PLAYER1:
+      if(player->direction == RIGHT_PLAYER){
+        *x_min = HIT_P1_X_MIN;
+        *x_max = HIT_P1_X_MAX;
+        *y_min = HIT_P1_Y_MIN;
+        *y_max = HIT_P1_Y_MAX;
+      }
+      else{
+        *x_min = HIT_REV_P1_X_MIN;
+        *x_max = HIT_REV_P1_X_MAX;
+        *y_min = HIT_P1_Y_MIN;
+        *y_max = HIT_P1_Y_MAX;
+      }
+    break;
+  
+  case PLAYER2:
+    if(player->direction == RIGHT_PLAYER){
+        *x_min = HIT_REV_P2_X_MIN;
+        *x_max = HIT_REV_P2_X_MAX;
+        *y_min = HIT_P2_Y_MIN;
+        *y_max = HIT_P2_Y_MAX;
+      }
+      else{
+        *x_min = HIT_P2_X_MIN;
+        *x_max = HIT_P2_X_MAX;
+        *y_min = HIT_P2_Y_MIN;
+        *y_max = HIT_P2_Y_MAX;
+      }
+    break;
+  }
+}
+
 void (movePlayer)(Player *player, Player_movement movement){
   int new_x = player->x;
   int new_y = player->y;

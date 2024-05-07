@@ -67,18 +67,91 @@ void (updateDirection)(Ball_direction direction, Ball *ball){
   ball->direction = direction;
 }
 
+void (collisionPlayer)(Ball *ball, Player *player){
+  int x_min, x_max, y_min, y_max;
+  get_current_hit_limits(player, &x_min, &x_max, &y_min, &y_max);
+
+  if((ball->x + 4 >= x_min) && (ball->x  + 4 <= x_max) && (ball->y + 8 >= y_min) && (ball->y + 8 <= y_max)){
+    //there is a colision
+
+    //change the ball direction
+    if((ball->direction == UP_BALL) && (player->player_numb == PLAYER2)){
+      ball->direction == DOWN_BALL;
+    }
+    else if((ball->direction == DOWN_BALL) && (player->player_numb == PLAYER1)){
+      ball->direction == UP_BALL;
+    }
+
+
+    //the ball tragetory has only 3 modes for now (could be infinite in the future)
+    if((ball->x + 4 >= x_min) && (ball->x + 4 < x_min + 10)){
+      ball->incline = -1;
+    }
+
+    else if((ball->x + 4 >= x_min + 10) && (ball->x + 4 < x_min + 20)){
+      ball->incline = 0;
+    }
+
+    else if((ball->x + 4 >= x_min + 20)){
+      ball->incline = 1;
+    }
+
+    
+    
+  }
+}
+
+void (moveBall)(Ball *ball){
+
+  if(ball->incline < 0){
+    ball->x -= ball->xspeed;
+
+    if(ball->direction == UP_BALL){
+      ball->y -= ball->yspeed * ball->incline * (-1);
+    }
+    else{
+      ball->y += ball->yspeed * ball->incline * (-1) ;
+    }
+
+  }
+  
+  else if(ball->incline == 0){
+    
+    if(ball->direction == UP_BALL){
+      ball->y -= ball->yspeed;
+    }
+    else{
+      ball->y += ball->yspeed;
+    }
+  }
+
+  else{
+    ball->x += ball->xspeed;
+
+    if(ball->direction == UP_BALL){
+      ball->y -= ball->yspeed * ball->incline;
+    }
+    else{
+      ball->y += ball->yspeed * ball->incline;
+    }
+  }
+
+
+}
 
 bool (checkCollisionLine)(Ball *ball, uint32_t *background){
   int width = ball->currentSprite.width;
   int height = ball->currentSprite.height;
 
   uint32_t *map = background;
+  uint32_t *ballMap = ball->currentSprite.map;
 
   for(int j = ball->y; j < ball->y + height; j++){
     for(int i = ball->x; i < ball->x + width; i++){
-      if(*(map + (j * get_hres() + i)) == ENDLINE_COLOR){
+      if((*(map + (j * get_hres() + i)) == ENDLINE_COLOR) && (*ballMap != TRANSPARENCY_COLOR)){
         return true;
       }
+      ballMap++;
     }
   }
 

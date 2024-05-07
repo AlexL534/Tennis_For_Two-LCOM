@@ -28,8 +28,8 @@
 #define HIT_P2_Y_MAX 140
 
 //HITBOX player 2 reverse anim (y is the same as the normal anim)
-#define HIT_REV_P2_X_MAX 30
-#define HIT_REV_P2_X_MIN 0
+#define HIT_REV_P2_X_MAX 60
+#define HIT_REV_P2_X_MIN 90
 
 
 typedef enum{
@@ -61,6 +61,7 @@ Player *(createPlayer1)();
 Player *(createPlayer2)();
 int (drawPlayer)(Player *player1);
 void (updateDirection)(Player_direction direction, Player *player);
+void (get_current_hit_limits)(Player *player,int *x_min, int *x_max, int *y_min, int *y_max);
 void (movePlayer)(Player *player, Player_movement movement);
 void (moveAnim)(Player *player1);
 void (hitAnim)(Player *player1);
