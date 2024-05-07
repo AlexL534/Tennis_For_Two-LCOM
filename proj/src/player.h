@@ -69,10 +69,11 @@ void (updatePlayerMovementsTimer)(Player *player, int counter);
 void (updatePlayerMovementMouse)(Player *player, bool isLB);
 bool (stopPlayer)(uint8_t scancode, Player_movement movement);
 void (movePlayer)(Player *player);
-void (moveAnim)(Player *player1);
-void (hitAnim)(Player *player1);
-void (startAnim)(Player *player1);
-void (chooseStartAnim)(Player *player1);
+void (moveAnim)(Player *player);
+void (hitAnim)(Player *player);
+void (startAnim)(Player *player);
+void (chooseStartAnim)(Player *player);
+void (resetPlayer)(Player *player, bool hasScored);
 void (destroyPlayer1)(Player *player1);
 void (destroyPlayer2)(Player *player2);
 

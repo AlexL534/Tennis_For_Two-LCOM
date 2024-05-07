@@ -10,7 +10,7 @@ Player *(createPlayer1)(){
     return NULL;
   }
 
-  player->x = 400;
+  player->x = 500;
   player->y = 690;
   player->xspeed = 6;
   player->yspeed = 6;
@@ -169,8 +169,8 @@ Player *(createPlayer2)(){
     return NULL;
   }
 
-  player->x = 400;
-  player->y = 200;
+  player->x = 500;
+  player->y = 150;
   player->xspeed = 6;
   player->yspeed = 6;
   player->moveanim = 0;
@@ -594,6 +594,48 @@ void (chooseStartAnim)(Player *player){
   }
   else{
     player->currentSprite = player->startrev[0];
+  }
+}
+
+void (resetPlayer)(Player *player, bool hasScored){
+  if(hasScored){
+    player->state = CHOOSE_START_STOP;
+    switch (player->player_numb)
+    {
+    case PLAYER1:
+      player->x = 500;
+      player->y = 690;
+      break;
+
+    case PLAYER2:
+      player->x = 500;
+      player->y = 50;
+      break;
+    
+    default:
+      break;
+    }
+  }
+
+  else{
+
+    player->state = STOP;
+    switch (player->player_numb)
+    {
+    case PLAYER1:
+      player->x = 500;
+      player->y = 590;
+      break;
+
+    case PLAYER2:
+      player->x = 500;
+      player->y = 150;
+      break;
+    
+    default:
+      break;
+    }
+
   }
 }
 
