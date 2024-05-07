@@ -11,6 +11,11 @@
 #define MIN_Y  432-145 //player height is 150
 #define MAX_Y  864
 
+#define MIN_X_P2  100   
+#define MAX_X_P2  850
+#define MIN_Y_P2 40
+#define MAX_Y_P2 210
+
 //HITBOX player 1 normal anim
 #define HIT_P1_X_MIN 65
 #define HIT_P1_Y_MIN 95

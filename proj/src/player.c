@@ -170,7 +170,7 @@ Player *(createPlayer2)(){
   }
 
   player->x = 500;
-  player->y = 150;
+  player->y = 50;
   player->xspeed = 6;
   player->yspeed = 6;
   player->moveanim = 0;
@@ -506,18 +506,30 @@ void (movePlayer)(Player *player){
   }
 
   //corrects the player position to avoid it from going out of the screen
-  if (new_x < MIN_X) {
-        new_x = MIN_X;
-    } else if (new_x + player->currentSprite.width > MAX_X) {
-        new_x = MAX_X - player->currentSprite.width;
-    }
-
-  if (new_y < MIN_Y) {
-        new_y = MIN_Y;
-    } else if (new_y + player->currentSprite.height > MAX_Y) {
-        new_y = MAX_Y - player->currentSprite.height;
-    }
-
+  if(player->player_numb == PLAYER1){
+    if (new_x < MIN_X) {
+          new_x = MIN_X;
+      } else if (new_x + player->currentSprite.width > MAX_X) {
+          new_x = MAX_X - player->currentSprite.width;
+      }
+    if (new_y < MIN_Y) {
+          new_y = MIN_Y;
+      } else if (new_y + player->currentSprite.height > MAX_Y) {
+          new_y = MAX_Y - player->currentSprite.height;
+      }
+  }
+  else{
+    if (new_x < MIN_X_P2) {
+          new_x = MIN_X_P2;
+      } else if (new_x + player->currentSprite.width > MAX_X_P2) {
+          new_x = MAX_X_P2 - player->currentSprite.width;
+      }
+    if (new_y < MIN_Y_P2) {
+          new_y = MIN_Y_P2;
+      } else if (new_y + player->currentSprite.height > MAX_Y_P2) {
+          new_y = MAX_Y_P2 - player->currentSprite.height;
+      }
+  }
     player->x = new_x;
     player->y = new_y;
 

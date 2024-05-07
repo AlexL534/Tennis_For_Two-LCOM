@@ -9,7 +9,7 @@ Ball *(createBall)(){
     return NULL;
   }
 
-  ball->x = 410;
+  ball->x = 550;
   ball->y = 690;
   ball->xspeed = 8;
   ball->yspeed = 8;
@@ -156,6 +156,25 @@ bool (checkCollisionLine)(Ball *ball, uint32_t *background){
   }
 
   return false;
+}
+
+void (resetBall)(Ball *ball, Player_numb scoredPlayer){
+  switch (scoredPlayer)
+  {
+  case PLAYER1:
+    ball->x = 550;
+    ball->y = 690;
+    ball->direction = UP_BALL;
+    break;
+  
+  case PLAYER2:
+    ball->x = 550;
+    ball->y = 690;
+    ball->direction = DOWN_BALL;
+    
+  default:
+    break;
+  }
 }
 
 void (destroyBall)(Ball *ball){
