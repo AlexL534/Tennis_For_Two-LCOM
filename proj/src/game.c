@@ -123,6 +123,7 @@ int (loadBackground)(){
 }
 
 int (keyboardHandler)(){
+  printf("scancode %x\n", get_scancode());
 
   if((player1_state == MOVE) || (player1_state == STOP)){
     

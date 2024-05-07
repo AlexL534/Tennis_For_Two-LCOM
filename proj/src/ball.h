@@ -1,0 +1,32 @@
+#ifndef BALL_H
+#define BALL_H
+
+#include "states.h"
+#include <lcom/lcf.h>
+#include "xpms.h"
+#include "sprite.h"
+
+typedef struct{
+  int x, y;
+
+  int xspeed, yspeed;
+  int incline;
+
+  Sprite currentSprite;
+
+  Sprite small;
+  Sprite medium;
+  Sprite large;
+  Sprite very_large;
+
+  Ball_direction direction;
+
+} Ball;
+
+Ball *(createBall)();
+int (drawBall)(Ball *ball);
+void(updateDirection)(Ball_direction direction, Ball *ball);
+void (destroyBall)(Ball *ball);
+
+
+#endif

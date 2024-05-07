@@ -29,6 +29,8 @@ typedef enum {
 } Player_state;
 
 typedef enum {
+  UP_BALL_START,
+  DOWN_BALL_START,
   UP_BALL,
   DOWN_BALL
 } Ball_direction;

@@ -154,6 +154,9 @@ Player *(createPlayer1)(){
 
   player->direction = RIGHTD;
 
+  free(sprite->map);
+  free(sprite);
+
   return player;
 }
 
@@ -272,8 +275,11 @@ int (drawPlayer)(Player *player){
 
   for(int j =  player->y ; j < player->y + height; j++){
     for(int i = player->x ; i < player->x + width; i++){
-      if(*map != TRANSPARENCY_COLOR)
-        vg_draw_color(i,j,*map);
+      if(*map != TRANSPARENCY_COLOR){
+        if(vg_draw_color(i,j,*map) != 0){
+          return EXIT_FAILURE;
+        }
+      }
       map++;
     }
   }
