@@ -1,6 +1,7 @@
 #include "game.h"
 #include "background.h"
 
+
 //static Game_state game_state = GAME;
 static Player *player1;
 static Player *player2;
@@ -141,15 +142,16 @@ int (timerHandler)(){
       return EXIT_FAILURE;
     };
 
+  updatePlayer2AI(player2,ball,counter);
+
   if(drawPlayer(player2) != 0){
     return EXIT_FAILURE;
   }
 
-
   if(checkCollisionLine(ball, background)){
     resetBall(ball, PLAYER1);
-    resetPlayer(player1, true);
-    resetPlayer(player2, false);
+    resetPlayer(player1, false);
+    resetPlayer(player2, true);
     return EXIT_SUCCESS;
   }
 
@@ -176,8 +178,6 @@ int (timerHandler)(){
   }
   
   updatePlayerMovementsTimer(player1, counter);
-  
-
 
   if(drawPlayer(player1) != 0){
     return EXIT_FAILURE;

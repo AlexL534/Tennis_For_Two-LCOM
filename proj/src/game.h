@@ -4,6 +4,7 @@
 #include <lcom/lcf.h>
 #include "states.h"
 #include "player.h"
+#include "player2.h"
 #include "ball.h"
 
 #include "devices/i8042.h"
@@ -14,7 +15,6 @@
 #include "devices/VBE.h"
 #include "devices/video.h"
 #include "xpms.h"
-
 
 int (gameLoop)();
 int (timerHandler)();

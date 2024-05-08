@@ -95,9 +95,6 @@ void (collisionPlayer)(Ball *ball, Player *player){
     else if((ball->x + 4 >= x_min + 20)){
       ball->incline = 1;
     }
-
-    
-    
   }
 }
 

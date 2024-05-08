@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "i8254.h": "c",
-        "i8042.h": "c"
+        "i8042.h": "c",
+        "video.h": "c",
+        "player.h": "c"
     }
 }

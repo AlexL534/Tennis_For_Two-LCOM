@@ -36,6 +36,9 @@
 #define HIT_REV_P2_X_MAX 60
 #define HIT_REV_P2_X_MIN 90
 
+// Defines the range from the player's racket to the ball, representing the area within which the player can potentially hit the ball.
+#define HIT_RANGE_X ((HIT_P1_X_MAX - HIT_P1_X_MIN) / 2)
+#define HIT_RANGE_Y ((HIT_P1_Y_MAX - HIT_P1_Y_MIN) / 2)
 
 typedef enum{
   PLAYER1,

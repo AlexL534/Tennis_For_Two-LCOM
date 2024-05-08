@@ -495,7 +495,7 @@ void (movePlayer)(Player *player){
 
   switch (player->movement)
   {
-    //changes the player position accordingly to their movement
+  //changes the player position accordingly to their movement
   case RIGHT_PLAYER:
     new_x += player->xspeed;
     break;
