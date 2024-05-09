@@ -63,7 +63,7 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
     if((ball->x >= player2X - 10) && (ball-> x <= x_min + 10)){
             player2->direction = LEFTD;
         }
-        if((ball->x >= x_min - 10) && (ball-> x <= x_max + 10)){
+    if((ball->x >= x_min - 10) && (ball-> x <= x_max + 10)){
             player2->direction = RIGHTD;
     }
 

@@ -349,6 +349,7 @@ void (changePlayerMovementKBD)(Player *player, uint8_t scancode){
 }
 
 void (updatePlayerMovementsTimer)(Player *player, int counter){
+
   switch (player->state)
   {
 
@@ -359,7 +360,7 @@ void (updatePlayerMovementsTimer)(Player *player, int counter){
 
     
 
-    if(counter % 6 == 0){
+    if(counter % 2 == 0){
       moveAnim(player);
     }
     break;
@@ -496,7 +497,6 @@ void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min
 void (movePlayer)(Player *player){
   int new_x = player->x;
   int new_y = player->y;
-
   switch (player->movement)
   {
   //changes the player position accordingly to their movement
@@ -511,8 +511,7 @@ void (movePlayer)(Player *player){
     break;
   case DOWN_PLAYER:
     new_y += player->yspeed;
-    if(player->player_numb == PLAYER2){
-    }
+    
     break;
   
   default:
