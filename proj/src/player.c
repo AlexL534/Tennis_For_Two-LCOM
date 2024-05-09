@@ -479,7 +479,7 @@ void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min
   case PLAYER2:
     if(player->direction == RIGHT_PLAYER){
         *x_min = player->x + HIT_REV_P2_X_MIN;
-        *x_max = player->x +  HIT_REV_P2_X_MAX;
+        *x_max = player->x + HIT_REV_P2_X_MAX;
         *y_min = player->y + HIT_P2_Y_MIN;
         *y_max = player->y + HIT_P2_Y_MAX;
       }
