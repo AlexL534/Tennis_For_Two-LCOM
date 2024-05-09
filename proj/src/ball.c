@@ -12,7 +12,7 @@ Ball *(createBall)(){
   ball->x = 550;
   ball->y = 710;
   ball->xspeed = 2;
-  ball->yspeed = 8;
+  ball->yspeed = 5;
   ball->incline = 0;
   ball->direction = UP_BALL;
 
@@ -71,7 +71,7 @@ void (collisionPlayer)(Ball *ball, Player *player){
   int x_min, x_max, y_min, y_max;
   get_current_hit_limits(player, &x_min, &x_max, &y_min, &y_max);
 
-  if((ball->x + 25  >= x_min) && (ball->x + 4 <= x_max) && (ball->y + 25 >= y_min) && (ball->y + 4  <= y_max)){
+  if((ball->x + 25  >= x_min) && (ball->x + 4 <= x_max) && (ball->y + 30 >= y_min) && (ball->y + 4  <= y_max)){
     //there is a colision
     
 
@@ -85,15 +85,15 @@ void (collisionPlayer)(Ball *ball, Player *player){
 
 
     //the ball tragetory has only 3 modes for now (could be infinite in the future)
-    if((ball->x + 4 >= x_min) && (ball->x + 4 < x_min + 10)){
+    if((ball->x + 4 >= x_min - 5) && (ball->x + 4 < x_min + 30)){
       ball->incline = -1;
     }
 
-    else if((ball->x + 4 >= x_min + 10) && (ball->x + 4 < x_min + 20)){
+    else if((ball->x + 4 >= x_min + 30) && (ball->x + 4 < x_min + 60)){
       ball->incline = 0;
     }
 
-    else if((ball->x + 4 >= x_min + 20)){
+    else if((ball->x + 4 >= x_min + 60)){
       ball->incline = 1;
     }
   }

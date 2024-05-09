@@ -366,7 +366,7 @@ void (updatePlayerMovementsTimer)(Player *player, int counter){
 
   case HIT:
 
-    if(counter % 3 == 0){
+    if(counter % 4 == 0){
       hitAnim(player);
 
       //the animation ended
@@ -469,8 +469,8 @@ void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min
         *y_max = player->y + HIT_P1_Y_MAX;
       }
       else{
-        *x_min = HIT_REV_P1_X_MIN;
-        *x_max = HIT_REV_P1_X_MAX;
+        *x_min = player->x + HIT_REV_P1_X_MIN;
+        *x_max = player->x + HIT_REV_P1_X_MAX;
         *y_min = player->y + HIT_P1_Y_MIN;
         *y_max = player->y + HIT_P1_Y_MAX;
       }

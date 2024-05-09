@@ -17,24 +17,24 @@
 #define MAX_Y_P2 210 + 152
 
 //HITBOX player 1 normal anim
-#define HIT_P1_X_MIN 65
-#define HIT_P1_Y_MIN 95
-#define HIT_P1_X_MAX 100
-#define HIT_P1_Y_MAX 135
+#define HIT_P1_X_MIN 45
+#define HIT_P1_Y_MIN 80
+#define HIT_P1_X_MAX 120
+#define HIT_P1_Y_MAX 155
 
 //HITBOX player 1 reverse anim (y is the same as the normal anim)
-#define HIT_REV_P1_X_MAX 35
-#define HIT_REV_P1_X_MIN 0
+#define HIT_REV_P1_X_MAX 55
+#define HIT_REV_P1_X_MIN -20
 
 //HITBOX player 2 normal anim
-#define HIT_P2_X_MIN 0
-#define HIT_P2_Y_MIN 30
-#define HIT_P2_X_MAX 100
-#define HIT_P2_Y_MAX 140
+#define HIT_P2_X_MIN -20
+#define HIT_P2_Y_MIN 15
+#define HIT_P2_X_MAX 120
+#define HIT_P2_Y_MAX 160
 
 //HITBOX player 2 reverse anim (y is the same as the normal anim)
-#define HIT_REV_P2_X_MAX 90
-#define HIT_REV_P2_X_MIN 60
+#define HIT_REV_P2_X_MAX 110
+#define HIT_REV_P2_X_MIN 40
 
 // Defines the range from the player's racket to the ball, representing the area within which the player can potentially hit the ball.
 #define HIT_RANGE_X ((HIT_P1_X_MAX - HIT_P1_X_MIN) / 2)
