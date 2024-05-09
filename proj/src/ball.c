@@ -71,11 +71,12 @@ void (collisionPlayer)(Ball *ball, Player *player){
   int x_min, x_max, y_min, y_max;
   get_current_hit_limits(player, &x_min, &x_max, &y_min, &y_max);
 
-  if((ball->x + 4 >= x_min) && (ball->x  + 4 <= x_max) && (ball->y + 8 >= y_min) && (ball->y + 8 <= y_max)){
+  if((ball->x + 20  >= x_min) && (ball->x - 20 <= x_max) && (ball->y + 20 >= y_min) && (ball->y - 20  <= y_max)){
     //there is a colision
 
     //change the ball direction
     if((ball->direction == UP_BALL) && (player->player_numb == PLAYER2)){
+      printf("here");
       ball->direction = DOWN_BALL;
     }
     else if((ball->direction == DOWN_BALL) && (player->player_numb == PLAYER1)){

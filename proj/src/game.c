@@ -119,7 +119,6 @@ int (gameLoop)(){
 }
 
 void (destroyElements)(){
-  printf("here");
   destroyPlayer1(player1);
   destroyPlayer2(player2);
   destroyBall(ball);

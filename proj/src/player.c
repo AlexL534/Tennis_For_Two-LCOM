@@ -463,31 +463,31 @@ void (get_current_hit_limits)(Player *player, int *x_min, int *x_max, int *y_min
   {
   case PLAYER1:
       if(player->direction == RIGHT_PLAYER){
-        *x_min = HIT_P1_X_MIN;
-        *x_max = HIT_P1_X_MAX;
-        *y_min = HIT_P1_Y_MIN;
-        *y_max = HIT_P1_Y_MAX;
+        *x_min = player->x + HIT_P1_X_MIN;
+        *x_max = player->x + HIT_P1_X_MAX;
+        *y_min = player->y + HIT_P1_Y_MIN;
+        *y_max = player->y + HIT_P1_Y_MAX;
       }
       else{
         *x_min = HIT_REV_P1_X_MIN;
         *x_max = HIT_REV_P1_X_MAX;
-        *y_min = HIT_P1_Y_MIN;
-        *y_max = HIT_P1_Y_MAX;
+        *y_min = player->y + HIT_P1_Y_MIN;
+        *y_max = player->y + HIT_P1_Y_MAX;
       }
     break;
   
   case PLAYER2:
     if(player->direction == RIGHT_PLAYER){
-        *x_min = HIT_REV_P2_X_MIN;
-        *x_max = HIT_REV_P2_X_MAX;
-        *y_min = HIT_P2_Y_MIN;
-        *y_max = HIT_P2_Y_MAX;
+        *x_min = player->x + HIT_REV_P2_X_MIN;
+        *x_max = player->x +  HIT_REV_P2_X_MAX;
+        *y_min = player->y + HIT_P2_Y_MIN;
+        *y_max = player->y + HIT_P2_Y_MAX;
       }
       else{
-        *x_min = HIT_P2_X_MIN;
-        *x_max = HIT_P2_X_MAX;
-        *y_min = HIT_P2_Y_MIN;
-        *y_max = HIT_P2_Y_MAX;
+        *x_min = player->x + HIT_P2_X_MIN;
+        *x_max = player->x + HIT_P2_X_MAX;
+        *y_min = player->y + HIT_P2_Y_MIN;
+        *y_max = player->y + HIT_P2_Y_MAX;
       }
     break;
   }

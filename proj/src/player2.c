@@ -30,21 +30,22 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
             }
         }
     }
-    updatePlayerMovementsTimer(player2, counter);
+    
 
     
     // Check for collision between player2 and the ball
-    if (counter % 3 == 0) {
-        // Get the current hit limits of player2
-        int x_min, x_max, y_min, y_max;
-        get_current_hit_limits(player2, &x_min, &x_max, &y_min, &y_max);
+    // Get the current hit limits of player2
+    int x_min, x_max, y_min, y_max;
+    get_current_hit_limits(player2, &x_min, &x_max, &y_min, &y_max);
 
-        // Check if the ball is within the hit limits of player2
-        if ((ballX >= x_min) && (ballX <= x_max) && (ballY >= y_min) && (ballY <= y_max)) {
+    // Check if the ball is within the hit limits of player2
+    if ((ballX >= x_min-100) && (ballX <= x_max + 100) && (ballY >= y_min-100) && (ballY <= y_max + 100)) {
             // If there is a collision, trigger a hit animation for player2
+            
             player2->state = HIT;
-            hitAnim(player2);
-        }
     }
+
+    updatePlayerMovementsTimer(player2, counter);
+    
     
 }
