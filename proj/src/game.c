@@ -29,21 +29,25 @@ int (gameLoop)(){
   uint8_t bit_no;
 
   if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   timer_set_frequency(0, 60);
   if(kbd_subscribe_int(&bit_no) != 0){
+    destroyElements();
       return EXIT_FAILURE;
   }
   uint8_t kbc_mask = BIT(bit_no);
 
   if(timer_subscribe_int(&bit_no) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
   uint8_t timer_mask = BIT(bit_no);
 
   if(mouse_subscribe_int(&bit_no) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
   uint8_t mouse_mask = BIT(bit_no);
@@ -74,6 +78,7 @@ int (gameLoop)(){
                     timer_int_handler();
 
                     if(timerHandler() != 0){
+                      destroyElements();
                       return EXIT_FAILURE;
                     }
 
@@ -88,18 +93,22 @@ int (gameLoop)(){
 }
 
   if(kbd_unsubscribe_int() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   if(timer_unsubscribe_int() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   if(mouse_unsubscribe_int() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
