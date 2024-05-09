@@ -173,7 +173,7 @@ void (resetBall)(Ball *ball, Player_numb scoredPlayer){
   
   case PLAYER2:
     ball->x = 550;
-    ball->y = 30;
+    ball->y = 250;
     ball->direction = DOWN_BALL;
     ball->incline = 0;
 

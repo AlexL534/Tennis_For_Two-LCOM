@@ -171,9 +171,9 @@ Player *(createPlayer2)(){
   }
 
   player->x = 500;
-  player->y = 150;
+  player->y = 350;
   player->xspeed = 6;
-  player->yspeed = 6;
+  player->yspeed = 4;
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;
@@ -388,7 +388,7 @@ void (updatePlayerMovementsTimer)(Player *player, int counter){
   case START:
 
 
-    if(counter % 3 == 0){
+    if(counter % 4 == 0){
       startAnim(player);
 
       //the animation ended
@@ -518,8 +518,9 @@ void (movePlayer)(Player *player){
     break;
   }
 
-  //corrects the player position to avoid it from going out of the screen
+  
   if(player->player_numb == PLAYER1){
+    //corrects the player position to avoid it from going out of the screen
     if (new_x < MIN_X) {
           new_x = MIN_X;
       } else if (new_x + player->currentSprite.width > MAX_X) {
@@ -530,7 +531,18 @@ void (movePlayer)(Player *player){
       } else if (new_y + player->currentSprite.height > MAX_Y) {
           new_y = MAX_Y - player->currentSprite.height;
       }
+    //avoids the player to go out of the field when he is choosing a place so start
+    if((player->state == CHOOSE_START) || (player->state == CHOOSE_START_STOP)){
+        if(new_x < 200){
+          new_x = 200;
+        }
+        else if(new_x > 850){
+          new_x = 850;
+        }
+    }
   }
+
+  //the same but for the player2
   else{
     if (new_x < MIN_X_P2) {
      
@@ -544,6 +556,14 @@ void (movePlayer)(Player *player){
       } else if (new_y + player->currentSprite.height > MAX_Y_P2) {
           new_y = MAX_Y_P2 - player->currentSprite.height;
       }
+      if((player->state == CHOOSE_START) || (player->state == CHOOSE_START_STOP)){
+        if(new_x < 400){
+          new_x = 400;
+        }
+        else if(new_x > 690){
+          new_x = 690;
+        }
+    }
   }
     player->x = new_x;
     player->y = new_y;
@@ -677,7 +697,7 @@ void (resetPlayer)(Player *player, bool hasScored){
 
     case PLAYER2:
       player->x = 500;
-      player->y = 50;
+      player->y = 80;
       player->currentSprite = player->start[0];
       break;
     

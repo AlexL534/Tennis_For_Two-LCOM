@@ -10,6 +10,12 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
     int deltaX = ballX - player2X;
     int deltaY = ballY - player2Y;
 
+    //the player2 is starting the game
+    if(player2->state == CHOOSE_START_STOP){
+        if(counter % 60 == 0){
+            player2->state = START;
+        }
+    }
 
 
     // Prioritize movement along the axis with the largest difference
@@ -62,11 +68,9 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
    
     //corrects the position in order to hit the ball
     if((ball->x >= player2X - 10) && (ball-> x <= x_min + 10) && (ballY <= y_max + 100) && (ballY >= y_min)){
-        printf("here1");
             player2->direction = LEFTD;
         }
     if((ball->x >= x_min - 10) && (ball-> x <= x_max + 10)  && (ballY <= y_max + 100) && (ballY >= y_min)){
-        printf("here2");
             player2->direction = RIGHTD;
     }
 

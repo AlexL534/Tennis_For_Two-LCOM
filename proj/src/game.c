@@ -6,6 +6,8 @@
 static Player *player1;
 static Player *player2;
 static Ball *ball;
+int player1Score = 0;
+int player2Score = 0;
 
 static uint32_t *background;
 
@@ -159,11 +161,25 @@ int (timerHandler)(){
     return EXIT_FAILURE;
   }
 
-  if(checkCollisionLine(ball, background)){
-    resetBall(ball, PLAYER1);
-    resetPlayer(player1, true);
-    resetPlayer(player2, false);
-    return EXIT_SUCCESS;
+  if(player2->state != START){
+    //disable the collision when the player 2 is starting because the ball starts out of the field
+    if(checkCollisionLine(ball, background)){
+        if(ball->y < 350){
+          //player 1 scored
+          resetBall(ball, PLAYER1);
+          resetPlayer(player1, true);
+          resetPlayer(player2, false);
+          player1Score++;
+        }
+        else{
+          //player 2 scored
+          resetBall(ball, PLAYER2);
+          resetPlayer(player1, false);
+          resetPlayer(player2, true);
+          player2Score++;
+        }
+      return EXIT_SUCCESS;
+    }
   }
 
   if(player1 -> state == HIT){
