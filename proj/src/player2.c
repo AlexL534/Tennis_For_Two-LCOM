@@ -19,8 +19,10 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
         if (abs(deltaX) > abs(deltaY)) {
             if (deltaX < 0) {
                 player2->movement = LEFT_PLAYER;
+                player2->direction = LEFTD;
             } else if (deltaX > 0) {
                 player2->movement = RIGHT_PLAYER;
+                player2->direction = RIGHTD;
             }
         } else {
             if (deltaY < 0) {
@@ -39,7 +41,7 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
     get_current_hit_limits(player2, &x_min, &x_max, &y_min, &y_max);
 
     // Check if the ball is within the hit limits of player2
-    if ((ballX >= x_min-100) && (ballX <= x_max + 100) && (ballY >= y_min-100) && (ballY <= y_max + 100)) {
+    if ((ballX >= x_min-20) && (ballX <= x_max + 20) && (ballY >= y_min-20) && (ballY <= y_max + 20)) {
             // If there is a collision, trigger a hit animation for player2
             
             player2->state = HIT;

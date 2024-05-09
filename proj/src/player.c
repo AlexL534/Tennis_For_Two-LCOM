@@ -173,7 +173,7 @@ Player *(createPlayer2)(){
   player->x = 500;
   player->y = 150;
   player->xspeed = 6;
-  player->yspeed = 1;
+  player->yspeed = 6;
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;
@@ -554,9 +554,20 @@ void (movePlayer)(Player *player){
 void (moveAnim)(Player *player){
   unsigned int moveanim = player->moveanim;
   if(player->direction == RIGHTD){
-    player->currentSprite = player->move[moveanim];
+    if(player->player_numb == PLAYER1){
+      player->currentSprite = player->move[moveanim];
+    }
+    else{
+      player->currentSprite = player->moverev[moveanim];
+    }
+
   } else{
-    player->currentSprite = player->moverev[moveanim];
+    if(player->player_numb == PLAYER1){
+      player->currentSprite = player->moverev[moveanim];
+    }
+    else{
+      player->currentSprite = player->move[moveanim];
+    }
   }
 
   moveanim++;
@@ -571,9 +582,18 @@ void (moveAnim)(Player *player){
 void(hitAnim)(Player *player){
   unsigned int hitanim = player->hitanim;
   if(player->direction == RIGHTD){
-    player->currentSprite = player->hit[hitanim];
+    if(player->player_numb == PLAYER1){
+      player->currentSprite = player->hit[hitanim];
+    }
+    else{
+      player->currentSprite = player->hitrev[hitanim];
+    }
   } else{
-    player->currentSprite = player->hitrev[hitanim];
+    if(player->player_numb == PLAYER1){
+      player->currentSprite = player->hitrev[hitanim];
+    } else{
+      player->currentSprite = player->hit[hitanim];
+    }
   }
 
   hitanim++;
@@ -595,9 +615,19 @@ void(hitAnim)(Player *player){
 void (startAnim)(Player *player){
   unsigned int startanim = player->startanim;
   if(player->direction == RIGHTD){
-    player->currentSprite = player->start[startanim];
+     if(player->player_numb == PLAYER1){
+      player->currentSprite = player->start[startanim];
+     }
+     else{
+      player->currentSprite = player->startrev[startanim];
+     }
   } else{
-    player->currentSprite = player->startrev[startanim];
+     if(player->player_numb == PLAYER1){
+      player->currentSprite = player->startrev[startanim];
+     }
+     else{
+      player->currentSprite = player->start[startanim];
+     }
   }
 
   startanim++;
@@ -618,10 +648,20 @@ void (startAnim)(Player *player){
 
 void (chooseStartAnim)(Player *player){
   if(player->direction == RIGHTD){
-    player->currentSprite = player->start[0];
+    if(player->player_numb == PLAYER1){
+      player->currentSprite = player->start[0];
+    }
+    else{
+      player->currentSprite = player->startrev[0];
+    }
   }
   else{
-    player->currentSprite = player->startrev[0];
+    if(player->player_numb == PLAYER1){
+      player->currentSprite = player->startrev[0];
+    }
+    else{
+       player->currentSprite = player->start[0];
+    }
   }
 }
 

@@ -11,7 +11,7 @@ Ball *(createBall)(){
 
   ball->x = 550;
   ball->y = 710;
-  ball->xspeed = 8;
+  ball->xspeed = 2;
   ball->yspeed = 8;
   ball->incline = 0;
   ball->direction = UP_BALL;
@@ -71,12 +71,12 @@ void (collisionPlayer)(Ball *ball, Player *player){
   int x_min, x_max, y_min, y_max;
   get_current_hit_limits(player, &x_min, &x_max, &y_min, &y_max);
 
-  if((ball->x + 20  >= x_min) && (ball->x - 20 <= x_max) && (ball->y + 20 >= y_min) && (ball->y - 20  <= y_max)){
+  if((ball->x + 25  >= x_min) && (ball->x + 4 <= x_max) && (ball->y + 25 >= y_min) && (ball->y + 4  <= y_max)){
     //there is a colision
+    
 
     //change the ball direction
     if((ball->direction == UP_BALL) && (player->player_numb == PLAYER2)){
-      printf("here");
       ball->direction = DOWN_BALL;
     }
     else if((ball->direction == DOWN_BALL) && (player->player_numb == PLAYER1)){
@@ -168,12 +168,14 @@ void (resetBall)(Ball *ball, Player_numb scoredPlayer){
     ball->x = 550;
     ball->y = 710;
     ball->direction = UP_BALL;
+    ball->incline = 0;
     break;
   
   case PLAYER2:
     ball->x = 550;
     ball->y = 30;
     ball->direction = DOWN_BALL;
+    ball->incline = 0;
 
   default:
     break;
