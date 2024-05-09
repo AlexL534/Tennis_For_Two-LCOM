@@ -387,13 +387,25 @@ void (updatePlayerMovementsTimer)(Player *player, int counter){
 
   case START:
 
+    if(player->player_numb == PLAYER2){
+        if(counter % 6 == 0){
+          startAnim(player);
 
-    if(counter % 4 == 0){
-      startAnim(player);
+          //the animation ended
+          if(player->startanim == 0){
+            player->state = STOP;
+          }
+      }
+    }
+    else{
 
-      //the animation ended
-      if(player->startanim == 0){
-        player->state = STOP;
+       if(counter % 4 == 0){
+        startAnim(player);
+
+        //the animation ended
+        if(player->startanim == 0){
+          player->state = STOP;
+        }
       }
     }
     break;
@@ -697,7 +709,7 @@ void (resetPlayer)(Player *player, bool hasScored){
 
     case PLAYER2:
       player->x = 500;
-      player->y = 80;
+      player->y = 100;
       player->currentSprite = player->start[0];
       break;
     

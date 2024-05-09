@@ -153,7 +153,6 @@ int (timerHandler)(){
     return EXIT_FAILURE;
   };
 
-  
   updatePlayer2AI(player2,ball,counter);
   
   
@@ -178,6 +177,7 @@ int (timerHandler)(){
           resetPlayer(player2, true);
           player2Score++;
         }
+        counter = 0;
       return EXIT_SUCCESS;
     }
   }

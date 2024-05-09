@@ -12,9 +12,16 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
 
     //the player2 is starting the game
     if(player2->state == CHOOSE_START_STOP){
-        if(counter % 60 == 0){
+        if(counter % 120 == 0){
             player2->state = START;
         }
+        return;
+    }
+
+    //no special actions when the player is starting
+    if(player2->state == START){
+        updatePlayerMovementsTimer(player2, counter);
+        return;
     }
 
 
@@ -76,8 +83,11 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
 
     // Check if the ball is within the hit limits of player2
     if ((ballX >= x_min + 10 ) && (ballX <= x_max -10) && (ballY >= y_min) && (ballY <= y_max )) {
-            // If there is a collision, trigger a hit animation for player2
-            player2->state = HIT;
+            
+            // If there is a collision, trigger a hit animation for player2 (only if there was enough time to the ball exit the player field after the game start)
+            if(counter > 180){
+                player2->state = HIT;
+            }
 
     }
 
