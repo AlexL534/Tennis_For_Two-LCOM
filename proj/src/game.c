@@ -21,7 +21,7 @@ int (gameLoop)(){
   player2 = createPlayer2();
   ball = createBall();
   drawPlayer(player1);
-  draw_xpm((xpm_map_t) very_large_ball_xpm,XPM_8_8_8_8, 100,100 );
+  drawPlayer(player2);
 
   int ipc_status;
   message msg;
@@ -110,6 +110,7 @@ int (gameLoop)(){
 }
 
 void (destroyElements)(){
+  printf("here");
   destroyPlayer1(player1);
   destroyPlayer2(player2);
   destroyBall(ball);
@@ -137,21 +138,23 @@ int (keyboardHandler)(){
 
 
 int (timerHandler)(){
-    if(refreshBackground(background) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
+  if(refreshBackground(background) != 0){
+    printf("Error while erasing the player1\n");
+    return EXIT_FAILURE;
+  };
 
+  
   updatePlayer2AI(player2,ball,counter);
-
+  
+  
   if(drawPlayer(player2) != 0){
     return EXIT_FAILURE;
   }
 
   if(checkCollisionLine(ball, background)){
     resetBall(ball, PLAYER1);
-    resetPlayer(player1, false);
-    resetPlayer(player2, true);
+    resetPlayer(player1, true);
+    resetPlayer(player2, false);
     return EXIT_SUCCESS;
   }
 

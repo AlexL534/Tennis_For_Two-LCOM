@@ -159,6 +159,7 @@ Player *(createPlayer1)(){
 
   free(sprite);
 
+
   return player;
 }
 
@@ -172,7 +173,7 @@ Player *(createPlayer2)(){
   player->x = 500;
   player->y = 150;
   player->xspeed = 6;
-  player->yspeed = 6;
+  player->yspeed = 1;
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;
@@ -270,6 +271,9 @@ Player *(createPlayer2)(){
   player->startrev[2] = *sprite;
 
   player->direction = RIGHTD;
+
+  free(sprite);
+
 
   return player;
 }
@@ -507,6 +511,8 @@ void (movePlayer)(Player *player){
     break;
   case DOWN_PLAYER:
     new_y += player->yspeed;
+    if(player->player_numb == PLAYER2){
+    }
     break;
   
   default:
@@ -528,12 +534,14 @@ void (movePlayer)(Player *player){
   }
   else{
     if (new_x < MIN_X_P2) {
+     
           new_x = MIN_X_P2;
       } else if (new_x + player->currentSprite.width > MAX_X_P2) {
           new_x = MAX_X_P2 - player->currentSprite.width;
       }
     if (new_y < MIN_Y_P2) {
           new_y = MIN_Y_P2;
+          
       } else if (new_y + player->currentSprite.height > MAX_Y_P2) {
           new_y = MAX_Y_P2 - player->currentSprite.height;
       }
@@ -709,6 +717,12 @@ void (destroyPlayer1)(Player *player){
     }
   }
 
+  free(player->start);
+  free(player->startrev);
+  free(player->hit);
+  free(player->hitrev);
+  free(player->moverev);
+  free(player->move);
   free(player);
   player = NULL;
 }
@@ -759,6 +773,12 @@ void (destroyPlayer2)(Player * player){
     }
   }
 
+  free(player->start);
+  free(player->startrev);
+  free(player->hit);
+  free(player->hitrev);
+  free(player->moverev);
+  free(player->move);
   free(player);
   player = NULL;
 }
