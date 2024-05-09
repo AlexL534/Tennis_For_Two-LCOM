@@ -59,20 +59,25 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
     int x_min, x_max, y_min, y_max;
     get_current_hit_limits(player2, &x_min, &x_max, &y_min, &y_max);
 
+   
     //corrects the position in order to hit the ball
-    if((ball->x >= player2X - 10) && (ball-> x <= x_min + 10)){
+    if((ball->x >= player2X - 10) && (ball-> x <= x_min + 10) && (ballY <= y_max + 100) && (ballY >= y_min)){
+        printf("here1");
             player2->direction = LEFTD;
         }
-    if((ball->x >= x_min - 10) && (ball-> x <= x_max + 10)){
+    if((ball->x >= x_min - 10) && (ball-> x <= x_max + 10)  && (ballY <= y_max + 100) && (ballY >= y_min)){
+        printf("here2");
             player2->direction = RIGHTD;
     }
 
     // Check if the ball is within the hit limits of player2
     if ((ballX >= x_min + 10 ) && (ballX <= x_max -10) && (ballY >= y_min) && (ballY <= y_max )) {
             // If there is a collision, trigger a hit animation for player2
-        
             player2->state = HIT;
+
     }
+
+
 
     updatePlayerMovementsTimer(player2, counter);
     
