@@ -6,6 +6,6 @@
 #include "devices/i8042.h"
 #include "devices/video.h"
 
-void updatePlayer2AI(Player *player2, Ball *ball, int counter);
+void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterServe);
 
 #endif // PLAYER2_H
