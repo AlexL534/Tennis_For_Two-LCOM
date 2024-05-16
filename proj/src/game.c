@@ -25,7 +25,6 @@ int (gameLoop)(){
   ball = createBall();
   drawPlayer(player1);
   drawPlayer(player2);
-  draw_xpm((xpm_map_t) r1_xpm, XPM_8_8_8_8, 900, 500);
 
   int ipc_status;
   message msg;
@@ -164,6 +163,10 @@ int (timerHandler)(){
     }
 }
 
+draw_xpm((xpm_map_t) p1_xpm, XPM_8_8_8_8, 940, 130);
+draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 130);
+draw_xpm((xpm_map_t) p2_xpm, XPM_8_8_8_8, 940, 230);
+draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
   updatePlayer2AI(player2,ball,counter,canHitAfterServe);
   
   

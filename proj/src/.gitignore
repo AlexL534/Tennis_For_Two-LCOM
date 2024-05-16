@@ -3,5 +3,5 @@
 *.o
 *.txt
 proj
-trace.txt
 output.txt
+trace.txt
