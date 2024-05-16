@@ -84,7 +84,7 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
     // Check if the ball is within the hit limits of player2
     if ((ballX >= x_min + 10 ) && (ballX <= x_max -10) && (ballY >= y_min) && (ballY <= y_max )) {
             // If there is a collision and canHitAfterServe is true, trigger a hit animation for player2
-            if (canHitAfterServe && player2->state != HIT) {
+            if (canHitAfterServe) {
                 player2->state = HIT;
                 hitAnim(player2);
             }

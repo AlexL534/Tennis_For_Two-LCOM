@@ -17,7 +17,7 @@
 #include "devices/video.h"
 #include "xpms.h"
 
-#define NET_Y_POS 432
+#define NET_Y_POS 370
 
 int (gameLoop)();
 int (timerHandler)();

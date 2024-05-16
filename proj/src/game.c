@@ -187,9 +187,9 @@ int (timerHandler)(){
 
   if (!canHitAfterServe) {
     if (ball->direction == UP_BALL) {
-        if (ball->y <= 432) canHitAfterServe = true;
+        if (ball->y <= NET_Y_POS) canHitAfterServe = true;
     } else {
-        if (ball->y >= 432) canHitAfterServe = true;
+        if (ball->y >= NET_Y_POS) canHitAfterServe = true;
     }
 }
 
