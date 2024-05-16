@@ -4,7 +4,8 @@
 typedef enum{
   GAME,
   START_MENU,
-  PAUSE_MENU
+  PAUSE_MENU,
+  QUIT
 } Game_state;
 
 typedef enum {
