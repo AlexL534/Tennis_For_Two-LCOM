@@ -1,7 +1,7 @@
 #include "player2.h"
 #include <stdlib.h> 
 
-void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
+void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterServe) {
     int player2X = player2->x;
     int player2Y = player2->y;
     int ballX = ball->x;
@@ -20,7 +20,7 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
 
     //no special actions when the player is starting
     if(player2->state == START){
-        updatePlayerMovementsTimer(player2, counter);
+        updatePlayerMovementsTimer(player2, counter, canHitAfterServe);
         return;
     }
 
@@ -83,17 +83,16 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter) {
 
     // Check if the ball is within the hit limits of player2
     if ((ballX >= x_min + 10 ) && (ballX <= x_max -10) && (ballY >= y_min) && (ballY <= y_max )) {
-            
-            // If there is a collision, trigger a hit animation for player2 (only if there was enough time to the ball exit the player field after the game start)
-            if(counter > 180){
+            // If there is a collision and canHitAfterServe is true, trigger a hit animation for player2
+            if (canHitAfterServe && player2->state != HIT) {
                 player2->state = HIT;
+                hitAnim(player2);
             }
-
     }
 
 
 
-    updatePlayerMovementsTimer(player2, counter);
+    updatePlayerMovementsTimer(player2, counter, canHitAfterServe);
     
     
 }

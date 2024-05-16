@@ -8,6 +8,7 @@ static Player *player2;
 static Ball *ball;
 int player1Score = 0;
 int player2Score = 0;
+static bool canHitAfterServe = false;
 
 static uint32_t *background;
 
@@ -154,9 +155,16 @@ int (timerHandler)(){
     printf("Error while erasing the player1\n");
     return EXIT_FAILURE;
   };
-  draw_xpm((xpm_map_t) r1_xpm, XPM_8_8_8_8, 1050, 120);
-  draw_xpm((xpm_map_t) p1_xpm, XPM_8_8_8_8, 950, 120);
-  updatePlayer2AI(player2,ball,counter);
+
+  if (!canHitAfterServe) {
+    if (ball->direction == UP_BALL) {
+        if (ball->y <= 432) canHitAfterServe = true;
+    } else {
+        if (ball->y >= 432) canHitAfterServe = true;
+    }
+}
+
+  updatePlayer2AI(player2,ball,counter,canHitAfterServe);
   
   
   if(drawPlayer(player2) != 0){
@@ -172,6 +180,7 @@ int (timerHandler)(){
           resetPlayer(player1, true);
           resetPlayer(player2, false);
           player1Score++;
+          canHitAfterServe = false;
         }
         else{
           //player 2 scored
@@ -179,6 +188,7 @@ int (timerHandler)(){
           resetPlayer(player1, false);
           resetPlayer(player2, true);
           player2Score++;
+          canHitAfterServe = false;
         }
         counter = 0;
       return EXIT_SUCCESS;
@@ -207,7 +217,7 @@ int (timerHandler)(){
     }
   }
   
-  updatePlayerMovementsTimer(player1, counter);
+  updatePlayerMovementsTimer(player1, counter, canHitAfterServe);
 
   if(drawPlayer(player1) != 0){
     return EXIT_FAILURE;
@@ -218,7 +228,7 @@ int (timerHandler)(){
 
 int (mouseHandler)(){
   int newBallX = 9999; 
-  updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX);
+  updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
   
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated

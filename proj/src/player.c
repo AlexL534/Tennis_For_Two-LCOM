@@ -348,7 +348,7 @@ void (changePlayerMovementKBD)(Player *player, uint8_t scancode){
   }
 }
 
-void (updatePlayerMovementsTimer)(Player *player, int counter){
+void (updatePlayerMovementsTimer)(Player *player, int counter, bool canHitAfterServe){
 
   switch (player->state)
   {
@@ -415,26 +415,21 @@ void (updatePlayerMovementsTimer)(Player *player, int counter){
   }
 }
 
-void (updatePlayerMovementMouse)(Player *player, bool isLB, int *newBallX){
-  if((player-> state == CHOOSE_START) || (player->state == CHOOSE_START_STOP)){
-    if(isLB){
-      player->state = START;
+void updatePlayerMovementMouse(Player *player, bool isLB, int *newBallX, bool canHitAfterServe) {
+    if ((player->state == CHOOSE_START || player->state == CHOOSE_START_STOP) && !canHitAfterServe) {
+        if (isLB) {
+            player->state = START;
 
-      //calculate the initial position of the ball based on the player chose place to start
-      if(player->direction == RIGHTD){
-        *newBallX = player->x + 70;
-      }
-      else{
-         *newBallX = player->x + 10;
-      }
-  }
-  }
-  else{
-    if(isLB){
-      player->state = HIT;
+            // Calculate the initial position of the ball based on the player's chosen place to start
+            *newBallX = player->direction == RIGHTD ? player->x + 70 : player->x + 10;
+        }
+    } else {
+        if (isLB) {
+            player->state = HIT;
+        }
     }
-  }
 }
+
 
 bool (stopPlayer)(uint8_t scancode, Player_movement movement){
   switch (movement)
