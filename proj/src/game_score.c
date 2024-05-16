@@ -73,6 +73,9 @@ int (drawScore)(int playerNumb){
         }
       }
       return EXIT_SUCCESS;
+    
+    default:
+      return EXIT_FAILURE;
   }
 }
 
