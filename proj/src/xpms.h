@@ -48,4 +48,7 @@
 #include "xpms/ball/large_ball.xpm"
 #include "xpms/ball/very_large_ball.xpm"
 
+#include "xpms/res/1.xpm"
+#include "xpms/res/p1.xpm"
+
 #endif

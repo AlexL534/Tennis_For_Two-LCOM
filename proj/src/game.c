@@ -24,6 +24,7 @@ int (gameLoop)(){
   ball = createBall();
   drawPlayer(player1);
   drawPlayer(player2);
+  draw_xpm((xpm_map_t) r1_xpm, XPM_8_8_8_8, 900, 500);
 
   int ipc_status;
   message msg;
@@ -148,11 +149,13 @@ int (keyboardHandler)(){
 
 
 int (timerHandler)(){
+
   if(refreshBackground(background) != 0){
     printf("Error while erasing the player1\n");
     return EXIT_FAILURE;
   };
-
+  draw_xpm((xpm_map_t) r1_xpm, XPM_8_8_8_8, 1050, 120);
+  draw_xpm((xpm_map_t) p1_xpm, XPM_8_8_8_8, 950, 120);
   updatePlayer2AI(player2,ball,counter);
   
   
