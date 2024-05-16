@@ -20,6 +20,8 @@ int (drawBackground)(uint32_t *background){
 
 int (refreshBackground)(uint32_t *background){
   
-  memcpy(get_video_mem(), background, get_hres() * get_vres() * get_bytes_per_pixel());
+  if(memcpy(get_second_buffer(), background, get_hres() * get_vres() * get_bytes_per_pixel()) == NULL){
+    return EXIT_FAILURE;
+  };
   return EXIT_SUCCESS;
 }

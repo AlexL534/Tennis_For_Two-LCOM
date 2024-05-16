@@ -4,6 +4,8 @@
 #include <lcom/lcf.h>
 #include "states.h"
 #include "player.h"
+#include "player2.h"
+#include "ball.h"
 
 #include "devices/i8042.h"
 #include "devices/i8254.h"
@@ -14,6 +16,7 @@
 #include "devices/video.h"
 #include "xpms.h"
 
+#define NET_Y_POS 432
 
 int (gameLoop)();
 int (timerHandler)();

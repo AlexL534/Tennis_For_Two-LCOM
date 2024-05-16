@@ -1,11 +1,14 @@
 #include "game.h"
 #include "background.h"
 
-static Player_state player1_state = CHOOSE_START_STOP;
-static Player_movement player1_movement = RIGHT_PLAYER;
+
 //static Game_state game_state = GAME;
 static Player *player1;
 static Player *player2;
+static Ball *ball;
+int player1Score = 0;
+int player2Score = 0;
+static bool canHitAfterServe = false;
 
 static uint32_t *background;
 
@@ -19,8 +22,9 @@ int (gameLoop)(){
   
   player1 = createPlayer1();
   player2 = createPlayer2();
+  ball = createBall();
   drawPlayer(player1);
-  draw_xpm((xpm_map_t) very_large_ball_xpm,XPM_8_8_8_8, 100,100 );
+  drawPlayer(player2);
 
   int ipc_status;
   message msg;
@@ -28,21 +32,25 @@ int (gameLoop)(){
   uint8_t bit_no;
 
   if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   timer_set_frequency(0, 60);
   if(kbd_subscribe_int(&bit_no) != 0){
+    destroyElements();
       return EXIT_FAILURE;
   }
   uint8_t kbc_mask = BIT(bit_no);
 
   if(timer_subscribe_int(&bit_no) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
   uint8_t timer_mask = BIT(bit_no);
 
   if(mouse_subscribe_int(&bit_no) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
   uint8_t mouse_mask = BIT(bit_no);
@@ -71,7 +79,13 @@ int (gameLoop)(){
                  }
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
-                    timerHandler();
+
+                    if(timerHandler() != 0){
+                      destroyElements();
+                      return EXIT_FAILURE;
+                    }
+
+                    swap_buffer();
                  }
                  break;
              default:
@@ -82,18 +96,22 @@ int (gameLoop)(){
 }
 
   if(kbd_unsubscribe_int() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   if(timer_unsubscribe_int() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   if(mouse_unsubscribe_int() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
   if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
 
@@ -106,7 +124,9 @@ int (gameLoop)(){
 void (destroyElements)(){
   destroyPlayer1(player1);
   destroyPlayer2(player2);
+  destroyBall(ball);
   free(background);
+  free_second_buffer();
 }
 
 int (loadBackground)(){
@@ -122,128 +142,100 @@ int (loadBackground)(){
 
 int (keyboardHandler)(){
 
-  if((player1_state == MOVE) || (player1_state == STOP)){
-    
-    if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
-      updateDirection(LEFTD, player1);
-      player1_state = MOVE;
-      player1_movement = LEFT_PLAYER;
-    }
-
-    else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
-      updateDirection(RIGHTD, player1);
-      player1_state = MOVE;
-      player1_movement = RIGHT_PLAYER;
-    }
-
-    else if((get_scancode() == ARROW_DOWN) || (get_scancode() == S_KEY)){
-      player1_state = MOVE;
-      player1_movement = DOWN_PLAYER;
-    }
-
-    else if((get_scancode() == ARROW_UP) || (get_scancode() == W_KEY)){
-      player1_state = MOVE;
-      player1_movement = UP_PLAYER;
-    }
-
-    else{
-      player1_state = STOP;
-    }
-  }
-  else if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
-    if((get_scancode() == ARROW_LEFT) || (get_scancode() == A_KEY)){
-      updateDirection(LEFTD, player1);
-      player1_movement = LEFT_PLAYER;
-      player1_state = CHOOSE_START;
-    }
-
-    else if((get_scancode() == ARROW_RIGHT) || (get_scancode() == D_KEY)){
-      updateDirection(RIGHTD, player1);
-      player1_movement = RIGHT_PLAYER;
-      player1_state = CHOOSE_START;
-    }
-    else{
-      player1_state = CHOOSE_START_STOP;
-    }
-  }
+  changePlayerMovementKBD(player1, get_scancode());
 
   return EXIT_SUCCESS;
 }
 
+
 int (timerHandler)(){
-    if(refreshBackground(background) != 0){
-      printf("Error while erasing the player1\n");
-      return EXIT_FAILURE;
-    };
-  drawPlayer(player2);
 
-  switch (player1_state)
-  {
+  if(refreshBackground(background) != 0){
+    printf("Error while erasing the player1\n");
+    return EXIT_FAILURE;
+  };
 
-  case MOVE:
-
-    //move the player and draws him in the new position
-    movePlayer(player1, player1_movement);
-
-    
-
-    if(counter % 6 == 0){
-      moveAnim(player1);
+  if (!canHitAfterServe) {
+    if (ball->direction == UP_BALL) {
+        if (ball->y <= NET_Y_POS) canHitAfterServe = true;
+    } else {
+        if (ball->y >= NET_Y_POS) canHitAfterServe = true;
     }
-    break;
+}
 
-  case HIT:
-
-    if(counter % 3 == 0){
-      hitAnim(player1);
-
-      //the animation ended
-      if(player1->hitanim == 0){
-        player1_state = STOP;
-      }
-    }
-    break;
-
-  case CHOOSE_START:
-
-
-    chooseStartAnim(player1);
-    movePlayer(player1, player1_movement);
-
-    break;
-
-  case START:
-
-
-    if(counter % 3 == 0){
-      startAnim(player1);
-
-      //the animation ended
-      if(player1->startanim == 0){
-        player1_state = STOP;
-      }
-    }
-    break;
-  default:
-
-    break;
+draw_xpm((xpm_map_t) p1_xpm, XPM_8_8_8_8, 940, 130);
+draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 130);
+draw_xpm((xpm_map_t) p2_xpm, XPM_8_8_8_8, 940, 230);
+draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
+  updatePlayer2AI(player2,ball,counter,canHitAfterServe);
+  
+  
+  if(drawPlayer(player2) != 0){
+    return EXIT_FAILURE;
   }
 
-  drawPlayer(player1);
+  if(player2->state != START){
+    //disable the collision when the player 2 is starting because the ball starts out of the field
+    if(checkCollisionLine(ball, background)){
+        if(ball->y < 350){
+          //player 1 scored
+          resetBall(ball, PLAYER1);
+          resetPlayer(player1, true);
+          resetPlayer(player2, false);
+          player1Score++;
+          canHitAfterServe = false;
+        }
+        else{
+          //player 2 scored
+          resetBall(ball, PLAYER2);
+          resetPlayer(player1, false);
+          resetPlayer(player2, true);
+          player2Score++;
+          canHitAfterServe = false;
+        }
+        counter = 0;
+      return EXIT_SUCCESS;
+    }
+  }
+
+  if(player1 -> state == HIT){
+    collisionPlayer(ball, player1);
+  }
+
+  if(player2-> state == HIT){
+    collisionPlayer(ball, player2);
+  }
+
+  if((player1 ->state != CHOOSE_START) && (player1 ->state != CHOOSE_START_STOP) && (player2 ->state != CHOOSE_START) && (player2 ->state != CHOOSE_START_STOP)){
+    if((player1->state == START) || (player2->state == START)){
+      moveBall(ball,true);
+    }
+    else{
+      moveBall(ball,false);
+    }
+
+    
+    if(drawBall(ball) != 0){
+      return EXIT_FAILURE;
+    }
+  }
+  
+  updatePlayerMovementsTimer(player1, counter, canHitAfterServe);
+
+  if(drawPlayer(player1) != 0){
+    return EXIT_FAILURE;
+  };
 
     return EXIT_SUCCESS;
 }
 
 int (mouseHandler)(){
-  if((player1_state == CHOOSE_START) || (player1_state == CHOOSE_START_STOP)){
-    if(get_mouse_packet().lb){
-      player1_state = START;
-  }
-  }
-  else{
-    if(get_mouse_packet().lb){
-      player1_state = HIT;
-    }
+  int newBallX = 9999; 
+  updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
+  
+  if(newBallX != 9999){
+    //the player started and the ball position needs to be updated
+    ball->x = newBallX;
   }
   return EXIT_SUCCESS;
 }
