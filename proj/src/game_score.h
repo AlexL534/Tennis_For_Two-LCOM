@@ -7,6 +7,10 @@
 #include "sprite.h"
 #include "color.h"
 
+/**
+ * Inicia as estruturas que vão conter os sprites usados no quadro de pontuações
+ * @returns 1 se ocorreu algum erro ou zero caso tenha corrido tudo bem
+*/
 int (loadInitialXPMScore)();
 int (drawScore)(int playerNumb);
 int (drawScoreText)();
