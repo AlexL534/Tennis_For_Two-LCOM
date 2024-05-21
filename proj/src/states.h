@@ -1,17 +1,20 @@
 #ifndef STATES_H
 #define STATES_H
 
+/// @brief Contem os estados do jogo
 typedef enum{
   GAME,
   START_MENU,
   PAUSE_MENU
 } Game_state;
 
+/// @brief Indica a direção para onde o jogador está virado
 typedef enum {
   LEFTD,
   RIGHTD
 } Player_direction;
 
+/// @brief Indica a direção do movimento do jogador
 typedef enum{
   LEFT_PLAYER,
   RIGHT_PLAYER,
@@ -19,6 +22,7 @@ typedef enum{
   DOWN_PLAYER
 } Player_movement;
 
+/// @brief Indica o estado atual do jogador
 typedef enum {
   MOVE,
   START,
@@ -28,6 +32,7 @@ typedef enum {
   STOP
 } Player_state;
 
+/// @brief Indica o estadp atual do movimento da bola
 typedef enum {
   UP_BALL_START,
   DOWN_BALL_START,
