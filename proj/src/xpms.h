@@ -61,4 +61,11 @@
 #include "xpms/res/8.xpm"
 #include "xpms/res/9.xpm"
 
+#include "xpms/cursor/cursor.xpm"
+
+#include "xpms/menu/title.xpm"
+#include "xpms/menu/quit.xpm"
+#include "xpms/menu/start.xpm"
+
+
 #endif

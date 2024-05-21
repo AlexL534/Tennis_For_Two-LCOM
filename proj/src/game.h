@@ -7,6 +7,7 @@
 #include "player2.h"
 #include "ball.h"
 #include "game_score.h"
+#include "menu.h"
 
 #include "devices/i8042.h"
 #include "devices/i8254.h"

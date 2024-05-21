@@ -4,6 +4,8 @@
         "i8042.h": "c",
         "video.h": "c",
         "player.h": "c",
-        "sprite.h": "c"
+        "sprite.h": "c",
+        "vbe.h": "c",
+        "player2.h": "c"
     }
 }

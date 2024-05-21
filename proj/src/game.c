@@ -101,6 +101,8 @@ int (gameLoop)(){
                       mouseHandler();
                       reset_byte_index();
                     }
+                    drawMouse();
+
                  } 		
                  if (msg.m_notify.interrupts & kbc_mask) { 
                        kbc_ih();
