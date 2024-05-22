@@ -6,6 +6,9 @@
 #include "devices/i8042.h"
 #include "devices/video.h"
 
+#define START_X_POS 500
+#define START_Y_POS 130
+
 /**
  * Atualiza os movimentos/estados/animações do jogador 2 tendo em conta as informações da bola (posição, direção de movimento, ...) quando estamos e jogar em single player
  * @param player2 Jogador 2 que vamos atualizar

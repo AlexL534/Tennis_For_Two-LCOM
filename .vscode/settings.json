@@ -24,6 +24,10 @@
         "utility": "c",
         "compare": "c",
         "locale": "c",
-        "string": "c"
+        "string": "c",
+        "game_score.h": "c",
+        "cmath": "c",
+        "complex": "c",
+        "cstdlib": "c"
     }
 }
