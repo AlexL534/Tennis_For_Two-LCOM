@@ -24,8 +24,8 @@ Mouse* createMouse() {
     mouse->sprite->width = img.width;
     mouse->sprite->height = img.height;
 
-    mouse->x = 0;
-    mouse->y = 0;
+    mouse->x = MAX_X / 2;
+    mouse->y = MAX_Y / 2;
 
     return mouse;
 }
