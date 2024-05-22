@@ -65,7 +65,8 @@
 
 #include "xpms/menu/title.xpm"
 #include "xpms/menu/quit.xpm"
+#include "xpms/menu/quit_hover.xpm"
 #include "xpms/menu/start.xpm"
-
+#include "xpms/menu/start_hover.xpm"
 
 #endif

@@ -3,10 +3,8 @@
 
 #include <lcom/lcf.h>
 #include "states.h"
+#include "sprite.h"
 #include "player.h"
-#include "player2.h"
-#include "ball.h"
-#include "game_score.h"
 
 #include "devices/i8042.h"
 #include "devices/i8254.h"
@@ -17,7 +15,18 @@
 #include "devices/video.h"
 #include "xpms.h"
 
-void drawMouse();
+typedef struct {
+    Sprite* sprite; 
+    int x; 
+    int y; 
+} Mouse;
 
+Mouse* createMouse();
+
+int drawMouse(Mouse* mouse);
+
+void destroyMouse(Mouse* mouse);
+
+int updateMousePosition(Mouse* mouse, int delta_x, int delta_y);
 
 #endif

@@ -107,7 +107,7 @@ int (map_VRAM)(uint16_t mode){
 //draws a pixel in the screen
 int (vg_draw_color)(uint16_t x, uint16_t y, uint32_t color){
   //verify if the coordinates are legal
-  if((x > h_res) || (y > v_res) || ( x < 0) || (y < 0)){
+  if(x >= h_res || y >= v_res){
     printf("Invalid Coordinates\n");
     return EXIT_FAILURE;
   }

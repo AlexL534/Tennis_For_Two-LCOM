@@ -3,6 +3,7 @@
 
 
 //static Game_state game_state = GAME;
+static Mouse *mouse;
 static Player *player1;
 static Player *player2;
 static Ball *ball;
@@ -29,6 +30,7 @@ int (gameLoop)(){
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
+  mouse = createMouse();
 
   if(drawPlayer(player1) != 0){
     destroyElements();
@@ -36,6 +38,11 @@ int (gameLoop)(){
   }
 
   if(drawPlayer(player2) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+  
+  if(drawMouse(mouse) != 0){
     destroyElements();
     return EXIT_FAILURE;
   }
@@ -101,8 +108,6 @@ int (gameLoop)(){
                       mouseHandler();
                       reset_byte_index();
                     }
-                    drawMouse();
-
                  } 		
                  if (msg.m_notify.interrupts & kbc_mask) { 
                        kbc_ih();
@@ -110,12 +115,10 @@ int (gameLoop)(){
                  }
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
-
                     if(timerHandler() != 0){
                       destroyElements();
                       return EXIT_FAILURE;
                     }
-
                     swap_buffer();
                  }
                  break;
@@ -156,6 +159,7 @@ void (destroyElements)(){
   destroyPlayer1(player1);
   destroyPlayer2(player2);
   destroyBall(ball);
+  destroyMouse(mouse);
   freeXPMScore();
   free(background);
   free_second_buffer();
@@ -244,16 +248,19 @@ int (timerHandler)(){
     else{
       moveBall(ball,false);
     }
-
     
     if(drawBall(ball) != 0){
       return EXIT_FAILURE;
     }
   }
-  
+
   updatePlayerMovementsTimer(player1, counter, canHitAfterServe);
 
   updatePlayer2AI(player2,ball,counter,canHitAfterServe);
+
+  if(drawMouse(mouse) != 0){
+    return EXIT_FAILURE;
+  }
   
   if(drawPlayer(player2) != 0){
     return EXIT_FAILURE;
@@ -281,7 +288,8 @@ int (timerHandler)(){
 int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  
+  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated
     ball->x = newBallX;

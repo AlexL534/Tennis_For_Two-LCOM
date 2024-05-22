@@ -6,6 +6,24 @@
         "player.h": "c",
         "sprite.h": "c",
         "vbe.h": "c",
-        "player2.h": "c"
+        "player2.h": "c",
+        "kbd.h": "c",
+        "*.xpm": "c",
+        "__functional_base": "c",
+        "__functional_base_03": "c",
+        "__tuple": "c",
+        "array": "c",
+        "chrono": "c",
+        "functional": "c",
+        "limits": "c",
+        "memory": "c",
+        "random": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "compare": "c",
+        "locale": "c",
+        "string": "c"
     }
 }
