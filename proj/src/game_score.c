@@ -50,7 +50,7 @@ int (drawScore)(int playerNumb){
       height = p1Score.height;
       map = p1Score.map;
 
-      for(int j =  130 ; j < 130 + height; j++){
+      for(int j =  230 ; j < 230 + height; j++){
         for(int i = 1035 ; i < 1035 + width; i++){
           if(*map != TRANSPARENCY_SCORE){
             if(vg_draw_color(i,j,*map) != 0){
@@ -62,12 +62,12 @@ int (drawScore)(int playerNumb){
       }
       return EXIT_SUCCESS;
     
-    case  2:
+    case 2:
       width = p2Score.width;
       height = p2Score.height;
       map = p2Score.map;
 
-      for(int j =  230 ; j < 230 + height; j++){
+      for(int j =  130 ; j < 130 + height; j++){
         for(int i = 1035 ; i < 1035 + width; i++){
           if(*map != TRANSPARENCY_SCORE){
             if(vg_draw_color(i,j,*map) != 0){
@@ -89,7 +89,7 @@ int (drawScoreText)(){
   int height = p1.height;
   uint32_t *map = p1.map;
 
-  for(int j =  130 ; j < 130 + height; j++){
+  for(int j =  230 ; j < 230 + height; j++){
     for(int i = 950 ; i < 950 + width; i++){
       if(*map != TRANSPARENCY_SCORE){
         if(vg_draw_color(i,j,*map) != 0){
@@ -104,7 +104,7 @@ int (drawScoreText)(){
   height = p2.height;
   map = p2.map;
     
-  for(int j =  230 ; j < 230 + height; j++){
+  for(int j =  130 ; j < 130 + height; j++){
       for(int i = 950 ; i < 950 + width; i++){
         if(*map != TRANSPARENCY_SCORE){
           if(vg_draw_color(i,j,*map) != 0){
