@@ -129,7 +129,7 @@ int (drawPlayer)(Player *player);
 /**
  * Atualiza a direção para onde o jogador está virado
  * @param direction Nova direção do jogador
- * @param player Jogador que vamoa atualizar a direção
+ * @param player Jogador que vai ter a direção atualizada
 */
 void (updatePlayerDirection)(Player_direction direction, Player *player);
 
