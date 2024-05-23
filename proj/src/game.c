@@ -3,6 +3,7 @@
 
 
 //static Game_state game_state = GAME;
+static Mouse *mouse;
 static Player *player1;
 static Player *player2;
 static Ball *ball;
@@ -17,14 +18,49 @@ extern int counter;
 int (gameLoop)(){
   
   if(loadBackground() != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  if(loadInitialXPMScore() != 0){
+    destroyElements();
     return EXIT_FAILURE;
   }
   
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
-  drawPlayer(player1);
-  drawPlayer(player2);
+  mouse = createMouse();
+
+  if(drawPlayer(player1) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  if(drawPlayer(player2) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+  
+  if(drawMouse(mouse) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  if(drawScore(1) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  if(drawScore(2) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  if(drawScoreText() != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
 
   int ipc_status;
   message msg;
@@ -55,7 +91,7 @@ int (gameLoop)(){
   }
   uint8_t mouse_mask = BIT(bit_no);
 
-  while( get_scancode() != KBD_ESC_BREAK){
+  while( (get_scancode() != KBD_ESC_BREAK) && (player1Score < 10) && (player2Score < 10)){
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
           continue;
@@ -79,12 +115,10 @@ int (gameLoop)(){
                  }
                  if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
-
                     if(timerHandler() != 0){
                       destroyElements();
                       return EXIT_FAILURE;
                     }
-
                     swap_buffer();
                  }
                  break;
@@ -125,6 +159,8 @@ void (destroyElements)(){
   destroyPlayer1(player1);
   destroyPlayer2(player2);
   destroyBall(ball);
+  destroyMouse(mouse);
+  freeXPMScore();
   free(background);
   free_second_buffer();
 }
@@ -163,17 +199,6 @@ int (timerHandler)(){
     }
 }
 
-draw_xpm((xpm_map_t) p1_xpm, XPM_8_8_8_8, 940, 130);
-draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 130);
-draw_xpm((xpm_map_t) p2_xpm, XPM_8_8_8_8, 940, 230);
-draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
-  updatePlayer2AI(player2,ball,counter,canHitAfterServe);
-  
-  
-  if(drawPlayer(player2) != 0){
-    return EXIT_FAILURE;
-  }
-
   if(player2->state != START){
     //disable the collision when the player 2 is starting because the ball starts out of the field
     if(checkCollisionLine(ball, background)){
@@ -182,7 +207,12 @@ draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
           resetBall(ball, PLAYER1);
           resetPlayer(player1, true);
           resetPlayer(player2, false);
-          player1Score++;
+          player1Score = player1Score + 1;
+
+          if(updateXPMScore(1,player1Score) != 0){
+            return EXIT_FAILURE;
+          }
+
           canHitAfterServe = false;
         }
         else{
@@ -190,7 +220,12 @@ draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
           resetBall(ball, PLAYER2);
           resetPlayer(player1, false);
           resetPlayer(player2, true);
-          player2Score++;
+          player2Score = player2Score + 1;
+
+          if(updateXPMScore(2,player2Score) != 0){
+            return EXIT_FAILURE;
+          }
+          
           canHitAfterServe = false;
         }
         counter = 0;
@@ -213,18 +248,39 @@ draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
     else{
       moveBall(ball,false);
     }
-
     
     if(drawBall(ball) != 0){
       return EXIT_FAILURE;
     }
   }
-  
+
   updatePlayerMovementsTimer(player1, counter, canHitAfterServe);
+
+  updatePlayer2AI(player2,ball,counter,canHitAfterServe);
+
+  if(drawMouse(mouse) != 0){
+    return EXIT_FAILURE;
+  }
+  
+  if(drawPlayer(player2) != 0){
+    return EXIT_FAILURE;
+  }
 
   if(drawPlayer(player1) != 0){
     return EXIT_FAILURE;
-  };
+  }
+
+  if(drawScore(1) != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(drawScore(2) != 0){
+    return EXIT_FAILURE;
+  }
+
+  if(drawScoreText() != 0){
+    return EXIT_FAILURE;
+  }
 
     return EXIT_SUCCESS;
 }
@@ -232,7 +288,8 @@ draw_xpm((xpm_map_t) r6_xpm ,XPM_8_8_8_8, 1035, 230);
 int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  
+  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated
     ball->x = newBallX;

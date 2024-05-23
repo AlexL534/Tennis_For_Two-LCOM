@@ -1,8 +1,8 @@
 /* XPM */
 static char * cursor_xpm[] = {
 "32 32 2 1",
-" 	c None",
-".	c #000000",
+" 	c #00AA00",
+".	c #FFFFFF",
 "                                ",
 "     ..                         ",
 "     ...                        ",

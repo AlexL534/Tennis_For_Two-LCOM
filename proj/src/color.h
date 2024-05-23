@@ -6,6 +6,6 @@
 #define OTHERLINE_COLOR 0Xe7e7bc
 #define NET_COLOR1 0X000000
 #define NET_COLOR2 0Xffffff
-#define TRANSPARENCY_SCORE 0Xffffff
+#define TRANSPARENCY_SCORE 0X000000
 
 #endif

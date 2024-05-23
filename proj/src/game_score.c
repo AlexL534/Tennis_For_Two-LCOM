@@ -35,15 +35,37 @@ int (loadInitialXPMScore)(){
     return EXIT_FAILURE;
   }
 
+  free(sprite);
+
   return EXIT_SUCCESS;
 }
 
 int (drawScore)(int playerNumb){
+  int width = 0;
+  int height = 0;
+  uint32_t *map = NULL;
   switch(playerNumb){
     case 1:
-      int width = p1Score.width;
-      int height = p1Score.height;
-      uint32_t *map = p1Score.map;
+      width = p1Score.width;
+      height = p1Score.height;
+      map = p1Score.map;
+
+      for(int j =  230 ; j < 230 + height; j++){
+        for(int i = 1035 ; i < 1035 + width; i++){
+          if(*map != TRANSPARENCY_SCORE){
+            if(vg_draw_color(i,j,*map) != 0){
+              return EXIT_FAILURE;
+            }
+          }
+          map++;
+        }
+      }
+      return EXIT_SUCCESS;
+    
+    case 2:
+      width = p2Score.width;
+      height = p2Score.height;
+      map = p2Score.map;
 
       for(int j =  130 ; j < 130 + height; j++){
         for(int i = 1035 ; i < 1035 + width; i++){
@@ -57,50 +79,66 @@ int (drawScore)(int playerNumb){
       }
       return EXIT_SUCCESS;
     
-    case  2:
-      int width = p2Score.width;
-      int height = p2Score.height;
-      uint32_t *map = p2Score.map;
-
-      for(int j =  230 ; j < 230 + height; j++){
-        for(int i = 1035 ; i < 1035 + width; i++){
-          if(*map != TRANSPARENCY_SCORE){
-            if(vg_draw_color(i,j,*map) != 0){
-              return EXIT_FAILURE;
-            }
-          }
-          map++;
-        }
-      }
-      return EXIT_SUCCESS;
+    default:
+      return EXIT_FAILURE;
   }
 }
 
+int (drawScoreText)(){
+  int width = p1.width;
+  int height = p1.height;
+  uint32_t *map = p1.map;
+
+  for(int j =  230 ; j < 230 + height; j++){
+    for(int i = 950 ; i < 950 + width; i++){
+      if(*map != TRANSPARENCY_SCORE){
+        if(vg_draw_color(i,j,*map) != 0){
+          return EXIT_FAILURE;
+        }
+      }
+      map++;
+    }
+  }
+
+  width = p2.width;
+  height = p2.height;
+  map = p2.map;
+    
+  for(int j =  130 ; j < 130 + height; j++){
+      for(int i = 950 ; i < 950 + width; i++){
+        if(*map != TRANSPARENCY_SCORE){
+          if(vg_draw_color(i,j,*map) != 0){
+            return EXIT_FAILURE;
+          }
+        }
+        map++;
+      }
+    }
+    return EXIT_SUCCESS;
+}
+
 int (updateXPMScore)(int playerNumb, int score){
-  xpm_image_t img;
+  
 
   switch (playerNumb)
   {
   case 1:
-    chooseXPMScore(score, p1Score.map, &img);
+    chooseXPMScore(score, &p1Score);
 
     if(p1Score.map == NULL){
       return EXIT_FAILURE;
     }
 
-    p1Score.height = img.height;
-    p1Score.width = img.width;
     break;
 
   case 2:
-    chooseXPMScore(score, p2Score.map, &img);
+
+    chooseXPMScore(score, &p2Score);
 
     if(p2Score.map == NULL){
       return EXIT_FAILURE;
     }
 
-    p2Score.height = img.height;
-    p2Score.width = img.width;
     break;
   default:
     return EXIT_FAILURE;
@@ -110,41 +148,80 @@ int (updateXPMScore)(int playerNumb, int score){
 
 }
 
-void (chooseXPMScore)(int score, uint32_t *xpm, xpm_image_t *img){
+void (chooseXPMScore)(int score, Sprite *scoreSprite){
+  xpm_image_t img;
 
   switch(score){
     case 0:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r0_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r0_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 1:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r1_xpm, XPM_8_8_8_8, img);
+     scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r1_xpm, XPM_8_8_8_8, &img);
+     scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 2:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r2_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r2_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 3:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r3_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r3_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 4:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r4_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r4_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 5:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r5_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r5_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 6:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r6_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r6_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 7:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r7_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r7_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 8:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r8_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r8_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     case 9:
-      xpm = (uint32_t *) xpm_load((xpm_map_t) r9_xpm, XPM_8_8_8_8, img);
+      scoreSprite->map = (uint32_t *) xpm_load((xpm_map_t) r9_xpm, XPM_8_8_8_8, &img);
+      scoreSprite->height = img.height;
+      scoreSprite->width = img.width;
       break;
     default:
       //cannot have a score bigger than 9
       break;
+  }
+}
+
+void (freeXPMScore)(){
+  if(p1.map != NULL){
+    free(p1.map);
+  }
+
+  if(p2.map != NULL){
+    free(p2.map);
+  }
+
+  if(p1Score.map != NULL){
+    free(p1Score.map);
+  }
+
+  if(p2Score.map != NULL){
+    free(p2Score.map);
   }
 }

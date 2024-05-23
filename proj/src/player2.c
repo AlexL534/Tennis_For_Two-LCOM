@@ -10,6 +10,8 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
     int deltaX = ballX - player2X;
     int deltaY = ballY - player2Y;
 
+   int deltaStartY = START_Y_POS - player2Y;
+
     //the player2 is starting the game
     if(player2->state == CHOOSE_START_STOP){
         if(counter % 120 == 0){
@@ -28,44 +30,66 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
     // Prioritize movement along the axis with the largest difference
     if(player2->state == MOVE || player2->state == STOP){
         player2->state = MOVE;
-        
-        //player need to move in the x direction
-        if ((abs(deltaX) > abs(deltaY)) ) {
-            if (deltaX < 0) {
-                player2->movement = LEFT_PLAYER;
-                player2->direction = LEFTD;
-            } else if (deltaX > 0) {
-                player2->movement = RIGHT_PLAYER;
-                player2->direction = RIGHTD;
-            }
 
-            //the player needs to move in the y direction
-        } else if (ball ->y  < MAX_Y_P2) {
-            if (deltaY < 0) {
-                player2->movement = UP_PLAYER;
-            } else if (deltaY > 0) {
-                player2->movement = DOWN_PLAYER;
+        //if ball is going into the opposite direction, try to get closer to starting Y pos while following ball movement
+        if (ball->direction == DOWN_BALL) {
+            if (abs(deltaX) > abs(deltaStartY)) {
+                if (deltaX < 0) {
+                    player2->movement = LEFT_PLAYER;
+                    player2->direction = LEFTD;
+                } 
+                else if (deltaX > 0) {
+                    player2->movement = RIGHT_PLAYER;
+                    player2->direction = RIGHTD;
+                }
             }
-        }
-
-        //the ball if on the player 1 side
-        else if((ball ->y  > MAX_Y_P2) && (abs(deltaX) > 6)){
-            if (deltaX < 0) {
-                player2->movement = LEFT_PLAYER;
-                player2->direction = LEFTD;
-            } else if (deltaX > 0) {
-                player2->movement = RIGHT_PLAYER;
-                player2->direction = RIGHTD;
+            else {
+                // Only move up if not already at the starting Y position
+                if (deltaStartY < 0) {
+                    player2->movement = UP_PLAYER;
+                } else {
+                    // Stop moving if already at the starting Y position
+                    player2->state = STOP;
+                }
             }
         }
+        //try getting closer to the ball
+        else {
+            //player need to move in the x direction
+            if ((abs(deltaX) > 0.3 * abs(deltaY)) ) {
+                if (deltaX < 0) {
+                    player2->movement = LEFT_PLAYER;
+                    player2->direction = LEFTD;
+                } else if (deltaX > 0) {
+                    player2->movement = RIGHT_PLAYER;
+                    player2->direction = RIGHTD;
+                }
 
-        //the player doesn't need to move
-        else{
-            player2->state = STOP;
+                //the player needs to move in the y direction
+            } else if (ball->y  < MAX_Y_P2) {
+                if (deltaY < 0) {
+                    player2->movement = UP_PLAYER;
+                } else if (deltaY > 0) {
+                    player2->movement = DOWN_PLAYER;
+                }
+            }
+
+            //the ball if on the player 1 side
+            else if((ball->y  > MAX_Y_P2) && (abs(deltaX) > 6)){
+                if (deltaX < 0) {
+                    player2->movement = LEFT_PLAYER;
+                    player2->direction = LEFTD;
+                } else if (deltaX > 0) {
+                    player2->movement = RIGHT_PLAYER;
+                    player2->direction = RIGHTD;
+                }
+            }
+            //the player doesn't need to move
+            else{
+                player2->state = STOP;
+            }
         }
     }
-    
-
     
     // Check for collision between player2 and the ball
     // Get the current hit limits of player2
@@ -89,10 +113,5 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
                 hitAnim(player2);
             }
     }
-
-
-
     updatePlayerMovementsTimer(player2, counter, canHitAfterServe);
-    
-    
 }

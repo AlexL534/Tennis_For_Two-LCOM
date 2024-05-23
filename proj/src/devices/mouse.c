@@ -7,6 +7,7 @@ static uint8_t current_byte;
 static struct packet packet;
 
 //getter ==============================================
+
 int (get_mouse_hook_id)(){
   return hook_id_mouse;
 }
