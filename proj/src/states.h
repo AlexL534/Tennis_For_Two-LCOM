@@ -32,7 +32,7 @@ typedef enum {
   STOP
 } Player_state;
 
-/// @brief Indica o estadp atual do movimento da bola
+/// @brief Indica o estado atual do movimento da bola
 typedef enum {
   UP_BALL_START,
   DOWN_BALL_START,

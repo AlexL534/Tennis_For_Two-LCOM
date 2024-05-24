@@ -41,7 +41,7 @@
 #define KDB_ENABLE_INTER    0xAE  /*Enable KBD Interface*/
 #define KBD_ESC_BREAK   0x81     /*ESC breakcode*/
 
-#define KBD_BREAKCODE   BIT(7)  /*Indentify the breack code*/
+#define KBD_BREAKCODE   BIT(7)  /*Indentify the break code*/
 #define KBD_MAKECODE    0x00    /*Identify the makecode*/
 #define KBD_TWOBYTES    0xE0    /*Verify if the code uses two bytes*/
 #define KBD_ENABLE      0X01    /*Verifies if the KBD is enable*/
