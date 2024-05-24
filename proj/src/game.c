@@ -67,10 +67,13 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
+
   if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
     destroyElements();
     return EXIT_FAILURE;
   }
+
+
 
   timer_set_frequency(0, 60);
   if(kbd_subscribe_int(&bit_no) != 0){
@@ -100,6 +103,18 @@ int (gameLoop)(){
          if (is_ipc_notify(ipc_status)) { 
          switch (_ENDPOINT_P(msg.m_source)) {
              case HARDWARE:
+                if(msg.m_notify.interrupts & timer_mask){
+                    timer_int_handler();
+                    if(timerHandler() != 0){
+                      destroyElements();
+                      return EXIT_FAILURE;
+                    }
+                    swap_buffer();
+                 }
+                 if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       keyboardHandler();
+                 }
                   if(msg.m_notify.interrupts & mouse_mask){
                     mouse_ih();
                     mouse_insert_byte();
@@ -109,18 +124,8 @@ int (gameLoop)(){
                       reset_byte_index();
                     }
                  } 		
-                 if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       keyboardHandler();
-                 }
-                 if(msg.m_notify.interrupts & timer_mask){
-                    timer_int_handler();
-                    if(timerHandler() != 0){
-                      destroyElements();
-                      return EXIT_FAILURE;
-                    }
-                    swap_buffer();
-                 }
+                 
+                 
                  break;
              default:
                  break; 
@@ -288,7 +293,9 @@ int (timerHandler)(){
 int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+  if(counter % 60){
+    updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+  }
 
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated
