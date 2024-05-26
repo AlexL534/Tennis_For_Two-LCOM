@@ -10,6 +10,7 @@ static Ball *ball;
 int player1Score = 0;
 int player2Score = 0;
 static bool canHitAfterServe = false;
+static bool skipMouseMovement = false;
 
 static uint32_t *background;
 
@@ -116,14 +117,15 @@ int (gameLoop)(){
                        keyboardHandler();
                  }
                   if(msg.m_notify.interrupts & mouse_mask){
+
                     mouse_ih();
                     mouse_insert_byte();
                     if(get__mouse_byte_index() == 3){
-                      mouse_insert_in_packet();
-                      if(mouseHandler() != 0){
-                        destroyElements();
-                        return EXIT_FAILURE;
-                      }
+                        mouse_insert_in_packet();
+                        if(mouseHandler() != 0){
+                          destroyElements();
+                          return EXIT_FAILURE;
+                        }
                       reset_byte_index();
                     }
                  } 		
@@ -296,9 +298,10 @@ int (timerHandler)(){
 int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  if(counter % 60){
+  if(!skipMouseMovement){
     updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
   }
+  skipMouseMovement = !skipMouseMovement;
 
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated

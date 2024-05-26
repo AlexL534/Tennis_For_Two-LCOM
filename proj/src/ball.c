@@ -11,8 +11,8 @@ Ball *(createBall)(){
 
   ball->x = 550;
   ball->y = 710;
-  ball->xspeed = 2;
-  ball->yspeed = 5;
+  ball->xspeed = 3;
+  ball->yspeed = 6;
   ball->incline = 0;
   ball->direction = UP_BALL;
 
