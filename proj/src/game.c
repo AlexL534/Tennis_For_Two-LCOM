@@ -10,7 +10,6 @@ static Ball *ball;
 int player1Score = 0;
 int player2Score = 0;
 static bool canHitAfterServe = false;
-static bool skipMouseMovement = false;
 
 static uint32_t *background;
 
@@ -68,15 +67,26 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
+  //command to change the mouse sample rate
+  if(mouse_write_byte(0XF3) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
 
+  //changes the mouse sample rate to 40
+  if(mouse_write_byte(0X28) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  //enables the data report for the mouse
   if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
     destroyElements();
     return EXIT_FAILURE;
   }
 
-
-
   timer_set_frequency(0, 60);
+  
   if(kbd_subscribe_int(&bit_no) != 0){
     destroyElements();
       return EXIT_FAILURE;
@@ -298,10 +308,7 @@ int (timerHandler)(){
 int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  if(!skipMouseMovement){
-    updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
-  }
-  skipMouseMovement = !skipMouseMovement;
+  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
 
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated

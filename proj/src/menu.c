@@ -69,11 +69,11 @@ void destroyMouse(Mouse* mouse) {
 }
 
 int updateMousePosition(Mouse* mouse, int dx, int dy) {
-    if(abs(dx) > 5 ){
-        mouse->x += dx;
+    if(abs(dx) > 1 ){
+        mouse->x += dx * 1.5;
     }
-    if(abs(dy) > 5){
-        mouse->y -= dy;
+    if(abs(dy) > 1){
+        mouse->y -= dy * 1.5;
     }
 
     // Adjust for screen boundaries
