@@ -27,20 +27,24 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
     }
 
 
-    // Prioritize movement along the axis with the largest difference
+    // Prioritize movement along the axis with the largest difference. Every movement has a tolerance of two
     if(player2->state == MOVE || player2->state == STOP){
         player2->state = MOVE;
 
         //if ball is going into the opposite direction, try to get closer to starting Y pos while following ball movement
         if (ball->direction == DOWN_BALL) {
             if (abs(deltaX) > abs(deltaStartY)) {
-                if (deltaX < 0) {
+                if (deltaX < -2) {
                     player2->movement = LEFT_PLAYER;
                     player2->direction = LEFTD;
                 } 
-                else if (deltaX > 0) {
+                else if (deltaX > 2) { 
                     player2->movement = RIGHT_PLAYER;
                     player2->direction = RIGHTD;
+                }
+                else {
+                    //the player is in the tolerance
+                    player2->state = STOP;
                 }
             }
             else {
@@ -57,31 +61,43 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
         else {
             //player need to move in the x direction
             if ((abs(deltaX) > 0.3 * abs(deltaY)) ) {
-                if (deltaX < 0) {
+                if (deltaX < -2) {
                     player2->movement = LEFT_PLAYER;
                     player2->direction = LEFTD;
-                } else if (deltaX > 0) {
+                } else if (deltaX > 2) {
                     player2->movement = RIGHT_PLAYER;
                     player2->direction = RIGHTD;
+                }
+                else {
+                    //the player is in the tolerance
+                    player2->state = STOP;
                 }
 
                 //the player needs to move in the y direction
             } else if (ball->y  < MAX_Y_P2) {
-                if (deltaY < 0) {
+                if (deltaY < -2) {
                     player2->movement = UP_PLAYER;
-                } else if (deltaY > 0) {
+                } else if (deltaY > 2) {
                     player2->movement = DOWN_PLAYER;
+                }
+                else {
+                    //the player is in the tolerance
+                    player2->state = STOP;
                 }
             }
 
             //the ball if on the player 1 side
             else if((ball->y  > MAX_Y_P2) && (abs(deltaX) > 6)){
-                if (deltaX < 0) {
+                if (deltaX < -2) {
                     player2->movement = LEFT_PLAYER;
                     player2->direction = LEFTD;
-                } else if (deltaX > 0) {
+                } else if (deltaX > 2) {
                     player2->movement = RIGHT_PLAYER;
                     player2->direction = RIGHTD;
+                }
+                else {
+                    //the player is in the tolerance
+                    player2->state = STOP;
                 }
             }
             //the player doesn't need to move
@@ -98,15 +114,15 @@ void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterS
 
    
     //corrects the position in order to hit the ball
-    if((ball->x >= player2X - 10) && (ball-> x <= x_min + 10) && (ballY <= y_max + 100) && (ballY >= y_min)){
+    if((ball->x >= player2X - 20) && (ball-> x <= x_min) && (ballY <= y_max + 30) && (ballY >= y_min)){
             player2->direction = LEFTD;
         }
-    if((ball->x >= x_min - 10) && (ball-> x <= x_max + 10)  && (ballY <= y_max + 100) && (ballY >= y_min)){
+    if((ball->x >= x_min) && (ball-> x <= x_max + 20)  && (ballY <= y_max + 30) && (ballY >= y_min)){
             player2->direction = RIGHTD;
     }
 
     // Check if the ball is within the hit limits of player2
-    if ((ballX >= x_min + 10 ) && (ballX <= x_max -10) && (ballY >= y_min) && (ballY <= y_max )) {
+    if ((ballX + 25  >= x_min) && (ballX + 4 <= x_max) && (ballY + 30 >= y_min) && (ballY + 4 <= y_max )) {
             // If there is a collision and canHitAfterServe is true, trigger a hit animation for player2
             if (canHitAfterServe) {
                 player2->state = HIT;

@@ -120,7 +120,10 @@ int (gameLoop)(){
                     mouse_insert_byte();
                     if(get__mouse_byte_index() == 3){
                       mouse_insert_in_packet();
-                      mouseHandler();
+                      if(mouseHandler() != 0){
+                        destroyElements();
+                        return EXIT_FAILURE;
+                      }
                       reset_byte_index();
                     }
                  } 		

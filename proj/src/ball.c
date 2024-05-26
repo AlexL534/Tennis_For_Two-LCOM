@@ -84,7 +84,7 @@ void (collisionPlayer)(Ball *ball, Player *player){
     }
 
 
-    //the ball tragetory has only 3 modes for now (could be infinite in the future)
+    //the ball tragetory has only 3 modes for now (could be infinite in the future but will be more dificult to hit the ball in a specific direction)
     if((ball->x + 4 >= x_min - 5) && (ball->x + 4 < x_min + 30)){
       ball->incline = -1;
     }
