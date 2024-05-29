@@ -75,12 +75,10 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
         printf("map is null");
         return EXIT_FAILURE;
     }
-    for(int i = 0; i<sprite.height; i++){
+    for(int i = 0; i < sprite.height; i++){
         for(int j = 0; j < sprite.width; j++){
             if(*map != TRANSPARENCY_COLOR && j+x_offset < MAX_X && i+y_offset < MAX_Y){
-                
                 if(vg_draw_color(j+x_offset,i+y_offset,*map)!=0){
-                    
                     return EXIT_FAILURE;
                 }
             }
@@ -125,35 +123,36 @@ int (kbdhandler)(){
 }
 
 int (draw_menu)(){
-    if(draw_field(500,690,menu->title)!=0){
+
+    if(draw_field(450,10,menu->title)!=0){
         printf("draw title failed");
     }
     
     switch (menu->selected)
     {
         case 0:
-            if(draw_field(0,50,menu->play_button)!=0){
+            if(draw_field(550,300,menu->play_button)!=0){
                 printf("draw start failed");
                 return EXIT_FAILURE;
             }
-            if(draw_field(0,100,menu->quit)!=0){
+            if(draw_field(550,400,menu->quit)!=0){
                 printf("draw quit failed");
                 return EXIT_FAILURE;
             }
             break;
         case 1:
-            if(draw_field(0,50,menu->play_button_hover)!=0){
+            if(draw_field(550,300,menu->play_button_hover)!=0){
                 return EXIT_FAILURE;
             }
-            if(draw_field(0,100,menu->quit)!=0){
+            if(draw_field(550,400,menu->quit)!=0){
                 return EXIT_FAILURE;
             }
             break;
         case 2:
-            if(draw_field(0,50,menu->play_button)!=0){
+            if(draw_field(550,300,menu->play_button)!=0){
                 return EXIT_FAILURE;
             }
-            if(draw_field(0,100,menu->quit_hover)!=0){
+            if(draw_field(550,400,menu->quit_hover)!=0){
                 return EXIT_FAILURE;
             }
             break;
@@ -259,6 +258,7 @@ int (menu_loop)(){
                             printf("time handler failed");
                             return EXIT_FAILURE;
                         }
+                        swap_buffer();
                         
                     }
                     if(msg.m_notify.interrupts & mouse_mask){

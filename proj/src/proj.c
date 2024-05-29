@@ -47,10 +47,10 @@ int (proj_main_loop)(int argc, char **argv) {
   }
 
   
-
+  /*
   if(gameLoop() != 0){
     return EXIT_FAILURE;
-  }
+  }*/
 
   
   //exits the graphics mode
