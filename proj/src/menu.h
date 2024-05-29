@@ -20,14 +20,21 @@ typedef struct{
     Sprite title;
     Sprite play_button;
     Sprite quit;
+    Sprite play_button_hover;
+    Sprite quit_hover;
     uint8_t selected;
 
 }Menu;
 
-int (initialize_menu)();
-int (start_game)();
-int (quit_game)();
-int (draw_field)(int offset);
+Menu* (initialize_menu)();
+int (menu_loop)();
+int (kbdhandler)();
+int (update_selected)(unsigned char code);
+int (timehandler)();
+Game_state (get_state)();
+int (menu_destroyer)();
+int (draw_field)(int x_offset, int y_offset, Sprite sprite);
+int (draw_menu)();
 
 
 

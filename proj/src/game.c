@@ -75,7 +75,7 @@ int (gameLoop)(){
   timer_set_frequency(0, 60);
   if(kbd_subscribe_int(&bit_no) != 0){
     destroyElements();
-      return EXIT_FAILURE;
+    return EXIT_FAILURE;
   }
   uint8_t kbc_mask = BIT(bit_no);
 
