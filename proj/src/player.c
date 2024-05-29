@@ -172,8 +172,8 @@ Player *(createPlayer2)(){
 
   player->x = 500;
   player->y = 350;
-  player->xspeed = 6;
-  player->yspeed = 4;
+  player->xspeed = 3;
+  player->yspeed = 3;
   player->moveanim = 0;
   player->startanim = 0;
   player->hitanim = 0;

@@ -67,12 +67,26 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
+  //command to change the mouse sample rate
+  if(mouse_write_byte(0XF3) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  //changes the mouse sample rate to 40
+  if(mouse_write_byte(0X28) != 0){
+    destroyElements();
+    return EXIT_FAILURE;
+  }
+
+  //enables the data report for the mouse
   if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
     destroyElements();
     return EXIT_FAILURE;
   }
 
   timer_set_frequency(0, 60);
+  
   if(kbd_subscribe_int(&bit_no) != 0){
     destroyElements();
     return EXIT_FAILURE;
@@ -100,20 +114,7 @@ int (gameLoop)(){
          if (is_ipc_notify(ipc_status)) { 
          switch (_ENDPOINT_P(msg.m_source)) {
              case HARDWARE:
-                  if(msg.m_notify.interrupts & mouse_mask){
-                    mouse_ih();
-                    mouse_insert_byte();
-                    if(get__mouse_byte_index() == 3){
-                      mouse_insert_in_packet();
-                      mouseHandler();
-                      reset_byte_index();
-                    }
-                 } 		
-                 if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       keyboardHandler();
-                 }
-                 if(msg.m_notify.interrupts & timer_mask){
+                if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
                     if(timerHandler() != 0){
                       destroyElements();
@@ -121,6 +122,25 @@ int (gameLoop)(){
                     }
                     swap_buffer();
                  }
+                 if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       keyboardHandler();
+                 }
+                  if(msg.m_notify.interrupts & mouse_mask){
+
+                    mouse_ih();
+                    mouse_insert_byte();
+                    if(get__mouse_byte_index() == 3){
+                        mouse_insert_in_packet();
+                        if(mouseHandler() != 0){
+                          destroyElements();
+                          return EXIT_FAILURE;
+                        }
+                      reset_byte_index();
+                    }
+                 } 		
+                 
+                 
                  break;
              default:
                  break; 

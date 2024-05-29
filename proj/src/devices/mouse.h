@@ -30,7 +30,7 @@ int (mouse_read_status)(uint8_t *status);
 int (mouse_read_byte)();
 
 /**
- * Escreve um byte para o mouse
+ * Escreve um byte/comando para o mouse
  * @param command Comando/Byte que quermos mandar para o mouse
  * @returns 1 se ocorreu um erro. 0 se correu tudo bem
 */

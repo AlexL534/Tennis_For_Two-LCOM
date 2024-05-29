@@ -38,18 +38,42 @@ int (draw_menu)();
 
 
 
+/**
+ * @struct Mouse
+ * @brief Estrutura que contém as coordenadas e o sprite do mouse
+ */
 typedef struct {
-    Sprite* sprite; 
-    int x; 
-    int y; 
+    Sprite* sprite; /**< Apontador para o sprite do mouse. */
+    int x;          /**< Coordenada x do mouse. */
+    int y;          /**< Coordenada y do mouse. */
 } Mouse;
 
+/**
+ * @brief Cria um objeto Mouse.
+ * @return Retorna um apontador para o Mouse.
+ */
 Mouse* createMouse();
 
+/**
+ * @brief Desenha o mouse na tela.
+ * @param mouse Apontador para o objeto Mouse a ser desenhado.
+ * @return Retorna 1 se ocorreu algum erro e 0 se correu tudo bem
+ */
 int drawMouse(Mouse* mouse);
 
+/**
+ * @brief Destrói um objeto Mouse.
+ * @param mouse Apontador para o objeto Mouse a ser destruído.
+ */
 void destroyMouse(Mouse* mouse);
 
+/**
+ * @brief Atualiza a posição do mouse.
+ * @param mouse Apontador para o objeto Mouse a ser atualizado.
+ * @param delta_x Mudança na coordenada x.
+ * @param delta_y Mudança na coordenada y.
+ * @return Retorna 1 se ocorreu algum erro e 0 se correu tudo bem
+ */
 int updateMousePosition(Mouse* mouse, int delta_x, int delta_y);
 
 #endif
