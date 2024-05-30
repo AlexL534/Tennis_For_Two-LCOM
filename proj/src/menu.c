@@ -141,11 +141,11 @@ int (draw_menu)(){
             if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
-            if(draw_field(550,300,menu->play_button)!=0){
+            if(draw_field(467,350,menu->play_button)!=0){
                 printf("draw start failed");
                 return EXIT_FAILURE;
             }
-            if(draw_field(550,400,menu->quit)!=0){
+            if(draw_field(492,475,menu->quit)!=0){
                 printf("draw quit failed");
                 return EXIT_FAILURE;
             }
@@ -155,10 +155,10 @@ int (draw_menu)(){
             if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
-            if(draw_field(550,300,menu->play_button_hover)!=0){
+            if(draw_field(461,345,menu->play_button_hover)!=0){
                 return EXIT_FAILURE;
             }
-            if(draw_field(550,400,menu->quit)!=0){
+            if(draw_field(492,475,menu->quit)!=0){
                 return EXIT_FAILURE;
             }
             break;
@@ -167,10 +167,10 @@ int (draw_menu)(){
             if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
-            if(draw_field(550,300,menu->play_button)!=0){
+            if(draw_field(467,350,menu->play_button)!=0){
                 return EXIT_FAILURE;
             }
-            if(draw_field(550,400,menu->quit_hover)!=0){
+            if(draw_field(487,471,menu->quit_hover)!=0){
                 return EXIT_FAILURE;
             }
             break;
