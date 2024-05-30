@@ -138,7 +138,7 @@ int (draw_menu)(){
     switch (menu->selected)
     {
         case 0:
-            if(draw_field(450,10,menu->title)!=0){
+            if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
             if(draw_field(550,300,menu->play_button)!=0){
@@ -152,10 +152,10 @@ int (draw_menu)(){
             break;
         case 1:
             clear_screen();
-            if(draw_field(450,10,menu->title)!=0){
+            if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
-            if(draw_field(550,300,menu->play_button_hover)!=0){
+            if(draw_field(260,300,menu->play_button_hover)!=0){
                 return EXIT_FAILURE;
             }
             if(draw_field(550,400,menu->quit)!=0){
