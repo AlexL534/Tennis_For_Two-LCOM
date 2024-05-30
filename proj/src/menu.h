@@ -34,6 +34,7 @@ int (timehandler)();
 Game_state (get_state)();
 int (menu_destroyer)();
 int (draw_field)(int x_offset, int y_offset, Sprite sprite);
+int clear_screen();
 int (draw_menu)();
 
 

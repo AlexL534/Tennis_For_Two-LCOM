@@ -91,6 +91,17 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
     return EXIT_SUCCESS;
 }
 
+int clear_screen() {
+    for (int y = 0; y < MAX_Y; y++) {
+        for (int x = 0; x < MAX_X; x++) {
+            if (vg_draw_color(x, y, 0x000000) != 0) {
+                return EXIT_FAILURE;
+            }
+        }
+    }
+    return EXIT_SUCCESS;
+}
+
 int (update_selected)(unsigned char code){
     if(code == ARROW_DOWN || code == ARROW_UP){
         if(menu->selected==2){
@@ -123,14 +134,13 @@ int (kbdhandler)(){
 }
 
 int (draw_menu)(){
-
-    if(draw_field(450,10,menu->title)!=0){
-        printf("draw title failed");
-    }
     
     switch (menu->selected)
     {
         case 0:
+            if(draw_field(450,10,menu->title)!=0){
+                printf("draw title failed");
+            }
             if(draw_field(550,300,menu->play_button)!=0){
                 printf("draw start failed");
                 return EXIT_FAILURE;
@@ -141,6 +151,10 @@ int (draw_menu)(){
             }
             break;
         case 1:
+            clear_screen();
+            if(draw_field(450,10,menu->title)!=0){
+                printf("draw title failed");
+            }
             if(draw_field(550,300,menu->play_button_hover)!=0){
                 return EXIT_FAILURE;
             }
@@ -149,6 +163,10 @@ int (draw_menu)(){
             }
             break;
         case 2:
+            clear_screen();
+            if(draw_field(450,10,menu->title)!=0){
+                printf("draw title failed");
+            }
             if(draw_field(550,300,menu->play_button)!=0){
                 return EXIT_FAILURE;
             }

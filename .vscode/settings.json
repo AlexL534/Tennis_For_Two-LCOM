@@ -28,6 +28,8 @@
         "game_score.h": "c",
         "cmath": "c",
         "complex": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "__tree": "c",
+        "map": "c"
     }
 }
