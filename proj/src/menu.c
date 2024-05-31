@@ -14,14 +14,14 @@ Menu* (initialize_menu)(){
     menu->selected=0;
 
     xpm_image_t img;
-    Sprite *sprite_tiltle = (Sprite*) malloc(sizeof(Sprite));
-    sprite_tiltle->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_tiltle ->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
-    sprite_tiltle ->height = img.height;
-    sprite_tiltle ->width = img.width;
-    menu->title = *sprite_tiltle;
+    Sprite *sprite_title = (Sprite*) malloc(sizeof(Sprite));
+    sprite_title->map = (uint32_t *) malloc(sizeof(char*));
+    sprite_title ->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
+    sprite_title ->height = img.height;
+    sprite_title ->width = img.width;
+    menu->title = *sprite_title;
 
-    free(sprite_tiltle);
+    free(sprite_title);
 
     if(menu->title.map==NULL){
         printf("title is null");
