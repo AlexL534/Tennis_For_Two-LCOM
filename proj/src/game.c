@@ -23,9 +23,6 @@ extern int counter;
 
 int (gameLoop)(){
   
-
-  
-  
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
@@ -330,10 +327,6 @@ int (timerHandler)(){
 
   updatePlayer2AI(player2,ball,counter,canHitAfterServe);
 
-  if(drawMouse(mouse) != 0){
-    return EXIT_FAILURE;
-  }
-  
   if(drawPlayer(player2) != 0){
     return EXIT_FAILURE;
   }
