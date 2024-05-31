@@ -2,7 +2,7 @@
 #include "color.h"
 #include <stdlib.h>
 
-Menu *menu;
+
 
 Menu* (initialize_menu)(){
     Menu *menu = (Menu*)malloc(sizeof(Menu));
@@ -10,7 +10,7 @@ Menu* (initialize_menu)(){
         printf("Menu is null");
         return NULL;
     }
-    menu->state=START_MENU;
+
     menu->selected=0;
 
     xpm_image_t img;
@@ -102,7 +102,7 @@ int clear_screen() {
     return EXIT_SUCCESS;
 }
 
-int (update_selected)(unsigned char code){
+int (update_selected)(unsigned char code,Game_state* state, Menu* menu){
     if(code == ARROW_DOWN || code == ARROW_UP){
         if(menu->selected==2){
             menu->selected--;
@@ -115,10 +115,10 @@ int (update_selected)(unsigned char code){
         switch (menu->selected)
         {
         case 1:
-            menu->state=GAME;
+            *state=GAME;
             break;
         case 2:
-            menu->state=QUIT;
+            *state=QUIT;
             break;
         default:
             break;
@@ -128,12 +128,12 @@ int (update_selected)(unsigned char code){
     return EXIT_SUCCESS;
 }
 
-int (kbdhandler)(){
-    update_selected(get_scancode());
+int (kbd_handler_menu)(Game_state* state, Menu* menu){
+    update_selected(get_scancode(),state,menu);
     return EXIT_SUCCESS;
 }
 
-int (draw_menu)(){
+int (draw_menu)(Menu* menu){
     
     switch (menu->selected)
     {
@@ -182,16 +182,14 @@ int (draw_menu)(){
     return EXIT_SUCCESS;
 }
 
-int (timehandler)(){
-    if(draw_menu()!=0){
+int (time_handler_menu)(Menu* menu){
+    if(draw_menu(menu)!=0){
+        printf("menu failed to draw");
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;   
 }
 
-Game_state (get_state)(){
-    return menu->state;
-}
 
 int (choose_number_sprite)(uint8_t num, Sprite* sprite){
     xpm_image_t img;
@@ -302,132 +300,9 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
     return EXIT_SUCCESS;
 }
 
-int (menu_destroyer)(){
-    free(menu->play_button.map);
-    free(menu->quit.map);
-    free(menu->play_button_hover.map);
-    free(menu->quit_hover.map);
-    free(menu->title.map);
-    free(menu);
-    menu=NULL;
-    return EXIT_SUCCESS;
-}
-
-int (menu_loop)(){
-    menu = initialize_menu();
-    
-    if(menu == NULL){
-        
-        return EXIT_FAILURE;
-    }
-
-    
-
-    int ipc_status;
-    message msg;
-    int r = 0;
-    uint8_t bit_no;
-
-    uint8_t day;
-    uint8_t month;
-    uint8_t year;
 
 
 
-    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("mouse write byte");
-    timer_set_frequency(0, 30);
-    printf("set timer freq");
-    if(kbd_subscribe_int(&bit_no) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("kbd subd");
-
-    uint8_t kbc_mask = BIT(bit_no);
-
-    if(timer_subscribe_int(&bit_no) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("timer subd");
-    uint8_t timer_mask = BIT(bit_no);
-
-    if(mouse_subscribe_int(&bit_no) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("mouse subd");
-    uint8_t mouse_mask = BIT(bit_no);
-
-    if(draw_menu()!=0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("menu drawn");
-    while (get_scancode() != KBD_ESC_BREAK && menu->state==START_MENU)
-    {   
-        get_date(&day,&month,&year);
-        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-        }
-        if(is_ipc_notify(ipc_status)){
-            switch(_ENDPOINT_P(msg.m_source)){
-                case HARDWARE:
-                    if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       kbdhandler();
-                    }
-                    if(msg.m_notify.interrupts & timer_mask){
-                        timer_int_handler();
-                        if(timehandler()!=0){
-                            menu_destroyer();
-                            printf("time handler failed");
-                            return EXIT_FAILURE;
-                        }
-                        draw_date(day,month,year);
-                        swap_buffer();
-                        
-                    }
-                    if(msg.m_notify.interrupts & mouse_mask){
-
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    if(kbd_unsubscribe_int() != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(timer_unsubscribe_int() != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(mouse_unsubscribe_int() != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    menu_destroyer();
-
-    return EXIT_SUCCESS;
-    
-}
  
 
 Mouse* createMouse() {

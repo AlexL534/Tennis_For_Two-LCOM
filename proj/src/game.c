@@ -2,7 +2,9 @@
 #include "background.h"
 
 
-//static Game_state game_state = GAME;
+
+static Game_state game_state = START_MENU;
+static Menu* menu;
 static Mouse *mouse;
 static Player *player1;
 static Player *player2;
@@ -17,7 +19,7 @@ extern int counter;
 
 int (gameLoop)(){
   
-  if(loadBackground() != 0){
+  /*if(loadBackground() != 0){
     destroyElements();
     return EXIT_FAILURE;
   }
@@ -25,40 +27,17 @@ int (gameLoop)(){
   if(loadInitialXPMScore() != 0){
     destroyElements();
     return EXIT_FAILURE;
-  }
+  }*/
   
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
   mouse = createMouse();
 
-  if(drawPlayer(player1) != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }
+  menu = initialize_menu();
 
-  if(drawPlayer(player2) != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }
-  
-  if(drawMouse(mouse) != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }
-
-  if(drawScore(1) != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }
-
-  if(drawScore(2) != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }
-
-  if(drawScoreText() != 0){
-    destroyElements();
+  if(menu == NULL){
+    printf("menu is null");
     return EXIT_FAILURE;
   }
 
@@ -66,6 +45,10 @@ int (gameLoop)(){
   message msg;
   int r = 0;
   uint8_t bit_no;
+
+  uint8_t day;
+  uint8_t month;
+  uint8_t year;
 
   //command to change the mouse sample rate
   if(mouse_write_byte(0XF3) != 0){
@@ -105,7 +88,10 @@ int (gameLoop)(){
   }
   uint8_t mouse_mask = BIT(bit_no);
 
-  while( (get_scancode() != KBD_ESC_BREAK) && (player1Score < 10) && (player2Score < 10)){
+  while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
+        if((game_state == GAME) && (player1Score < 10) && (player2Score < 10)){
+          game_state = START_MENU;
+        }
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
           continue;
@@ -116,15 +102,48 @@ int (gameLoop)(){
              case HARDWARE:
                 if(msg.m_notify.interrupts & timer_mask){
                     timer_int_handler();
-                    if(timerHandler() != 0){
-                      destroyElements();
-                      return EXIT_FAILURE;
+                    switch (game_state)
+                    {
+                    case START_MENU:
+                      
+                      if(time_handler_menu(menu) !=0){
+                        printf("menu timer hanlder failed");
+                        destroyElements();
+                        return EXIT_FAILURE;
+                      }
+                      
+                      get_date(&day,&month,&year);
+                      draw_date(day,month,year);
+                      
+                      break;
+                    case GAME:
+                      if(timerHandler() != 0){
+                        destroyElements();
+                        return EXIT_FAILURE;
+                      }
+                      break;
+                    default:
+                      printf("default");
+                      break;
                     }
+                    
                     swap_buffer();
+                    
                  }
                  if (msg.m_notify.interrupts & kbc_mask) { 
                        kbc_ih();
-                       keyboardHandler();
+                       switch (game_state)
+                       {
+                       case START_MENU:
+                        kbd_handler_menu(&game_state,menu);
+                        break;
+                       case GAME:
+                        keyboardHandler();
+                        break;
+                       default:
+                        break;
+                       }
+                       
                  }
                   if(msg.m_notify.interrupts & mouse_mask){
 
@@ -141,7 +160,7 @@ int (gameLoop)(){
                  } 		
                  
                  
-                 break;
+                break;
              default:
                  break; 
          }
@@ -183,6 +202,13 @@ void (destroyElements)(){
   freeXPMScore();
   free(background);
   free_second_buffer();
+  free(menu->play_button.map);
+  free(menu->quit.map);
+  free(menu->play_button_hover.map);
+  free(menu->quit_hover.map);
+  free(menu->title.map);
+  free(menu);
+  menu=NULL;
 }
 
 int (loadBackground)(){

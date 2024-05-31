@@ -16,7 +16,6 @@
 
 
 typedef struct{
-    Game_state state;
     Sprite title;
     Sprite play_button;
     Sprite quit;
@@ -27,15 +26,12 @@ typedef struct{
 }Menu;
 
 Menu* (initialize_menu)();
-int (menu_loop)();
-int (kbdhandler)();
-int (update_selected)(unsigned char code);
-int (timehandler)();
-Game_state (get_state)();
-int (menu_destroyer)();
+int (kbd_handler_menu)(Game_state* state, Menu* menu);
+int (update_selected)(unsigned char code, Game_state* state, Menu* menu);
+int (time_handler_menu)(Menu* menu);
 int (draw_field)(int x_offset, int y_offset, Sprite sprite);
 int clear_screen();
-int (draw_menu)();
+int (draw_menu)(Menu* menu);
 int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
 int (choose_number_sprite)(uint8_t num, Sprite* sprite);
 
