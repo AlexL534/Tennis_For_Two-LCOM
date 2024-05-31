@@ -14,21 +14,15 @@ int player2Score = 0;
 static bool canHitAfterServe = false;
 bool isStartMenu=true;
 
+
+bool initial_load=false;
+
 static uint32_t *background;
 
 extern int counter;
 
 int (gameLoop)(){
   
-  /*if(loadBackground() != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }
-
-  if(loadInitialXPMScore() != 0){
-    destroyElements();
-    return EXIT_FAILURE;
-  }*/
 
   
   
@@ -92,8 +86,29 @@ int (gameLoop)(){
   uint8_t mouse_mask = BIT(bit_no);
 
   while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
-        if((game_state == GAME) && (player1Score >= 10) && (player2Score >= 10)){
+        if((game_state == GAME) && ((player1Score >= 10) || (player2Score >= 10))){
+          if(clear_screen()!=0){
+            return EXIT_FAILURE;
+          }
           game_state = START_MENU;
+          player1Score=0;
+          player2Score=0;
+          menu=initialize_menu(true);
+        }
+        if(initial_load && (game_state == GAME)){
+          
+          printf("only 1 time");
+          if(loadBackground() != 0){
+            destroyElements();
+            printf("backgorund failed");
+            return EXIT_FAILURE;
+          }
+
+          if(loadInitialXPMScore() != 0){
+            printf("score faield");
+            destroyElements();
+            return EXIT_FAILURE;
+          }
         }
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
@@ -120,6 +135,7 @@ int (gameLoop)(){
                       
                       break;
                     case GAME:
+                      
                       if(timerHandler() != 0){
                         destroyElements();
                         return EXIT_FAILURE;
@@ -138,10 +154,17 @@ int (gameLoop)(){
                        switch (game_state)
                        {
                        case START_MENU:
+                        
                         kbd_handler_menu(&game_state,menu);
+                        if(game_state==GAME){
+                          initial_load=true;
+                        }
+                        
                         break;
                        case GAME:
+                        initial_load=false;
                         keyboardHandler();
+                        
                         break;
                        default:
                         break;
