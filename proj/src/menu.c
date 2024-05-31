@@ -173,7 +173,7 @@ int (update_selected)(unsigned char code,Game_state* state, Menu* menu){
           menu->selected++;  
         }
     }
-    if(code == A_KEY){
+    if(code == ENTER_KEY){
         switch (menu->selected)
         {
         case 1:
@@ -361,10 +361,309 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
     return EXIT_SUCCESS;
 }
 
+int (menu_destroyer)(){
+    free(menu->play_button.map);
+    free(menu->quit.map);
+    free(menu->play_button_hover.map);
+    free(menu->quit_hover.map);
+    free(menu->title.map);
+    free(menu);
+    menu=NULL;
+    return EXIT_SUCCESS;
+}
+
+int (menu_loop)(){
+    menu = initialize_menu(true);
+    
+    if(menu == NULL){
+        
+        return EXIT_FAILURE;
+    }
+
+    
+
+    int ipc_status;
+    message msg;
+    int r = 0;
+    uint8_t bit_no;
+
+    uint8_t day;
+    uint8_t month;
+    uint8_t year;
 
 
 
- 
+    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("mouse write byte");
+    timer_set_frequency(0, 30);
+    printf("set timer freq");
+    if(kbd_subscribe_int(&bit_no) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("kbd subd");
+
+    uint8_t kbc_mask = BIT(bit_no);
+
+    if(timer_subscribe_int(&bit_no) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("timer subd");
+    uint8_t timer_mask = BIT(bit_no);
+
+    if(mouse_subscribe_int(&bit_no) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("mouse subd");
+    uint8_t mouse_mask = BIT(bit_no);
+
+    if(draw_menu()!=0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("menu drawn");
+    while (get_scancode() != KBD_ESC_BREAK && menu->state==START_MENU)
+    {   
+        get_date(&day,&month,&year);
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+        }
+        if(is_ipc_notify(ipc_status)){
+            switch(_ENDPOINT_P(msg.m_source)){
+                case HARDWARE:
+                    if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       kbdhandler();
+                    }
+                    if(msg.m_notify.interrupts & timer_mask){
+                        timer_int_handler();
+                        if(timehandler()!=0){
+                            menu_destroyer();
+                            printf("time handler failed");
+                            return EXIT_FAILURE;
+                        }
+                        draw_date(day,month,year);
+                        swap_buffer();
+                        
+                    }
+                    if(msg.m_notify.interrupts & mouse_mask){
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    if(kbd_unsubscribe_int() != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(timer_unsubscribe_int() != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(mouse_unsubscribe_int() != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    menu_destroyer();
+
+    return EXIT_SUCCESS;
+    
+}
+
+int update_selected_pause(unsigned char code){
+    if (code == ARROW_DOWN) {
+        menu->selected = (menu->selected + 1) % 3;
+    } else if (code == ARROW_UP) {
+        menu->selected = (menu->selected + 2) % 3;
+    }
+
+    if (code == ENTER_KEY) {
+        switch (menu->selected) {
+            case 0:  // RESUME
+                menu->state = GAME;
+                break;
+            case 1:  // RESTART
+                menu->state = RESTART;
+                break;
+            case 2:  // QUIT
+                menu->state = QUIT;
+                break;
+            default:
+                break;
+        }
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int draw_pause() {
+    if (draw_field(0, 0, menu->pause_menu) != 0) {
+        printf("Draw menu failed\n");
+        return EXIT_FAILURE;
+    }
+
+    if (draw_field(454, 300, (menu->selected == 0) ? menu->resume_hover : menu->resume) != 0) {
+        printf("Draw resume failed\n");
+        return EXIT_FAILURE;
+    }
+
+    if (draw_field(454, 400, (menu->selected == 1) ? menu->restart_hover : menu->restart) != 0) {
+        printf("Draw restart failed\n");
+        return EXIT_FAILURE;
+    }
+
+    if (draw_field(454, 500, (menu->selected == 2) ? menu->quit_pause_hover : menu->quit_pause) != 0) {
+        printf("Draw quit failed\n");
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int pause_destroyer(){
+    free(menu->pause_menu.map);
+    free(menu->resume.map);
+    free(menu->resume_hover.map);
+    free(menu->restart.map);
+    free(menu->restart_hover.map);
+    free(menu->quit_pause.map);
+    free(menu->quit_pause_hover.map);
+    free(menu);
+    menu=NULL;
+    return EXIT_SUCCESS;
+}
+
+int pause_loop(){
+    menu = initialize_menu(false);
+    
+    if(menu == NULL){
+        printf("pause menu creation failed\n");
+        return EXIT_FAILURE;
+    }
+
+    printf("pause menu created\n");
+
+    int ipc_status;
+    message msg;
+    int r = 0;
+    uint8_t bit_no;
+
+    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("mouse write byte\n");
+    timer_set_frequency(0, 30);
+    printf("set timer freq\n");
+
+    if(kbd_subscribe_int(&bit_no) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("kbd subd\n");
+    uint8_t kbc_mask = BIT(bit_no);
+
+    if(timer_subscribe_int(&bit_no) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("timer subd\n");
+    uint8_t timer_mask = BIT(bit_no);
+
+    if(mouse_subscribe_int(&bit_no) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("mouse subd\n");
+    uint8_t mouse_mask = BIT(bit_no);
+
+    if(draw_pause()!=0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+    
+    printf("pause menu drawn\n");
+
+    while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU)
+    {
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+        }
+        if(is_ipc_notify(ipc_status)){
+            switch(_ENDPOINT_P(msg.m_source)){
+                case HARDWARE:
+                    if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       update_selected_pause(get_scancode());
+                    }
+                    if(msg.m_notify.interrupts & timer_mask){
+                        timer_int_handler();
+                        if(draw_pause()!=0){
+                            printf("draw pause menu failed\n");
+                            pause_destroyer();
+                            return EXIT_FAILURE;
+                        }
+                        swap_buffer();
+
+                    }
+                    if(msg.m_notify.interrupts & mouse_mask){
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    if(kbd_unsubscribe_int() != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(timer_unsubscribe_int() != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(mouse_unsubscribe_int() != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    pause_destroyer();
+
+    return EXIT_SUCCESS;
+    
+}
 
 Mouse* createMouse() {
     Mouse* mouse = (Mouse*)malloc(sizeof(Mouse));

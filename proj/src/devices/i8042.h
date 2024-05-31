@@ -78,6 +78,7 @@
 #define W_KEY 0X11
 #define S_KEY 0x1F
 #define D_KEY 0X20
+#define ENTER_KEY 0X1C
 
 #define DELAY_US    20000
 
