@@ -4,69 +4,131 @@
 
 
 
-Menu* (initialize_menu)(){
+Menu* (initialize_menu)(bool isStartMenu){
     Menu *menu = (Menu*)malloc(sizeof(Menu));
     if(menu == NULL){
         printf("Menu is null");
         return NULL;
     }
-
+    
     menu->selected=0;
 
     xpm_image_t img;
-    Sprite *sprite_tiltle = (Sprite*) malloc(sizeof(Sprite));
-    sprite_tiltle->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_tiltle ->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
-    sprite_tiltle ->height = img.height;
-    sprite_tiltle ->width = img.width;
-    menu->title = *sprite_tiltle;
 
-    free(sprite_tiltle);
+    if (isStartMenu) {
+        Sprite *sprite_title = (Sprite*) malloc(sizeof(Sprite));
+        sprite_title->map = (uint32_t *) malloc(sizeof(char*));
+        sprite_title->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
+        sprite_title->height = img.height;
+        sprite_title->width = img.width;
+        menu->title = *sprite_title;
 
-    if(menu->title.map==NULL){
-        printf("title is null");
-        return NULL;
-    }
+        free(sprite_title);
 
-    Sprite *sprite_start_button = (Sprite*) malloc(sizeof(Sprite));
-    sprite_start_button->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_start_button->map = (uint32_t *) xpm_load((xpm_map_t) start_xpm, XPM_8_8_8_8, &img);
-    sprite_start_button->height = img.height;
-    sprite_start_button->width = img.width;
-    menu->play_button = *sprite_start_button;
+        if(menu->title.map==NULL){
+            printf("title is null");
+            return NULL;
+        }
 
-    free(sprite_start_button);
+        Sprite *sprite_start_button = (Sprite*) malloc(sizeof(Sprite));
+        sprite_start_button->map = (uint32_t *) malloc(sizeof(char*));
+        sprite_start_button->map = (uint32_t *) xpm_load((xpm_map_t) start_xpm, XPM_8_8_8_8, &img);
+        sprite_start_button->height = img.height;
+        sprite_start_button->width = img.width;
+        menu->play_button = *sprite_start_button;
 
-    Sprite *sprite_quit_button = (Sprite*) malloc(sizeof(Sprite));
-    sprite_quit_button->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_quit_button->map = (uint32_t *) xpm_load((xpm_map_t) quit_xpm, XPM_8_8_8_8, &img);
-    sprite_quit_button->height = img.height;
-    sprite_quit_button->width = img.width;
-    menu->quit = *sprite_quit_button;
+        free(sprite_start_button);
 
-    free(sprite_quit_button);
+        Sprite *sprite_quit_button = (Sprite*) malloc(sizeof(Sprite));
+        sprite_quit_button->map = (uint32_t *) malloc(sizeof(char*));
+        sprite_quit_button->map = (uint32_t *) xpm_load((xpm_map_t) quit_xpm, XPM_8_8_8_8, &img);
+        sprite_quit_button->height = img.height;
+        sprite_quit_button->width = img.width;
+        menu->quit = *sprite_quit_button;
 
-    Sprite *sprite_start_button_hover = (Sprite*) malloc(sizeof(Sprite));
-    sprite_start_button_hover->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_start_button_hover->map = (uint32_t *) xpm_load((xpm_map_t) start_hover_xpm, XPM_8_8_8_8, &img);
-    sprite_start_button_hover->height = img.height;
-    sprite_start_button_hover->width = img.width;
-    menu->play_button_hover = *sprite_start_button_hover;
+        free(sprite_quit_button);
+
+        Sprite *sprite_start_button_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_start_button_hover->map = (uint32_t *) malloc(sizeof(char*));
+        sprite_start_button_hover->map = (uint32_t *) xpm_load((xpm_map_t) start_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_start_button_hover->height = img.height;
+        sprite_start_button_hover->width = img.width;
+        menu->play_button_hover = *sprite_start_button_hover;
     
-    free(sprite_start_button_hover);
+        free(sprite_start_button_hover);
 
-    Sprite *sprite_quit_button_hover = (Sprite*) malloc(sizeof(Sprite));
-    sprite_quit_button_hover->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_quit_button_hover->map = (uint32_t *) xpm_load((xpm_map_t) quit_hover_xpm, XPM_8_8_8_8, &img);
-    sprite_quit_button_hover->height = img.height;
-    sprite_quit_button_hover->width = img.width;
-    menu->quit_hover = *sprite_quit_button_hover;
+        Sprite *sprite_quit_button_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_quit_button_hover->map = (uint32_t *) malloc(sizeof(char*));
+        sprite_quit_button_hover->map = (uint32_t *) xpm_load((xpm_map_t) quit_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_quit_button_hover->height = img.height;
+        sprite_quit_button_hover->width = img.width;
+        menu->quit_hover = *sprite_quit_button_hover;
 
-    free(sprite_quit_button_hover);
+        free(sprite_quit_button_hover);
+    }
+    else {
+        Sprite *pause_menu = (Sprite*) malloc(sizeof(Sprite));
+        pause_menu->map = (uint32_t *) xpm_load((xpm_map_t) pause_menu_xpm, XPM_8_8_8_8, &img);
+        pause_menu->height = img.height;
+        pause_menu->width = img.width;
+        menu->pause_menu = *pause_menu;
 
+        free(pause_menu);
+
+        if(menu->pause_menu.map==NULL){
+            printf("pause menu is null\n");
+            return NULL;
+        }
+
+        Sprite *sprite_resume = (Sprite*) malloc(sizeof(Sprite));
+        sprite_resume->map = (uint32_t *) xpm_load((xpm_map_t) resume_xpm, XPM_8_8_8_8, &img);
+        sprite_resume->height = img.height;
+        sprite_resume->width = img.width;
+        menu->resume = *sprite_resume;
+
+        free(sprite_resume);
+
+        Sprite *sprite_restart = (Sprite*) malloc(sizeof(Sprite));
+        sprite_restart->map = (uint32_t *) xpm_load((xpm_map_t) restart_xpm, XPM_8_8_8_8, &img);
+        sprite_restart->height = img.height;
+        sprite_restart->width = img.width;
+        menu->restart = *sprite_restart;
+
+        free(sprite_restart);
+
+        Sprite *sprite_quit_pause = (Sprite*) malloc(sizeof(Sprite));
+        sprite_quit_pause->map = (uint32_t *) xpm_load((xpm_map_t) quit_pause_xpm, XPM_8_8_8_8, &img);
+        sprite_quit_pause->height = img.height;
+        sprite_quit_pause->width = img.width;
+        menu->quit_pause = *sprite_quit_pause;
+
+        free(sprite_quit_pause);
+
+        Sprite *sprite_resume_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_resume_hover->map = (uint32_t *) xpm_load((xpm_map_t) resume_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_resume_hover->height = img.height;
+        sprite_resume_hover->width = img.width;
+        menu->resume_hover = *sprite_resume_hover;
+        
+        free(sprite_resume_hover);
+
+        Sprite *sprite_restart_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_restart_hover->map = (uint32_t *) xpm_load((xpm_map_t) restart_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_restart_hover->height = img.height;
+        sprite_restart_hover->width = img.width;
+        menu->restart_hover = *sprite_restart_hover;
+
+        free(sprite_restart_hover);
+
+        Sprite *sprite_quit_pause_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_quit_pause_hover->map = (uint32_t *) xpm_load((xpm_map_t) quit_pause_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_quit_pause_hover->height = img.height;
+        sprite_quit_pause_hover->width = img.width;
+        menu->quit_pause_hover = *sprite_quit_pause_hover;
+
+        free(sprite_quit_pause_hover);
+    }
     return menu;
-
-
 }
 
 int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
@@ -175,7 +237,6 @@ int (draw_menu)(Menu* menu){
             }
             break;
         default:
-        
             break;
     }
 

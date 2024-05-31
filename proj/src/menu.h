@@ -21,11 +21,19 @@ typedef struct{
     Sprite quit;
     Sprite play_button_hover;
     Sprite quit_hover;
+    Sprite pause_menu;
+    Sprite resume;
+    Sprite restart;
+    Sprite quit_pause;
+    Sprite resume_hover;
+    Sprite restart_hover;
+    Sprite quit_pause_hover;
     uint8_t selected;
+} Menu;
 
-}Menu;
 
-Menu* (initialize_menu)();
+
+Menu* (initialize_menu)(bool isStartMenu);
 int (kbd_handler_menu)(Game_state* state, Menu* menu);
 int (update_selected)(unsigned char code, Game_state* state, Menu* menu);
 int (time_handler_menu)(Menu* menu);
@@ -35,6 +43,10 @@ int (draw_menu)(Menu* menu);
 int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
 int (choose_number_sprite)(uint8_t num, Sprite* sprite);
 
+int pause_loop();
+int update_selected_pause(unsigned char code);
+int pause_destroyer();
+int draw_pause();
 
 
 /**

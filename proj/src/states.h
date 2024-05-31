@@ -6,6 +6,7 @@ typedef enum{
   GAME,
   START_MENU,
   PAUSE_MENU,
+  RESTART,
   QUIT
 } Game_state;
 

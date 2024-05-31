@@ -42,7 +42,6 @@ int (proj_main_loop)(int argc, char **argv) {
   }
 
   /*if(menu_loop()!=0){
-    
     return EXIT_FAILURE;
   }*/
 

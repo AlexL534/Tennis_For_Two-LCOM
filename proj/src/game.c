@@ -12,6 +12,7 @@ static Ball *ball;
 int player1Score = 0;
 int player2Score = 0;
 static bool canHitAfterServe = false;
+bool isStartMenu=true;
 
 static uint32_t *background;
 
@@ -28,13 +29,15 @@ int (gameLoop)(){
     destroyElements();
     return EXIT_FAILURE;
   }*/
+
+  
   
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
   mouse = createMouse();
 
-  menu = initialize_menu();
+  menu = initialize_menu(isStartMenu);
 
   if(menu == NULL){
     printf("menu is null");
@@ -89,7 +92,7 @@ int (gameLoop)(){
   uint8_t mouse_mask = BIT(bit_no);
 
   while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
-        if((game_state == GAME) && (player1Score < 10) && (player2Score < 10)){
+        if((game_state == GAME) && (player1Score >= 10) && (player2Score >= 10)){
           game_state = START_MENU;
         }
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
