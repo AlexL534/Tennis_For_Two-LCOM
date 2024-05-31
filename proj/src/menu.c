@@ -143,12 +143,37 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
     return EXIT_SUCCESS;
 }
 
-int clear_screen() {
+int (clear_screen)() {
     for (int y = 0; y < MAX_Y; y++) {
         for (int x = 0; x < MAX_X; x++) {
             if (vg_draw_color(x, y, 0x000000) != 0) {
                 return EXIT_FAILURE;
             }
+        }
+    }
+    return EXIT_SUCCESS;
+}
+
+int (clear_mouse)(Mouse* mouse){
+    if (mouse == NULL || mouse->sprite == NULL) {
+        return EXIT_FAILURE;
+    }
+
+    int width = mouse->sprite->width;
+    int height = mouse->sprite->height;
+    uint32_t *map = mouse->sprite->map;
+
+    for (int j = 0; j < height; j++) {
+        for (int i = 0; i < width; i++) {
+            uint16_t x = mouse->x + i;
+            uint16_t y = mouse->y + j;
+
+            if (x < MAX_X && y < MAX_Y && *map != TRANSPARENCY_COLOR) {
+                if (vg_draw_color(x, y, 0x000000) != 0) {
+                    return EXIT_FAILURE;
+                }
+            }
+            map++;
         }
     }
     return EXIT_SUCCESS;
@@ -234,6 +259,7 @@ int (draw_menu)(Menu* menu){
 }
 
 int (time_handler_menu)(Menu* menu, Mouse* mouse){
+    
     if(draw_menu(menu)!=0){
         printf("menu failed to draw");
         return EXIT_FAILURE;
@@ -326,8 +352,7 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
     }
 
     x -= sprite->width;
-    choose_number_sprite(10,sprite);
-    draw_field(x,y,*sprite);
+    
     while(month){
         choose_number_sprite(month%10,sprite);
         if(draw_field(x,y,*sprite)!=0){
@@ -338,8 +363,6 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
     }
 
     x -= sprite->width;
-    choose_number_sprite(10,sprite);
-    draw_field(x,y,*sprite);
     
     while(day){
         choose_number_sprite(day%10,sprite);
