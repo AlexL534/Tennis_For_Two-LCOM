@@ -184,7 +184,6 @@ int (draw_menu)(){
 
 int (timehandler)(){
     if(draw_menu()!=0){
-        printf("draw menu failed");
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;   
@@ -192,6 +191,115 @@ int (timehandler)(){
 
 Game_state (get_state)(){
     return menu->state;
+}
+
+int (choose_number_sprite)(uint8_t num, Sprite* sprite){
+    xpm_image_t img;
+    
+
+    switch (num)
+    {
+    case 0:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r0_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;
+    case 1:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r1_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;
+    case 2:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r2_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;
+    case 3:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r3_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;  
+    case 4:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r4_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;
+    case 5:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r5_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;  
+    case 6:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r6_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;
+    case 7:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r7_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break; 
+    case 8:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r8_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break; 
+    case 9:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) r9_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;  
+    default:
+        sprite->map=(uint32_t *) xpm_load((xpm_map_t) small_ball_xpm, XPM_8_8_8_8, &img);
+        sprite->height=img.height;
+        sprite->width=img.width;
+        break;
+    }
+    return EXIT_SUCCESS;
+}
+
+int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
+    Sprite *sprite = (Sprite*) malloc(sizeof(Sprite));
+    sprite->map=(uint32_t *) malloc(sizeof(char*));
+    int x=730;
+    int y=800;
+    while(year){
+        choose_number_sprite(year%10,sprite);
+        if(draw_field(x,y,*sprite)!=0){
+            return EXIT_FAILURE;
+        }
+        year /=10;
+        x -= 50;
+    }
+
+    x -= sprite->width;
+    choose_number_sprite(10,sprite);
+    draw_field(x,y,*sprite);
+    while(month){
+        choose_number_sprite(month%10,sprite);
+        if(draw_field(x,y,*sprite)!=0){
+            return EXIT_FAILURE;
+        }
+        month /=10;
+        x -= 50;
+    }
+
+    x -= sprite->width;
+    choose_number_sprite(10,sprite);
+    draw_field(x,y,*sprite);
+    
+    while(day){
+        choose_number_sprite(day%10,sprite);
+        if(draw_field(x,y,*sprite)!=0){
+            return EXIT_FAILURE;
+        }
+        day /=10;
+        x -= 50;
+    }
+
+    free(sprite);
+
+    return EXIT_SUCCESS;
 }
 
 int (menu_destroyer)(){
@@ -209,16 +317,20 @@ int (menu_loop)(){
     menu = initialize_menu();
     
     if(menu == NULL){
-        printf("menu creation failed");
+        
         return EXIT_FAILURE;
     }
 
-    printf("menu created");
+    
 
     int ipc_status;
     message msg;
     int r = 0;
     uint8_t bit_no;
+
+    uint8_t day;
+    uint8_t month;
+    uint8_t year;
 
 
 
@@ -257,7 +369,8 @@ int (menu_loop)(){
     }
     printf("menu drawn");
     while (get_scancode() != KBD_ESC_BREAK && menu->state==START_MENU)
-    {
+    {   
+        get_date(&day,&month,&year);
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
           continue;
@@ -276,6 +389,7 @@ int (menu_loop)(){
                             printf("time handler failed");
                             return EXIT_FAILURE;
                         }
+                        draw_date(day,month,year);
                         swap_buffer();
                         
                     }
