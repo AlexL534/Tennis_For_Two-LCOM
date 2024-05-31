@@ -1,8 +1,6 @@
 #include "game.h"
 #include "background.h"
 
-
-
 static Game_state game_state = START_MENU;
 static Menu* menu;
 static Mouse *mouse;
@@ -13,8 +11,6 @@ int player1Score = 0;
 int player2Score = 0;
 static bool canHitAfterServe = false;
 bool isStartMenu=true;
-
-
 bool initial_load=false;
 
 static uint32_t *background;
@@ -83,113 +79,104 @@ int (gameLoop)(){
   uint8_t mouse_mask = BIT(bit_no);
 
   while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
-        if((game_state == GAME) && ((player1Score >= 10) || (player2Score >= 10))){
-          if(clear_screen()!=0){
-            return EXIT_FAILURE;
-          }
-          game_state = START_MENU;
-          player1Score=0;
-          player2Score=0;
-          menu=initialize_menu(true);
-        }
-        if(initial_load && (game_state == GAME)){
-          
-          
-          if(loadBackground() != 0){
-            destroyElements();
-            printf("backgorund failed");
-            return EXIT_FAILURE;
-          }
+    if((game_state == GAME) && ((player1Score >= 10) || (player2Score >= 10))){
+      if(clear_screen()!=0){
+        return EXIT_FAILURE;
+      }
+      game_state = START_MENU;
+      player1Score=0;
+      player2Score=0;
+      menu=initialize_menu(true);
+    }
+    if(initial_load && (game_state == GAME)){
 
-          if(loadInitialXPMScore() != 0){
-            printf("score faield");
-            destroyElements();
-            return EXIT_FAILURE;
-          }
-        }
-        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-        }
+      if(loadBackground() != 0){
+        destroyElements();
+        printf("backgorund failed");
+        return EXIT_FAILURE;
+      }
 
-         if (is_ipc_notify(ipc_status)) { 
-         switch (_ENDPOINT_P(msg.m_source)) {
-             case HARDWARE:
-                if(msg.m_notify.interrupts & timer_mask){
-                    timer_int_handler();
-                    switch (game_state)
-                    {
-                    case START_MENU:
-                      
-                      if(time_handler_menu(menu) !=0){
-                        printf("menu timer hanlder failed");
-                        destroyElements();
-                        return EXIT_FAILURE;
-                      }
-                      
-                      get_date(&day,&month,&year);
-                      draw_date(day,month,year);
-                      
-                      break;
-                    case GAME:
-                      
-                      if(timerHandler() != 0){
-                        destroyElements();
-                        return EXIT_FAILURE;
-                      }
-                      break;
-                    default:
-                      printf("default");
-                      break;
-                    }
-                    
-                    swap_buffer();
-                    
-                 }
-                 if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       switch (game_state)
-                       {
-                       case START_MENU:
-                        
-                        kbd_handler_menu(&game_state,menu);
-                        if(game_state==GAME){
-                          initial_load=true;
-                        }
-                        
-                        break;
-                       case GAME:
-                        initial_load=false;
-                        keyboardHandler();
-                        
-                        break;
-                       default:
-                        break;
-                       }
-                       
-                 }
-                  if(msg.m_notify.interrupts & mouse_mask){
+      if(loadInitialXPMScore() != 0){
+        printf("score faield");
+        destroyElements();
+        return EXIT_FAILURE;
+      }
+    }
+    if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
 
-                    mouse_ih();
-                    mouse_insert_byte();
-                    if(get__mouse_byte_index() == 3){
-                        mouse_insert_in_packet();
-                        if(mouseHandler(true) != 0){
-                          destroyElements();
-                          return EXIT_FAILURE;
-                        }
-                      reset_byte_index();
-                    }
-                 } 		
-                 
-                 
+    if (is_ipc_notify(ipc_status)) { 
+      switch (_ENDPOINT_P(msg.m_source)) {
+        case HARDWARE:
+          if(msg.m_notify.interrupts & timer_mask){
+            timer_int_handler();
+            switch (game_state) {
+
+              case START_MENU:
+                if(time_handler_menu(menu) !=0){
+                  printf("menu timer hanlder failed");
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
+                get_date(&day,&month,&year);
+                draw_date(day,month,year);
                 break;
-             default:
-                 break; 
-         }
-     } else { 
-     }
-}
+
+              case GAME: 
+                if(timerHandler() != 0){
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
+                break;
+
+              default:
+                printf("default");
+                break;
+            }
+
+            swap_buffer();
+          }
+          if (msg.m_notify.interrupts & kbc_mask) { 
+            kbc_ih();
+            switch (game_state) {
+
+              case START_MENU:
+                kbd_handler_menu(&game_state,menu);
+                if(game_state==GAME){
+                  initial_load=true;
+                }
+                break;
+
+              case GAME:
+                initial_load=false;
+                keyboardHandler();
+                break;
+
+              default:
+                break;
+            }       
+          }
+          if(msg.m_notify.interrupts & mouse_mask){
+            mouse_ih();
+            mouse_insert_byte();
+            if(get__mouse_byte_index() == 3){
+                mouse_insert_in_packet();
+                if(mouseHandler(true) != 0){
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
+              reset_byte_index();
+            }
+          } 		 
+          break;
+
+        default:
+          break; 
+      }
+    }
+  }
 
   if(kbd_unsubscribe_int() != 0){
     destroyElements();
@@ -271,34 +258,34 @@ int (timerHandler)(){
   if(player2->state != START){
     //disable the collision when the player 2 is starting because the ball starts out of the field
     if(checkCollisionLine(ball, background)){
-        if(ball->y < 350){
-          //player 1 scored
-          resetBall(ball, PLAYER1);
-          resetPlayer(player1, true);
-          resetPlayer(player2, false);
-          player1Score = player1Score + 1;
+      if(ball->y < 350){
+        //player 1 scored
+        resetBall(ball, PLAYER1);
+        resetPlayer(player1, true);
+        resetPlayer(player2, false);
+        player1Score = player1Score + 1;
 
-          if(updateXPMScore(1,player1Score) != 0){
-            return EXIT_FAILURE;
-          }
-
-          canHitAfterServe = false;
+        if(updateXPMScore(1,player1Score) != 0){
+          return EXIT_FAILURE;
         }
-        else{
-          //player 2 scored
-          resetBall(ball, PLAYER2);
-          resetPlayer(player1, false);
-          resetPlayer(player2, true);
-          player2Score = player2Score + 1;
 
-          if(updateXPMScore(2,player2Score) != 0){
-            return EXIT_FAILURE;
-          }
-          
-          canHitAfterServe = false;
+        canHitAfterServe = false;
+      }
+      else{
+        //player 2 scored
+        resetBall(ball, PLAYER2);
+        resetPlayer(player1, false);
+        resetPlayer(player2, true);
+        player2Score = player2Score + 1;
+
+        if(updateXPMScore(2,player2Score) != 0){
+          return EXIT_FAILURE;
         }
-        counter = 0;
-      return EXIT_SUCCESS;
+        
+        canHitAfterServe = false;
+      }
+      counter = 0;
+    return EXIT_SUCCESS;
     }
   }
 
