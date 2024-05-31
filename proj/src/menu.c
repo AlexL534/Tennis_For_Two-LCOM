@@ -17,7 +17,6 @@ Menu* (initialize_menu)(bool isStartMenu){
 
     if (isStartMenu) {
         Sprite *sprite_title = (Sprite*) malloc(sizeof(Sprite));
-        sprite_title->map = (uint32_t *) malloc(sizeof(char*));
         sprite_title->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
         sprite_title->height = img.height;
         sprite_title->width = img.width;
@@ -31,7 +30,6 @@ Menu* (initialize_menu)(bool isStartMenu){
         }
 
         Sprite *sprite_start_button = (Sprite*) malloc(sizeof(Sprite));
-        sprite_start_button->map = (uint32_t *) malloc(sizeof(char*));
         sprite_start_button->map = (uint32_t *) xpm_load((xpm_map_t) start_xpm, XPM_8_8_8_8, &img);
         sprite_start_button->height = img.height;
         sprite_start_button->width = img.width;
@@ -40,7 +38,6 @@ Menu* (initialize_menu)(bool isStartMenu){
         free(sprite_start_button);
 
         Sprite *sprite_quit_button = (Sprite*) malloc(sizeof(Sprite));
-        sprite_quit_button->map = (uint32_t *) malloc(sizeof(char*));
         sprite_quit_button->map = (uint32_t *) xpm_load((xpm_map_t) quit_xpm, XPM_8_8_8_8, &img);
         sprite_quit_button->height = img.height;
         sprite_quit_button->width = img.width;
@@ -49,16 +46,14 @@ Menu* (initialize_menu)(bool isStartMenu){
         free(sprite_quit_button);
 
         Sprite *sprite_start_button_hover = (Sprite*) malloc(sizeof(Sprite));
-        sprite_start_button_hover->map = (uint32_t *) malloc(sizeof(char*));
         sprite_start_button_hover->map = (uint32_t *) xpm_load((xpm_map_t) start_hover_xpm, XPM_8_8_8_8, &img);
         sprite_start_button_hover->height = img.height;
         sprite_start_button_hover->width = img.width;
         menu->play_button_hover = *sprite_start_button_hover;
-    
+        
         free(sprite_start_button_hover);
 
         Sprite *sprite_quit_button_hover = (Sprite*) malloc(sizeof(Sprite));
-        sprite_quit_button_hover->map = (uint32_t *) malloc(sizeof(char*));
         sprite_quit_button_hover->map = (uint32_t *) xpm_load((xpm_map_t) quit_hover_xpm, XPM_8_8_8_8, &img);
         sprite_quit_button_hover->height = img.height;
         sprite_quit_button_hover->width = img.width;
@@ -145,11 +140,8 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
                 }
             }
             map++;
-            
-        }
-        
+        }    
     }
-
     return EXIT_SUCCESS;
 }
 
@@ -368,19 +360,34 @@ int (menu_destroyer)(){
     free(menu->quit_hover.map);
     free(menu->title.map);
     free(menu);
+    destroyMouse(mouse);
     menu=NULL;
     return EXIT_SUCCESS;
 }
 
-int (menu_loop)(){
+int (menuLoop)(){
     menu = initialize_menu(true);
+    mouse = createMouse();
     
     if(menu == NULL){
-        
         return EXIT_FAILURE;
     }
 
-    
+    if (mouse == NULL) {
+        printf("mouse could not be created\n");
+        return EXIT_FAILURE;
+    }
+
+    if(draw_menu()!=0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("menu drawn");
+
+    if(drawMouse(mouse) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
 
     int ipc_status;
     message msg;
@@ -391,15 +398,28 @@ int (menu_loop)(){
     uint8_t month;
     uint8_t year;
 
+    //command to change the mouse sample rate
+    if(mouse_write_byte(0XF3) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
 
+    //changes the mouse sample rate to 40
+    if(mouse_write_byte(0X28) != 0){
+        menu_destroyer();
+        return EXIT_FAILURE;
+    }
 
+    //enables the data report for the mouse
     if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
         menu_destroyer();
         return EXIT_FAILURE;
     }
     printf("mouse write byte");
+
     timer_set_frequency(0, 30);
     printf("set timer freq");
+
     if(kbd_subscribe_int(&bit_no) != 0){
         menu_destroyer();
         return EXIT_FAILURE;
@@ -413,6 +433,7 @@ int (menu_loop)(){
         return EXIT_FAILURE;
     }
     printf("timer subd");
+
     uint8_t timer_mask = BIT(bit_no);
 
     if(mouse_subscribe_int(&bit_no) != 0){
@@ -420,15 +441,10 @@ int (menu_loop)(){
         return EXIT_FAILURE;
     }
     printf("mouse subd");
-    uint8_t mouse_mask = BIT(bit_no);
 
-    if(draw_menu()!=0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("menu drawn");
-    while (get_scancode() != KBD_ESC_BREAK && menu->state==START_MENU)
-    {   
+    uint8_t mouse_mask = BIT(bit_no);
+    
+    while (get_scancode() != KBD_ESC_BREAK && menu->state==START_MENU) {   
         get_date(&day,&month,&year);
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
@@ -437,10 +453,6 @@ int (menu_loop)(){
         if(is_ipc_notify(ipc_status)){
             switch(_ENDPOINT_P(msg.m_source)){
                 case HARDWARE:
-                    if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       kbdhandler();
-                    }
                     if(msg.m_notify.interrupts & timer_mask){
                         timer_int_handler();
                         if(timehandler()!=0){
@@ -450,10 +462,23 @@ int (menu_loop)(){
                         }
                         draw_date(day,month,year);
                         swap_buffer();
-                        
+                    }
+                    if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       kbdhandler();
                     }
                     if(msg.m_notify.interrupts & mouse_mask){
-
+                        mouse_ih();
+                        mouse_insert_byte();
+                        if(get__mouse_byte_index() == 3){
+                            mouse_insert_in_packet();
+                            if(mouseHandler(false) != 0){
+                                menu_destroyer();
+                                return EXIT_FAILURE;
+                            }
+                        reset_byte_index();
+                        }
+                        update_selected_mouse(false);
                     }
                     break;
                 default:
@@ -547,31 +572,62 @@ int pause_destroyer(){
     free(menu->quit_pause.map);
     free(menu->quit_pause_hover.map);
     free(menu);
+    destroyMouse(mouse);
     menu=NULL;
     return EXIT_SUCCESS;
 }
 
-int pause_loop(){
+int pauseLoop(){
     menu = initialize_menu(false);
+    mouse = createMouse();
     
     if(menu == NULL){
         printf("pause menu creation failed\n");
         return EXIT_FAILURE;
     }
 
+    if (mouse == NULL) {
+        printf("mouse could not be created\n");
+        return EXIT_FAILURE;
+    }
+
     printf("pause menu created\n");
+
+    if(draw_pause()!=0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+    printf("pause menu drawn\n");
+
+    if(drawMouse(mouse) != 0) {
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
 
     int ipc_status;
     message msg;
     int r = 0;
     uint8_t bit_no;
 
-    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+    //command to change the mouse sample rate
+    if(mouse_write_byte(0XF3) != 0){
         pause_destroyer();
         return EXIT_FAILURE;
     }
 
+    //changes the mouse sample rate to 40
+    if(mouse_write_byte(0X28) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    //enables the data report for the mouse
+    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
     printf("mouse write byte\n");
+
     timer_set_frequency(0, 30);
     printf("set timer freq\n");
 
@@ -579,8 +635,8 @@ int pause_loop(){
         pause_destroyer();
         return EXIT_FAILURE;
     }
-
     printf("kbd subd\n");
+
     uint8_t kbc_mask = BIT(bit_no);
 
     if(timer_subscribe_int(&bit_no) != 0){
@@ -599,15 +655,8 @@ int pause_loop(){
     printf("mouse subd\n");
     uint8_t mouse_mask = BIT(bit_no);
 
-    if(draw_pause()!=0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-    
-    printf("pause menu drawn\n");
 
-    while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU)
-    {
+    while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU) {
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
           continue;
@@ -615,10 +664,6 @@ int pause_loop(){
         if(is_ipc_notify(ipc_status)){
             switch(_ENDPOINT_P(msg.m_source)){
                 case HARDWARE:
-                    if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       update_selected_pause(get_scancode());
-                    }
                     if(msg.m_notify.interrupts & timer_mask){
                         timer_int_handler();
                         if(draw_pause()!=0){
@@ -627,10 +672,23 @@ int pause_loop(){
                             return EXIT_FAILURE;
                         }
                         swap_buffer();
-
+                    }
+                    if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       update_selected_pause(get_scancode());
                     }
                     if(msg.m_notify.interrupts & mouse_mask){
-
+                        mouse_ih();
+                        mouse_insert_byte();
+                        if(get__mouse_byte_index() == 3){
+                            mouse_insert_in_packet();
+                            if(mouseHandler(false) != 0){
+                                menu_destroyer();
+                                return EXIT_FAILURE;
+                            }
+                        reset_byte_index();
+                        }
+                        update_selected_mouse(false);
                     }
                     break;
                 default:
@@ -753,4 +811,27 @@ int updateMousePosition(Mouse* mouse, int dx, int dy) {
     }
 
     return EXIT_SUCCESS;
+}
+
+void update_selected_mouse(bool isStartMenu) {
+    // Check if mouse is hovering over menu buttons and update selected option accordingly
+    if (isStartMenu) {
+        if (mouse->x >= 467 && mouse->x <= 717) {
+            if (mouse->y >= 350 && mouse->y <= 400) {
+                menu->selected = 0; // Hovering over Start button
+            } else if (mouse->y >= 475 && mouse->y <= 525) {
+                menu->selected = 1; // Hovering over Quit button
+            }
+        }
+    } else {
+        if (mouse->x >= 454 && mouse->x <= 690) {
+            if (mouse->y >= 300 && mouse->y <= 360) {
+                menu->selected = 0; // Hovering over Resume button
+            } else if (mouse->y >= 400 && mouse->y <= 460) {
+                menu->selected = 1; // Hovering over Restart button
+            } else if (mouse->y >= 500 && mouse->y <= 560) {
+                menu->selected = 2; // Hovering over Quit button
+            }
+        }
+    }
 }

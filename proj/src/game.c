@@ -35,7 +35,6 @@ int (gameLoop)(){
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
-  mouse = createMouse();
 
   menu = initialize_menu(isStartMenu);
 
@@ -92,84 +91,77 @@ int (gameLoop)(){
   uint8_t mouse_mask = BIT(bit_no);
 
   while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
-        if((game_state == GAME) && (player1Score >= 10) && (player2Score >= 10)){
-          game_state = START_MENU;
-        }
-        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-        }
+    if((game_state == GAME) && (player1Score >= 10) && (player2Score >= 10)){
+      game_state = START_MENU;
+    }
 
-         if (is_ipc_notify(ipc_status)) { 
-         switch (_ENDPOINT_P(msg.m_source)) {
-             case HARDWARE:
-                if(msg.m_notify.interrupts & timer_mask){
-                    timer_int_handler();
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status)) { 
+      switch (_ENDPOINT_P(msg.m_source)) {
+        case HARDWARE:
+          if(msg.m_notify.interrupts & timer_mask){
+            timer_int_handler();
+            switch (game_state)
+            {
+            case START_MENU:
+              if(time_handler_menu(menu) !=0){
+                printf("menu timer hanlder failed");
+                destroyElements();
+                return EXIT_FAILURE;
+              }
+              get_date(&day,&month,&year);
+              draw_date(day,month,year);
+              
+              break;
+            case GAME:
+              if(timerHandler() != 0){
+                destroyElements();
+                return EXIT_FAILURE;
+              }
+              break;
+            default:
+              printf("default");
+              break;
+            }
+            swap_buffer();
+              }
+              if (msg.m_notify.interrupts & kbc_mask) { 
+                    kbc_ih();
                     switch (game_state)
                     {
                     case START_MENU:
-                      
-                      if(time_handler_menu(menu) !=0){
-                        printf("menu timer hanlder failed");
-                        destroyElements();
-                        return EXIT_FAILURE;
-                      }
-                      
-                      get_date(&day,&month,&year);
-                      draw_date(day,month,year);
-                      
-                      break;
+                    kbd_handler_menu(&game_state,menu);
+                    break;
                     case GAME:
-                      if(timerHandler() != 0){
-                        destroyElements();
-                        return EXIT_FAILURE;
-                      }
-                      break;
+                    keyboardHandler();
+                    break;
                     default:
-                      printf("default");
-                      break;
+                    break;
                     }
                     
-                    swap_buffer();
-                    
-                 }
-                 if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       switch (game_state)
-                       {
-                       case START_MENU:
-                        kbd_handler_menu(&game_state,menu);
-                        break;
-                       case GAME:
-                        keyboardHandler();
-                        break;
-                       default:
-                        break;
-                       }
-                       
-                 }
-                  if(msg.m_notify.interrupts & mouse_mask){
-
-                    mouse_ih();
-                    mouse_insert_byte();
-                    if(get__mouse_byte_index() == 3){
-                        mouse_insert_in_packet();
-                        if(mouseHandler() != 0){
-                          destroyElements();
-                          return EXIT_FAILURE;
-                        }
-                      reset_byte_index();
-                    }
-                 } 		
-                 
-                 
-                break;
-             default:
-                 break; 
-         }
-     } else { 
-     }
-}
+          }
+          if(msg.m_notify.interrupts & mouse_mask){
+            mouse_ih();
+            mouse_insert_byte();
+            if(get__mouse_byte_index() == 3){
+                mouse_insert_in_packet();
+                if(mouseHandler() != 0){
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
+              reset_byte_index();
+            }
+          } 		 
+          break;
+        default:
+          break; 
+      }
+    }
+  }
 
   if(kbd_unsubscribe_int() != 0){
     destroyElements();
@@ -334,14 +326,16 @@ int (timerHandler)(){
     return EXIT_SUCCESS;
 }
 
-int (mouseHandler)(){
+int (mouseHandler)(bool Ball){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
   updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
 
-  if(newBallX != 9999){
-    //the player started and the ball position needs to be updated
-    ball->x = newBallX;
+  if (Ball) {
+    if(newBallX != 9999){
+      //the player started and the ball position needs to be updated
+      ball->x = newBallX;
+    }
   }
   return EXIT_SUCCESS;
 }

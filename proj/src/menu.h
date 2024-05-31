@@ -1,11 +1,12 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <lcom/lcf.h>
 #include "states.h"
 #include "sprite.h"
-#include <lcom/lcf.h>
 #include "xpms.h"
 #include "player.h"
+#include "game.h"
 #include "devices/i8042.h"
 #include "devices/i8254.h"
 #include "devices/kbd.h"
@@ -43,10 +44,12 @@ int (draw_menu)(Menu* menu);
 int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
 int (choose_number_sprite)(uint8_t num, Sprite* sprite);
 
-int pause_loop();
+int pauseLoop();
 int update_selected_pause(unsigned char code);
 int pause_destroyer();
 int draw_pause();
+
+void update_selected_mouse(bool isStartMenu);
 
 
 /**

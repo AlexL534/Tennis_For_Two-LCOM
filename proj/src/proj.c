@@ -46,14 +46,11 @@ int (proj_main_loop)(int argc, char **argv) {
     return EXIT_FAILURE;
   }
   */
-
-  
   
   if(gameLoop() != 0){
     printf("failed");
     return EXIT_FAILURE;
   }
-
   
   //exits the graphics mode
   if(vg_exit() != 0){
