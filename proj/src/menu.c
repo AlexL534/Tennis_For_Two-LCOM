@@ -354,7 +354,7 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
     return EXIT_SUCCESS;
 }
 
-int update_selected_pause(unsigned char code){
+int update_selected_pause(unsigned char code, Game_state* game_state, Menu* menu) {
     if (code == ARROW_DOWN) {
         menu->selected = (menu->selected + 1) % 3;
     } else if (code == ARROW_UP) {
@@ -364,13 +364,13 @@ int update_selected_pause(unsigned char code){
     if (code == ENTER_KEY) {
         switch (menu->selected) {
             case 0:  // RESUME
-                //menu->state = GAME;
+                *game_state = GAME;
                 break;
             case 1:  // RESTART
-                //menu->state = RESTART;
+                *game_state = RESTART;
                 break;
             case 2:  // QUIT
-                //menu->state = QUIT;
+                *game_state = QUIT;
                 break;
             default:
                 break;
@@ -380,7 +380,13 @@ int update_selected_pause(unsigned char code){
     return EXIT_SUCCESS;
 }
 
-int draw_pause() {
+int drawPause(Menu *menu) {
+    if (menu == NULL) {
+        printf("Menu is NULL in drawPause\n");
+        return EXIT_FAILURE;
+    }
+    
+    printf("Drawing pause menu\n");
     if (draw_field(0, 0, menu->pause_menu) != 0) {
         printf("Draw menu failed\n");
         return EXIT_FAILURE;
@@ -403,167 +409,6 @@ int draw_pause() {
 
     return EXIT_SUCCESS;
 }
-
-int pause_destroyer(){
-    free(menu->pause_menu.map);
-    free(menu->resume.map);
-    free(menu->resume_hover.map);
-    free(menu->restart.map);
-    free(menu->restart_hover.map);
-    free(menu->quit_pause.map);
-    free(menu->quit_pause_hover.map);
-    free(menu);
-    destroyMouse(mouse);
-    menu=NULL;
-    return EXIT_SUCCESS;
-}
-
-int pauseLoop(){
-    menu = initialize_menu(false);
-    mouse = createMouse();
-    
-    if(menu == NULL){
-        printf("pause menu creation failed\n");
-        return EXIT_FAILURE;
-    }
-
-    if (mouse == NULL) {
-        printf("mouse could not be created\n");
-        return EXIT_FAILURE;
-    }
-
-    printf("pause menu created\n");
-
-    if(draw_pause()!=0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("pause menu drawn\n");
-
-    if(drawMouse(mouse) != 0) {
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    int ipc_status;
-    message msg;
-    int r = 0;
-    uint8_t bit_no;
-
-    //command to change the mouse sample rate
-    if(mouse_write_byte(0XF3) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    //changes the mouse sample rate to 40
-    if(mouse_write_byte(0X28) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    //enables the data report for the mouse
-    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("mouse write byte\n");
-
-    timer_set_frequency(0, 30);
-    printf("set timer freq\n");
-
-    if(kbd_subscribe_int(&bit_no) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("kbd subd\n");
-
-    uint8_t kbc_mask = BIT(bit_no);
-
-    if(timer_subscribe_int(&bit_no) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    printf("timer subd\n");
-    uint8_t timer_mask = BIT(bit_no);
-
-    if(mouse_subscribe_int(&bit_no) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    printf("mouse subd\n");
-    uint8_t mouse_mask = BIT(bit_no);
-
-    //while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU) {
-    while (get_scancode() != KBD_ESC_BREAK) {
-        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-        }
-        if(is_ipc_notify(ipc_status)){
-            switch(_ENDPOINT_P(msg.m_source)){
-                case HARDWARE:
-                    if(msg.m_notify.interrupts & timer_mask){
-                        timer_int_handler();
-                        if(draw_pause()!=0){
-                            printf("draw pause menu failed\n");
-                            pause_destroyer();
-                            return EXIT_FAILURE;
-                        }
-                        swap_buffer();
-                    }
-                    if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       update_selected_pause(get_scancode());
-                    }
-                    if(msg.m_notify.interrupts & mouse_mask){
-                        mouse_ih();
-                        mouse_insert_byte();
-                        if(get__mouse_byte_index() == 3){
-                            mouse_insert_in_packet();
-                            if(mouseHandler(false) != 0){
-                                //menu_destroyer();
-                                return EXIT_FAILURE;
-                            }
-                        reset_byte_index();
-                        }
-                        update_selected_mouse(false);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    if(kbd_unsubscribe_int() != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(timer_unsubscribe_int() != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(mouse_unsubscribe_int() != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
-        pause_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    pause_destroyer();
-
-    return EXIT_SUCCESS;
-    
-}
-
 Mouse* createMouse() {
     Mouse* mouse = (Mouse*)malloc(sizeof(Mouse));
     if (mouse == NULL) {

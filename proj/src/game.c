@@ -78,7 +78,7 @@ int (gameLoop)(){
   }
   uint8_t mouse_mask = BIT(bit_no);
 
-  while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
+  while(game_state != QUIT){
     if((game_state == GAME) && ((player1Score >= 10) || (player2Score >= 10))){
       if(clear_screen()!=0){
         return EXIT_FAILURE;
@@ -88,16 +88,21 @@ int (gameLoop)(){
       player2Score=0;
       menu=initialize_menu(true);
     }
+    if (game_state == GAME && (get_scancode() == KBD_ESC_BREAK)) {
+      game_state = PAUSE_MENU;
+      menu = initialize_menu(false);
+    }
+
     if(initial_load && (game_state == GAME)){
 
       if(loadBackground() != 0){
         destroyElements();
-        printf("backgorund failed");
+        printf("background failed");
         return EXIT_FAILURE;
       }
 
       if(loadInitialXPMScore() != 0){
-        printf("score faield");
+        printf("score failed");
         destroyElements();
         return EXIT_FAILURE;
       }
@@ -112,11 +117,12 @@ int (gameLoop)(){
         case HARDWARE:
           if(msg.m_notify.interrupts & timer_mask){
             timer_int_handler();
+            printf("about to switch state\n");
             switch (game_state) {
 
               case START_MENU:
                 if(time_handler_menu(menu) !=0){
-                  printf("menu timer hanlder failed");
+                  printf("menu timer handler failed");
                   destroyElements();
                   return EXIT_FAILURE;
                 }
@@ -129,6 +135,16 @@ int (gameLoop)(){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
+                break;
+              
+              case PAUSE_MENU:
+                printf("inside pause menu state, about to draw\n");
+                if (drawPause(menu) != 0) {
+                  printf("shit, could not draw\n");
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
+                printf("poggers, could draw\n");
                 break;
 
               default:
@@ -154,6 +170,10 @@ int (gameLoop)(){
                 keyboardHandler();
                 break;
 
+              case PAUSE_MENU:
+                update_selected_pause(get_scancode(), &game_state, menu);
+                break;
+
               default:
                 break;
             }       
@@ -163,20 +183,17 @@ int (gameLoop)(){
             mouse_insert_byte();
             if(get__mouse_byte_index() == 3){
                 mouse_insert_in_packet();
-                if(mouseHandler(true) != 0){
+                if(mouseHandler() != 0){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
               reset_byte_index();
             }
-          } 		 
-          break;
-
-        default:
-          break; 
+            break;
+          } 	
+        } 
       }
     }
-  }
 
   if(kbd_unsubscribe_int() != 0){
     destroyElements();
@@ -202,7 +219,7 @@ int (gameLoop)(){
 
   return EXIT_SUCCESS;
 
-}
+  }
 
 void (destroyElements)(){
   destroyPlayer1(player1);
@@ -217,6 +234,13 @@ void (destroyElements)(){
   free(menu->play_button_hover.map);
   free(menu->quit_hover.map);
   free(menu->title.map);
+  free(menu->pause_menu.map);
+  free(menu->resume.map);
+  free(menu->resume_hover.map);
+  free(menu->restart.map);
+  free(menu->restart_hover.map);
+  free(menu->quit_pause.map);
+  free(menu->quit_pause_hover.map);
   free(menu);
   menu=NULL;
 }
@@ -337,17 +361,13 @@ int (timerHandler)(){
     return EXIT_SUCCESS;
 }
 
-int (mouseHandler)(bool Ball){
+int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  if (!Ball) {
-    updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
-  }
-  else {
-    if(newBallX != 9999){
-      //the player started and the ball position needs to be updated
-      ball->x = newBallX;
-    }
+  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+  if(newBallX != 9999){
+    //the player started and the ball position needs to be updated
+    ball->x = newBallX;
   }
   return EXIT_SUCCESS;
 }
