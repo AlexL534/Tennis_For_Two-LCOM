@@ -154,30 +154,6 @@ int (clear_screen)() {
     return EXIT_SUCCESS;
 }
 
-int (clear_mouse)(Mouse* mouse){
-    if (mouse == NULL || mouse->sprite == NULL) {
-        return EXIT_FAILURE;
-    }
-
-    int width = mouse->sprite->width;
-    int height = mouse->sprite->height;
-    uint32_t *map = mouse->sprite->map;
-
-    for (int j = 0; j < height; j++) {
-        for (int i = 0; i < width; i++) {
-            uint16_t x = mouse->x + i;
-            uint16_t y = mouse->y + j;
-
-            if (x < MAX_X && y < MAX_Y && *map != TRANSPARENCY_COLOR) {
-                if (vg_draw_color(x, y, 0x000000) != 0) {
-                    return EXIT_FAILURE;
-                }
-            }
-            map++;
-        }
-    }
-    return EXIT_SUCCESS;
-}
 
 int (update_selected)(unsigned char code,Game_state* state, Menu* menu){
     if(code == ARROW_DOWN || code == ARROW_UP){
