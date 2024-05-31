@@ -4,7 +4,7 @@
 
 
 static Game_state game_state = START_MENU;
-static Menu* menu;
+static Menu *menu;
 static Mouse *mouse;
 static Player *player1;
 static Player *player2;
