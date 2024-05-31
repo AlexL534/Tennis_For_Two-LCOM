@@ -42,7 +42,7 @@ int (keyboardHandler)();
  * Executa ações relacionadas com o Mouse após uma interrupção deste (Iniciar o movimento de batida na bola, mover o cursor no menu, ...)
  * @returns 1 se ocorreu algum erro ou zero caso tenha corrido tudo bem
 */
-int (mouseHandler)();
+int (mouseHandler)(bool Ball);
 
 /**
  * Carrega o background no inicio da execução do programa

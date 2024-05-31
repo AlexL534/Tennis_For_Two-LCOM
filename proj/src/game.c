@@ -97,7 +97,7 @@ int (gameLoop)(){
         }
         if(initial_load && (game_state == GAME)){
           
-          printf("only 1 time");
+          
           if(loadBackground() != 0){
             destroyElements();
             printf("backgorund failed");
@@ -177,7 +177,7 @@ int (gameLoop)(){
                     mouse_insert_byte();
                     if(get__mouse_byte_index() == 3){
                         mouse_insert_in_packet();
-                        if(mouseHandler() != 0){
+                        if(mouseHandler(false) != 0){
                           destroyElements();
                           return EXIT_FAILURE;
                         }
@@ -357,14 +357,17 @@ int (timerHandler)(){
     return EXIT_SUCCESS;
 }
 
-int (mouseHandler)(){
+int (mouseHandler)(bool Ball){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
   updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
 
-  if(newBallX != 9999){
-    //the player started and the ball position needs to be updated
-    ball->x = newBallX;
+  if (Ball) {
+    if(newBallX != 9999){
+      //the player started and the ball position needs to be updated
+      ball->x = newBallX;
+    }
   }
   return EXIT_SUCCESS;
+
 }

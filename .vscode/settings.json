@@ -33,6 +33,7 @@
         "map": "c",
         "rtc.h": "c",
         "stdlib.h": "c",
-        "color.h": "c"
+        "color.h": "c",
+        "background.h": "c"
     }
 }
