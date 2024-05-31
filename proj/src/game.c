@@ -117,11 +117,10 @@ int (gameLoop)(){
         case HARDWARE:
           if(msg.m_notify.interrupts & timer_mask){
             timer_int_handler();
-            printf("about to switch state\n");
             switch (game_state) {
 
               case START_MENU:
-                if(time_handler_menu(menu) !=0){
+                if(time_handler_menu(menu, mouse) !=0){
                   printf("menu timer handler failed");
                   destroyElements();
                   return EXIT_FAILURE;
@@ -138,13 +137,10 @@ int (gameLoop)(){
                 break;
               
               case PAUSE_MENU:
-                printf("inside pause menu state, about to draw\n");
-                if (drawPause(menu) != 0) {
-                  printf("shit, could not draw\n");
+                if (drawPause(menu) != 0 || drawMouse(mouse) != 0) {
                   destroyElements();
                   return EXIT_FAILURE;
                 }
-                printf("poggers, could draw\n");
                 break;
 
               default:
@@ -265,6 +261,7 @@ int (keyboardHandler)(){
 
 
 int (timerHandler)(){
+  static bool scored = false; // Static flag to persist across function calls
 
   if(refreshBackground(background) != 0){
     printf("Error while erasing the player1\n");
@@ -309,7 +306,8 @@ int (timerHandler)(){
         canHitAfterServe = false;
       }
       counter = 0;
-    return EXIT_SUCCESS;
+      scored = true;
+      return EXIT_SUCCESS;
     }
   }
 
@@ -357,8 +355,8 @@ int (timerHandler)(){
   if(drawScoreText() != 0){
     return EXIT_FAILURE;
   }
-
-    return EXIT_SUCCESS;
+  scored = false; 
+  return EXIT_SUCCESS;
 }
 
 int (mouseHandler)(){

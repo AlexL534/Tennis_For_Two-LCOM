@@ -2,9 +2,6 @@
 #include "color.h"
 #include <stdlib.h>
 
-static Menu *menu;
-static Mouse *mouse;
-
 Menu* (initialize_menu)(bool isStartMenu){
     Menu *menu = (Menu*)malloc(sizeof(Menu));
     if(menu == NULL){
@@ -236,9 +233,13 @@ int (draw_menu)(Menu* menu){
     return EXIT_SUCCESS;
 }
 
-int (time_handler_menu)(Menu* menu){
+int (time_handler_menu)(Menu* menu, Mouse* mouse){
     if(draw_menu(menu)!=0){
         printf("menu failed to draw");
+        return EXIT_FAILURE;
+    }
+    if(drawMouse(mouse) != 0) {
+        printf("mouse failed to draw\n");
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;   
@@ -382,11 +383,9 @@ int update_selected_pause(unsigned char code, Game_state* game_state, Menu* menu
 
 int drawPause(Menu *menu) {
     if (menu == NULL) {
-        printf("Menu is NULL in drawPause\n");
         return EXIT_FAILURE;
     }
     
-    printf("Drawing pause menu\n");
     if (draw_field(0, 0, menu->pause_menu) != 0) {
         printf("Draw menu failed\n");
         return EXIT_FAILURE;
@@ -499,7 +498,7 @@ int updateMousePosition(Mouse* mouse, int dx, int dy) {
     return EXIT_SUCCESS;
 }
 
-void update_selected_mouse(bool isStartMenu) {
+void update_selected_mouse(Menu* menu, Mouse* mouse, bool isStartMenu) {
     // Check if mouse is hovering over menu buttons and update selected option accordingly
     if (isStartMenu) {
         if (mouse->x >= 467 && mouse->x <= 717) {

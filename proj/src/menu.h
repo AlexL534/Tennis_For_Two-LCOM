@@ -32,23 +32,6 @@ typedef struct{
     uint8_t selected;
 } Menu;
 
-
-Menu* (initialize_menu)(bool isStartMenu);
-int (kbd_handler_menu)(Game_state* state, Menu* menu);
-int (update_selected)(unsigned char code, Game_state* state, Menu* menu);
-int (time_handler_menu)(Menu* menu);
-int (draw_field)(int x_offset, int y_offset, Sprite sprite);
-int clear_screen();
-int (draw_menu)(Menu* menu);
-int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
-int (choose_number_sprite)(uint8_t num, Sprite* sprite);
-
-int update_selected_pause(unsigned char code, Game_state* game_state, Menu* menu);
-int drawPause(Menu *menu);
-
-void update_selected_mouse(bool isStartMenu);
-
-
 /**
  * @struct Mouse
  * @brief Estrutura que contém as coordenadas e o sprite do mouse
@@ -58,6 +41,22 @@ typedef struct {
     int x;          /**< Coordenada x do mouse. */
     int y;          /**< Coordenada y do mouse. */
 } Mouse;
+
+Menu* (initialize_menu)(bool isStartMenu);
+int (kbd_handler_menu)(Game_state* state, Menu* menu);
+int (update_selected)(unsigned char code, Game_state* state, Menu* menu);
+int (time_handler_menu)(Menu* menu, Mouse* mouse);
+int (draw_field)(int x_offset, int y_offset, Sprite sprite);
+int clear_screen();
+int (draw_menu)(Menu* menu);
+int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
+int (choose_number_sprite)(uint8_t num, Sprite* sprite);
+
+int update_selected_pause(unsigned char code, Game_state* game_state, Menu* menu);
+int drawPause(Menu *menu);
+
+void update_selected_mouse(Menu* menu, Mouse* mouse, bool isStartMenu);
+
 
 /**
  * @brief Cria um objeto Mouse.

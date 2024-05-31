@@ -67,25 +67,25 @@ void (mouse_insert_in_packet)();
 uint16_t (convert_to_2sComplement)(uint8_t mouse_byte);
 
 /**
- * Obtem o hook_id para ser usado em outros documentos
+ * Obtém o hook_id para ser usado em outros documentos
  * @returns Valor do hook_id
 */
 int (get_mouse_hook_id)();
 
 /**
- * Obtem o indice do byte atual para que possa ser acedido em outros documentos
+ * Obtém o indice do byte atual para que possa ser acedido em outros documentos
  * @returns Valor do indice do byte atual
 */
 uint8_t (get__mouse_byte_index)();
 
 /**
- * Obtem o valor do byte atual (último lido) para que possa ser usado em outros documentos
+ * Obtém o valor do byte atual (último lido) para que possa ser usado em outros documentos
  * @returns Valor do byte atual (último lido)
 */
 uint8_t (get_current_byte)();
 
 /**
- * Obtem o mouse packet para que possa ser usado em outros documentos
+ * Obtém o mouse packet para que possa ser usado em outros documentos
  * @returns Valor do mouse packet
 */
 struct packet (get_mouse_packet)();
