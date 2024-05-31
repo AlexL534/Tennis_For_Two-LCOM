@@ -177,7 +177,7 @@ int (gameLoop)(){
                     mouse_insert_byte();
                     if(get__mouse_byte_index() == 3){
                         mouse_insert_in_packet();
-                        if(mouseHandler(false) != 0){
+                        if(mouseHandler(true) != 0){
                           destroyElements();
                           return EXIT_FAILURE;
                         }
@@ -360,14 +360,14 @@ int (timerHandler)(){
 int (mouseHandler)(bool Ball){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
-
-  if (Ball) {
+  if (!Ball) {
+    updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+  }
+  else {
     if(newBallX != 9999){
       //the player started and the ball position needs to be updated
       ball->x = newBallX;
     }
   }
   return EXIT_SUCCESS;
-
 }
