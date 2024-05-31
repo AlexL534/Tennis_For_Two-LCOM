@@ -4,21 +4,23 @@
 
 Menu *menu;
 
-Menu* (initialize_menu)(){
+Menu* (initialize_menu)(bool isStartMenu){
     Menu *menu = (Menu*)malloc(sizeof(Menu));
     if(menu == NULL){
         printf("Menu is null");
         return NULL;
     }
-    menu->state=START_MENU;
+    menu->state = isStartMenu ? START_MENU : PAUSE_MENU;
     menu->selected=0;
 
     xpm_image_t img;
+
+    if (isStartMenu) {
     Sprite *sprite_title = (Sprite*) malloc(sizeof(Sprite));
     sprite_title->map = (uint32_t *) malloc(sizeof(char*));
-    sprite_title ->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
-    sprite_title ->height = img.height;
-    sprite_title ->width = img.width;
+    sprite_title->map = (uint32_t *) xpm_load((xpm_map_t) title_xpm, XPM_8_8_8_8, &img);
+    sprite_title->height = img.height;
+    sprite_title->width = img.width;
     menu->title = *sprite_title;
 
     free(sprite_title);
@@ -63,10 +65,70 @@ Menu* (initialize_menu)(){
     menu->quit_hover = *sprite_quit_button_hover;
 
     free(sprite_quit_button_hover);
+    }
+    else {
+        Sprite *pause_menu = (Sprite*) malloc(sizeof(Sprite));
+        pause_menu->map = (uint32_t *) xpm_load((xpm_map_t) pause_menu_xpm, XPM_8_8_8_8, &img);
+        pause_menu->height = img.height;
+        pause_menu->width = img.width;
+        menu->pause_menu = *pause_menu;
 
+        free(pause_menu);
+
+        if(menu->pause_menu.map==NULL){
+            printf("pause menu is null\n");
+            return NULL;
+        }
+
+        Sprite *sprite_resume = (Sprite*) malloc(sizeof(Sprite));
+        sprite_resume->map = (uint32_t *) xpm_load((xpm_map_t) resume_xpm, XPM_8_8_8_8, &img);
+        sprite_resume->height = img.height;
+        sprite_resume->width = img.width;
+        menu->resume = *sprite_resume;
+
+        free(sprite_resume);
+
+        Sprite *sprite_restart = (Sprite*) malloc(sizeof(Sprite));
+        sprite_restart->map = (uint32_t *) xpm_load((xpm_map_t) restart_xpm, XPM_8_8_8_8, &img);
+        sprite_restart->height = img.height;
+        sprite_restart->width = img.width;
+        menu->restart = *sprite_restart;
+
+        free(sprite_restart);
+
+        Sprite *sprite_quit_pause = (Sprite*) malloc(sizeof(Sprite));
+        sprite_quit_pause->map = (uint32_t *) xpm_load((xpm_map_t) quit_pause_xpm, XPM_8_8_8_8, &img);
+        sprite_quit_pause->height = img.height;
+        sprite_quit_pause->width = img.width;
+        menu->quit_pause = *sprite_quit_pause;
+
+        free(sprite_quit_pause);
+
+        Sprite *sprite_resume_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_resume_hover->map = (uint32_t *) xpm_load((xpm_map_t) resume_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_resume_hover->height = img.height;
+        sprite_resume_hover->width = img.width;
+        menu->resume_hover = *sprite_resume_hover;
+        
+        free(sprite_resume_hover);
+
+        Sprite *sprite_restart_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_restart_hover->map = (uint32_t *) xpm_load((xpm_map_t) restart_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_restart_hover->height = img.height;
+        sprite_restart_hover->width = img.width;
+        menu->restart_hover = *sprite_restart_hover;
+
+        free(sprite_restart_hover);
+
+        Sprite *sprite_quit_pause_hover = (Sprite*) malloc(sizeof(Sprite));
+        sprite_quit_pause_hover->map = (uint32_t *) xpm_load((xpm_map_t) quit_pause_hover_xpm, XPM_8_8_8_8, &img);
+        sprite_quit_pause_hover->height = img.height;
+        sprite_quit_pause_hover->width = img.width;
+        menu->quit_pause_hover = *sprite_quit_pause_hover;
+
+        free(sprite_quit_pause_hover);
+    }
     return menu;
-
-
 }
 
 int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
@@ -175,7 +237,6 @@ int (draw_menu)(){
             }
             break;
         default:
-        
             break;
     }
 
@@ -314,7 +375,7 @@ int (menu_destroyer)(){
 }
 
 int (menu_loop)(){
-    menu = initialize_menu();
+    menu = initialize_menu(true);
     
     if(menu == NULL){
         
@@ -428,7 +489,183 @@ int (menu_loop)(){
     return EXIT_SUCCESS;
     
 }
- 
+
+int update_selected_pause(unsigned char code){
+    if (code == ARROW_DOWN) {
+        menu->selected = (menu->selected + 1) % 3;
+    } else if (code == ARROW_UP) {
+        menu->selected = (menu->selected + 2) % 3;
+    }
+
+    if (code == A_KEY) {
+        switch (menu->selected) {
+            case 0:  // RESUME
+                menu->state = GAME;
+                break;
+            case 1:  // RESTART
+                menu->state = RESTART;
+                break;
+            case 2:  // QUIT
+                menu->state = QUIT;
+                break;
+            default:
+                break;
+        }
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int draw_pause() {
+    if (draw_field(0, 0, menu->pause_menu) != 0) {
+        printf("Draw menu failed\n");
+        return EXIT_FAILURE;
+    }
+
+    if (draw_field(454, 300, (menu->selected == 0) ? menu->resume_hover : menu->resume) != 0) {
+        printf("Draw resume failed\n");
+        return EXIT_FAILURE;
+    }
+
+    if (draw_field(454, 400, (menu->selected == 1) ? menu->restart_hover : menu->restart) != 0) {
+        printf("Draw restart failed\n");
+        return EXIT_FAILURE;
+    }
+
+    if (draw_field(454, 500, (menu->selected == 2) ? menu->quit_pause_hover : menu->quit_pause) != 0) {
+        printf("Draw quit failed\n");
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int pause_destroyer(){
+    free(menu->pause_menu.map);
+    free(menu->resume.map);
+    free(menu->resume_hover.map);
+    free(menu->restart.map);
+    free(menu->restart_hover.map);
+    free(menu->quit_pause.map);
+    free(menu->quit_pause_hover.map);
+    free(menu);
+    menu=NULL;
+    return EXIT_SUCCESS;
+}
+
+int pause_loop(){
+    menu = initialize_menu(false);
+    
+    if(menu == NULL){
+        printf("pause menu creation failed\n");
+        return EXIT_FAILURE;
+    }
+
+    printf("pause menu created\n");
+
+    int ipc_status;
+    message msg;
+    int r = 0;
+    uint8_t bit_no;
+
+    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("mouse write byte\n");
+    timer_set_frequency(0, 30);
+    printf("set timer freq\n");
+
+    if(kbd_subscribe_int(&bit_no) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("kbd subd\n");
+    uint8_t kbc_mask = BIT(bit_no);
+
+    if(timer_subscribe_int(&bit_no) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("timer subd\n");
+    uint8_t timer_mask = BIT(bit_no);
+
+    if(mouse_subscribe_int(&bit_no) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    printf("mouse subd\n");
+    uint8_t mouse_mask = BIT(bit_no);
+
+    if(draw_pause()!=0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+    
+    printf("pause menu drawn\n");
+
+    while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU)
+    {
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+        }
+        if(is_ipc_notify(ipc_status)){
+            switch(_ENDPOINT_P(msg.m_source)){
+                case HARDWARE:
+                    if (msg.m_notify.interrupts & kbc_mask) { 
+                       kbc_ih();
+                       kbdhandler();
+                    }
+                    if(msg.m_notify.interrupts & timer_mask){
+                        timer_int_handler();
+                        if(draw_pause()!=0){
+                            printf("draw pause menu failed\n");
+                            pause_destroyer();
+                            return EXIT_FAILURE;
+                        }
+                        swap_buffer();
+
+                    }
+                    if(msg.m_notify.interrupts & mouse_mask){
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    if(kbd_unsubscribe_int() != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(timer_unsubscribe_int() != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(mouse_unsubscribe_int() != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
+        pause_destroyer();
+        return EXIT_FAILURE;
+    }
+
+    pause_destroyer();
+
+    return EXIT_SUCCESS;
+    
+}
 
 Mouse* createMouse() {
     Mouse* mouse = (Mouse*)malloc(sizeof(Mouse));

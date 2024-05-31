@@ -30,6 +30,9 @@
         "complex": "c",
         "cstdlib": "c",
         "__tree": "c",
-        "map": "c"
+        "map": "c",
+        "rtc.h": "c",
+        "stdlib.h": "c",
+        "color.h": "c"
     }
 }

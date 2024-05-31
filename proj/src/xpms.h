@@ -69,4 +69,12 @@
 #include "xpms/menu/start.xpm"
 #include "xpms/menu/start_hover.xpm"
 
+#include "xpms/pause/pause_menu.xpm"
+#include "xpms/pause/quit_pause.xpm"
+#include "xpms/pause/quit_pause_hover.xpm"
+#include "xpms/pause/restart.xpm"
+#include "xpms/pause/restart_hover.xpm"
+#include "xpms/pause/resume.xpm"
+#include "xpms/pause/resume_hover.xpm"
+
 #endif
