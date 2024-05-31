@@ -2,7 +2,8 @@
 #include "color.h"
 #include <stdlib.h>
 
-
+static Menu *menu;
+static Mouse *mouse;
 
 Menu* (initialize_menu)(bool isStartMenu){
     Menu *menu = (Menu*)malloc(sizeof(Menu));
@@ -353,166 +354,6 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
     return EXIT_SUCCESS;
 }
 
-int (menu_destroyer)(){
-    free(menu->play_button.map);
-    free(menu->quit.map);
-    free(menu->play_button_hover.map);
-    free(menu->quit_hover.map);
-    free(menu->title.map);
-    free(menu);
-    destroyMouse(mouse);
-    menu=NULL;
-    return EXIT_SUCCESS;
-}
-
-int (menuLoop)(){
-    menu = initialize_menu(true);
-    mouse = createMouse();
-    
-    if(menu == NULL){
-        return EXIT_FAILURE;
-    }
-
-    if (mouse == NULL) {
-        printf("mouse could not be created\n");
-        return EXIT_FAILURE;
-    }
-
-    if(draw_menu()!=0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("menu drawn");
-
-    if(drawMouse(mouse) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    int ipc_status;
-    message msg;
-    int r = 0;
-    uint8_t bit_no;
-
-    uint8_t day;
-    uint8_t month;
-    uint8_t year;
-
-    //command to change the mouse sample rate
-    if(mouse_write_byte(0XF3) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    //changes the mouse sample rate to 40
-    if(mouse_write_byte(0X28) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    //enables the data report for the mouse
-    if(mouse_write_byte(MOUSE_EN_DATA_REP) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("mouse write byte");
-
-    timer_set_frequency(0, 30);
-    printf("set timer freq");
-
-    if(kbd_subscribe_int(&bit_no) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("kbd subd");
-
-    uint8_t kbc_mask = BIT(bit_no);
-
-    if(timer_subscribe_int(&bit_no) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("timer subd");
-
-    uint8_t timer_mask = BIT(bit_no);
-
-    if(mouse_subscribe_int(&bit_no) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-    printf("mouse subd");
-
-    uint8_t mouse_mask = BIT(bit_no);
-    
-    while (get_scancode() != KBD_ESC_BREAK && menu->state==START_MENU) {   
-        get_date(&day,&month,&year);
-        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-        }
-        if(is_ipc_notify(ipc_status)){
-            switch(_ENDPOINT_P(msg.m_source)){
-                case HARDWARE:
-                    if(msg.m_notify.interrupts & timer_mask){
-                        timer_int_handler();
-                        if(timehandler()!=0){
-                            menu_destroyer();
-                            printf("time handler failed");
-                            return EXIT_FAILURE;
-                        }
-                        draw_date(day,month,year);
-                        swap_buffer();
-                    }
-                    if (msg.m_notify.interrupts & kbc_mask) { 
-                       kbc_ih();
-                       kbdhandler();
-                    }
-                    if(msg.m_notify.interrupts & mouse_mask){
-                        mouse_ih();
-                        mouse_insert_byte();
-                        if(get__mouse_byte_index() == 3){
-                            mouse_insert_in_packet();
-                            if(mouseHandler(false) != 0){
-                                menu_destroyer();
-                                return EXIT_FAILURE;
-                            }
-                        reset_byte_index();
-                        }
-                        update_selected_mouse(false);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    if(kbd_unsubscribe_int() != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(timer_unsubscribe_int() != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(mouse_unsubscribe_int() != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    if(mouse_write_byte(MOUSE_DIS_DATA_REP) != 0){
-        menu_destroyer();
-        return EXIT_FAILURE;
-    }
-
-    menu_destroyer();
-
-    return EXIT_SUCCESS;
-    
-}
-
 int update_selected_pause(unsigned char code){
     if (code == ARROW_DOWN) {
         menu->selected = (menu->selected + 1) % 3;
@@ -523,13 +364,13 @@ int update_selected_pause(unsigned char code){
     if (code == ENTER_KEY) {
         switch (menu->selected) {
             case 0:  // RESUME
-                menu->state = GAME;
+                //menu->state = GAME;
                 break;
             case 1:  // RESTART
-                menu->state = RESTART;
+                //menu->state = RESTART;
                 break;
             case 2:  // QUIT
-                menu->state = QUIT;
+                //menu->state = QUIT;
                 break;
             default:
                 break;
@@ -655,8 +496,8 @@ int pauseLoop(){
     printf("mouse subd\n");
     uint8_t mouse_mask = BIT(bit_no);
 
-
-    while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU) {
+    //while (get_scancode() != KBD_ESC_BREAK && menu->state==PAUSE_MENU) {
+    while (get_scancode() != KBD_ESC_BREAK) {
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
           printf("driver_receive failed with: %d", r);
           continue;
@@ -683,7 +524,7 @@ int pauseLoop(){
                         if(get__mouse_byte_index() == 3){
                             mouse_insert_in_packet();
                             if(mouseHandler(false) != 0){
-                                menu_destroyer();
+                                //menu_destroyer();
                                 return EXIT_FAILURE;
                             }
                         reset_byte_index();

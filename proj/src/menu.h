@@ -33,7 +33,6 @@ typedef struct{
 } Menu;
 
 
-
 Menu* (initialize_menu)(bool isStartMenu);
 int (kbd_handler_menu)(Game_state* state, Menu* menu);
 int (update_selected)(unsigned char code, Game_state* state, Menu* menu);

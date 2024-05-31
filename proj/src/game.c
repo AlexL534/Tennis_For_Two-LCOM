@@ -19,7 +19,8 @@ static uint32_t *background;
 extern int counter;
 
 int (gameLoop)(){
-  
+  Game_state game_state = START_MENU;
+
   /*if(loadBackground() != 0){
     destroyElements();
     return EXIT_FAILURE;
@@ -30,13 +31,13 @@ int (gameLoop)(){
     return EXIT_FAILURE;
   }*/
 
-  
-  
   player1 = createPlayer1();
   player2 = createPlayer2();
   ball = createBall();
 
   menu = initialize_menu(isStartMenu);
+
+  pauseMenu = initialize_menu(false);
 
   if(menu == NULL){
     printf("menu is null");
@@ -90,7 +91,7 @@ int (gameLoop)(){
   }
   uint8_t mouse_mask = BIT(bit_no);
 
-  while( (get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
+  while((get_scancode() != KBD_ESC_BREAK) && game_state != QUIT){
     if((game_state == GAME) && (player1Score >= 10) && (player2Score >= 10)){
       game_state = START_MENU;
     }
@@ -128,34 +129,33 @@ int (gameLoop)(){
               break;
             }
             swap_buffer();
-              }
-              if (msg.m_notify.interrupts & kbc_mask) { 
-                    kbc_ih();
-                    switch (game_state)
-                    {
-                    case START_MENU:
-                    kbd_handler_menu(&game_state,menu);
-                    break;
-                    case GAME:
-                    keyboardHandler();
-                    break;
-                    default:
-                    break;
-                    }
-                    
-          }
-          if(msg.m_notify.interrupts & mouse_mask){
-            mouse_ih();
-            mouse_insert_byte();
-            if(get__mouse_byte_index() == 3){
+            }
+            if (msg.m_notify.interrupts & kbc_mask) { 
+              kbc_ih();
+              switch (game_state)
+              {
+                case START_MENU:
+                  kbd_handler_menu(&game_state,menu);
+                  break;
+                case GAME:
+                  keyboardHandler();
+                  break;
+                default:
+                  break;
+              }       
+            }
+            if(msg.m_notify.interrupts & mouse_mask){
+              mouse_ih();
+              mouse_insert_byte();
+              if(get__mouse_byte_index() == 3){
                 mouse_insert_in_packet();
-                if(mouseHandler() != 0){
+                if(mouseHandler(false) != 0){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
-              reset_byte_index();
-            }
-          } 		 
+                reset_byte_index();
+              }
+            } 		 
           break;
         default:
           break; 
@@ -195,7 +195,7 @@ void (destroyElements)(){
   destroyBall(ball);
   destroyMouse(mouse);
   freeXPMScore();
-  free(background);
+  free(background); 
   free_second_buffer();
   free(menu->play_button.map);
   free(menu->quit.map);
