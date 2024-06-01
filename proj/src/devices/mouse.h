@@ -95,4 +95,6 @@ struct packet (get_mouse_packet)();
 */
 void (reset_byte_index)();
 
+void clear_mouse_packet();
+
 #endif

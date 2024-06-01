@@ -217,4 +217,9 @@ int (mouse_write_byte)(uint8_t command){
   return EXIT_FAILURE;
 }
 
-
+//===========
+void clear_mouse_packet() {
+  byte_index = 0;
+  current_byte = 0;
+  memset(&packet, 0, sizeof(packet));
+}

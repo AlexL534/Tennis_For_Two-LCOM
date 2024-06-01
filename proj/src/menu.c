@@ -493,25 +493,37 @@ int updateMousePosition(Mouse* mouse, int dx, int dy) {
     return EXIT_SUCCESS;
 }
 
-void update_selected_mouse(Menu* menu, Mouse* mouse, bool isStartMenu) {
+void update_selected_mouse(Menu* menu, Mouse* mouse, Game_state* game_state) {
     // Check if mouse is hovering over menu buttons and update selected option accordingly
-    if (isStartMenu) {
-        if (mouse->x >= 467 && mouse->x <= 717) {
-            if (mouse->y >= 350 && mouse->y <= 400) {
-                menu->selected = 0; // Hovering over Start button
-            } else if (mouse->y >= 475 && mouse->y <= 525) {
-                menu->selected = 1; // Hovering over Quit button
-            }
+    if ((mouse->x >= 454 && mouse->x <= 661) && (mouse->y >= 300 && mouse->y <= 360)) {
+        menu->selected = 0; // Hovering over Resume button
+    } else if ((mouse->x >= 454 && mouse->x <= 697) && (mouse->y >= 400 && mouse->y <= 460)) {
+        menu->selected = 1; // Hovering over Restart button
+    } else if ((mouse->x >= 454 && mouse->x <= 588) && (mouse->y >= 500 && mouse->y <= 560)) {
+        menu->selected = 2; // Hovering over Quit button
+    }
+
+    // Handle mouse click
+    if (get_mouse_packet().lb) {
+        printf("Mouse click detected, selected: %d\n", menu->selected); // Debug
+        switch (menu->selected) {
+            case 0:  // Resume
+                *game_state = GAME;
+                break;
+            case 1:  // Restart
+                *game_state = RESTART;
+                break;
+            case 2:  // Quit
+                *game_state = QUIT;
+                break;
+            default:
+                break;
         }
-    } else {
-        if (mouse->x >= 454 && mouse->x <= 690) {
-            if (mouse->y >= 300 && mouse->y <= 360) {
-                menu->selected = 0; // Hovering over Resume button
-            } else if (mouse->y >= 400 && mouse->y <= 460) {
-                menu->selected = 1; // Hovering over Restart button
-            } else if (mouse->y >= 500 && mouse->y <= 560) {
-                menu->selected = 2; // Hovering over Quit button
-            }
+
+        // Immediately update the screen after state change
+        if (clear_screen() != 0) {
+            destroyElements();
+            printf("Failed to clear screen\n");
         }
     }
 }

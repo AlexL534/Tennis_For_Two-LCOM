@@ -108,6 +108,7 @@ int (gameLoop)(){
     }
 
     if (game_state == GAME && (get_scancode() == KBD_ESC_BREAK)) {
+      set_scancode(0x01);
       game_state = PAUSE_MENU;
       menu = initialize_menu(false);
     }
@@ -193,22 +194,37 @@ int (gameLoop)(){
                 break;
             }       
           }
-          if(msg.m_notify.interrupts & mouse_mask){
+          if (msg.m_notify.interrupts & mouse_mask) {
             mouse_ih();
             mouse_insert_byte();
-            if(get__mouse_byte_index() == 3){
-                mouse_insert_in_packet();
-                if(mouseHandler() != 0){
-                  destroyElements();
-                  return EXIT_FAILURE;
+            if (get__mouse_byte_index() == 3) {
+              mouse_insert_in_packet();
+              if (game_state == PAUSE_MENU) {
+                update_selected_mouse(menu, mouse, &game_state);
+                if (game_state != PAUSE_MENU) {
+                  clear_mouse_packet();
+                  // Clear screen and reinitialize menu if game_state changes
+                  if (clear_screen() != 0) {
+                      destroyElements();
+                      return EXIT_FAILURE;
+                  }
+                  if (game_state == GAME) {
+                      initial_load = true; // Ensure background and scores are loaded
+                  }
                 }
+              }
+              if (mouseHandler() != 0) {
+                destroyElements();
+                return EXIT_FAILURE;
+              }
               reset_byte_index();
             }
-            break;
-          } 	
-        } 
-      }
-    }
+          }
+          break;
+      } 	
+    } 
+  }
+
 
   if(kbd_unsubscribe_int() != 0){
     destroyElements();

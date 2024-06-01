@@ -40,4 +40,7 @@ uint8_t (get_scancode)();
 */
 int (get_KBD_hook_id)();
 
+void set_scancode(uint8_t fake_scancode);
+
+
 #endif

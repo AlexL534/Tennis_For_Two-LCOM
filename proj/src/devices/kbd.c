@@ -83,3 +83,8 @@ int (kbd_unsubscribe_int)(){
     }
     return EXIT_SUCCESS;
 }
+
+//=================
+void set_scancode(uint8_t fake_scancode) {
+    scancode = fake_scancode;
+}
