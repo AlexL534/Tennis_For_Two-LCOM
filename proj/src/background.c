@@ -18,6 +18,24 @@ int (drawBackground)(uint32_t *background){
   return EXIT_SUCCESS;
 }
 
+int (initializeMenuBackground)(uint32_t *background){
+
+  background = (uint32_t *)malloc(get_hres() * get_vres() * get_bytes_per_pixel());
+  uint32_t color = 0x000000;
+
+  uint32_t *ptr = background;
+  for(int i = 0; i < (int) get_vres(); i++){
+    for(int j = 0; j < (int) get_hres(); j++){
+      if(memcpy(ptr, &color, get_bytes_per_pixel()) == NULL){
+        return EXIT_FAILURE;
+      };
+      ptr++;
+    }
+  }
+
+  return EXIT_SUCCESS;
+}
+
 int (refreshBackground)(uint32_t *background){
   
   if(memcpy(get_second_buffer(), background, get_hres() * get_vres() * get_bytes_per_pixel()) == NULL){
@@ -25,3 +43,5 @@ int (refreshBackground)(uint32_t *background){
   };
   return EXIT_SUCCESS;
 }
+
+

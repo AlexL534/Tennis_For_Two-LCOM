@@ -204,7 +204,7 @@ int (draw_menu)(Menu* menu){
             }
             break;
         case 1:
-            clear_screen();
+            
             if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
@@ -216,7 +216,6 @@ int (draw_menu)(Menu* menu){
             }
             break;
         case 2:
-            clear_screen();
             if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
             }
@@ -235,7 +234,6 @@ int (draw_menu)(Menu* menu){
 }
 
 int (time_handler_menu)(Menu* menu, Mouse* mouse){
-    clear_screen();
     if(draw_menu(menu)!=0 || drawMouse(mouse) != 0){
         printf("menu or mouse failed to draw\n");
         return EXIT_FAILURE;

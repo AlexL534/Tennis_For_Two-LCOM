@@ -14,6 +14,7 @@ bool isStartMenu=true;
 bool initial_load=false;
 
 static uint32_t *background;
+static uint32_t *menuBackground;
 
 extern int counter;
 
@@ -26,6 +27,12 @@ int (gameLoop)(){
 
   menu = initialize_menu(isStartMenu);
 
+  menuBackground = (uint32_t *)malloc(get_hres() * get_vres() * get_bytes_per_pixel());
+  if(initializeMenuBackground(menuBackground) != 0){
+    printf("error while loading the menu background");
+    return EXIT_FAILURE;
+  }
+
   if(menu == NULL){
     printf("menu is null");
     return EXIT_FAILURE;
@@ -36,9 +43,13 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
+  
   uint8_t day;
   uint8_t month;
   uint8_t year;
+  if(get_date(&day,&month,&year) != 0){
+    return EXIT_FAILURE;
+  }
 
   //command to change the mouse sample rate
   if(mouse_write_byte(0XF3) != 0){
@@ -87,6 +98,7 @@ int (gameLoop)(){
       player1Score=0;
       player2Score=0;
       menu=initialize_menu(true);
+      get_date(&day,&month,&year);
     }
 
     if (game_state == RESTART) {
@@ -140,12 +152,17 @@ int (gameLoop)(){
             switch (game_state) {
 
               case START_MENU:
+                
+                if(refreshBackground(menuBackground) != 0){
+                  printf("Failed to clear the backgorund");
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
                 if(time_handler_menu(menu, mouse) !=0){
                   printf("menu timer handler failed");
                   destroyElements();
                   return EXIT_FAILURE;
                 }
-                get_date(&day,&month,&year);
                 draw_date(day,month,year);
                 break;
 

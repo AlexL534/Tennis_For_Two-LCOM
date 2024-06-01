@@ -135,10 +135,10 @@ int drawPause(Menu *menu);
  * @brief usa rato para atualizar select do menu
  * @param menu pointer para menu
  * @param mouse pointer para o mouse
- * @param isStartMenu tipo de menu
+ * @param game_state estado do jogo
  * @return 1 se algum erro ocorrer se não 0
 */
-void update_selected_mouse(Menu* menu, Mouse* mouse, bool isStartMenu);
+void update_selected_mouse(Menu* menu, Mouse* mouse, Game_state* game_state);
 
 
 /**
