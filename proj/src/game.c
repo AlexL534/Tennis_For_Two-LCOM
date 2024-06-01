@@ -47,6 +47,7 @@ int (gameLoop)(){
   uint8_t day;
   uint8_t month;
   uint8_t year;
+  
   if(get_date(&day,&month,&year) != 0){
     return EXIT_FAILURE;
   }
@@ -165,6 +166,7 @@ int (gameLoop)(){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
+
                 draw_date(day,month,year);
                 break;
 

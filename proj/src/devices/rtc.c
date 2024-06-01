@@ -53,17 +53,15 @@ int (read_RTC)(uint8_t command, uint8_t *output){
 
   //firstly checks if the RTC is updating (UIP) 
   uint8_t updating = 0;
-  if(sys_outb(RTC_ADDR_REG, REG_A) != 0){
-    return EXIT_FAILURE;
+  while(updating & REG_A_UIP){
+    if(sys_outb(RTC_ADDR_REG, REG_A) != 0){
+      return EXIT_FAILURE;
+    }
+    if(util_sys_inb(RTC_DATA_REG, &updating) != 0){
+      return EXIT_FAILURE;
+    }
   }
-  if(util_sys_inb(RTC_DATA_REG, &updating) != 0){
-    return EXIT_FAILURE;
-  }
-  if(updating & REG_A_UIP){
-    printf("The RTC is updating. Cannot read the values");
-    return EXIT_FAILURE;
-  }
-
+  
   //check if the values are in binary
   uint8_t bin = 0;
   if(sys_outb(RTC_ADDR_REG, REG_B) != 0){
