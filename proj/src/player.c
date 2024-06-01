@@ -430,7 +430,6 @@ void updatePlayerMovementMouse(Player *player, bool isLB, int *newBallX, bool ca
     }
 }
 
-
 bool (stopPlayer)(uint8_t scancode, Player_movement movement){
   switch (movement)
   {
@@ -738,7 +737,7 @@ void (resetPlayer)(Player *player, bool hasScored){
 }
 
 void (destroyPlayer1)(Player *player){
-  //if the player isn't the player 1, changes function
+  //if the player isn't player 1, changes function
   if(player->player_numb == PLAYER2){
     destroyPlayer2(player);
     return;
@@ -794,7 +793,7 @@ void (destroyPlayer1)(Player *player){
 }
 
 void (destroyPlayer2)(Player * player){
-  //if the player isn't the player 2, changes function
+  //if the player isn't player 2, changes function
   if(player->player_numb == PLAYER1){
     destroyPlayer1(player);
     return;

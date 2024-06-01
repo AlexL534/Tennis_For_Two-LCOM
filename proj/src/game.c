@@ -93,7 +93,7 @@ int (gameLoop)(){
   while(game_state != QUIT){
 
     if((game_state == GAME) && ((player1Score >= 10) || (player2Score >= 10))){
-      //the game finnished because a player won
+      //the game finished because a player won
 
       if(clear_screen()!=0){
         return EXIT_FAILURE;
@@ -154,8 +154,8 @@ int (gameLoop)(){
 
     if(initial_load && (game_state == GAME)){
       //the game is starting and needs to load some things
-        initial_load = false;
-        printf("Loading background and initial score...\n");
+      initial_load = false;
+      printf("Loading background and initial score...\n");
 
       if(loadBackground() != 0){
         destroyElements();
@@ -271,7 +271,6 @@ int (gameLoop)(){
       } 	
     } 
   }
-
 
   if(kbd_unsubscribe_int() != 0){
     destroyElements();
