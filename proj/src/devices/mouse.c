@@ -108,9 +108,14 @@ int (mouse_unsubscribe_int)(){
 void (mouse_insert_byte)(){
 
   //checks if the bit 3 (mouse control byte) is active and if the current index is 0 (new byte)
-  if(byte_index == 0 && (current_byte & MOUSE_CONTROL)){
-    packet.bytes[byte_index] = current_byte;
-    byte_index++;
+  if(byte_index == 0){
+    if(current_byte & MOUSE_CONTROL){
+      packet.bytes[byte_index] = current_byte;
+      byte_index++;
+    }
+    else{
+      printf("The byte isn't from a new packet");
+    }
   }
 
   else if(byte_index > 0){
