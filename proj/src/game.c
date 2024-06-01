@@ -191,6 +191,11 @@ int (gameLoop)(){
                 break;
               
               case PAUSE_MENU:
+              if(refreshBackground(menuBackground) != 0){
+                  printf("Failed to clear the backgorund");
+                  destroyElements();
+                  return EXIT_FAILURE;
+                }
                 if(timer_handler_menu(menu, mouse, false)!=0){
                   destroyElements();
                   return EXIT_FAILURE;

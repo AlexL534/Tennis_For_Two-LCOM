@@ -375,10 +375,10 @@ int drawPause(Menu *menu) {
         return EXIT_FAILURE;
     }
     
-    if (draw_field(0, 0, menu->pause_menu) != 0) {
+    /*if (draw_field(0, 0, menu->pause_menu) != 0) {
         printf("Draw menu failed\n");
         return EXIT_FAILURE;
-    }
+    }*/
 
     if (draw_field(454, 300, (menu->selected == 0) ? menu->resume_hover : menu->resume) != 0) {
         printf("Draw resume failed\n");
