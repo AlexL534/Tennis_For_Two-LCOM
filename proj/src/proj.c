@@ -41,11 +41,6 @@ int (proj_main_loop)(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  /*
-  if(menuLoop()!=0){
-    return EXIT_FAILURE;
-  }
-  */
   
   if(gameLoop() != 0){
     printf("failed");
