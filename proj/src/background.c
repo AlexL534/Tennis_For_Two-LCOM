@@ -19,7 +19,77 @@ int (drawBackground)(uint32_t *background){
   return EXIT_SUCCESS;
 }
 
-int (initializeMenuBackground)(uint32_t *background, bool isStart, Menu *menu){
+int (drawDateBackground)( uint32_t *background, int day, int month, int year){
+    Sprite *sprite = (Sprite*) malloc(sizeof(Sprite));
+    sprite->map=(uint32_t *) malloc(sizeof(char*));
+    int x=730;
+    int y=800;
+    while(year){
+        choose_number_sprite(year%10,sprite);
+        if(drawElementsInMenuBackground(background, sprite->map, x ,y, sprite->width, sprite->height)!=0){
+            return EXIT_FAILURE;
+        }
+        year /=10;
+        x -= 50;
+    }
+
+    x -= sprite->width;
+    
+    while(month){
+        choose_number_sprite(month%10,sprite);
+        if(drawElementsInMenuBackground(background, sprite->map, x ,y, sprite->width, sprite->height)!=0){
+            return EXIT_FAILURE;
+        }
+        month /=10;
+        x -= 50;
+    }
+
+    x -= sprite->width;
+    
+    while(day){
+        choose_number_sprite(day%10,sprite);
+        if(drawElementsInMenuBackground(background, sprite->map, x ,y, sprite->width, sprite->height)!=0){
+            return EXIT_FAILURE;
+        }
+        day /=10;
+        x -= 50;
+    }
+
+    free(sprite);
+
+    return EXIT_SUCCESS;
+}
+int (drawElementsInMenuBackground)(uint32_t *background, uint32_t *element, int x, int y, int width, int height){
+
+    if(element == NULL){
+      return EXIT_FAILURE;
+    }
+
+    
+    uint32_t *ptr2 = element;
+    for(int i = y; i < y + height; i++){
+      for(int j = x; j < x + width; j++){
+
+          unsigned int index = (j + i * get_hres());
+          
+
+          if(index >= (get_vres() * get_hres())){
+            printf("here");
+          }
+        if(*ptr2 != TRANSPARENCY_COLOR && i < MAX_X && j < MAX_Y){
+
+          if(memcpy(&background[index], ptr2 , get_bytes_per_pixel()) == NULL){ 
+            return EXIT_FAILURE;
+          };
+        }
+        ptr2++;
+      }
+
+    }
+  return EXIT_SUCCESS;
+}
+
+int (initializeMenuBackground)(uint32_t *background, bool isStart, Menu *menu, int day, int month, int year){
 
   uint32_t color = 0x000000;
 
@@ -34,71 +104,19 @@ int (initializeMenuBackground)(uint32_t *background, bool isStart, Menu *menu){
   }
 
   if(isStart){
-    uint32_t *title_map = menu->title.map;
-
-    if(title_map == NULL){
-      printf("No title sprite found");
+    if(drawElementsInMenuBackground(background, menu->title.map, 260, 10, menu->title.width, menu->title.height) != 0){
       return EXIT_FAILURE;
     }
-
-    int width = menu->title.width;
-    int height = menu->title.height;
-    int x_offset = 260;
-    int y_offset = 10;
-    
-    uint32_t *ptr2 = title_map;
-    for(int i = y_offset; i < y_offset + height; i++){
-      for(int j = x_offset; j < x_offset + width; j++){
-
-          unsigned int index = (j + i * get_hres());
-          
-
-          if(index >= (get_vres() * get_hres())){
-            printf("here");
-          }
-        if(*ptr2 != TRANSPARENCY_COLOR && i < MAX_X && j < MAX_Y){
-
-          if(memcpy(&background[index], ptr2 , get_bytes_per_pixel()) == NULL){ 
-            return EXIT_FAILURE;
-          };
-        }
-        ptr2++;
-      }
-
+    if(drawDateBackground(background, day, month, year) != 0){
+      return EXIT_FAILURE;
     }
+    
   }
   else{
-    uint32_t *title_map = menu->pause_menu.map;
-
-    if(title_map == NULL){
-      printf("No title sprite found");
+    if(drawElementsInMenuBackground(background, menu->pause_menu.map, 0, 0, menu->pause_menu.width, menu->pause_menu.height) != 0){
       return EXIT_FAILURE;
     }
-
-    int width = menu->pause_menu.width;
-    int height = menu->pause_menu.height;
-
     
-    uint32_t *ptr2 = title_map;
-    for(int i = 0; i < 0 + height; i++){
-      for(int j = 0; j < 0 + width; j++){
-
-          unsigned int index = (j + i * get_hres());
-          
-
-          if(index >= (get_vres() * get_hres())){
-            printf("here");
-          }
-        if(*ptr2 != TRANSPARENCY_COLOR && i < MAX_X && j < MAX_Y){
-
-          if(memcpy(&background[index], ptr2 , get_bytes_per_pixel()) == NULL){ 
-            return EXIT_FAILURE;
-          };
-        }
-        ptr2++;
-      }
-
-    }
   }
 
   return EXIT_SUCCESS;

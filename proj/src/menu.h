@@ -95,14 +95,6 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite);
 */
 int (draw_menu)(Menu* menu);
 
-/**
- * @brief desenha a data fornecida pelo rtc
- * @param day dia fornecido pelo rtc
- * @param month mês fornecido pelo rtc
- * @param year ano fornecido pelo rtc
- * @return 1 se algum erro ocorrer, 0 caso contrário
-*/
-int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
 
 /**
  * @brief escolhe um sprite que corresponde a um numero de 0 a 9
@@ -162,9 +154,10 @@ void destroyMouse(Mouse* mouse);
  * @param mouse Apontador para o objeto Mouse a ser atualizado.
  * @param delta_x Mudança na coordenada x.
  * @param delta_y Mudança na coordenada y.
+ * @param state Estado atual do jogo
  * @return Retorna 1 se ocorreu algum erro e 0 se correu tudo bem
  */
-int updateMousePosition(Mouse* mouse, int delta_x, int delta_y);
+int updateMousePosition(Mouse* mouse, int delta_x, int delta_y, Game_state* state);
 
 /**
  * @brief  chama funções relevantes quando há uma interrupção vinda do mouse e o jogo está no menu

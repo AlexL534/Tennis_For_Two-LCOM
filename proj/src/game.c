@@ -27,12 +27,6 @@ int (gameLoop)(){
 
   menu = initialize_menu(isStartMenu);
 
-  menuBackground = (uint32_t *)malloc(get_hres() * get_vres() * get_bytes_per_pixel());
-  if(initializeMenuBackground(menuBackground, true, menu) != 0){
-    printf("error while loading the menu background");
-    return EXIT_FAILURE;
-  }
-
   if(menu == NULL){
     printf("menu is null");
     return EXIT_FAILURE;
@@ -43,12 +37,18 @@ int (gameLoop)(){
   int r = 0;
   uint8_t bit_no;
 
-  
+  //initializes the date values for the RTC
   uint8_t day;
   uint8_t month;
   uint8_t year;
-  
   if(get_date(&day,&month,&year) != 0){
+    return EXIT_FAILURE;
+  }
+
+  //initializes the menu static background items
+  menuBackground = (uint32_t *)malloc(get_hres() * get_vres() * get_bytes_per_pixel());
+  if(initializeMenuBackground(menuBackground, true, menu, day, month, year) != 0){
+    printf("error while loading the menu background");
     return EXIT_FAILURE;
   }
 
@@ -59,7 +59,7 @@ int (gameLoop)(){
   }
 
   //changes the mouse sample rate to 20
-  if(mouse_write_byte(0X14) != 0){
+  if(mouse_write_byte(0X28) != 0){
     destroyElements();
     return EXIT_FAILURE;
   }
@@ -91,27 +91,38 @@ int (gameLoop)(){
   uint8_t mouse_mask = BIT(bit_no);
 
   while(game_state != QUIT){
+
     if((game_state == GAME) && ((player1Score >= 10) || (player2Score >= 10))){
+      //the game finnished because a player won
+
       if(clear_screen()!=0){
         return EXIT_FAILURE;
       }
       game_state = START_MENU;
-      player1Score=0;
-      player2Score=0;
-      menu=initialize_menu(true);
-      if(initializeMenuBackground(menuBackground, true, menu) != 0){
-        printf("error while loading the menu background");
-        return EXIT_FAILURE;
-      }
+      player1Score = 0;
+      player2Score = 0;
+
+      //updates the date to use in the menu
       if(get_date(&day,&month,&year) != 0){
         return EXIT_FAILURE;
       }
+      //initializes the start menu
+      menu = initialize_menu(true);
+      if(initializeMenuBackground(menuBackground, true, menu, day, month, year) != 0){
+        printf("error while loading the menu background");
+        return EXIT_FAILURE;
+      }
+      
+
     }
 
     if (game_state == RESTART) {
+      //the game was restarted
+
       if(clear_screen()!=0){
         return EXIT_FAILURE;
       }
+
       player1Score=0;
       player2Score=0;
       game_state = GAME;
@@ -130,16 +141,18 @@ int (gameLoop)(){
     }
 
     if (game_state == GAME && (get_scancode() == KBD_ESC_BREAK)) {
+      //the player wants to enter the pause menu
       set_scancode(0x01);
       game_state = PAUSE_MENU;
       menu = initialize_menu(false);
-      if(initializeMenuBackground(menuBackground, false, menu) != 0){
+      if(initializeMenuBackground(menuBackground, false, menu, day, month, year) != 0){
         printf("error while loading the menu background");
         return EXIT_FAILURE;
       }
     }
 
     if(initial_load && (game_state == GAME)){
+      //the game is starting and needs to load some things
         initial_load = false;
         printf("Loading background and initial score...\n");
 
@@ -155,6 +168,7 @@ int (gameLoop)(){
         return EXIT_FAILURE;
       }
     }
+
     if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
       printf("driver_receive failed with: %d", r);
       continue;
@@ -179,8 +193,6 @@ int (gameLoop)(){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
-
-                draw_date(day,month,year);
                 break;
 
               case GAME: 
@@ -389,6 +401,7 @@ int (timerHandler)(){
     collisionPlayer(ball, player2);
   }
 
+  //the ball only moves when the game starts
   if((player1 ->state != CHOOSE_START) && (player1 ->state != CHOOSE_START_STOP) && (player2 ->state != CHOOSE_START) && (player2 ->state != CHOOSE_START_STOP)){
     if((player1->state == START) || (player2->state == START)){
       moveBall(ball,true);
@@ -432,7 +445,7 @@ int (timerHandler)(){
 int (mouseHandler)(){
   int newBallX = 9999; 
   updatePlayerMovementMouse(player1, get_mouse_packet().lb, &newBallX, canHitAfterServe);
-  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y);
+  updateMousePosition(mouse, get_mouse_packet().delta_x, get_mouse_packet().delta_y, &game_state);
   if(newBallX != 9999){
     //the player started and the ball position needs to be updated
     ball->x = newBallX;

@@ -179,9 +179,6 @@ int (draw_menu)(Menu* menu){
     switch (menu->selected)
     {
         case 0:
-            //if(draw_field(260,10,menu->title)!=0){
-              //  printf("draw title failed");
-           // }
             if(draw_field(467,350,menu->play_button)!=0){
                 printf("draw start failed");
                 return EXIT_FAILURE;
@@ -192,10 +189,6 @@ int (draw_menu)(Menu* menu){
             }
             break;
         case 1:
-            /*
-            if(draw_field(260,10,menu->title)!=0){
-                printf("draw title failed");
-            }*/
             if(draw_field(461,345,menu->play_button_hover)!=0){
                 return EXIT_FAILURE;
             }
@@ -204,9 +197,6 @@ int (draw_menu)(Menu* menu){
             }
             break;
         case 2:
-            /*if(draw_field(260,10,menu->title)!=0){
-                printf("draw title failed");
-            }*/
             if(draw_field(467,350,menu->play_button)!=0){
                 return EXIT_FAILURE;
             }
@@ -303,46 +293,6 @@ int (choose_number_sprite)(uint8_t num, Sprite* sprite){
     return EXIT_SUCCESS;
 }
 
-int (draw_date)(uint8_t day, uint8_t month, uint8_t year){
-    Sprite *sprite = (Sprite*) malloc(sizeof(Sprite));
-    sprite->map=(uint32_t *) malloc(sizeof(char*));
-    int x=730;
-    int y=800;
-    while(year){
-        choose_number_sprite(year%10,sprite);
-        if(draw_field(x,y,*sprite)!=0){
-            return EXIT_FAILURE;
-        }
-        year /=10;
-        x -= 50;
-    }
-
-    x -= sprite->width;
-    
-    while(month){
-        choose_number_sprite(month%10,sprite);
-        if(draw_field(x,y,*sprite)!=0){
-            return EXIT_FAILURE;
-        }
-        month /=10;
-        x -= 50;
-    }
-
-    x -= sprite->width;
-    
-    while(day){
-        choose_number_sprite(day%10,sprite);
-        if(draw_field(x,y,*sprite)!=0){
-            return EXIT_FAILURE;
-        }
-        day /=10;
-        x -= 50;
-    }
-
-    free(sprite);
-
-    return EXIT_SUCCESS;
-}
 
 int update_selected_pause(unsigned char code, Game_state* game_state, Menu* menu) {
     if (code == ARROW_DOWN) {
@@ -375,11 +325,6 @@ int drawPause(Menu *menu) {
         return EXIT_FAILURE;
     }
     
-    /*if (draw_field(0, 0, menu->pause_menu) != 0) {
-        printf("Draw menu failed\n");
-        return EXIT_FAILURE;
-    }*/
-
     if (draw_field(454, 300, (menu->selected == 0) ? menu->resume_hover : menu->resume) != 0) {
         printf("Draw resume failed\n");
         return EXIT_FAILURE;
@@ -464,7 +409,7 @@ void destroyMouse(Mouse* mouse) {
     free(mouse);
 }
 
-int updateMousePosition(Mouse* mouse, int dx, int dy) {
+int updateMousePosition(Mouse* mouse, int dx, int dy, Game_state *state) {
     if(abs(dx) > 1 ){
         mouse->x += dx * 1.5;
     }
@@ -481,9 +426,14 @@ int updateMousePosition(Mouse* mouse, int dx, int dy) {
 
     if (mouse->y < 0) {
         mouse->y = 0;
-    } else if (mouse->y + mouse->sprite->height > MAX_Y) {
+    }
+    else if(mouse->y + mouse->sprite->height > MAX_Y - 80 && *state == START_MENU){
+        mouse->y = MAX_Y - 80 - mouse->sprite->height;
+    }
+    else if (mouse->y + mouse->sprite->height > MAX_Y) {
         mouse->y = MAX_Y - mouse->sprite->height;
     }
+    
 
     return EXIT_SUCCESS;
 }
