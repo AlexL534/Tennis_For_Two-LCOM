@@ -2,9 +2,7 @@
 #include "devices/video.h"
 #include "xpms.h"
 
-
 int (drawBackground)(uint32_t *background){
-
   xpm_image_t img;
   background = (uint32_t *) xpm_load((xpm_map_t) Court_rec_xpm, XPM_8_8_8_8, &img);
   uint32_t *ptr = background;
@@ -22,7 +20,7 @@ int (drawBackground)(uint32_t *background){
 int (drawDateBackground)( uint32_t *background, int day, int month, int year){
     Sprite *sprite = (Sprite*) malloc(sizeof(Sprite));
     sprite->map=(uint32_t *) malloc(sizeof(char*));
-    int x=730;
+    int x=690;
     int y=800;
     while(year){
         choose_number_sprite(year%10,sprite);
@@ -59,6 +57,7 @@ int (drawDateBackground)( uint32_t *background, int day, int month, int year){
 
     return EXIT_SUCCESS;
 }
+
 int (drawElementsInMenuBackground)(uint32_t *background, uint32_t *element, int x, int y, int width, int height){
 
     if(element == NULL){
@@ -123,11 +122,8 @@ int (initializeMenuBackground)(uint32_t *background, bool isStart, Menu *menu, i
 }
 
 int (refreshBackground)(uint32_t *background){
-
   if(memcpy(get_second_buffer(), background, get_hres() * get_vres() * get_bytes_per_pixel()) == NULL){
     return EXIT_FAILURE;
   };
   return EXIT_SUCCESS;
 }
-
-

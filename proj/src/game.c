@@ -58,7 +58,7 @@ int (gameLoop)(){
     return EXIT_FAILURE;
   }
 
-  //changes the mouse sample rate to 20
+  //changes the mouse sample rate to 40
   if(mouse_write_byte(0X28) != 0){
     destroyElements();
     return EXIT_FAILURE;
