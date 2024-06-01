@@ -57,12 +57,11 @@
 /*Interrupt Identification Register (IIR)*/
 #define INTERRUPT_PENDING BIT(0)
 
-/*fifo controL register (FCR)*/
+/*fifo control register (FCR)*/
 #define EN_BOTH_FIFOS BIT(0)
 #define CLEAR_BYTES_RCVR BIT(1)
 #define CLEAR_BYTES_XMIT BIT(2)
 #define EN_64_BYTE BIT(5)
-
 
 
 #endif

@@ -4,7 +4,7 @@
 #include <lcom/lcf.h>
 /**
  * @struct Sprite
- * @brief Estrutura que contem as informações esseciais de cada sprite
+ * @brief Estrutura que contém as informações essenciais de cada sprite
  * @var Sprite::width
  * Comprimento do Sprite
  * @var Sprite::height

@@ -34,6 +34,7 @@
         "rtc.h": "c",
         "stdlib.h": "c",
         "color.h": "c",
-        "background.h": "c"
+        "background.h": "c",
+        "system_error": "c"
     }
 }

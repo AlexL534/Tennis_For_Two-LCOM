@@ -143,7 +143,6 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
     return EXIT_SUCCESS;
 }
 
-
 int (update_selected)(unsigned char code,Game_state* state, Menu* menu){
     if(code == ARROW_DOWN || code == ARROW_UP){
         if(menu->selected==2){
@@ -222,11 +221,19 @@ int (draw_menu)(Menu* menu){
     return EXIT_SUCCESS;
 }
 
-int (time_handler_menu)(Menu* menu, Mouse* mouse){
-    if(draw_menu(menu)!=0 || drawMouse(mouse) != 0){
-        printf("menu or mouse failed to draw\n");
-        return EXIT_FAILURE;
+int (timer_handler_menu)(Menu* menu, Mouse* mouse, bool isStartMenu){
+    if(isStartMenu){
+        if(draw_menu(menu)!=0 || drawMouse(mouse) != 0){
+            printf("menu or mouse failed to draw\n");
+            return EXIT_FAILURE;
+        }
     }
+    else{
+        if (drawPause(menu) != 0 || drawMouse(mouse) != 0) {
+            return EXIT_FAILURE;
+        }
+    }
+    
     return EXIT_SUCCESS;   
 }
 
@@ -390,6 +397,7 @@ int drawPause(Menu *menu) {
 
     return EXIT_SUCCESS;
 }
+
 Mouse* createMouse() {
     Mouse* mouse = (Mouse*)malloc(sizeof(Mouse));
     if (mouse == NULL) {
@@ -480,37 +488,68 @@ int updateMousePosition(Mouse* mouse, int dx, int dy) {
     return EXIT_SUCCESS;
 }
 
-void update_selected_mouse(Menu* menu, Mouse* mouse, Game_state* game_state) {
-    // Check if mouse is hovering over menu buttons and update selected option accordingly
-    if ((mouse->x >= 454 && mouse->x <= 661) && (mouse->y >= 300 && mouse->y <= 360)) {
-        menu->selected = 0; // Hovering over Resume button
-    } else if ((mouse->x >= 454 && mouse->x <= 697) && (mouse->y >= 400 && mouse->y <= 460)) {
-        menu->selected = 1; // Hovering over Restart button
-    } else if ((mouse->x >= 454 && mouse->x <= 588) && (mouse->y >= 500 && mouse->y <= 560)) {
-        menu->selected = 2; // Hovering over Quit button
-    }
+void update_selected_mouse(Menu* menu, Mouse* mouse, Game_state* game_state, bool isStartMenu) {
+    if (!isStartMenu) {
+        // Check if mouse is hovering over menu buttons
+        bool isHoveringResume = (mouse->x >= 454 && mouse->x <= 661) && (mouse->y >= 300 && mouse->y <= 360);
+        bool isHoveringRestart = (mouse->x >= 454 && mouse->x <= 697) && (mouse->y >= 400 && mouse->y <= 460);
+        bool isHoveringQuit = (mouse->x >= 454 && mouse->x <= 588) && (mouse->y >= 500 && mouse->y <= 560);
 
-    // Handle mouse click
-    if (get_mouse_packet().lb) {
-        printf("Mouse click detected, selected: %d\n", menu->selected); // Debug
-        switch (menu->selected) {
-            case 0:  // Resume
-                *game_state = GAME;
-                break;
-            case 1:  // Restart
-                *game_state = RESTART;
-                break;
-            case 2:  // Quit
-                *game_state = QUIT;
-                break;
-            default:
-                break;
+        if (isHoveringResume) {
+            menu->selected = 0;
+        }
+        else if (isHoveringRestart) {
+            menu->selected = 1;
+        }
+        else if (isHoveringQuit) {
+            menu->selected = 2;
         }
 
-        // Immediately update the screen after state change
-        if (clear_screen() != 0) {
-            destroyElements();
-            printf("Failed to clear screen\n");
+        // Handle mouse click
+        if (get_mouse_packet().lb) {
+            if (isHoveringResume) {
+                *game_state = GAME;
+            } else if (isHoveringRestart) {
+                *game_state = RESTART;
+            } else if (isHoveringQuit) {
+                *game_state = QUIT;
+            }
+        }
+    }
+    else {
+        // Check if mouse is hovering over menu buttons
+        bool isHoveringPlay = (mouse->x >= 461 && mouse->x <= 689) && (mouse->y >= 345 && mouse->y <= 397);
+        bool isHoveringQuit = (mouse->x >= 487 && mouse->x <= 663) && (mouse->y >= 471 && mouse->y <= 521);
+
+        if (isHoveringPlay) {
+            menu->selected = 1;
+        }
+        else if (isHoveringQuit) {
+            menu->selected = 2;
+        }
+
+        // Handle mouse click
+        if (get_mouse_packet().lb) {
+            if (isHoveringPlay) {
+                *game_state = GAME;
+            } else if (isHoveringQuit) {
+                *game_state = QUIT;
+            }
+        }
+    }
+}
+
+void menuMouseHandler(bool start, Menu* menu, Mouse* mouse, Game_state* game_state) {
+    if (!start) {
+        update_selected_mouse(menu, mouse, game_state, false);
+        if (*game_state == RESTART) {
+            clear_mouse_packet(); //so that player does not hit right as user returns to game
+        }
+    }
+    else {
+        update_selected_mouse(menu, mouse, game_state, true);
+        if (*game_state == GAME) {
+            clear_mouse_packet(); //so that player does not hit right at the start
         }
     }
 }

@@ -1,7 +1,7 @@
 #ifndef STATES_H
 #define STATES_H
 
-/// @brief Contem os estados do jogo
+/// @brief Contém os estados do jogo
 typedef enum{
   GAME,
   START_MENU,
