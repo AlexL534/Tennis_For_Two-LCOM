@@ -74,9 +74,10 @@ int (update_selected)(unsigned char code, Game_state* state, Menu* menu);
  * @brief chama funções relevantes para lidar com interrupções vindas do timer quando o jogo está no menu
  * @param menu menu a ser atualizado
  * @param mouse mouse a ser atualizado
+ * @param isStartMenu escolhe entre menu inicial ou menu de pausa
  * @return 1 se algum erro ocorrer, 0 caso contrário
 */
-int (time_handler_menu)(Menu* menu, Mouse* mouse);
+int (timer_handler_menu)(Menu* menu, Mouse* mouse, bool isStartMenu);
 
 /**
  * @brief desenha um sprite na tela

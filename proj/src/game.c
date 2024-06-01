@@ -164,7 +164,7 @@ int (gameLoop)(){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
-                if(time_handler_menu(menu, mouse) !=0){
+                if(timer_handler_menu(menu, mouse, true) !=0){
                   printf("menu timer handler failed");
                   destroyElements();
                   return EXIT_FAILURE;
@@ -181,10 +181,11 @@ int (gameLoop)(){
                 break;
               
               case PAUSE_MENU:
-                if (drawPause(menu) != 0 || drawMouse(mouse) != 0) {
+                if(timer_handler_menu(menu, mouse, false)!=0){
                   destroyElements();
                   return EXIT_FAILURE;
                 }
+                
                 break;
 
               default:
