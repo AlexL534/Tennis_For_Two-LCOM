@@ -114,7 +114,8 @@ int (gameLoop)(){
       resetBall(ball, PLAYER1);
       resetPlayer(player1, true);
       resetPlayer(player2, false);
-
+      ball->x = 9999;
+      canHitAfterServe = false;
       if(updateXPMScore(1,player2Score) != 0){
         return EXIT_FAILURE;
       }
@@ -371,7 +372,7 @@ int (timerHandler)(){
   if(player1 -> state == HIT){
     collisionPlayer(ball, player1);
   }
-
+  
   if(player2-> state == HIT){
     collisionPlayer(ball, player2);
   }
