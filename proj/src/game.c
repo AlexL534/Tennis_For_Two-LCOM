@@ -88,6 +88,25 @@ int (gameLoop)(){
       player2Score=0;
       menu=initialize_menu(true);
     }
+
+    if (game_state == RESTART) {
+      if(clear_screen()!=0){
+        return EXIT_FAILURE;
+      }
+      player1Score=0;
+      player2Score=0;
+      game_state = GAME;
+
+      if(updateXPMScore(1,player2Score) != 0){
+        return EXIT_FAILURE;
+      }
+
+      if(updateXPMScore(2,player2Score) != 0){
+        return EXIT_FAILURE;
+      }
+
+    }
+
     if (game_state == GAME && (get_scancode() == KBD_ESC_BREAK)) {
       game_state = PAUSE_MENU;
       menu = initialize_menu(false);

@@ -235,13 +235,9 @@ int (draw_menu)(Menu* menu){
 }
 
 int (time_handler_menu)(Menu* menu, Mouse* mouse){
-    
-    if(draw_menu(menu)!=0){
-        printf("menu failed to draw");
-        return EXIT_FAILURE;
-    }
-    if(drawMouse(mouse) != 0) {
-        printf("mouse failed to draw\n");
+    clear_screen();
+    if(draw_menu(menu)!=0 || drawMouse(mouse) != 0){
+        printf("menu or mouse failed to draw\n");
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;   
