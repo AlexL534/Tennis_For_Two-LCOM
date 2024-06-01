@@ -17,7 +17,7 @@
 #define REG_B_DM BIT(2)
 
 /**
- * Obtem a data atual.
+ * @brief Obtém a data atual.
  * @param day dia atual
  * @param month mês atual
  * @param year ano atual
@@ -25,14 +25,14 @@
 */
 int (get_date)(uint8_t *day, uint8_t *month, uint8_t *year);
 
-/**
- * Programa o RTC para enviar valores em binário~
+/** 
+ * @brief Programa o RTC para enviar valores em binário
  * @returns 1 se ocorrer um erro e 0 caso tenha corrido tudo bem
 */
 int (set_binary)();
 
 /**
- * Lê os valores que estão no rtc
+ * @brief Lê os valores que estão no rtc
  * @param command Comando enviado com informação do valor que queremos ler (dia, mês, ...)
  * @param output Valor lido pelo rtc
  * @returns 1 se ocorrer um erro e 0 caso tenha corrido tudo bem
