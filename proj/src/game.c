@@ -111,6 +111,9 @@ int (gameLoop)(){
       player1Score=0;
       player2Score=0;
       game_state = GAME;
+      resetBall(ball, PLAYER1);
+      resetPlayer(player1, true);
+      resetPlayer(player2, false);
 
       if(updateXPMScore(1,player2Score) != 0){
         return EXIT_FAILURE;
