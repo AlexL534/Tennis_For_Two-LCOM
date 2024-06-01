@@ -2,6 +2,10 @@
 #include <stdlib.h> 
 
 void updatePlayer2AI(Player *player2, Ball *ball, int counter, bool canHitAfterServe) {
+    if (ball->x == 9999) {
+        return; // Exit the function early if ball is in invalid position
+    }
+
     int player2X = player2->x;
     int player2Y = player2->y;
     int ballX = ball->x;
