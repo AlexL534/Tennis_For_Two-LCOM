@@ -133,9 +133,10 @@ int drawPause(Menu *menu);
  * @param menu pointer para menu
  * @param mouse pointer para o mouse
  * @param game_state estado do jogo
+ * @param isStartMenu booleano que indica se o menu é o inicial ou não
  * @return 1 se algum erro ocorrer, 0 caso contrário
 */
-void update_selected_mouse(Menu* menu, Mouse* mouse, Game_state* game_state);
+void update_selected_mouse(Menu* menu, Mouse* mouse, Game_state* game_state, bool isStartMenu);
 
 /**
  * @brief Cria um objeto Mouse.
@@ -164,5 +165,14 @@ void destroyMouse(Mouse* mouse);
  * @return Retorna 1 se ocorreu algum erro e 0 se correu tudo bem
  */
 int updateMousePosition(Mouse* mouse, int delta_x, int delta_y);
+
+/**
+ * @brief  chama funções relevantes quando há uma interrupção vinda do mouse e o jogo está no menu
+ * @param start Booleano que indica se o menu atual é o inicial ou não
+ * @param menu Ponteiro para o menu
+ * @param mouse Ponteiro para o mouse 
+ * @param game_state Ponteiro para o Game_state representando o estado atual do jogo.
+ */
+void menuMouseHandler(bool start, Menu* menu, Mouse* mouse, Game_state* game_state);
 
 #endif

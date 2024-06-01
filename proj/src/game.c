@@ -11,7 +11,7 @@ int player1Score = 0;
 int player2Score = 0;
 static bool canHitAfterServe = false;
 bool isStartMenu=true;
-bool initial_load=false;
+bool initial_load=true;
 
 static uint32_t *background;
 static uint32_t *menuBackground;
@@ -132,6 +132,8 @@ int (gameLoop)(){
     }
 
     if(initial_load && (game_state == GAME)){
+        initial_load = false;
+        printf("Loading background and initial score...\n");
 
       if(loadBackground() != 0){
         destroyElements();
@@ -225,18 +227,10 @@ int (gameLoop)(){
             if (get__mouse_byte_index() == 3) {
               mouse_insert_in_packet();
               if (game_state == PAUSE_MENU) {
-                update_selected_mouse(menu, mouse, &game_state);
-                if (game_state != PAUSE_MENU) {
-                  clear_mouse_packet();
-                  // Clear screen and reinitialize menu if game_state changes
-                  if (clear_screen() != 0) {
-                      destroyElements();
-                      return EXIT_FAILURE;
-                  }
-                  if (game_state == GAME) {
-                      initial_load = true; // Ensure background and scores are loaded
-                  }
-                }
+                menuMouseHandler(false,menu,mouse,&game_state);
+              }
+              else if (game_state == START_MENU) {
+                menuMouseHandler(true,menu,mouse,&game_state);
               }
               if (mouseHandler() != 0) {
                 destroyElements();
@@ -245,6 +239,8 @@ int (gameLoop)(){
               reset_byte_index();
             }
           }
+          break;
+        default:
           break;
       } 	
     } 
