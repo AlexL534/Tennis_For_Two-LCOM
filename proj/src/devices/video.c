@@ -182,3 +182,14 @@ void (free_second_buffer)(){
 
   free(second_buffer);
 }
+
+int (clear_screen)() {
+    for (int y = 0; y < 864; y++) {
+        for (int x = 0; x < 1152; x++) {
+            if (vg_draw_color(x, y, 0x000000) != 0) {
+                return EXIT_FAILURE;
+            }
+        }
+    }
+    return EXIT_SUCCESS;
+}

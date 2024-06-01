@@ -103,4 +103,10 @@ char* (get_second_buffer)();
 */
 void (free_second_buffer)();
 
+/**
+ * @brief limpa a tela
+ * @return 1 se algum erro ocorrer se não 0
+*/
+int (clear_screen)();
+
 #endif

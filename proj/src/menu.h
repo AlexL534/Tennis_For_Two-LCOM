@@ -88,12 +88,6 @@ int (time_handler_menu)(Menu* menu, Mouse* mouse);
 int (draw_field)(int x_offset, int y_offset, Sprite sprite);
 
 /**
- * @brief limpa a tela
- * @return 1 se algum erro ocorrer se não 0
-*/
-int (clear_screen)();
-
-/**
  * @brief desenha o menu
  * @return 1 se algum erro ocorrer se não 0
 */

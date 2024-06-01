@@ -98,7 +98,9 @@ int (gameLoop)(){
       player1Score=0;
       player2Score=0;
       menu=initialize_menu(true);
-      get_date(&day,&month,&year);
+      if(get_date(&day,&month,&year) != 0){
+        return EXIT_FAILURE;
+      }
     }
 
     if (game_state == RESTART) {
@@ -276,6 +278,7 @@ void (destroyElements)(){
   destroyMouse(mouse);
   freeXPMScore();
   free(background);
+  free(menuBackground);
   free_second_buffer();
   free(menu->play_button.map);
   free(menu->quit.map);

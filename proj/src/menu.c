@@ -143,17 +143,6 @@ int (draw_field)(int x_offset, int y_offset, Sprite sprite ){
     return EXIT_SUCCESS;
 }
 
-int (clear_screen)() {
-    for (int y = 0; y < MAX_Y; y++) {
-        for (int x = 0; x < MAX_X; x++) {
-            if (vg_draw_color(x, y, 0x000000) != 0) {
-                return EXIT_FAILURE;
-            }
-        }
-    }
-    return EXIT_SUCCESS;
-}
-
 
 int (update_selected)(unsigned char code,Game_state* state, Menu* menu){
     if(code == ARROW_DOWN || code == ARROW_UP){
