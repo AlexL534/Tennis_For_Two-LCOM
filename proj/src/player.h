@@ -108,33 +108,33 @@ typedef struct{
 } Player;
 
 /**
- * Cria um player1
+ * @brief Cria um player1
  * @returns Retorna um apontador para um Player
 */
 Player *(createPlayer1)();
 
 /**
- * Cria um player2
+ * @brief Cria um player2
  * @returns Retorna um apontador para um Player
 */
 Player *(createPlayer2)();
 
 /**
- * Desenha um jogador no ecrã
- * @param player jogador que queremos desenhar
+ * @brief Desenha um jogador no ecrã
+ * @param player jogador a desenhar
  * @returns Retorna 1 se ocorreu algum erro e 0 se correu tudo bem
 */
 int (drawPlayer)(Player *player);
 
 /**
- * Atualiza a direção para onde o jogador está virado
+ * @brief Atualiza a direção para onde o jogador está virado
  * @param direction Nova direção do jogador
  * @param player Jogador que vai ter a direção atualizada
 */
 void (updatePlayerDirection)(Player_direction direction, Player *player);
 
 /**
- * Obtem os limites atuais para considerar que a bola atingiu a raquete do jogador ("hit box")
+ * @brief Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador ("hit box")
  * @param player Jogador que queremos obter os limites
  * @param x_min O minimo valor de x para considerar que ocorreu colisão
  * @param y_min O minimo valor de y para considerar que ocorreu colisão
@@ -144,31 +144,31 @@ void (updatePlayerDirection)(Player_direction direction, Player *player);
 void (get_current_hit_limits)(Player *player,int *x_min, int *x_max, int *y_min, int *y_max);
 
 /**
- * Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado
- * @param player Jogador que vamos atualizar o movimento
+ * @brief Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado
+ * @param player Jogador cujo movimento vai ser atualizado
  * @param scancode Valor do scancode a analisar
 */
 void (changePlayerMovementKBD)(Player *player, uint8_t scancode);
 
 /**
- * Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer
- * @param player Jogador que queremos atualizar os movimentos
+ * @brief Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer
+ * @param player Jogador cujos movimentos vão ser atualizados
  * @param counter Valor do counter ligado às interrupções do timer
  * @param canHitAfterServe Indica se o jogador já pode iniciar a animação de acertar a bola depois de servir
 */
 void (updatePlayerMovementsTimer)(Player *player, int counter, bool canHitAfterServe);
 
 /**
- * Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse
- * @param player Jogador que queremos atualizar os movimentos
+ * @brief Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse
+ * @param player Jogador cujos movimentos vão ser atualizados
  * @param isLB Indica se o mouse tem o botão esquerdo ativo
- * @param newBallX Retorn o novo valor de X para a bola quando o jogador escolhe um local para fazer o serviço
- * @param canHitAfterServe Indica se o jogador atingir a bola depois de servir
+ * @param newBallX Retorna o novo valor de X para a bola quando o jogador escolhe um local para fazer o serviço
+ * @param canHitAfterServe Indica se o jogador pode atingir a bola depois de servir
 */
 void (updatePlayerMovementMouse)(Player *player, bool isLB, int *newBallX, bool canHitAfterServe);
 
 /**
- * Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado
+ * @brief Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado
  * @param scancode Valor do scancode/breakcode do teclado
  * @param movement Direção do movimento do jogador
  * @returns True se o jogador deve parar ou falso caso contrário
@@ -176,54 +176,52 @@ void (updatePlayerMovementMouse)(Player *player, bool isLB, int *newBallX, bool 
 bool (stopPlayer)(uint8_t scancode, Player_movement movement);
 
 /**
- * Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento
- * @param player Jogador que vamos atualizar os valores de posição
+ * @brief Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento
+ * @param player Jogador cujos valores de posição vão ser atualizados
 */
 void (movePlayer)(Player *player);
 
 /**
- * Atualiza a animação de movimento para um novo sprite
- * @param player Jogador que vamos atualizar a animação de movimento
+ * @brief Atualiza a animação de movimento para um novo sprite
+ * @param player Jogador cuja animação de movimento vai ser atualizada
 */
 void (moveAnim)(Player *player);
 
 /**
- * Atualiza a animação de acertar a bola para um novo sprite
- * @param player Jogador que vamos atualizar a animação de acertar a bola
+ * @brief Atualiza a animação de acertar a bola para um novo sprite
+ * @param player Jogador que vai ter a animação de acertar a bola atualizada
 */
 void (hitAnim)(Player *player);
 
 /**
- * Atualiza a animação de serviço para um novo sprite
- * @param player Jogador que vamos atualizar a animação de serviço
+ * @brief Atualiza a animação de serviço para um novo sprite
+ * @param player Jogador que vai ter a animação de serviço atualizada
 */
 void (startAnim)(Player *player);
 
 /**
- * Atualiza a animação da escolha de local de serviço
- * @param player Jogador que vamos atualizar a animação de escolha de serviço
+ * @brief Atualiza a animação da escolha de local de serviço
+ * @param player Jogador que vai ter a animação de escolha de serviço atualizada
 */
 void (chooseStartAnim)(Player *player);
 
 /**
- * Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto
- * @param player Jogador que vamos repor
+ * @brief Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto
+ * @param player Jogador a repor
  * @param hasScored Indica se o jogador foi quem marcou o ponto
 */
 void (resetPlayer)(Player *player, bool hasScored);
 
 /**
- * Liberta a memória alocada para o jogagor 1
- * @param player1 jogador um que vamos libertar a memória
+ * @brief Liberta a memória alocada para o jogagor 1
+ * @param player1 jogador que vamos libertar a memória
 */
 void (destroyPlayer1)(Player *player1);
 
 /**
- * Liberta a memória alocada para o jogagor2
- * @param player2 jogador um que vamos libertar a memória
+ * @brief Liberta a memória alocada para o jogagor2
+ * @param player2 jogador que vamos libertar a memória
 */
 void (destroyPlayer2)(Player *player2);
-
-
 
 #endif

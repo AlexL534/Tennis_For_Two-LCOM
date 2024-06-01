@@ -390,6 +390,7 @@ int drawPause(Menu *menu) {
 
     return EXIT_SUCCESS;
 }
+
 Mouse* createMouse() {
     Mouse* mouse = (Mouse*)malloc(sizeof(Mouse));
     if (mouse == NULL) {
