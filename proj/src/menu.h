@@ -116,9 +116,28 @@ int (draw_date)(uint8_t day, uint8_t month, uint8_t year);
 */
 int (choose_number_sprite)(uint8_t num, Sprite* sprite);
 
+/**
+ * @brief atualiza variaveis game_state e menu qunado nessessário
+ * @param game_state pointer para state do jogo
+ * @param menu pointer para menu
+ * @return 1 se algum erro ocorrer se não 0
+*/
 int update_selected_pause(unsigned char code, Game_state* game_state, Menu* menu);
+
+/**
+ * @brief desenha menu de pausa
+ * @param menu pointer para menu com os sprites nessessários
+ * @return 1 se algum erro ocorrer se não 0
+*/
 int drawPause(Menu *menu);
 
+/**
+ * @brief usa rato para atualizar select do menu
+ * @param menu pointer para menu
+ * @param mouse pointer para o mouse
+ * @param isStartMenu tipo de menu
+ * @return 1 se algum erro ocorrer se não 0
+*/
 void update_selected_mouse(Menu* menu, Mouse* mouse, bool isStartMenu);
 
 
