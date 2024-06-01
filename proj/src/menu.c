@@ -169,8 +169,13 @@ int (update_selected)(unsigned char code,Game_state* state, Menu* menu){
     return EXIT_SUCCESS;
 }
 
-int (kbd_handler_menu)(Game_state* state, Menu* menu){
-    update_selected(get_scancode(),state,menu);
+int (kbd_handler_menu)(Game_state* state, Menu* menu, bool isStartMenu){
+    if (isStartMenu) {
+        update_selected(get_scancode(),state,menu);
+    }
+    else {
+        update_selected_pause(get_scancode(), state, menu);
+    }
     return EXIT_SUCCESS;
 }
 

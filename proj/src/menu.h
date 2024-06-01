@@ -57,9 +57,10 @@ Menu* (initialize_menu)(bool isStartMenu);
  * @param code code da tecla premida
  * @param state pointer para variável Game_state que pode ou não ser atualizada
  * @param menu pointer para menu onde selected pode ou não ser atualizada
+ * @param isStartMenu escolhe entre menu inicial e menu de pausa
  * @return 1 se algum erro ocorrer, 0 caso contrário
 */
-int (kbd_handler_menu)(Game_state* state, Menu* menu);
+int (kbd_handler_menu)(Game_state* state, Menu* menu, bool isStartMenu);
 
 /**
  * @brief atualiza parâmetros state e menu caso necessário

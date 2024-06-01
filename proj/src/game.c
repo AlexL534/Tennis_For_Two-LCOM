@@ -228,7 +228,7 @@ int (gameLoop)(){
             switch (game_state) {
 
               case START_MENU:
-                kbd_handler_menu(&game_state,menu);
+                kbd_handler_menu(&game_state,menu,true);
                 if(game_state==GAME){
                   initial_load=true;
                 }
@@ -240,7 +240,7 @@ int (gameLoop)(){
                 break;
 
               case PAUSE_MENU:
-                update_selected_pause(get_scancode(), &game_state, menu);
+                kbd_handler_menu(&game_state,menu,false);
                 break;
 
               default:
