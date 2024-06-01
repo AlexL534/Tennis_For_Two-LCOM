@@ -28,7 +28,7 @@ int (gameLoop)(){
   menu = initialize_menu(isStartMenu);
 
   menuBackground = (uint32_t *)malloc(get_hres() * get_vres() * get_bytes_per_pixel());
-  if(initializeMenuBackground(menuBackground) != 0){
+  if(initializeMenuBackground(menuBackground, true, menu) != 0){
     printf("error while loading the menu background");
     return EXIT_FAILURE;
   }
@@ -99,6 +99,10 @@ int (gameLoop)(){
       player1Score=0;
       player2Score=0;
       menu=initialize_menu(true);
+      if(initializeMenuBackground(menuBackground, true, menu) != 0){
+        printf("error while loading the menu background");
+        return EXIT_FAILURE;
+      }
       if(get_date(&day,&month,&year) != 0){
         return EXIT_FAILURE;
       }
@@ -126,6 +130,10 @@ int (gameLoop)(){
       set_scancode(0x01);
       game_state = PAUSE_MENU;
       menu = initialize_menu(false);
+      if(initializeMenuBackground(menuBackground, false, menu) != 0){
+        printf("error while loading the menu background");
+        return EXIT_FAILURE;
+      }
     }
 
     if(initial_load && (game_state == GAME)){

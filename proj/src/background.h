@@ -2,6 +2,7 @@
 #define BACKGROUND_H
 
 #include <lcom/lcf.h>
+#include "menu.h"
 
 /**
  * Desenha e inicializa o background do jogo
@@ -20,8 +21,9 @@ int (refreshBackground)(uint32_t *background);
 /**
  * Inicializa os valores necessários para que o background do menu funcione
  * @param background Buffer com o conteúdo do background
+ * @param isStart Usado para verificar qual menu é que vai ser inicializado
  * @returns 1 se ocorreu algum erro e 0 se correu tudo bem
 */
-int (initializeMenuBackground)(uint32_t *background);
+int (initializeMenuBackground)(uint32_t *background, bool isStart, Menu *menu);
 
 #endif

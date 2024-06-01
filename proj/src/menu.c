@@ -180,9 +180,9 @@ int (draw_menu)(Menu* menu){
     switch (menu->selected)
     {
         case 0:
-            if(draw_field(260,10,menu->title)!=0){
-                printf("draw title failed");
-            }
+            //if(draw_field(260,10,menu->title)!=0){
+              //  printf("draw title failed");
+           // }
             if(draw_field(467,350,menu->play_button)!=0){
                 printf("draw start failed");
                 return EXIT_FAILURE;
@@ -193,10 +193,10 @@ int (draw_menu)(Menu* menu){
             }
             break;
         case 1:
-            
+            /*
             if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
-            }
+            }*/
             if(draw_field(461,345,menu->play_button_hover)!=0){
                 return EXIT_FAILURE;
             }
@@ -205,9 +205,9 @@ int (draw_menu)(Menu* menu){
             }
             break;
         case 2:
-            if(draw_field(260,10,menu->title)!=0){
+            /*if(draw_field(260,10,menu->title)!=0){
                 printf("draw title failed");
-            }
+            }*/
             if(draw_field(467,350,menu->play_button)!=0){
                 return EXIT_FAILURE;
             }
