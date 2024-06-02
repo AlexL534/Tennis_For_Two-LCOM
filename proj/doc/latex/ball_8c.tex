@@ -1,0 +1,193 @@
+\doxysection{src/ball.c File Reference}
+\hypertarget{ball_8c}{}\label{ball_8c}\index{src/ball.c@{src/ball.c}}
+{\ttfamily \#include "{}ball.\+h"{}}\newline
+{\ttfamily \#include "{}devices/video.\+h"{}}\newline
+{\ttfamily \#include "{}color.\+h"{}}\newline
+Include dependency graph for ball.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ball_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{ball_8c_a8eff6382fdf3d1c79623136240435868}{create\+Ball}} ()
+\begin{DoxyCompactList}\small\item\em Cria uma nova bola alocando memória para as suas estruturas. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{ball_8c_a1b2120f0b08d3765060386e893bc7cf8}{draw\+Ball}} (\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball)
+\begin{DoxyCompactList}\small\item\em Desenha a bola no ecrã \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{ball_8c_a6c6e42952d68b70efd643511149a3f03}{update\+Ball\+Direction}} (\mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3df}{Ball\+\_\+direction}} direction, \mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball)
+\begin{DoxyCompactList}\small\item\em Atualiza a direção do movimento da bola. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{ball_8c_a29460a8e2e41f21b6f15db6218ef5a25}{collision\+Player}} (\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball, \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Verifica se ocorreu uma colisão e atualiza so valores de direção e inclinação de acordo com a posição da colisão. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{ball_8c_a04bf29d50d5e683ca9c631a50af22137}{move\+Ball}} (\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball, bool slow)
+\begin{DoxyCompactList}\small\item\em Atualiza os valores de x e y (move a bola no plano) \end{DoxyCompactList}\item 
+bool() \mbox{\hyperlink{ball_8c_a76e63ee4d42db19941cc817b7176d9da}{check\+Collision\+Line}} (\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball, uint32\+\_\+t \texorpdfstring{$\ast$}{*}background)
+\begin{DoxyCompactList}\small\item\em Verifica se ocorreu alguma colisão com as linhas laterais do campo. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{ball_8c_abe7520ce9248e983a1470c5273078184}{reset\+Ball}} (\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball, \mbox{\hyperlink{player_8h_aba3b0443f0841c242d11e13c8ce9a93f}{Player\+\_\+numb}} scored\+Player)
+\begin{DoxyCompactList}\small\item\em Reseta os valores da bola (posição, direção, ...) tendo em conta o jogador que marcou. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{ball_8c_a58458435cb64f9457ae60a1d3af2a1fd}{destroy\+Ball}} (\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball)
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para as estruturas que compõe a bola. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ball_8c_a76e63ee4d42db19941cc817b7176d9da}\label{ball_8c_a76e63ee4d42db19941cc817b7176d9da} 
+\index{ball.c@{ball.c}!checkCollisionLine@{checkCollisionLine}}
+\index{checkCollisionLine@{checkCollisionLine}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{checkCollisionLine()}{checkCollisionLine()}}
+{\footnotesize\ttfamily bool() check\+Collision\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball,  }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{background }\end{DoxyParamCaption})}
+
+
+
+Verifica se ocorreu alguma colisão com as linhas laterais do campo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ball} & bola a ser verificada \\
+\hline
+{\em background} & Conteúdo do background (onde se encontra o campo) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a colisão ocorreu ou falso caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{ball_8c_a76e63ee4d42db19941cc817b7176d9da_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ball_8c_a29460a8e2e41f21b6f15db6218ef5a25}\label{ball_8c_a29460a8e2e41f21b6f15db6218ef5a25} 
+\index{ball.c@{ball.c}!collisionPlayer@{collisionPlayer}}
+\index{collisionPlayer@{collisionPlayer}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{collisionPlayer()}{collisionPlayer()}}
+{\footnotesize\ttfamily void() collision\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball,  }\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Verifica se ocorreu uma colisão e atualiza so valores de direção e inclinação de acordo com a posição da colisão. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ball} & Bola para verificar a colisão \\
+\hline
+{\em player} & \doxylink{struct_player}{Player} para verificar a colisão \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{ball_8c_a29460a8e2e41f21b6f15db6218ef5a25_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ball_8c_a8eff6382fdf3d1c79623136240435868}\label{ball_8c_a8eff6382fdf3d1c79623136240435868} 
+\index{ball.c@{ball.c}!createBall@{createBall}}
+\index{createBall@{createBall}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{createBall()}{createBall()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}() create\+Ball (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria uma nova bola alocando memória para as suas estruturas. 
+
+\begin{DoxyReturn}{Returns}
+Apontador para uma bola 
+\end{DoxyReturn}
+\Hypertarget{ball_8c_a58458435cb64f9457ae60a1d3af2a1fd}\label{ball_8c_a58458435cb64f9457ae60a1d3af2a1fd} 
+\index{ball.c@{ball.c}!destroyBall@{destroyBall}}
+\index{destroyBall@{destroyBall}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{destroyBall()}{destroyBall()}}
+{\footnotesize\ttfamily void() destroy\+Ball (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para as estruturas que compõe a bola. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ball} & Bola cuja memória alocada vai ser libertada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ball_8c_a1b2120f0b08d3765060386e893bc7cf8}\label{ball_8c_a1b2120f0b08d3765060386e893bc7cf8} 
+\index{ball.c@{ball.c}!drawBall@{drawBall}}
+\index{drawBall@{drawBall}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{drawBall()}{drawBall()}}
+{\footnotesize\ttfamily int() draw\+Ball (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball }\end{DoxyParamCaption})}
+
+
+
+Desenha a bola no ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ball} & Bola que queremos desenhar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ball_8c_a1b2120f0b08d3765060386e893bc7cf8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ball_8c_a04bf29d50d5e683ca9c631a50af22137}\label{ball_8c_a04bf29d50d5e683ca9c631a50af22137} 
+\index{ball.c@{ball.c}!moveBall@{moveBall}}
+\index{moveBall@{moveBall}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{moveBall()}{moveBall()}}
+{\footnotesize\ttfamily void() move\+Ball (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball,  }\item[{bool}]{slow }\end{DoxyParamCaption})}
+
+
+
+Atualiza os valores de x e y (move a bola no plano) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ball} & Bola que queremos mover \\
+\hline
+{\em slow} & Indica se o movimento deve ser temporariamente mais lento \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ball_8c_abe7520ce9248e983a1470c5273078184}\label{ball_8c_abe7520ce9248e983a1470c5273078184} 
+\index{ball.c@{ball.c}!resetBall@{resetBall}}
+\index{resetBall@{resetBall}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{resetBall()}{resetBall()}}
+{\footnotesize\ttfamily void() reset\+Ball (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball,  }\item[{\mbox{\hyperlink{player_8h_aba3b0443f0841c242d11e13c8ce9a93f}{Player\+\_\+numb}}}]{scored\+Player }\end{DoxyParamCaption})}
+
+
+
+Reseta os valores da bola (posição, direção, ...) tendo em conta o jogador que marcou. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ball} & Bola a ser resetada \\
+\hline
+{\em scored\+Player} & Número do jogador que marcou \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ball_8c_a6c6e42952d68b70efd643511149a3f03}\label{ball_8c_a6c6e42952d68b70efd643511149a3f03} 
+\index{ball.c@{ball.c}!updateBallDirection@{updateBallDirection}}
+\index{updateBallDirection@{updateBallDirection}!ball.c@{ball.c}}
+\doxysubsubsection{\texorpdfstring{updateBallDirection()}{updateBallDirection()}}
+{\footnotesize\ttfamily void() update\+Ball\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3df}{Ball\+\_\+direction}}}]{direction,  }\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball }\end{DoxyParamCaption})}
+
+
+
+Atualiza a direção do movimento da bola. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & Nova direção do movimento da bola \\
+\hline
+{\em ball} & Bola que vai ter o seu movimento atualizado \\
+\hline
+\end{DoxyParams}

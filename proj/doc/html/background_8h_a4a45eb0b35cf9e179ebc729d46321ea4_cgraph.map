@@ -1,0 +1,13 @@
+<map id="drawDateBackground" name="drawDateBackground">
+<area shape="rect" id="Node000001" title="Desenha a data no background do menu." alt="" coords="5,31,151,56"/>
+<area shape="rect" id="Node000002" href="$menu_8c.html#ac60256cef07d9fe26a9bb6d6d7e77c6c" title="escolhe um sprite que corresponde a um numero de 0 a 9" alt="" coords="229,5,383,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,33,214,25,215,31,152,38"/>
+<area shape="rect" id="Node000003" href="$background_8c.html#a707ae0dab0a202f55e54ae381b020a8f" title="Desenha um elemento no background de um menu." alt="" coords="199,55,413,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,48,184,52,183,57,151,54"/>
+<area shape="rect" id="Node000004" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="461,5,600,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="366,52,455,32,456,37,367,57"/>
+<area shape="rect" id="Node000005" href="$video_8c.html#a6ab0ad9050aeae34a4efe59baae49543" title="Retorna a altura máxima do modo gráfico em uso." alt="" coords="495,55,567,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="414,65,480,65,480,70,414,70"/>
+<area shape="rect" id="Node000006" href="$video_8c.html#aa8c7f7dd95e9037a546aa1948003a0ea" title="Retorna a largura máxima do modo gráfico em uso." alt="" coords="495,104,566,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="367,78,482,103,481,109,366,83"/>
+</map>

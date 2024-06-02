@@ -1,0 +1,11 @@
+<map id="keyboardHandler" name="keyboardHandler">
+<area shape="rect" id="Node000001" title="Executa ações relacionadas com o Keyboard após uma interrupção deste (atualizar a direção de moviment..." alt="" coords="5,55,124,80"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#af30e741069695a76a6d924e92dcd2f55" title="Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado." alt="" coords="172,29,359,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,57,157,53,158,58,125,63"/>
+<area shape="rect" id="Node000005" href="$kbd_8c.html#afdfb6322f4a75773b745fc6cc6c20d27" title="Usado para obter o valor do scancode em outros documentos." alt="" coords="214,79,317,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="125,72,199,81,199,86,124,77"/>
+<area shape="rect" id="Node000003" href="$player_8c.html#a4e99d0c614e7b2a18c1bcbec8f801581" title="Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado." alt="" coords="439,5,523,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,29,425,22,425,27,359,34"/>
+<area shape="rect" id="Node000004" href="$player_8c.html#aebf1cfe5a7220081746277fea85f90be" title="Atualiza a direção para onde o jogador está virado." alt="" coords="407,55,556,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="359,50,392,54,391,59,359,56"/>
+</map>

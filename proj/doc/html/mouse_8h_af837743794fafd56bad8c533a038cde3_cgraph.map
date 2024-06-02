@@ -1,0 +1,5 @@
+<map id="mouse_insert_in_packet" name="mouse_insert_in_packet">
+<area shape="rect" id="Node000001" title="Insere os valores do array de bytes do mouse num mouse packet." alt="" coords="5,5,168,31"/>
+<area shape="rect" id="Node000002" href="$mouse_8c.html#a034a854d1d7e78b72b1176479cd09949" title="Converte os valores do byte para 2&#39;s complement no caso de este ser negativo." alt="" coords="216,5,391,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,15,201,15,201,21,168,21"/>
+</map>

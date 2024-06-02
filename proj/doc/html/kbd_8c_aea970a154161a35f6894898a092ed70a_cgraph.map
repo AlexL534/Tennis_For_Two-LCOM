@@ -1,0 +1,10 @@
+<map id="kbc_ih" name="kbc_ih">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,65,56"/>
+<area shape="rect" id="Node000002" href="$kbd_8c.html#ab276451dfe91dcf661c46583b70ad70b" title="Lê um scancode enviado pelo teclado no KBC." alt="" coords="113,31,252,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,41,99,41,99,46,66,46"/>
+<area shape="rect" id="Node000003" href="$kbd_8c.html#ac866afe9d476c71bc2d698854fa354d4" title="Lê o estado do KBC para verificar se já podemos efetuar a leitura do scancode." alt="" coords="300,5,419,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="252,31,285,26,286,31,253,36"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title=" " alt="" coords="467,31,557,56"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="252,41,452,41,452,46,252,46"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="420,25,452,31,451,36,419,30"/>
+</map>

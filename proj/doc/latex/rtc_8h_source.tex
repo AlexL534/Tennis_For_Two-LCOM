@@ -1,0 +1,31 @@
+\doxysection{rtc.\+h}
+\hypertarget{rtc_8h_source}{}\label{rtc_8h_source}\index{src/devices/rtc.h@{src/devices/rtc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RTC\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RTC\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ \ RTC\_ADDR\_REG\ 0x70}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \ RTC\_DATA\_REG\ 0x71\ }}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DAY\ 7}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MONTH\ 8}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ YEAR\ 9}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ REG\_A\ 10}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ REG\_A\_UIP\ BIT(7)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ REG\_B\ 11}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ REG\_B\_DM\ BIT(2)}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00026\ int\ (get\_date)(uint8\_t\ *day,\ uint8\_t\ *month,\ uint8\_t\ *year);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ int\ (set\_binary)();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ int\ (read\_RTC)(uint8\_t\ command,\ uint8\_t\ *output);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

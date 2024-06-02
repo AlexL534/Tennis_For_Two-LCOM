@@ -1,0 +1,144 @@
+\doxysection{src/game\+\_\+score.c File Reference}
+\hypertarget{game__score_8c}{}\label{game__score_8c}\index{src/game\_score.c@{src/game\_score.c}}
+{\ttfamily \#include "{}game\+\_\+score.\+h"{}}\newline
+Include dependency graph for game\+\_\+score.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__score_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{game__score_8c_a2aff431b1a2e4e45058ca6d326078c04}{load\+Initial\+XPMScore}} ()
+\begin{DoxyCompactList}\small\item\em Inicia as estruturas que vão conter os sprites usados no quadro de pontuações. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game__score_8c_a985eb14c237a6f0b226e99e890ce9ecd}{draw\+Score}} (int player\+Numb)
+\begin{DoxyCompactList}\small\item\em Desenha no ecrã as pontuações no quadro de pontuações. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game__score_8c_a955e108fba3f12c51254f50c3ef542b9}{draw\+Score\+Text}} ()
+\begin{DoxyCompactList}\small\item\em Desenha o texto que aparece antes das pontuações e que permite distinguir as pontuações do player 1 e 2. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game__score_8c_a3bea81ffbf032beb1be1dc1ffd1a87e8}{update\+XPMScore}} (int player\+Numb, int score)
+\begin{DoxyCompactList}\small\item\em Atualiza o XPM a usar tendo em conta a nova pontuação de um certo jogador. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{game__score_8c_a04085ece17a830bed80319f96871c662}{choose\+XPMScore}} (int score, \mbox{\hyperlink{struct_sprite}{Sprite}} \texorpdfstring{$\ast$}{*}score\+Sprite)
+\begin{DoxyCompactList}\small\item\em Escolhe o XPM a carregar tendo em conta a pontuação fornecida. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{game__score_8c_a8ad8aba23bce21161b341413a93c8f61}{free\+XPMScore}} ()
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para os Sprites das pontuações. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game__score_8c_a04085ece17a830bed80319f96871c662}\label{game__score_8c_a04085ece17a830bed80319f96871c662} 
+\index{game\_score.c@{game\_score.c}!chooseXPMScore@{chooseXPMScore}}
+\index{chooseXPMScore@{chooseXPMScore}!game\_score.c@{game\_score.c}}
+\doxysubsubsection{\texorpdfstring{chooseXPMScore()}{chooseXPMScore()}}
+{\footnotesize\ttfamily void() choose\+XPMScore (\begin{DoxyParamCaption}\item[{int}]{score,  }\item[{\mbox{\hyperlink{struct_sprite}{Sprite}} \texorpdfstring{$\ast$}{*}}]{score\+Sprite }\end{DoxyParamCaption})}
+
+
+
+Escolhe o XPM a carregar tendo em conta a pontuação fornecida. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & Pontuação \\
+\hline
+{\em score\+Sprite} & \doxylink{struct_sprite}{Sprite} a ser atualizado com o novo pixmap carregado do XPM \\
+\hline
+\end{DoxyParams}
+\Hypertarget{game__score_8c_a985eb14c237a6f0b226e99e890ce9ecd}\label{game__score_8c_a985eb14c237a6f0b226e99e890ce9ecd} 
+\index{game\_score.c@{game\_score.c}!drawScore@{drawScore}}
+\index{drawScore@{drawScore}!game\_score.c@{game\_score.c}}
+\doxysubsubsection{\texorpdfstring{drawScore()}{drawScore()}}
+{\footnotesize\ttfamily int() draw\+Score (\begin{DoxyParamCaption}\item[{int}]{player\+Numb }\end{DoxyParamCaption})}
+
+
+
+Desenha no ecrã as pontuações no quadro de pontuações. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Numb} & Número do jogador cuja pontuação vai ser desenhada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__score_8c_a985eb14c237a6f0b226e99e890ce9ecd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game__score_8c_a955e108fba3f12c51254f50c3ef542b9}\label{game__score_8c_a955e108fba3f12c51254f50c3ef542b9} 
+\index{game\_score.c@{game\_score.c}!drawScoreText@{drawScoreText}}
+\index{drawScoreText@{drawScoreText}!game\_score.c@{game\_score.c}}
+\doxysubsubsection{\texorpdfstring{drawScoreText()}{drawScoreText()}}
+{\footnotesize\ttfamily int() draw\+Score\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Desenha o texto que aparece antes das pontuações e que permite distinguir as pontuações do player 1 e 2. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__score_8c_a955e108fba3f12c51254f50c3ef542b9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game__score_8c_a8ad8aba23bce21161b341413a93c8f61}\label{game__score_8c_a8ad8aba23bce21161b341413a93c8f61} 
+\index{game\_score.c@{game\_score.c}!freeXPMScore@{freeXPMScore}}
+\index{freeXPMScore@{freeXPMScore}!game\_score.c@{game\_score.c}}
+\doxysubsubsection{\texorpdfstring{freeXPMScore()}{freeXPMScore()}}
+{\footnotesize\ttfamily void() free\+XPMScore (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para os Sprites das pontuações. 
+
+\Hypertarget{game__score_8c_a2aff431b1a2e4e45058ca6d326078c04}\label{game__score_8c_a2aff431b1a2e4e45058ca6d326078c04} 
+\index{game\_score.c@{game\_score.c}!loadInitialXPMScore@{loadInitialXPMScore}}
+\index{loadInitialXPMScore@{loadInitialXPMScore}!game\_score.c@{game\_score.c}}
+\doxysubsubsection{\texorpdfstring{loadInitialXPMScore()}{loadInitialXPMScore()}}
+{\footnotesize\ttfamily int() load\+Initial\+XPMScore (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicia as estruturas que vão conter os sprites usados no quadro de pontuações. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+\Hypertarget{game__score_8c_a3bea81ffbf032beb1be1dc1ffd1a87e8}\label{game__score_8c_a3bea81ffbf032beb1be1dc1ffd1a87e8} 
+\index{game\_score.c@{game\_score.c}!updateXPMScore@{updateXPMScore}}
+\index{updateXPMScore@{updateXPMScore}!game\_score.c@{game\_score.c}}
+\doxysubsubsection{\texorpdfstring{updateXPMScore()}{updateXPMScore()}}
+{\footnotesize\ttfamily int() update\+XPMScore (\begin{DoxyParamCaption}\item[{int}]{player\+Numb,  }\item[{int}]{score }\end{DoxyParamCaption})}
+
+
+
+Atualiza o XPM a usar tendo em conta a nova pontuação de um certo jogador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Numb} & Número do jogador que vai ter um novo XPM para a sua pontução \\
+\hline
+{\em score} & Nova pontuação \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{game__score_8c_a3bea81ffbf032beb1be1dc1ffd1a87e8_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,10 @@
+<map id="mouse_write_byte" name="mouse_write_byte">
+<area shape="rect" id="Node000001" title="Escreve um byte/comando para o mouse." alt="" coords="5,31,132,56"/>
+<area shape="rect" id="Node000002" href="$mouse_8c.html#a43d043452226084726d071537c062e8b" title="Escreve um comando na porta selecionada." alt="" coords="180,5,339,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,32,165,28,166,33,133,38"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title=" " alt="" coords="571,31,661,56"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="132,41,556,41,556,46,132,46"/>
+<area shape="rect" id="Node000003" href="$mouse_8c.html#ae61f9a128e7b7ac6922e520f40b8ae02" title="Lê o status atual do KBC para verificar se podemos ler os valores correspondentes ao mouse." alt="" coords="387,5,523,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="339,15,372,15,372,21,339,21"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="524,26,557,31,556,37,523,31"/>
+</map>

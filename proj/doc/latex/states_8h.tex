@@ -1,0 +1,195 @@
+\doxysection{src/states.h File Reference}
+\hypertarget{states_8h}{}\label{states_8h}\index{src/states.h@{src/states.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{states_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \{ \newline
+\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4ad50cf309d7568040619ed26ee6835a84}{GAME}}
+, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4aaf30073f89e4c6d5411ee8e7e081f9c9}{START\+\_\+\+MENU}}
+, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4a24915ae526675a41cfb378d20b1513f6}{PAUSE\+\_\+\+MENU}}
+, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4a262553c759e1d1a9398bc406b1fadcb7}{RESTART}}
+, \newline
+\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4a76bdc8adfd6c6463ab269ff4c06be9b4}{QUIT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Contém os estados do jogo. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}{Player\+\_\+direction}} \{ \mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001a948131539c7032c96ba3c8bc2e4a5f9a}{LEFTD}}
+, \mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001a249eaf4a9bf5fab1c00540483e3099a9}{RIGHTD}}
+ \}
+\begin{DoxyCompactList}\small\item\em Indica a direção para onde o jogador está virado. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6b}{Player\+\_\+movement}} \{ \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6baf735568c55ca08b63a1b3e9f2f293866}{LEFT\+\_\+\+PLAYER}}
+, \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6ba10f618f95f594d26d43ce04a0d234a06}{RIGHT\+\_\+\+PLAYER}}
+, \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6babf317d0e57b874d37404296385be05c9}{UP\+\_\+\+PLAYER}}
+, \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6bab99b35e323209836d4295140138e2e6c}{DOWN\+\_\+\+PLAYER}}
+ \}
+\begin{DoxyCompactList}\small\item\em Indica a direção do movimento do jogador. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96a}{Player\+\_\+state}} \{ \newline
+\mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96aaed3ef32890b6da0919b57254c5206c62}{MOVE}}
+, \mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96aa13d000b4d7dc70d90239b7430d1eb6b2}{START}}
+, \mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96aaa44f23ff7493bf4ba25c1ef12c639e2d}{CHOOSE\+\_\+\+START}}
+, \mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96aad6ec41c877d2c3b7f5ab0c5bce1ee240}{CHOOSE\+\_\+\+START\+\_\+\+STOP}}
+, \newline
+\mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96aad4cf8619fedf804702c72835be555da0}{HIT}}
+, \mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96aa679ee5320d66c8322e310daeb2ee99b8}{STOP}}
+ \}
+\begin{DoxyCompactList}\small\item\em Indica o estado atual do jogador. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3df}{Ball\+\_\+direction}} \{ \mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3dfa01dc90bf4804962fcb9090b472d48e39}{UP\+\_\+\+BALL\+\_\+\+START}}
+, \mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3dfa8a76e8c0117141e17f8257f4e963862b}{DOWN\+\_\+\+BALL\+\_\+\+START}}
+, \mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3dfa7c1743560f5ef65672b2fdb1fb15d714}{UP\+\_\+\+BALL}}
+, \mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3dfa912dfcb09bf0e5e59b4642762343c806}{DOWN\+\_\+\+BALL}}
+ \}
+\begin{DoxyCompactList}\small\item\em Indica o estado atual do movimento da bola. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{states_8h_a5a7696c666f20149867d66f26f23e3df}\label{states_8h_a5a7696c666f20149867d66f26f23e3df} 
+\index{states.h@{states.h}!Ball\_direction@{Ball\_direction}}
+\index{Ball\_direction@{Ball\_direction}!states.h@{states.h}}
+\doxysubsubsection{\texorpdfstring{Ball\_direction}{Ball\_direction}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{states_8h_a5a7696c666f20149867d66f26f23e3df}{Ball\+\_\+direction}}}
+
+
+
+Indica o estado atual do movimento da bola. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP\_BALL\_START@{UP\_BALL\_START}!states.h@{states.h}}\index{states.h@{states.h}!UP\_BALL\_START@{UP\_BALL\_START}}}\Hypertarget{states_8h_a5a7696c666f20149867d66f26f23e3dfa01dc90bf4804962fcb9090b472d48e39}\label{states_8h_a5a7696c666f20149867d66f26f23e3dfa01dc90bf4804962fcb9090b472d48e39} 
+UP\+\_\+\+BALL\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN\_BALL\_START@{DOWN\_BALL\_START}!states.h@{states.h}}\index{states.h@{states.h}!DOWN\_BALL\_START@{DOWN\_BALL\_START}}}\Hypertarget{states_8h_a5a7696c666f20149867d66f26f23e3dfa8a76e8c0117141e17f8257f4e963862b}\label{states_8h_a5a7696c666f20149867d66f26f23e3dfa8a76e8c0117141e17f8257f4e963862b} 
+DOWN\+\_\+\+BALL\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP\_BALL@{UP\_BALL}!states.h@{states.h}}\index{states.h@{states.h}!UP\_BALL@{UP\_BALL}}}\Hypertarget{states_8h_a5a7696c666f20149867d66f26f23e3dfa7c1743560f5ef65672b2fdb1fb15d714}\label{states_8h_a5a7696c666f20149867d66f26f23e3dfa7c1743560f5ef65672b2fdb1fb15d714} 
+UP\+\_\+\+BALL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN\_BALL@{DOWN\_BALL}!states.h@{states.h}}\index{states.h@{states.h}!DOWN\_BALL@{DOWN\_BALL}}}\Hypertarget{states_8h_a5a7696c666f20149867d66f26f23e3dfa912dfcb09bf0e5e59b4642762343c806}\label{states_8h_a5a7696c666f20149867d66f26f23e3dfa912dfcb09bf0e5e59b4642762343c806} 
+DOWN\+\_\+\+BALL&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{states_8h_a33e243da48884e73997b5c5fa62864d4}\label{states_8h_a33e243da48884e73997b5c5fa62864d4} 
+\index{states.h@{states.h}!Game\_state@{Game\_state}}
+\index{Game\_state@{Game\_state}!states.h@{states.h}}
+\doxysubsubsection{\texorpdfstring{Game\_state}{Game\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}}}
+
+
+
+Contém os estados do jogo. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME@{GAME}!states.h@{states.h}}\index{states.h@{states.h}!GAME@{GAME}}}\Hypertarget{states_8h_a33e243da48884e73997b5c5fa62864d4ad50cf309d7568040619ed26ee6835a84}\label{states_8h_a33e243da48884e73997b5c5fa62864d4ad50cf309d7568040619ed26ee6835a84} 
+GAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{START\_MENU@{START\_MENU}!states.h@{states.h}}\index{states.h@{states.h}!START\_MENU@{START\_MENU}}}\Hypertarget{states_8h_a33e243da48884e73997b5c5fa62864d4aaf30073f89e4c6d5411ee8e7e081f9c9}\label{states_8h_a33e243da48884e73997b5c5fa62864d4aaf30073f89e4c6d5411ee8e7e081f9c9} 
+START\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PAUSE\_MENU@{PAUSE\_MENU}!states.h@{states.h}}\index{states.h@{states.h}!PAUSE\_MENU@{PAUSE\_MENU}}}\Hypertarget{states_8h_a33e243da48884e73997b5c5fa62864d4a24915ae526675a41cfb378d20b1513f6}\label{states_8h_a33e243da48884e73997b5c5fa62864d4a24915ae526675a41cfb378d20b1513f6} 
+PAUSE\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RESTART@{RESTART}!states.h@{states.h}}\index{states.h@{states.h}!RESTART@{RESTART}}}\Hypertarget{states_8h_a33e243da48884e73997b5c5fa62864d4a262553c759e1d1a9398bc406b1fadcb7}\label{states_8h_a33e243da48884e73997b5c5fa62864d4a262553c759e1d1a9398bc406b1fadcb7} 
+RESTART&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{QUIT@{QUIT}!states.h@{states.h}}\index{states.h@{states.h}!QUIT@{QUIT}}}\Hypertarget{states_8h_a33e243da48884e73997b5c5fa62864d4a76bdc8adfd6c6463ab269ff4c06be9b4}\label{states_8h_a33e243da48884e73997b5c5fa62864d4a76bdc8adfd6c6463ab269ff4c06be9b4} 
+QUIT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}\label{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001} 
+\index{states.h@{states.h}!Player\_direction@{Player\_direction}}
+\index{Player\_direction@{Player\_direction}!states.h@{states.h}}
+\doxysubsubsection{\texorpdfstring{Player\_direction}{Player\_direction}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}{Player\+\_\+direction}}}
+
+
+
+Indica a direção para onde o jogador está virado. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFTD@{LEFTD}!states.h@{states.h}}\index{states.h@{states.h}!LEFTD@{LEFTD}}}\Hypertarget{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001a948131539c7032c96ba3c8bc2e4a5f9a}\label{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001a948131539c7032c96ba3c8bc2e4a5f9a} 
+LEFTD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHTD@{RIGHTD}!states.h@{states.h}}\index{states.h@{states.h}!RIGHTD@{RIGHTD}}}\Hypertarget{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001a249eaf4a9bf5fab1c00540483e3099a9}\label{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001a249eaf4a9bf5fab1c00540483e3099a9} 
+RIGHTD&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{states_8h_a9af57e173e3a0c8a302de822825a4e6b}\label{states_8h_a9af57e173e3a0c8a302de822825a4e6b} 
+\index{states.h@{states.h}!Player\_movement@{Player\_movement}}
+\index{Player\_movement@{Player\_movement}!states.h@{states.h}}
+\doxysubsubsection{\texorpdfstring{Player\_movement}{Player\_movement}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6b}{Player\+\_\+movement}}}
+
+
+
+Indica a direção do movimento do jogador. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT\_PLAYER@{LEFT\_PLAYER}!states.h@{states.h}}\index{states.h@{states.h}!LEFT\_PLAYER@{LEFT\_PLAYER}}}\Hypertarget{states_8h_a9af57e173e3a0c8a302de822825a4e6baf735568c55ca08b63a1b3e9f2f293866}\label{states_8h_a9af57e173e3a0c8a302de822825a4e6baf735568c55ca08b63a1b3e9f2f293866} 
+LEFT\+\_\+\+PLAYER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT\_PLAYER@{RIGHT\_PLAYER}!states.h@{states.h}}\index{states.h@{states.h}!RIGHT\_PLAYER@{RIGHT\_PLAYER}}}\Hypertarget{states_8h_a9af57e173e3a0c8a302de822825a4e6ba10f618f95f594d26d43ce04a0d234a06}\label{states_8h_a9af57e173e3a0c8a302de822825a4e6ba10f618f95f594d26d43ce04a0d234a06} 
+RIGHT\+\_\+\+PLAYER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP\_PLAYER@{UP\_PLAYER}!states.h@{states.h}}\index{states.h@{states.h}!UP\_PLAYER@{UP\_PLAYER}}}\Hypertarget{states_8h_a9af57e173e3a0c8a302de822825a4e6babf317d0e57b874d37404296385be05c9}\label{states_8h_a9af57e173e3a0c8a302de822825a4e6babf317d0e57b874d37404296385be05c9} 
+UP\+\_\+\+PLAYER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN\_PLAYER@{DOWN\_PLAYER}!states.h@{states.h}}\index{states.h@{states.h}!DOWN\_PLAYER@{DOWN\_PLAYER}}}\Hypertarget{states_8h_a9af57e173e3a0c8a302de822825a4e6bab99b35e323209836d4295140138e2e6c}\label{states_8h_a9af57e173e3a0c8a302de822825a4e6bab99b35e323209836d4295140138e2e6c} 
+DOWN\+\_\+\+PLAYER&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96a}\label{states_8h_a5b1b67789aa063d8891495573f38a96a} 
+\index{states.h@{states.h}!Player\_state@{Player\_state}}
+\index{Player\_state@{Player\_state}!states.h@{states.h}}
+\doxysubsubsection{\texorpdfstring{Player\_state}{Player\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{states_8h_a5b1b67789aa063d8891495573f38a96a}{Player\+\_\+state}}}
+
+
+
+Indica o estado atual do jogador. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOVE@{MOVE}!states.h@{states.h}}\index{states.h@{states.h}!MOVE@{MOVE}}}\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96aaed3ef32890b6da0919b57254c5206c62}\label{states_8h_a5b1b67789aa063d8891495573f38a96aaed3ef32890b6da0919b57254c5206c62} 
+MOVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{START@{START}!states.h@{states.h}}\index{states.h@{states.h}!START@{START}}}\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96aa13d000b4d7dc70d90239b7430d1eb6b2}\label{states_8h_a5b1b67789aa063d8891495573f38a96aa13d000b4d7dc70d90239b7430d1eb6b2} 
+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHOOSE\_START@{CHOOSE\_START}!states.h@{states.h}}\index{states.h@{states.h}!CHOOSE\_START@{CHOOSE\_START}}}\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96aaa44f23ff7493bf4ba25c1ef12c639e2d}\label{states_8h_a5b1b67789aa063d8891495573f38a96aaa44f23ff7493bf4ba25c1ef12c639e2d} 
+CHOOSE\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHOOSE\_START\_STOP@{CHOOSE\_START\_STOP}!states.h@{states.h}}\index{states.h@{states.h}!CHOOSE\_START\_STOP@{CHOOSE\_START\_STOP}}}\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96aad6ec41c877d2c3b7f5ab0c5bce1ee240}\label{states_8h_a5b1b67789aa063d8891495573f38a96aad6ec41c877d2c3b7f5ab0c5bce1ee240} 
+CHOOSE\+\_\+\+START\+\_\+\+STOP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HIT@{HIT}!states.h@{states.h}}\index{states.h@{states.h}!HIT@{HIT}}}\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96aad4cf8619fedf804702c72835be555da0}\label{states_8h_a5b1b67789aa063d8891495573f38a96aad4cf8619fedf804702c72835be555da0} 
+HIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STOP@{STOP}!states.h@{states.h}}\index{states.h@{states.h}!STOP@{STOP}}}\Hypertarget{states_8h_a5b1b67789aa063d8891495573f38a96aa679ee5320d66c8322e310daeb2ee99b8}\label{states_8h_a5b1b67789aa063d8891495573f38a96aa679ee5320d66c8322e310daeb2ee99b8} 
+STOP&\\
+\hline
+
+\end{DoxyEnumFields}

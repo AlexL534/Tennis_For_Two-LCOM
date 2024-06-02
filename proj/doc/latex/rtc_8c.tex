@@ -1,0 +1,103 @@
+\doxysection{src/devices/rtc.c File Reference}
+\hypertarget{rtc_8c}{}\label{rtc_8c}\index{src/devices/rtc.c@{src/devices/rtc.c}}
+{\ttfamily \#include "{}rtc.\+h"{}}\newline
+{\ttfamily \#include "{}utils.\+c"{}}\newline
+Include dependency graph for rtc.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{rtc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{rtc_8c_a4450832b5cb4025a21f76e23552229ab}{get\+\_\+date}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}day, uint8\+\_\+t \texorpdfstring{$\ast$}{*}month, uint8\+\_\+t \texorpdfstring{$\ast$}{*}year)
+\begin{DoxyCompactList}\small\item\em Obtém a data atual. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{rtc_8c_a6bca50f878e8aa5990fc360be0cfc334}{set\+\_\+binary}} ()
+\begin{DoxyCompactList}\small\item\em Programa o RTC para enviar valores em binário. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{rtc_8c_af5a9e61ba5f5e18f7f1248caf75d325c}{read\+\_\+\+RTC}} (uint8\+\_\+t command, uint8\+\_\+t \texorpdfstring{$\ast$}{*}output)
+\begin{DoxyCompactList}\small\item\em Lê os valores que estão no rtc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rtc_8c_a4450832b5cb4025a21f76e23552229ab}\label{rtc_8c_a4450832b5cb4025a21f76e23552229ab} 
+\index{rtc.c@{rtc.c}!get\_date@{get\_date}}
+\index{get\_date@{get\_date}!rtc.c@{rtc.c}}
+\doxysubsubsection{\texorpdfstring{get\_date()}{get\_date()}}
+{\footnotesize\ttfamily int() get\+\_\+date (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{day,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{month,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{year }\end{DoxyParamCaption})}
+
+
+
+Obtém a data atual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & dia atual \\
+\hline
+{\em month} & mês atual \\
+\hline
+{\em year} & ano atual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{rtc_8c_a4450832b5cb4025a21f76e23552229ab_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rtc_8c_af5a9e61ba5f5e18f7f1248caf75d325c}\label{rtc_8c_af5a9e61ba5f5e18f7f1248caf75d325c} 
+\index{rtc.c@{rtc.c}!read\_RTC@{read\_RTC}}
+\index{read\_RTC@{read\_RTC}!rtc.c@{rtc.c}}
+\doxysubsubsection{\texorpdfstring{read\_RTC()}{read\_RTC()}}
+{\footnotesize\ttfamily int() read\+\_\+\+RTC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{output }\end{DoxyParamCaption})}
+
+
+
+Lê os valores que estão no rtc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Comando enviado com informação do valor que queremos ler (dia, mês, ...) \\
+\hline
+{\em output} & Valor lido pelo rtc \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{rtc_8c_af5a9e61ba5f5e18f7f1248caf75d325c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rtc_8c_a6bca50f878e8aa5990fc360be0cfc334}\label{rtc_8c_a6bca50f878e8aa5990fc360be0cfc334} 
+\index{rtc.c@{rtc.c}!set\_binary@{set\_binary}}
+\index{set\_binary@{set\_binary}!rtc.c@{rtc.c}}
+\doxysubsubsection{\texorpdfstring{set\_binary()}{set\_binary()}}
+{\footnotesize\ttfamily int() set\+\_\+binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Programa o RTC para enviar valores em binário. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{rtc_8c_a6bca50f878e8aa5990fc360be0cfc334_cgraph}
+\end{center}
+\end{figure}

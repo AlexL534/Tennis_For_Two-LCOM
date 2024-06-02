@@ -1,0 +1,9 @@
+<map id="draw_menu" name="draw_menu">
+<area shape="rect" id="Node000001" title="desenha o menu" alt="" coords="5,5,93,31"/>
+<area shape="rect" id="Node000002" href="$menu_8c.html#ae1c099a1f108788da4ee8d599b16973e" title="desenha um sprite na tela" alt="" coords="141,5,220,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,15,126,15,126,21,94,21"/>
+<area shape="rect" id="Node000003" href="$video_8c.html#ac431ebc57a4886a1b8bd4be8e8725462" title="Desenha a cor num dos píxeis do ecrã" alt="" coords="268,5,371,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="221,15,253,15,253,21,221,21"/>
+<area shape="rect" id="Node000004" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="419,5,557,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="371,15,404,15,404,21,371,21"/>
+</map>

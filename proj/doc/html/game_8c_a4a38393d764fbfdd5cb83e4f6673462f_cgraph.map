@@ -1,0 +1,9 @@
+<map id="mouseHandler" name="mouseHandler">
+<area shape="rect" id="Node000001" title="Executa ações relacionadas com o Mouse após uma interrupção deste (Iniciar o movimento de batida na b..." alt="" coords="5,55,111,80"/>
+<area shape="rect" id="Node000002" href="$mouse_8c.html#a4d194f8789b7aadfd3a2a8d61bee9177" title="Obtém o mouse packet para que possa ser usado noutros documentos." alt="" coords="191,5,323,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,52,158,39,187,32,188,37,159,45,112,57"/>
+<area shape="rect" id="Node000003" href="$menu_8c.html#a72ffb589e4aadf944eb3fbdbd2cfc1db" title="Atualiza a posição do mouse." alt="" coords="183,55,330,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,65,169,65,169,70,111,70"/>
+<area shape="rect" id="Node000004" href="$player_8c.html#ae703e8c6f5216451580c30a8009233a5" title="Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse." alt="" coords="159,104,355,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="111,78,189,97,188,102,110,83"/>
+</map>

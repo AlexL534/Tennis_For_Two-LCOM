@@ -1,0 +1,5 @@
+<map id="map_VRAM" name="map_VRAM">
+<area shape="rect" id="Node000001" title="Inicializa o buffer da placa gráfica (vram) e inicializa o modo gráfico." alt="" coords="5,5,97,31"/>
+<area shape="rect" id="Node000002" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="145,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,15,131,15,131,21,98,21"/>
+</map>

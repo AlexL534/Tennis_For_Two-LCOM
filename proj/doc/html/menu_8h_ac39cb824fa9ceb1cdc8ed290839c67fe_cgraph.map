@@ -1,0 +1,17 @@
+<map id="timer_handler_menu" name="timer_handler_menu">
+<area shape="rect" id="Node000001" title="chama funções relevantes para lidar com interrupções vindas do timer quando o jogo está no menu" alt="" coords="5,55,144,80"/>
+<area shape="rect" id="Node000002" href="$menu_8c.html#a560ad17efe1f7e07491713687f023c29" title="desenha o menu" alt="" coords="192,5,280,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,52,177,33,179,38,119,57"/>
+<area shape="rect" id="Node000006" href="$menu_8c.html#a82d18f57b26b5a67420fde32127a5ec8" title="Desenha o mouse na tela." alt="" coords="328,104,416,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="137,78,192,89,314,107,313,112,192,94,136,83"/>
+<area shape="rect" id="Node000007" href="$menu_8c.html#a360db76432e92e8732a5d6aceb6230a4" title="desenha o menu de pausa" alt="" coords="193,55,279,80"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="144,65,178,65,178,70,144,70"/>
+<area shape="rect" id="Node000003" href="$menu_8c.html#ae1c099a1f108788da4ee8d599b16973e" title="desenha um sprite na tela" alt="" coords="333,55,411,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="274,29,322,47,320,52,272,34"/>
+<area shape="rect" id="Node000004" href="$video_8c.html#ac431ebc57a4886a1b8bd4be8e8725462" title="Desenha a cor num dos píxeis do ecrã" alt="" coords="464,80,567,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="412,72,450,78,449,84,411,77"/>
+<area shape="rect" id="Node000005" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="615,80,753,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="567,90,600,90,600,95,567,95"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="416,107,449,101,449,106,417,112"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="280,65,318,65,318,70,280,70"/>
+</map>

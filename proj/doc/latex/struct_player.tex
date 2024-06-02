@@ -1,0 +1,161 @@
+\doxysection{Player Struct Reference}
+\hypertarget{struct_player}{}\label{struct_player}\index{Player@{Player}}
+
+
+Struct que contem as informações do jogador.  
+
+
+
+
+{\ttfamily \#include $<$player.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_player_a9336ebf25087d91c818ee6e9ec29f8c1}{x}}
+\item 
+int \mbox{\hyperlink{struct_player_a2fb1c5cf58867b5bbc9a1b145a86f3a0}{y}}
+\item 
+int \mbox{\hyperlink{struct_player_a98f2e0dfcdbd3de203bc2e72c511fe68}{xspeed}}
+\item 
+int \mbox{\hyperlink{struct_player_a21f1791b9954e37ca8c4900a66127434}{yspeed}}
+\item 
+unsigned int \mbox{\hyperlink{struct_player_a3aab02a602f726428b7d6994ca1b6769}{moveanim}}
+\item 
+unsigned int \mbox{\hyperlink{struct_player_a29e560862dfeb4dd292bdbdd10d465e0}{hitanim}}
+\item 
+unsigned int \mbox{\hyperlink{struct_player_ad88ed1d5ea764ec366192f09453960d6}{startanim}}
+\item 
+\Hypertarget{struct_player_aca1e5a3312dc32b64b8c02e7365d3285}\label{struct_player_aca1e5a3312dc32b64b8c02e7365d3285} 
+\mbox{\hyperlink{struct_sprite}{Sprite}} {\bfseries current\+Sprite}
+\item 
+\mbox{\hyperlink{struct_sprite}{Sprite}} \mbox{\hyperlink{struct_player_a4c751b0950e3cbe5843206deda0c2c49}{move}} \mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{struct_sprite}{Sprite}} \mbox{\hyperlink{struct_player_a5d01de266b4598e77f201d3ee252a534}{moverev}} \mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{struct_sprite}{Sprite}} \mbox{\hyperlink{struct_player_ae78119a3fe70ecb80157dc2c07f3dbdb}{hit}} \mbox{[}4\mbox{]}
+\item 
+\mbox{\hyperlink{struct_sprite}{Sprite}} \mbox{\hyperlink{struct_player_a9f9349b4bddc64374416b1060e1d0b2d}{hitrev}} \mbox{[}4\mbox{]}
+\item 
+\mbox{\hyperlink{struct_sprite}{Sprite}} \mbox{\hyperlink{struct_player_a25726e595983fe878ce1867b7807fcd4}{start}} \mbox{[}6\mbox{]}
+\item 
+\Hypertarget{struct_player_a05aa2fc5009b4f523f84e3ab3f56f6dd}\label{struct_player_a05aa2fc5009b4f523f84e3ab3f56f6dd} 
+\mbox{\hyperlink{struct_sprite}{Sprite}} {\bfseries startrev} \mbox{[}6\mbox{]}
+\item 
+Player\+\_\+direction \mbox{\hyperlink{struct_player_a99f26e6ee9fcd62f75203b5402df8098}{direction}}
+\item 
+Player\+\_\+state \mbox{\hyperlink{struct_player_adc6e5733fc3c22f0a7b2914188c49c90}{state}}
+\item 
+Player\+\_\+movement \mbox{\hyperlink{struct_player_aa0f51fc6388e5bb5c88b6c58bc65bf4e}{movement}}
+\item 
+Player\+\_\+numb \mbox{\hyperlink{struct_player_aa1c9eadcd0c2852953150b1bdddca9f3}{player\+\_\+numb}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct que contem as informações do jogador. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_player_a99f26e6ee9fcd62f75203b5402df8098}\label{struct_player_a99f26e6ee9fcd62f75203b5402df8098} 
+\index{Player@{Player}!direction@{direction}}
+\index{direction@{direction}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily direction}
+
+Direção em que o jogador está virado \Hypertarget{struct_player_ae78119a3fe70ecb80157dc2c07f3dbdb}\label{struct_player_ae78119a3fe70ecb80157dc2c07f3dbdb} 
+\index{Player@{Player}!hit@{hit}}
+\index{hit@{hit}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{hit}{hit}}
+{\footnotesize\ttfamily hit}
+
+Array com os sprites usados na animação de acertar a bola \Hypertarget{struct_player_a29e560862dfeb4dd292bdbdd10d465e0}\label{struct_player_a29e560862dfeb4dd292bdbdd10d465e0} 
+\index{Player@{Player}!hitanim@{hitanim}}
+\index{hitanim@{hitanim}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{hitanim}{hitanim}}
+{\footnotesize\ttfamily hitanim}
+
+Valor atual da posição do sprite no array da animação de acertar a bola \Hypertarget{struct_player_a9f9349b4bddc64374416b1060e1d0b2d}\label{struct_player_a9f9349b4bddc64374416b1060e1d0b2d} 
+\index{Player@{Player}!hitrev@{hitrev}}
+\index{hitrev@{hitrev}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{hitrev}{hitrev}}
+{\footnotesize\ttfamily hitrev}
+
+Array com os sprites invertidos usados na animação de acertar a bola
+
+Array com os sprites invertidos usados na animação de serviço \Hypertarget{struct_player_a4c751b0950e3cbe5843206deda0c2c49}\label{struct_player_a4c751b0950e3cbe5843206deda0c2c49} 
+\index{Player@{Player}!move@{move}}
+\index{move@{move}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{move}{move}}
+{\footnotesize\ttfamily move}
+
+Array com os sprites usados na animação de movimentação \Hypertarget{struct_player_a3aab02a602f726428b7d6994ca1b6769}\label{struct_player_a3aab02a602f726428b7d6994ca1b6769} 
+\index{Player@{Player}!moveanim@{moveanim}}
+\index{moveanim@{moveanim}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{moveanim}{moveanim}}
+{\footnotesize\ttfamily moveanim}
+
+Valor atual da posição do sprite no array da animação de movimentação do jogador \Hypertarget{struct_player_aa0f51fc6388e5bb5c88b6c58bc65bf4e}\label{struct_player_aa0f51fc6388e5bb5c88b6c58bc65bf4e} 
+\index{Player@{Player}!movement@{movement}}
+\index{movement@{movement}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{movement}{movement}}
+{\footnotesize\ttfamily movement}
+
+Direção do movimento \Hypertarget{struct_player_a5d01de266b4598e77f201d3ee252a534}\label{struct_player_a5d01de266b4598e77f201d3ee252a534} 
+\index{Player@{Player}!moverev@{moverev}}
+\index{moverev@{moverev}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{moverev}{moverev}}
+{\footnotesize\ttfamily moverev}
+
+Array com os sprites invertidos usados na animação de movimentação \Hypertarget{struct_player_aa1c9eadcd0c2852953150b1bdddca9f3}\label{struct_player_aa1c9eadcd0c2852953150b1bdddca9f3} 
+\index{Player@{Player}!player\_numb@{player\_numb}}
+\index{player\_numb@{player\_numb}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{player\_numb}{player\_numb}}
+{\footnotesize\ttfamily player\+\_\+numb}
+
+Distingue o player 1 do player 2 \Hypertarget{struct_player_a25726e595983fe878ce1867b7807fcd4}\label{struct_player_a25726e595983fe878ce1867b7807fcd4} 
+\index{Player@{Player}!start@{start}}
+\index{start@{start}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily start}
+
+Array com os sprites usados na animação de serviço \Hypertarget{struct_player_ad88ed1d5ea764ec366192f09453960d6}\label{struct_player_ad88ed1d5ea764ec366192f09453960d6} 
+\index{Player@{Player}!startanim@{startanim}}
+\index{startanim@{startanim}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{startanim}{startanim}}
+{\footnotesize\ttfamily startanim}
+
+Valor atual da posição do sprite no array da animação de serviço (acertar a bola no começo do jogo) \Hypertarget{struct_player_adc6e5733fc3c22f0a7b2914188c49c90}\label{struct_player_adc6e5733fc3c22f0a7b2914188c49c90} 
+\index{Player@{Player}!state@{state}}
+\index{state@{state}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily state}
+
+Estado do jogador (movimento, acerto da bola, serviço, parado, ...) \Hypertarget{struct_player_a9336ebf25087d91c818ee6e9ec29f8c1}\label{struct_player_a9336ebf25087d91c818ee6e9ec29f8c1} 
+\index{Player@{Player}!x@{x}}
+\index{x@{x}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily x}
+
+Posição x atual do jogador \Hypertarget{struct_player_a98f2e0dfcdbd3de203bc2e72c511fe68}\label{struct_player_a98f2e0dfcdbd3de203bc2e72c511fe68} 
+\index{Player@{Player}!xspeed@{xspeed}}
+\index{xspeed@{xspeed}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{xspeed}{xspeed}}
+{\footnotesize\ttfamily xspeed}
+
+Velocidade do jogador no eixo dos x \Hypertarget{struct_player_a2fb1c5cf58867b5bbc9a1b145a86f3a0}\label{struct_player_a2fb1c5cf58867b5bbc9a1b145a86f3a0} 
+\index{Player@{Player}!y@{y}}
+\index{y@{y}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily y}
+
+Posição y atual do jogador \Hypertarget{struct_player_a21f1791b9954e37ca8c4900a66127434}\label{struct_player_a21f1791b9954e37ca8c4900a66127434} 
+\index{Player@{Player}!yspeed@{yspeed}}
+\index{yspeed@{yspeed}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{yspeed}{yspeed}}
+{\footnotesize\ttfamily yspeed}
+
+Velocidade do jogador no eixo dos y 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/player.\+h\end{DoxyCompactItemize}

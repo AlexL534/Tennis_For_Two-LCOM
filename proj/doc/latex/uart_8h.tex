@@ -1,0 +1,337 @@
+\doxysection{src/devices/uart.h File Reference}
+\hypertarget{uart_8h}{}\label{uart_8h}\index{src/devices/uart.h@{src/devices/uart.h}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+Include dependency graph for uart.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{uart_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{uart_8h_aa6f7e7a9f4551d6151f9d45362118a50}{RBR}}~0
+\item 
+\#define \mbox{\hyperlink{uart_8h_a5e9787adf3c9afcc4b781e85bb545b35}{THR}}~0
+\item 
+\#define \mbox{\hyperlink{uart_8h_a4466639cd64ebf372a621168c5e25964}{DLL}}~0
+\item 
+\#define \mbox{\hyperlink{uart_8h_a3b48b12dc65f62dd40ab1163fe7997fb}{DLM}}~1
+\item 
+\#define \mbox{\hyperlink{uart_8h_a3e27fa35f9febccdc4a0c28a5c8cffbb}{IER}}~1
+\item 
+\#define \mbox{\hyperlink{uart_8h_a67004975983f9c99226d63db17ba74c4}{IIR}}~2
+\item 
+\#define \mbox{\hyperlink{uart_8h_a851cb396b6eaa97346364a772b439f37}{LCR}}~3
+\item 
+\#define \mbox{\hyperlink{uart_8h_a65364db1603cde6f6533cb61bcfcf553}{MCR}}~4
+\item 
+\#define \mbox{\hyperlink{uart_8h_ad51d51aee21f6cc77d4955221aee3dcb}{LSR}}~5
+\item 
+\#define \mbox{\hyperlink{uart_8h_ad4806a0bfd996121bc27d2466393207e}{MSR}}~6
+\item 
+\#define \mbox{\hyperlink{uart_8h_abaed93a16a0cde13f32bc4dc48b96804}{SR}}~7
+\item 
+\#define \mbox{\hyperlink{uart_8h_ac9e9f94ae18feef26e7a40d36f88dbf8}{B5\+\_\+\+CHAR}}~0
+\item 
+\#define \mbox{\hyperlink{uart_8h_a05ce1fdc158e78b1fd0d896d1495ca82}{B6\+\_\+\+CHAR}}~BIT(0)
+\item 
+\#define \mbox{\hyperlink{uart_8h_aa094a1c0bd60a64606e878d3ccbfa043}{B7\+\_\+\+CHAR}}~BIT(1)
+\item 
+\#define \mbox{\hyperlink{uart_8h_aebab78f6daa4182e82a6d5a65d9571e8}{B8\+\_\+\+CHAR}}~(BIT(0) \texorpdfstring{$\vert$}{|} BIT(1))
+\item 
+\#define \mbox{\hyperlink{uart_8h_aed6a694a01a2bf6f5c7e9fec00b77714}{STOP\+\_\+\+B1}}~0
+\item 
+\#define \mbox{\hyperlink{uart_8h_a5e48076031db7f31756d733949516200}{STOP\+\_\+\+B2}}~BIT(2)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a6e39c5c443322398878f10e0f1e6f023}{NO\+\_\+\+PARITY}}~0
+\item 
+\#define \mbox{\hyperlink{uart_8h_a898d7631f24dd6b1deebf808a2214ea2}{ODD\+\_\+\+PARITY}}~BIT(3)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a4f7887d5dffd9f2e6c6ebbf7c500f9e8}{EVEN\+\_\+\+PAROTY}}~(BIT(3) \texorpdfstring{$\vert$}{|} BIT(4))
+\item 
+\#define \mbox{\hyperlink{uart_8h_af05fea9ca6eb456fe66e9a0a122f2543}{PARITY\+\_\+\+B1}}~(BIT(5) \texorpdfstring{$\vert$}{|} BIT(3))
+\item 
+\#define \mbox{\hyperlink{uart_8h_a8b0c2864b0eb311fad53a0b824f599ab}{PARITY\+\_\+\+B0}}~(BIT(5) \texorpdfstring{$\vert$}{|} BIT(4) \texorpdfstring{$\vert$}{|} BIT(3))
+\item 
+\#define \mbox{\hyperlink{uart_8h_aeacff95e17799eeacbff843e63ead9d3}{DLAB}}~BIT(7)
+\item 
+\#define \mbox{\hyperlink{uart_8h_ad7cc56a873d34d5eb103e6cdad0c40e1}{RECEIVER\+\_\+\+DATA}}~BIT(0)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a71c26bc752960acd5308f21b05a13714}{OVERRUN\+\_\+\+ERROR}}~BIT(1)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a81d2ca6759f3f3bf04556b7558aea6bc}{PARITY\+\_\+\+ERROR}}~BIT(2)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a5bf1d46877ac22d5e12d9b1c0432d373}{FRAMING\+\_\+\+ERROR}}~BIT(3)
+\item 
+\#define \mbox{\hyperlink{uart_8h_aba80f8e0eadad6692ac6e17c342cc0bd}{BREAK\+\_\+\+INTERRUPT}}~BIT(4)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a9f721c670ab50381bed77cea2bad83c2}{HOLDING\+\_\+\+REGISTER\+\_\+\+EMPTY}}~BIT(5)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a80553cb1d79c9680691390565eea6d95}{EMPTY\+\_\+\+REGISTER}}~BIT(6)
+\item 
+\#define \mbox{\hyperlink{uart_8h_adbd366af90e179e780c2c94db5fb0cdc}{FIFO\+\_\+\+ERROR}}~BIT(7)
+\item 
+\#define \mbox{\hyperlink{uart_8h_ac3d704518538eac50dfc7363af4ed0a1}{EN\+\_\+\+REG\+\_\+\+DATA\+\_\+\+AVAILABLE}}~BIT(0)
+\item 
+\#define \mbox{\hyperlink{uart_8h_acad3d26e952db43a03ed418ce30a3184}{EN\+\_\+\+TRANS\+\_\+\+HOLD\+\_\+\+REG\+\_\+\+EMPTY}}~BIT(1)
+\item 
+\#define \mbox{\hyperlink{uart_8h_aa104e6472a8fca2f6c12a274e7be18b0}{EN\+\_\+\+RECEIVE\+\_\+\+LINE\+\_\+\+STATUS}}~BIT(2)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a065a1df009c4ea4128fd75a68f75975f}{EN\+\_\+\+MODEM\+\_\+\+STATUS}}~BIT(3)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a2d52f0cbe06a10fadf7f41afafaf2685}{INTERRUPT\+\_\+\+PENDING}}~BIT(0)
+\item 
+\#define \mbox{\hyperlink{uart_8h_ac6784a9465191e862a649f4697dfa9a7}{EN\+\_\+\+BOTH\+\_\+\+FIFOS}}~BIT(0)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a8c33d32242c363b0ee04c433c356a066}{CLEAR\+\_\+\+BYTES\+\_\+\+RCVR}}~BIT(1)
+\item 
+\#define \mbox{\hyperlink{uart_8h_a3b9aba9e3726c4a7cbbd8721969892ec}{CLEAR\+\_\+\+BYTES\+\_\+\+XMIT}}~BIT(2)
+\item 
+\#define \mbox{\hyperlink{uart_8h_ac31570e56bd61345e1ff7c5d6bc41409}{EN\+\_\+64\+\_\+\+BYTE}}~BIT(5)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{uart_8h_ac9e9f94ae18feef26e7a40d36f88dbf8}\label{uart_8h_ac9e9f94ae18feef26e7a40d36f88dbf8} 
+\index{uart.h@{uart.h}!B5\_CHAR@{B5\_CHAR}}
+\index{B5\_CHAR@{B5\_CHAR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{B5\_CHAR}{B5\_CHAR}}
+{\footnotesize\ttfamily \#define B5\+\_\+\+CHAR~0}
+
+\Hypertarget{uart_8h_a05ce1fdc158e78b1fd0d896d1495ca82}\label{uart_8h_a05ce1fdc158e78b1fd0d896d1495ca82} 
+\index{uart.h@{uart.h}!B6\_CHAR@{B6\_CHAR}}
+\index{B6\_CHAR@{B6\_CHAR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{B6\_CHAR}{B6\_CHAR}}
+{\footnotesize\ttfamily \#define B6\+\_\+\+CHAR~BIT(0)}
+
+\Hypertarget{uart_8h_aa094a1c0bd60a64606e878d3ccbfa043}\label{uart_8h_aa094a1c0bd60a64606e878d3ccbfa043} 
+\index{uart.h@{uart.h}!B7\_CHAR@{B7\_CHAR}}
+\index{B7\_CHAR@{B7\_CHAR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{B7\_CHAR}{B7\_CHAR}}
+{\footnotesize\ttfamily \#define B7\+\_\+\+CHAR~BIT(1)}
+
+\Hypertarget{uart_8h_aebab78f6daa4182e82a6d5a65d9571e8}\label{uart_8h_aebab78f6daa4182e82a6d5a65d9571e8} 
+\index{uart.h@{uart.h}!B8\_CHAR@{B8\_CHAR}}
+\index{B8\_CHAR@{B8\_CHAR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{B8\_CHAR}{B8\_CHAR}}
+{\footnotesize\ttfamily \#define B8\+\_\+\+CHAR~(BIT(0) \texorpdfstring{$\vert$}{|} BIT(1))}
+
+\Hypertarget{uart_8h_aba80f8e0eadad6692ac6e17c342cc0bd}\label{uart_8h_aba80f8e0eadad6692ac6e17c342cc0bd} 
+\index{uart.h@{uart.h}!BREAK\_INTERRUPT@{BREAK\_INTERRUPT}}
+\index{BREAK\_INTERRUPT@{BREAK\_INTERRUPT}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{BREAK\_INTERRUPT}{BREAK\_INTERRUPT}}
+{\footnotesize\ttfamily \#define BREAK\+\_\+\+INTERRUPT~BIT(4)}
+
+\Hypertarget{uart_8h_a8c33d32242c363b0ee04c433c356a066}\label{uart_8h_a8c33d32242c363b0ee04c433c356a066} 
+\index{uart.h@{uart.h}!CLEAR\_BYTES\_RCVR@{CLEAR\_BYTES\_RCVR}}
+\index{CLEAR\_BYTES\_RCVR@{CLEAR\_BYTES\_RCVR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{CLEAR\_BYTES\_RCVR}{CLEAR\_BYTES\_RCVR}}
+{\footnotesize\ttfamily \#define CLEAR\+\_\+\+BYTES\+\_\+\+RCVR~BIT(1)}
+
+\Hypertarget{uart_8h_a3b9aba9e3726c4a7cbbd8721969892ec}\label{uart_8h_a3b9aba9e3726c4a7cbbd8721969892ec} 
+\index{uart.h@{uart.h}!CLEAR\_BYTES\_XMIT@{CLEAR\_BYTES\_XMIT}}
+\index{CLEAR\_BYTES\_XMIT@{CLEAR\_BYTES\_XMIT}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{CLEAR\_BYTES\_XMIT}{CLEAR\_BYTES\_XMIT}}
+{\footnotesize\ttfamily \#define CLEAR\+\_\+\+BYTES\+\_\+\+XMIT~BIT(2)}
+
+\Hypertarget{uart_8h_aeacff95e17799eeacbff843e63ead9d3}\label{uart_8h_aeacff95e17799eeacbff843e63ead9d3} 
+\index{uart.h@{uart.h}!DLAB@{DLAB}}
+\index{DLAB@{DLAB}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{DLAB}{DLAB}}
+{\footnotesize\ttfamily \#define DLAB~BIT(7)}
+
+\Hypertarget{uart_8h_a4466639cd64ebf372a621168c5e25964}\label{uart_8h_a4466639cd64ebf372a621168c5e25964} 
+\index{uart.h@{uart.h}!DLL@{DLL}}
+\index{DLL@{DLL}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{DLL}{DLL}}
+{\footnotesize\ttfamily \#define DLL~0}
+
+\Hypertarget{uart_8h_a3b48b12dc65f62dd40ab1163fe7997fb}\label{uart_8h_a3b48b12dc65f62dd40ab1163fe7997fb} 
+\index{uart.h@{uart.h}!DLM@{DLM}}
+\index{DLM@{DLM}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{DLM}{DLM}}
+{\footnotesize\ttfamily \#define DLM~1}
+
+\Hypertarget{uart_8h_a80553cb1d79c9680691390565eea6d95}\label{uart_8h_a80553cb1d79c9680691390565eea6d95} 
+\index{uart.h@{uart.h}!EMPTY\_REGISTER@{EMPTY\_REGISTER}}
+\index{EMPTY\_REGISTER@{EMPTY\_REGISTER}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EMPTY\_REGISTER}{EMPTY\_REGISTER}}
+{\footnotesize\ttfamily \#define EMPTY\+\_\+\+REGISTER~BIT(6)}
+
+\Hypertarget{uart_8h_ac31570e56bd61345e1ff7c5d6bc41409}\label{uart_8h_ac31570e56bd61345e1ff7c5d6bc41409} 
+\index{uart.h@{uart.h}!EN\_64\_BYTE@{EN\_64\_BYTE}}
+\index{EN\_64\_BYTE@{EN\_64\_BYTE}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EN\_64\_BYTE}{EN\_64\_BYTE}}
+{\footnotesize\ttfamily \#define EN\+\_\+64\+\_\+\+BYTE~BIT(5)}
+
+\Hypertarget{uart_8h_ac6784a9465191e862a649f4697dfa9a7}\label{uart_8h_ac6784a9465191e862a649f4697dfa9a7} 
+\index{uart.h@{uart.h}!EN\_BOTH\_FIFOS@{EN\_BOTH\_FIFOS}}
+\index{EN\_BOTH\_FIFOS@{EN\_BOTH\_FIFOS}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EN\_BOTH\_FIFOS}{EN\_BOTH\_FIFOS}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+BOTH\+\_\+\+FIFOS~BIT(0)}
+
+\Hypertarget{uart_8h_a065a1df009c4ea4128fd75a68f75975f}\label{uart_8h_a065a1df009c4ea4128fd75a68f75975f} 
+\index{uart.h@{uart.h}!EN\_MODEM\_STATUS@{EN\_MODEM\_STATUS}}
+\index{EN\_MODEM\_STATUS@{EN\_MODEM\_STATUS}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EN\_MODEM\_STATUS}{EN\_MODEM\_STATUS}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+MODEM\+\_\+\+STATUS~BIT(3)}
+
+\Hypertarget{uart_8h_aa104e6472a8fca2f6c12a274e7be18b0}\label{uart_8h_aa104e6472a8fca2f6c12a274e7be18b0} 
+\index{uart.h@{uart.h}!EN\_RECEIVE\_LINE\_STATUS@{EN\_RECEIVE\_LINE\_STATUS}}
+\index{EN\_RECEIVE\_LINE\_STATUS@{EN\_RECEIVE\_LINE\_STATUS}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EN\_RECEIVE\_LINE\_STATUS}{EN\_RECEIVE\_LINE\_STATUS}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+RECEIVE\+\_\+\+LINE\+\_\+\+STATUS~BIT(2)}
+
+\Hypertarget{uart_8h_ac3d704518538eac50dfc7363af4ed0a1}\label{uart_8h_ac3d704518538eac50dfc7363af4ed0a1} 
+\index{uart.h@{uart.h}!EN\_REG\_DATA\_AVAILABLE@{EN\_REG\_DATA\_AVAILABLE}}
+\index{EN\_REG\_DATA\_AVAILABLE@{EN\_REG\_DATA\_AVAILABLE}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EN\_REG\_DATA\_AVAILABLE}{EN\_REG\_DATA\_AVAILABLE}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+REG\+\_\+\+DATA\+\_\+\+AVAILABLE~BIT(0)}
+
+\Hypertarget{uart_8h_acad3d26e952db43a03ed418ce30a3184}\label{uart_8h_acad3d26e952db43a03ed418ce30a3184} 
+\index{uart.h@{uart.h}!EN\_TRANS\_HOLD\_REG\_EMPTY@{EN\_TRANS\_HOLD\_REG\_EMPTY}}
+\index{EN\_TRANS\_HOLD\_REG\_EMPTY@{EN\_TRANS\_HOLD\_REG\_EMPTY}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EN\_TRANS\_HOLD\_REG\_EMPTY}{EN\_TRANS\_HOLD\_REG\_EMPTY}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+TRANS\+\_\+\+HOLD\+\_\+\+REG\+\_\+\+EMPTY~BIT(1)}
+
+\Hypertarget{uart_8h_a4f7887d5dffd9f2e6c6ebbf7c500f9e8}\label{uart_8h_a4f7887d5dffd9f2e6c6ebbf7c500f9e8} 
+\index{uart.h@{uart.h}!EVEN\_PAROTY@{EVEN\_PAROTY}}
+\index{EVEN\_PAROTY@{EVEN\_PAROTY}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{EVEN\_PAROTY}{EVEN\_PAROTY}}
+{\footnotesize\ttfamily \#define EVEN\+\_\+\+PAROTY~(BIT(3) \texorpdfstring{$\vert$}{|} BIT(4))}
+
+\Hypertarget{uart_8h_adbd366af90e179e780c2c94db5fb0cdc}\label{uart_8h_adbd366af90e179e780c2c94db5fb0cdc} 
+\index{uart.h@{uart.h}!FIFO\_ERROR@{FIFO\_ERROR}}
+\index{FIFO\_ERROR@{FIFO\_ERROR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{FIFO\_ERROR}{FIFO\_ERROR}}
+{\footnotesize\ttfamily \#define FIFO\+\_\+\+ERROR~BIT(7)}
+
+\Hypertarget{uart_8h_a5bf1d46877ac22d5e12d9b1c0432d373}\label{uart_8h_a5bf1d46877ac22d5e12d9b1c0432d373} 
+\index{uart.h@{uart.h}!FRAMING\_ERROR@{FRAMING\_ERROR}}
+\index{FRAMING\_ERROR@{FRAMING\_ERROR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{FRAMING\_ERROR}{FRAMING\_ERROR}}
+{\footnotesize\ttfamily \#define FRAMING\+\_\+\+ERROR~BIT(3)}
+
+\Hypertarget{uart_8h_a9f721c670ab50381bed77cea2bad83c2}\label{uart_8h_a9f721c670ab50381bed77cea2bad83c2} 
+\index{uart.h@{uart.h}!HOLDING\_REGISTER\_EMPTY@{HOLDING\_REGISTER\_EMPTY}}
+\index{HOLDING\_REGISTER\_EMPTY@{HOLDING\_REGISTER\_EMPTY}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{HOLDING\_REGISTER\_EMPTY}{HOLDING\_REGISTER\_EMPTY}}
+{\footnotesize\ttfamily \#define HOLDING\+\_\+\+REGISTER\+\_\+\+EMPTY~BIT(5)}
+
+\Hypertarget{uart_8h_a3e27fa35f9febccdc4a0c28a5c8cffbb}\label{uart_8h_a3e27fa35f9febccdc4a0c28a5c8cffbb} 
+\index{uart.h@{uart.h}!IER@{IER}}
+\index{IER@{IER}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{IER}{IER}}
+{\footnotesize\ttfamily \#define IER~1}
+
+\Hypertarget{uart_8h_a67004975983f9c99226d63db17ba74c4}\label{uart_8h_a67004975983f9c99226d63db17ba74c4} 
+\index{uart.h@{uart.h}!IIR@{IIR}}
+\index{IIR@{IIR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{IIR}{IIR}}
+{\footnotesize\ttfamily \#define IIR~2}
+
+\Hypertarget{uart_8h_a2d52f0cbe06a10fadf7f41afafaf2685}\label{uart_8h_a2d52f0cbe06a10fadf7f41afafaf2685} 
+\index{uart.h@{uart.h}!INTERRUPT\_PENDING@{INTERRUPT\_PENDING}}
+\index{INTERRUPT\_PENDING@{INTERRUPT\_PENDING}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{INTERRUPT\_PENDING}{INTERRUPT\_PENDING}}
+{\footnotesize\ttfamily \#define INTERRUPT\+\_\+\+PENDING~BIT(0)}
+
+\Hypertarget{uart_8h_a851cb396b6eaa97346364a772b439f37}\label{uart_8h_a851cb396b6eaa97346364a772b439f37} 
+\index{uart.h@{uart.h}!LCR@{LCR}}
+\index{LCR@{LCR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{LCR}{LCR}}
+{\footnotesize\ttfamily \#define LCR~3}
+
+\Hypertarget{uart_8h_ad51d51aee21f6cc77d4955221aee3dcb}\label{uart_8h_ad51d51aee21f6cc77d4955221aee3dcb} 
+\index{uart.h@{uart.h}!LSR@{LSR}}
+\index{LSR@{LSR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{LSR}{LSR}}
+{\footnotesize\ttfamily \#define LSR~5}
+
+\Hypertarget{uart_8h_a65364db1603cde6f6533cb61bcfcf553}\label{uart_8h_a65364db1603cde6f6533cb61bcfcf553} 
+\index{uart.h@{uart.h}!MCR@{MCR}}
+\index{MCR@{MCR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{MCR}{MCR}}
+{\footnotesize\ttfamily \#define MCR~4}
+
+\Hypertarget{uart_8h_ad4806a0bfd996121bc27d2466393207e}\label{uart_8h_ad4806a0bfd996121bc27d2466393207e} 
+\index{uart.h@{uart.h}!MSR@{MSR}}
+\index{MSR@{MSR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{MSR}{MSR}}
+{\footnotesize\ttfamily \#define MSR~6}
+
+\Hypertarget{uart_8h_a6e39c5c443322398878f10e0f1e6f023}\label{uart_8h_a6e39c5c443322398878f10e0f1e6f023} 
+\index{uart.h@{uart.h}!NO\_PARITY@{NO\_PARITY}}
+\index{NO\_PARITY@{NO\_PARITY}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{NO\_PARITY}{NO\_PARITY}}
+{\footnotesize\ttfamily \#define NO\+\_\+\+PARITY~0}
+
+\Hypertarget{uart_8h_a898d7631f24dd6b1deebf808a2214ea2}\label{uart_8h_a898d7631f24dd6b1deebf808a2214ea2} 
+\index{uart.h@{uart.h}!ODD\_PARITY@{ODD\_PARITY}}
+\index{ODD\_PARITY@{ODD\_PARITY}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{ODD\_PARITY}{ODD\_PARITY}}
+{\footnotesize\ttfamily \#define ODD\+\_\+\+PARITY~BIT(3)}
+
+\Hypertarget{uart_8h_a71c26bc752960acd5308f21b05a13714}\label{uart_8h_a71c26bc752960acd5308f21b05a13714} 
+\index{uart.h@{uart.h}!OVERRUN\_ERROR@{OVERRUN\_ERROR}}
+\index{OVERRUN\_ERROR@{OVERRUN\_ERROR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{OVERRUN\_ERROR}{OVERRUN\_ERROR}}
+{\footnotesize\ttfamily \#define OVERRUN\+\_\+\+ERROR~BIT(1)}
+
+\Hypertarget{uart_8h_a8b0c2864b0eb311fad53a0b824f599ab}\label{uart_8h_a8b0c2864b0eb311fad53a0b824f599ab} 
+\index{uart.h@{uart.h}!PARITY\_B0@{PARITY\_B0}}
+\index{PARITY\_B0@{PARITY\_B0}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{PARITY\_B0}{PARITY\_B0}}
+{\footnotesize\ttfamily \#define PARITY\+\_\+\+B0~(BIT(5) \texorpdfstring{$\vert$}{|} BIT(4) \texorpdfstring{$\vert$}{|} BIT(3))}
+
+\Hypertarget{uart_8h_af05fea9ca6eb456fe66e9a0a122f2543}\label{uart_8h_af05fea9ca6eb456fe66e9a0a122f2543} 
+\index{uart.h@{uart.h}!PARITY\_B1@{PARITY\_B1}}
+\index{PARITY\_B1@{PARITY\_B1}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{PARITY\_B1}{PARITY\_B1}}
+{\footnotesize\ttfamily \#define PARITY\+\_\+\+B1~(BIT(5) \texorpdfstring{$\vert$}{|} BIT(3))}
+
+\Hypertarget{uart_8h_a81d2ca6759f3f3bf04556b7558aea6bc}\label{uart_8h_a81d2ca6759f3f3bf04556b7558aea6bc} 
+\index{uart.h@{uart.h}!PARITY\_ERROR@{PARITY\_ERROR}}
+\index{PARITY\_ERROR@{PARITY\_ERROR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{PARITY\_ERROR}{PARITY\_ERROR}}
+{\footnotesize\ttfamily \#define PARITY\+\_\+\+ERROR~BIT(2)}
+
+\Hypertarget{uart_8h_aa6f7e7a9f4551d6151f9d45362118a50}\label{uart_8h_aa6f7e7a9f4551d6151f9d45362118a50} 
+\index{uart.h@{uart.h}!RBR@{RBR}}
+\index{RBR@{RBR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{RBR}{RBR}}
+{\footnotesize\ttfamily \#define RBR~0}
+
+\Hypertarget{uart_8h_ad7cc56a873d34d5eb103e6cdad0c40e1}\label{uart_8h_ad7cc56a873d34d5eb103e6cdad0c40e1} 
+\index{uart.h@{uart.h}!RECEIVER\_DATA@{RECEIVER\_DATA}}
+\index{RECEIVER\_DATA@{RECEIVER\_DATA}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{RECEIVER\_DATA}{RECEIVER\_DATA}}
+{\footnotesize\ttfamily \#define RECEIVER\+\_\+\+DATA~BIT(0)}
+
+\Hypertarget{uart_8h_abaed93a16a0cde13f32bc4dc48b96804}\label{uart_8h_abaed93a16a0cde13f32bc4dc48b96804} 
+\index{uart.h@{uart.h}!SR@{SR}}
+\index{SR@{SR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{SR}{SR}}
+{\footnotesize\ttfamily \#define SR~7}
+
+\Hypertarget{uart_8h_aed6a694a01a2bf6f5c7e9fec00b77714}\label{uart_8h_aed6a694a01a2bf6f5c7e9fec00b77714} 
+\index{uart.h@{uart.h}!STOP\_B1@{STOP\_B1}}
+\index{STOP\_B1@{STOP\_B1}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{STOP\_B1}{STOP\_B1}}
+{\footnotesize\ttfamily \#define STOP\+\_\+\+B1~0}
+
+\Hypertarget{uart_8h_a5e48076031db7f31756d733949516200}\label{uart_8h_a5e48076031db7f31756d733949516200} 
+\index{uart.h@{uart.h}!STOP\_B2@{STOP\_B2}}
+\index{STOP\_B2@{STOP\_B2}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{STOP\_B2}{STOP\_B2}}
+{\footnotesize\ttfamily \#define STOP\+\_\+\+B2~BIT(2)}
+
+\Hypertarget{uart_8h_a5e9787adf3c9afcc4b781e85bb545b35}\label{uart_8h_a5e9787adf3c9afcc4b781e85bb545b35} 
+\index{uart.h@{uart.h}!THR@{THR}}
+\index{THR@{THR}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{THR}{THR}}
+{\footnotesize\ttfamily \#define THR~0}
+

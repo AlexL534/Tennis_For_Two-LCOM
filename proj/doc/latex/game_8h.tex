@@ -1,0 +1,185 @@
+\doxysection{src/game.h File Reference}
+\hypertarget{game_8h}{}\label{game_8h}\index{src/game.h@{src/game.h}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include "{}states.\+h"{}}\newline
+{\ttfamily \#include "{}player.\+h"{}}\newline
+{\ttfamily \#include "{}player2.\+h"{}}\newline
+{\ttfamily \#include "{}ball.\+h"{}}\newline
+{\ttfamily \#include "{}game\+\_\+score.\+h"{}}\newline
+{\ttfamily \#include "{}menu.\+h"{}}\newline
+{\ttfamily \#include "{}devices/i8042.\+h"{}}\newline
+{\ttfamily \#include "{}devices/i8254.\+h"{}}\newline
+{\ttfamily \#include "{}devices/kbd.\+h"{}}\newline
+{\ttfamily \#include "{}devices/mouse.\+h"{}}\newline
+{\ttfamily \#include "{}devices/rtc.\+h"{}}\newline
+{\ttfamily \#include "{}devices/\+VBE.\+h"{}}\newline
+{\ttfamily \#include "{}devices/video.\+h"{}}\newline
+{\ttfamily \#include "{}xpms.\+h"{}}\newline
+Include dependency graph for game.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{game_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{game_8h_aa606417144dc03fd37eaa28fb93a14f8}{NET\+\_\+\+Y\+\_\+\+POS}}~370
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{game_8h_abb99030e6fb0a594bddca1fba40803e8}{game\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Loop principal do jogo onde se encontra a função driver receive. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8h_a1ee5740c26683f8ceafede7a12fef7a2}{timer\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Executa ações que necessitam das informações fornecidas pelo Timer após uma interrupção deste (atualizar posições, gerar novos frames, animações, etc..) \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8h_a4343a5e3073a30dfb0463707faee7bc3}{keyboard\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Executa ações relacionadas com o Keyboard após uma interrupção deste (atualizar a direção de movimento dos jogadores, ...) \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8h_a4a38393d764fbfdd5cb83e4f6673462f}{mouse\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Executa ações relacionadas com o \doxylink{struct_mouse}{Mouse} após uma interrupção deste (Iniciar o movimento de batida na bola, mover o cursor no menu, ...) \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8h_a790c3db06e84b390a20c8b3434e458c5}{load\+Background}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o background no inicio da execução do programa. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{game_8h_a6673adfded87b0043f1a6e7624c486dd}{destroy\+Elements}} ()
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada pelo programa durante a sua execução. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{game_8h_aa606417144dc03fd37eaa28fb93a14f8}\label{game_8h_aa606417144dc03fd37eaa28fb93a14f8} 
+\index{game.h@{game.h}!NET\_Y\_POS@{NET\_Y\_POS}}
+\index{NET\_Y\_POS@{NET\_Y\_POS}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{NET\_Y\_POS}{NET\_Y\_POS}}
+{\footnotesize\ttfamily \#define NET\+\_\+\+Y\+\_\+\+POS~370}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game_8h_a6673adfded87b0043f1a6e7624c486dd}\label{game_8h_a6673adfded87b0043f1a6e7624c486dd} 
+\index{game.h@{game.h}!destroyElements@{destroyElements}}
+\index{destroyElements@{destroyElements}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{destroyElements()}{destroyElements()}}
+{\footnotesize\ttfamily void() destroy\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada pelo programa durante a sua execução. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8h_a6673adfded87b0043f1a6e7624c486dd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8h_abb99030e6fb0a594bddca1fba40803e8}\label{game_8h_abb99030e6fb0a594bddca1fba40803e8} 
+\index{game.h@{game.h}!gameLoop@{gameLoop}}
+\index{gameLoop@{gameLoop}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{gameLoop()}{gameLoop()}}
+{\footnotesize\ttfamily int() game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loop principal do jogo onde se encontra a função driver receive. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{game_8h_abb99030e6fb0a594bddca1fba40803e8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8h_a4343a5e3073a30dfb0463707faee7bc3}\label{game_8h_a4343a5e3073a30dfb0463707faee7bc3} 
+\index{game.h@{game.h}!keyboardHandler@{keyboardHandler}}
+\index{keyboardHandler@{keyboardHandler}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{keyboardHandler()}{keyboardHandler()}}
+{\footnotesize\ttfamily int() keyboard\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executa ações relacionadas com o Keyboard após uma interrupção deste (atualizar a direção de movimento dos jogadores, ...) 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8h_a4343a5e3073a30dfb0463707faee7bc3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8h_a790c3db06e84b390a20c8b3434e458c5}\label{game_8h_a790c3db06e84b390a20c8b3434e458c5} 
+\index{game.h@{game.h}!loadBackground@{loadBackground}}
+\index{loadBackground@{loadBackground}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{loadBackground()}{loadBackground()}}
+{\footnotesize\ttfamily int() load\+Background (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Carrega o background no inicio da execução do programa. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8h_a790c3db06e84b390a20c8b3434e458c5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8h_a4a38393d764fbfdd5cb83e4f6673462f}\label{game_8h_a4a38393d764fbfdd5cb83e4f6673462f} 
+\index{game.h@{game.h}!mouseHandler@{mouseHandler}}
+\index{mouseHandler@{mouseHandler}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{mouseHandler()}{mouseHandler()}}
+{\footnotesize\ttfamily int() mouse\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executa ações relacionadas com o \doxylink{struct_mouse}{Mouse} após uma interrupção deste (Iniciar o movimento de batida na bola, mover o cursor no menu, ...) 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{game_8h_a4a38393d764fbfdd5cb83e4f6673462f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8h_a1ee5740c26683f8ceafede7a12fef7a2}\label{game_8h_a1ee5740c26683f8ceafede7a12fef7a2} 
+\index{game.h@{game.h}!timerHandler@{timerHandler}}
+\index{timerHandler@{timerHandler}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{timerHandler()}{timerHandler()}}
+{\footnotesize\ttfamily int() timer\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executa ações que necessitam das informações fornecidas pelo Timer após uma interrupção deste (atualizar posições, gerar novos frames, animações, etc..) 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8h_a1ee5740c26683f8ceafede7a12fef7a2_cgraph}
+\end{center}
+\end{figure}

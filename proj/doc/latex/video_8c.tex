@@ -1,0 +1,347 @@
+\doxysection{src/devices/video.c File Reference}
+\hypertarget{video_8c}{}\label{video_8c}\index{src/devices/video.c@{src/devices/video.c}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include "{}video.\+h"{}}\newline
+{\ttfamily \#include "{}VBE.\+h"{}}\newline
+{\ttfamily \#include $<$lcom/xpm.\+h$>$}\newline
+Include dependency graph for video.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{video_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{video_8c_acf5f889d94df072efe156053d9e4543d}{get\+\_\+video\+\_\+mem}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o buffer da memória gráfica. \end{DoxyCompactList}\item 
+vbe\+\_\+mode\+\_\+info\+\_\+t() \mbox{\hyperlink{video_8c_af1eae5e1dd3b307454dc40e5b6b1712c}{get\+\_\+mode\+\_\+inf}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a informação do modo gráfico em uso para que possa ser usada em outros documentos. \end{DoxyCompactList}\item 
+unsigned() \mbox{\hyperlink{video_8c_a6ab0ad9050aeae34a4efe59baae49543}{get\+\_\+hres}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a altura máxima do modo gráfico em uso. \end{DoxyCompactList}\item 
+unsigned() \mbox{\hyperlink{video_8c_aa8c7f7dd95e9037a546aa1948003a0ea}{get\+\_\+vres}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a largura máxima do modo gráfico em uso. \end{DoxyCompactList}\item 
+unsigned() \mbox{\hyperlink{video_8c_af8c564ce1c7815d53025855dcdc3f348}{get\+\_\+bits\+\_\+per\+\_\+pixel}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de bits por píxel no modo gráfico em uso. \end{DoxyCompactList}\item 
+unsigned() \mbox{\hyperlink{video_8c_a448bd567fb86fdb9acd3f7f82dfc3be6}{get\+\_\+bytes\+\_\+per\+\_\+pixel}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de bytes por píxel no modo gráfico em uso. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{video_8c_a22f112737bd26dc7a59867387c61e1fd}{get\+\_\+second\+\_\+buffer}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o segundo buffer. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8c_abc385863ded0f571af451a585678924d}{map\+\_\+\+VRAM}} (uint16\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Inicializa o buffer da placa gráfica (vram) e inicializa o modo gráfico. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8c_ac431ebc57a4886a1b8bd4be8e8725462}{vg\+\_\+draw\+\_\+color}} (uint16\+\_\+t x, uint16\+\_\+t y, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Desenha a cor num dos píxeis do ecrã \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{video_8c_ae1a99ee23f3b94cac3562bc674209ec3}{swap\+\_\+buffer}} ()
+\begin{DoxyCompactList}\small\item\em Passa o conteúdo do segundo buffer para o buffer principal da memória gráfica. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8c_a5e5b25bd525250f61f40b9e9f212d5e6}{vg\+\_\+draw\+\_\+hline}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t len, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Desenha uma linha horizontal no ecrã \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8c_a99d2da2559e11200c6b40c469e9977ec}{vg\+\_\+draw\+\_\+rectangle}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Desenha um retângulo no ecrã \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8c_a73fa8fbe6b79e744b39b96a98202b053}{draw\+\_\+xpm}} (xpm\+\_\+map\+\_\+t xpm, enum xpm\+\_\+image\+\_\+type type, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Desenha um xpm no ecrã \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{video_8c_aabacb1f8185b8fc5c1918a668442fb2b}{free\+\_\+second\+\_\+buffer}} ()
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para o segundo buffer. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8c_a9fec4cae8035845e3ff857a6fef03904}{clear\+\_\+screen}} ()
+\begin{DoxyCompactList}\small\item\em limpa a tela \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{video_8c_a9fec4cae8035845e3ff857a6fef03904}\label{video_8c_a9fec4cae8035845e3ff857a6fef03904} 
+\index{video.c@{video.c}!clear\_screen@{clear\_screen}}
+\index{clear\_screen@{clear\_screen}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{clear\_screen()}{clear\_screen()}}
+{\footnotesize\ttfamily int() clear\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+limpa a tela 
+
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer se não 0 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{video_8c_a9fec4cae8035845e3ff857a6fef03904_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{video_8c_a73fa8fbe6b79e744b39b96a98202b053}\label{video_8c_a73fa8fbe6b79e744b39b96a98202b053} 
+\index{video.c@{video.c}!draw\_xpm@{draw\_xpm}}
+\index{draw\_xpm@{draw\_xpm}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{draw\_xpm()}{draw\_xpm()}}
+{\footnotesize\ttfamily int() draw\+\_\+xpm (\begin{DoxyParamCaption}\item[{xpm\+\_\+map\+\_\+t}]{xpm,  }\item[{enum xpm\+\_\+image\+\_\+type}]{type,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Desenha um xpm no ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xpm} & xpm a desenhar \\
+\hline
+{\em type} & tipo de modo de imagem a usar \\
+\hline
+{\em x} & valor inicial de x \\
+\hline
+{\em y} & valor inicial de y \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{video_8c_a73fa8fbe6b79e744b39b96a98202b053_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{video_8c_aabacb1f8185b8fc5c1918a668442fb2b}\label{video_8c_aabacb1f8185b8fc5c1918a668442fb2b} 
+\index{video.c@{video.c}!free\_second\_buffer@{free\_second\_buffer}}
+\index{free\_second\_buffer@{free\_second\_buffer}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{free\_second\_buffer()}{free\_second\_buffer()}}
+{\footnotesize\ttfamily void() free\+\_\+second\+\_\+buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para o segundo buffer. 
+
+\Hypertarget{video_8c_af8c564ce1c7815d53025855dcdc3f348}\label{video_8c_af8c564ce1c7815d53025855dcdc3f348} 
+\index{video.c@{video.c}!get\_bits\_per\_pixel@{get\_bits\_per\_pixel}}
+\index{get\_bits\_per\_pixel@{get\_bits\_per\_pixel}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_bits\_per\_pixel()}{get\_bits\_per\_pixel()}}
+{\footnotesize\ttfamily unsigned() get\+\_\+bits\+\_\+per\+\_\+pixel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna a quantidade de bits por píxel no modo gráfico em uso. 
+
+\begin{DoxyReturn}{Returns}
+quantidade de bits por píxel no modo gráfico em uso 
+\end{DoxyReturn}
+\Hypertarget{video_8c_a448bd567fb86fdb9acd3f7f82dfc3be6}\label{video_8c_a448bd567fb86fdb9acd3f7f82dfc3be6} 
+\index{video.c@{video.c}!get\_bytes\_per\_pixel@{get\_bytes\_per\_pixel}}
+\index{get\_bytes\_per\_pixel@{get\_bytes\_per\_pixel}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_bytes\_per\_pixel()}{get\_bytes\_per\_pixel()}}
+{\footnotesize\ttfamily unsigned() get\+\_\+bytes\+\_\+per\+\_\+pixel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna a quantidade de bytes por píxel no modo gráfico em uso. 
+
+\begin{DoxyReturn}{Returns}
+quantidade de bytes por píxel no modo gráfico em uso 
+\end{DoxyReturn}
+\Hypertarget{video_8c_a6ab0ad9050aeae34a4efe59baae49543}\label{video_8c_a6ab0ad9050aeae34a4efe59baae49543} 
+\index{video.c@{video.c}!get\_hres@{get\_hres}}
+\index{get\_hres@{get\_hres}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_hres()}{get\_hres()}}
+{\footnotesize\ttfamily unsigned() get\+\_\+hres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna a altura máxima do modo gráfico em uso. 
+
+\begin{DoxyReturn}{Returns}
+altura máxima do modo gráfico em uso 
+\end{DoxyReturn}
+\Hypertarget{video_8c_af1eae5e1dd3b307454dc40e5b6b1712c}\label{video_8c_af1eae5e1dd3b307454dc40e5b6b1712c} 
+\index{video.c@{video.c}!get\_mode\_inf@{get\_mode\_inf}}
+\index{get\_mode\_inf@{get\_mode\_inf}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_mode\_inf()}{get\_mode\_inf()}}
+{\footnotesize\ttfamily vbe\+\_\+mode\+\_\+info\+\_\+t() get\+\_\+mode\+\_\+inf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna a informação do modo gráfico em uso para que possa ser usada em outros documentos. 
+
+\begin{DoxyReturn}{Returns}
+informação do modo gráfico 
+\end{DoxyReturn}
+\Hypertarget{video_8c_a22f112737bd26dc7a59867387c61e1fd}\label{video_8c_a22f112737bd26dc7a59867387c61e1fd} 
+\index{video.c@{video.c}!get\_second\_buffer@{get\_second\_buffer}}
+\index{get\_second\_buffer@{get\_second\_buffer}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_second\_buffer()}{get\_second\_buffer()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*}() get\+\_\+second\+\_\+buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna o segundo buffer. 
+
+\begin{DoxyReturn}{Returns}
+segundo buffer 
+\end{DoxyReturn}
+\Hypertarget{video_8c_acf5f889d94df072efe156053d9e4543d}\label{video_8c_acf5f889d94df072efe156053d9e4543d} 
+\index{video.c@{video.c}!get\_video\_mem@{get\_video\_mem}}
+\index{get\_video\_mem@{get\_video\_mem}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_video\_mem()}{get\_video\_mem()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*}() get\+\_\+video\+\_\+mem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna o buffer da memória gráfica. 
+
+\begin{DoxyReturn}{Returns}
+buffer da memória gráfica 
+\end{DoxyReturn}
+\Hypertarget{video_8c_aa8c7f7dd95e9037a546aa1948003a0ea}\label{video_8c_aa8c7f7dd95e9037a546aa1948003a0ea} 
+\index{video.c@{video.c}!get\_vres@{get\_vres}}
+\index{get\_vres@{get\_vres}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{get\_vres()}{get\_vres()}}
+{\footnotesize\ttfamily unsigned() get\+\_\+vres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna a largura máxima do modo gráfico em uso. 
+
+\begin{DoxyReturn}{Returns}
+largura máxima do modo gráfico em uso 
+\end{DoxyReturn}
+\Hypertarget{video_8c_abc385863ded0f571af451a585678924d}\label{video_8c_abc385863ded0f571af451a585678924d} 
+\index{video.c@{video.c}!map\_VRAM@{map\_VRAM}}
+\index{map\_VRAM@{map\_VRAM}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{map\_VRAM()}{map\_VRAM()}}
+{\footnotesize\ttfamily int() map\+\_\+\+VRAM (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Inicializa o buffer da placa gráfica (vram) e inicializa o modo gráfico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & modo gráfico pretendido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{video_8c_abc385863ded0f571af451a585678924d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{video_8c_ae1a99ee23f3b94cac3562bc674209ec3}\label{video_8c_ae1a99ee23f3b94cac3562bc674209ec3} 
+\index{video.c@{video.c}!swap\_buffer@{swap\_buffer}}
+\index{swap\_buffer@{swap\_buffer}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{swap\_buffer()}{swap\_buffer()}}
+{\footnotesize\ttfamily void() swap\+\_\+buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Passa o conteúdo do segundo buffer para o buffer principal da memória gráfica. 
+
+\begin{DoxyReturn}{Returns}
+conteúdo do segundo buffer para o buffer principal da memória gráfica 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{video_8c_ae1a99ee23f3b94cac3562bc674209ec3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{video_8c_ac431ebc57a4886a1b8bd4be8e8725462}\label{video_8c_ac431ebc57a4886a1b8bd4be8e8725462} 
+\index{video.c@{video.c}!vg\_draw\_color@{vg\_draw\_color}}
+\index{vg\_draw\_color@{vg\_draw\_color}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_color()}{vg\_draw\_color()}}
+{\footnotesize\ttfamily int() vg\+\_\+draw\+\_\+color (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+Desenha a cor num dos píxeis do ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & valor do x \\
+\hline
+{\em y} & valor o y \\
+\hline
+{\em color} & Cor a ser desenhada píxel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{video_8c_ac431ebc57a4886a1b8bd4be8e8725462_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{video_8c_a5e5b25bd525250f61f40b9e9f212d5e6}\label{video_8c_a5e5b25bd525250f61f40b9e9f212d5e6} 
+\index{video.c@{video.c}!vg\_draw\_hline@{vg\_draw\_hline}}
+\index{vg\_draw\_hline@{vg\_draw\_hline}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_hline()}{vg\_draw\_hline()}}
+{\footnotesize\ttfamily int() vg\+\_\+draw\+\_\+hline (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{len,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+Desenha uma linha horizontal no ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & valor inicial de x \\
+\hline
+{\em y} & valor inicial de y \\
+\hline
+{\em len} & comprimento da linha \\
+\hline
+{\em color} & cor da linha \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{video_8c_a5e5b25bd525250f61f40b9e9f212d5e6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{video_8c_a99d2da2559e11200c6b40c469e9977ec}\label{video_8c_a99d2da2559e11200c6b40c469e9977ec} 
+\index{video.c@{video.c}!vg\_draw\_rectangle@{vg\_draw\_rectangle}}
+\index{vg\_draw\_rectangle@{vg\_draw\_rectangle}!video.c@{video.c}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_rectangle()}{vg\_draw\_rectangle()}}
+{\footnotesize\ttfamily int() vg\+\_\+draw\+\_\+rectangle (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{width,  }\item[{uint16\+\_\+t}]{height,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+Desenha um retângulo no ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & valor inicial de x \\
+\hline
+{\em y} & valor inicial de y \\
+\hline
+{\em width} & comprimento do retângulo \\
+\hline
+{\em height} & altura do retângulo \\
+\hline
+{\em color} & cor do retângulo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorrer um erro e 0 caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{video_8c_a99d2da2559e11200c6b40c469e9977ec_cgraph}
+\end{center}
+\end{figure}

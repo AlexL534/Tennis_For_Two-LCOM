@@ -1,0 +1,5 @@
+<map id="swap_buffer" name="swap_buffer">
+<area shape="rect" id="Node000001" title="Passa o conteúdo do segundo buffer para o buffer principal da memória gráfica." alt="" coords="5,5,96,31"/>
+<area shape="rect" id="Node000002" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="144,5,283,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,15,129,15,129,21,97,21"/>
+</map>

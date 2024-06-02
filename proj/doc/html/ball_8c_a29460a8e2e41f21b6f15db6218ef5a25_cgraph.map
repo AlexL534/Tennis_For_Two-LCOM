@@ -1,0 +1,5 @@
+<map id="collisionPlayer" name="collisionPlayer">
+<area shape="rect" id="Node000001" title="Verifica se ocorreu uma colisão e atualiza so valores de direção e inclinação de acordo com a posição..." alt="" coords="5,5,112,31"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#ab66110fb0d7b7aac2529e08854bb2ea7" title="Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador (&quot;hit box&quot;)" alt="" coords="160,5,307,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,15,145,15,145,21,113,21"/>
+</map>

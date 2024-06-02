@@ -1,0 +1,5 @@
+<map id="kbd_read_status" name="kbd_read_status">
+<area shape="rect" id="Node000001" title="Lê o estado do KBC para verificar se já podemos efetuar a leitura do scancode." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title=" " alt="" coords="172,5,263,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,157,15,157,21,124,21"/>
+</map>

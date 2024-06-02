@@ -1,0 +1,49 @@
+\doxysection{ball.\+h}
+\hypertarget{ball_8h_source}{}\label{ball_8h_source}\index{src/ball.h@{src/ball.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BALL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BALL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}states.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}xpms.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}sprite.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}player.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_ball_a9336ebf25087d91c818ee6e9ec29f8c1}{x}},\ y;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_ball_a98f2e0dfcdbd3de203bc2e72c511fe68}{xspeed}},\ yspeed;}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_ball_a81d56991573a4f596c80e85a480e0879}{incline}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ \mbox{\hyperlink{struct_ball_adbcaade28a748fde1486e280b0e007dc}{currentSprite}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ \mbox{\hyperlink{struct_ball_a42d730a052ede2248e8c91a8244da080}{small}};}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ \mbox{\hyperlink{struct_ball_a9d4a43b2cc94d78271217517312a6434}{medium}};}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ \mbox{\hyperlink{struct_ball_a0ca1340e717d6af260120fd623ac197e}{large}};}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ \mbox{\hyperlink{struct_ball_a1f82dd3a3cbbba0105dcdceacab828d4}{very\_large}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ Ball\_direction\ \mbox{\hyperlink{struct_ball_a99f26e6ee9fcd62f75203b5402df8098}{direction}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \}\ \mbox{\hyperlink{struct_ball}{Ball}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \mbox{\hyperlink{struct_ball}{Ball}}\ *(createBall)();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ int\ (drawBall)(\mbox{\hyperlink{struct_ball}{Ball}}\ *ball);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00071\ void\ (updateBallDirection)(Ball\_direction\ direction,\ \mbox{\hyperlink{struct_ball}{Ball}}\ *ball);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ void\ (collisionPlayer)(\mbox{\hyperlink{struct_ball}{Ball}}\ *ball,\ \mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ void\ (moveBall)(\mbox{\hyperlink{struct_ball}{Ball}}\ *ball,\ \textcolor{keywordtype}{bool}\ slow);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00093\ bool\ (checkCollisionLine)(\mbox{\hyperlink{struct_ball}{Ball}}\ *ball,\ uint32\_t\ *background);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00100\ void\ (resetBall)(\mbox{\hyperlink{struct_ball}{Ball}}\ *ball,\ Player\_numb\ scoredPlayer);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ void\ (destroyBall)(\mbox{\hyperlink{struct_ball}{Ball}}\ *ball);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,25 @@
+\doxysection{kbd.\+h}
+\hypertarget{kbd_8h_source}{}\label{kbd_8h_source}\index{src/devices/kbd.h@{src/devices/kbd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ KBD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ KBD\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00010\ int\ (kbd\_read\_status)(uint8\_t\ *status);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ int\ (kbd\_read\_scancode)();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00023\ int\ (kbd\_subscribe\_int)(uint8\_t\ *bit\_no);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ int\ (kbd\_unsubscribe\_int)();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ uint8\_t\ (get\_scancode)();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ int\ (get\_KBD\_hook\_id)();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ set\_scancode(uint8\_t\ fake\_scancode);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

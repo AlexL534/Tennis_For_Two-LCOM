@@ -1,0 +1,5 @@
+<map id="Menu" name="Menu">
+<area shape="rect" id="Node000001" title="Estrutura que contém sprites do menu principal e do menu de pausa." alt="" coords="6,240,61,265"/>
+<area shape="rect" id="Node000002" href="$struct_sprite.html" title="Estrutura que contém as informações essenciais de cada sprite." alt="" coords="5,5,61,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="36,45,36,240,31,240,31,45"/>
+</map>

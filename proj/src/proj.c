@@ -1,3 +1,8 @@
+/*! \mainpage Este projeto foi desenvolvido para a unidade curricular de Laboratório de *Computadores. Teve como objetivo a aplicação dos conceitos apresentados durante as aulas relacioandos com os vários dispositivos de um computador o rato ou o teclado.
+* 
+*
+* O trabalho consiste num jogo chamado Tennis for Two onde o utilizador controla um jogador de ténis que tem como objetivo marcar mais pontos que o adversário. Ganha o primeiro a marcar 10 pontos.
+*/
 #include <lcom/lcf.h>
 
 #include <stdint.h>

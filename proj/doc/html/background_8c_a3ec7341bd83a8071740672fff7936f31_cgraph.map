@@ -1,0 +1,19 @@
+<map id="initializeMenuBackground" name="initializeMenuBackground">
+<area shape="rect" id="Node000001" title="Inicializa os valores necessários para que o background do menu funcione." alt="" coords="5,80,176,105"/>
+<area shape="rect" id="Node000002" href="$background_8c.html#a4a45eb0b35cf9e179ebc729d46321ea4" title="Desenha a data no background do menu." alt="" coords="224,80,369,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,90,209,90,209,95,176,95"/>
+<area shape="rect" id="Node000004" href="$background_8c.html#a707ae0dab0a202f55e54ae381b020a8f" title="Desenha um elemento no background de um menu." alt="" coords="417,31,632,56"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="153,77,224,65,402,47,403,53,224,70,154,82"/>
+<area shape="rect" id="Node000005" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="680,5,819,31"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="119,77,167,57,223,39,342,18,462,8,574,6,665,9,665,14,573,11,463,13,343,23,225,45,169,62,121,82"/>
+<area shape="rect" id="Node000006" href="$video_8c.html#a6ab0ad9050aeae34a4efe59baae49543" title="Retorna a altura máxima do modo gráfico em uso." alt="" coords="713,93,785,119"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="153,103,224,114,339,122,428,123,632,114,699,109,699,114,632,119,428,129,338,127,224,119,152,109"/>
+<area shape="rect" id="Node000007" href="$video_8c.html#aa8c7f7dd95e9037a546aa1948003a0ea" title="Retorna a largura máxima do modo gráfico em uso." alt="" coords="714,143,785,168"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="129,103,174,117,224,129,358,145,491,153,699,154,699,160,491,158,358,150,224,134,173,122,128,108"/>
+<area shape="rect" id="Node000003" href="$menu_8c.html#ac60256cef07d9fe26a9bb6d6d7e77c6c" title="escolhe um sprite que corresponde a um numero de 0 a 9" alt="" coords="448,80,601,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="370,90,433,90,433,95,370,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,77,448,57,449,62,359,82"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="632,29,665,25,666,30,633,34"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="590,54,633,65,700,86,698,91,631,70,589,59"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="612,54,634,65,650,81,659,97,667,113,682,128,701,139,699,144,678,132,663,116,654,99,646,84,630,70,609,59"/>
+</map>

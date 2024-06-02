@@ -1,0 +1,81 @@
+\doxysection{src/player2.h File Reference}
+\hypertarget{player2_8h}{}\label{player2_8h}\index{src/player2.h@{src/player2.h}}
+{\ttfamily \#include "{}player.\+h"{}}\newline
+{\ttfamily \#include "{}ball.\+h"{}}\newline
+{\ttfamily \#include "{}devices/i8042.\+h"{}}\newline
+{\ttfamily \#include "{}devices/video.\+h"{}}\newline
+Include dependency graph for player2.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player2_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{player2_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{player2_8h_a7207ff9703bf011440bf6a33c6a1ac62}{START\+\_\+\+X\+\_\+\+POS}}~500
+\item 
+\#define \mbox{\hyperlink{player2_8h_a69e42d77bf509c1f8d824ae77fa33173}{START\+\_\+\+Y\+\_\+\+POS}}~130
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{player2_8h_af15a17da655f72041895ad06116a81b9}{update\+Player2\+AI}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player2, \mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}ball, int \mbox{\hyperlink{timer_8c_a617a47c70795bcff659815ad0efd2266}{counter}}, bool can\+Hit\+After\+Serve)
+\begin{DoxyCompactList}\small\item\em Atualiza os movimentos/estados/animações do jogador 2 tendo em conta as informações da bola (posição, direção de movimento, ...) quando estamos a jogar em single player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{player2_8h_a7207ff9703bf011440bf6a33c6a1ac62}\label{player2_8h_a7207ff9703bf011440bf6a33c6a1ac62} 
+\index{player2.h@{player2.h}!START\_X\_POS@{START\_X\_POS}}
+\index{START\_X\_POS@{START\_X\_POS}!player2.h@{player2.h}}
+\doxysubsubsection{\texorpdfstring{START\_X\_POS}{START\_X\_POS}}
+{\footnotesize\ttfamily \#define START\+\_\+\+X\+\_\+\+POS~500}
+
+\Hypertarget{player2_8h_a69e42d77bf509c1f8d824ae77fa33173}\label{player2_8h_a69e42d77bf509c1f8d824ae77fa33173} 
+\index{player2.h@{player2.h}!START\_Y\_POS@{START\_Y\_POS}}
+\index{START\_Y\_POS@{START\_Y\_POS}!player2.h@{player2.h}}
+\doxysubsubsection{\texorpdfstring{START\_Y\_POS}{START\_Y\_POS}}
+{\footnotesize\ttfamily \#define START\+\_\+\+Y\+\_\+\+POS~130}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{player2_8h_af15a17da655f72041895ad06116a81b9}\label{player2_8h_af15a17da655f72041895ad06116a81b9} 
+\index{player2.h@{player2.h}!updatePlayer2AI@{updatePlayer2AI}}
+\index{updatePlayer2AI@{updatePlayer2AI}!player2.h@{player2.h}}
+\doxysubsubsection{\texorpdfstring{updatePlayer2AI()}{updatePlayer2AI()}}
+{\footnotesize\ttfamily void update\+Player2\+AI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player2,  }\item[{\mbox{\hyperlink{struct_ball}{Ball}} \texorpdfstring{$\ast$}{*}}]{ball,  }\item[{int}]{counter,  }\item[{bool}]{can\+Hit\+After\+Serve }\end{DoxyParamCaption})}
+
+
+
+Atualiza os movimentos/estados/animações do jogador 2 tendo em conta as informações da bola (posição, direção de movimento, ...) quando estamos a jogar em single player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player2} & Jogador 2 que vamos atualizar \\
+\hline
+{\em ball} & bola que vamos usar como referência \\
+\hline
+{\em counter} & Valor do counter atualizado pelo timer \\
+\hline
+{\em can\+Hit\+After\+Serve} & Indica se é permitido ao player acertar na bola depois do serviço \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player2_8h_af15a17da655f72041895ad06116a81b9_cgraph}
+\end{center}
+\end{figure}

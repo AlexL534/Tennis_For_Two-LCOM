@@ -1,0 +1,9 @@
+<map id="drawElementsInMenuBackground" name="drawElementsInMenuBackground">
+<area shape="rect" id="Node000001" title="Desenha um elemento no background de um menu." alt="" coords="5,55,220,80"/>
+<area shape="rect" id="Node000002" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="268,5,407,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,52,262,32,263,37,174,57"/>
+<area shape="rect" id="Node000003" href="$video_8c.html#a6ab0ad9050aeae34a4efe59baae49543" title="Retorna a altura máxima do modo gráfico em uso." alt="" coords="301,55,373,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,65,287,65,287,70,220,70"/>
+<area shape="rect" id="Node000004" href="$video_8c.html#aa8c7f7dd95e9037a546aa1948003a0ea" title="Retorna a largura máxima do modo gráfico em uso." alt="" coords="302,104,373,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,78,288,103,287,109,173,83"/>
+</map>

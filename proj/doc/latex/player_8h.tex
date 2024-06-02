@@ -1,0 +1,602 @@
+\doxysection{src/player.h File Reference}
+\hypertarget{player_8h}{}\label{player_8h}\index{src/player.h@{src/player.h}}
+{\ttfamily \#include "{}states.\+h"{}}\newline
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include "{}xpms.\+h"{}}\newline
+{\ttfamily \#include "{}sprite.\+h"{}}\newline
+Include dependency graph for player.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_player}{Player}}
+\begin{DoxyCompactList}\small\item\em Struct que contem as informações do jogador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{player_8h_aee4957cfaf5640c7a69e8e201823a7cb}{MIN\+\_\+X}}~0
+\item 
+\#define \mbox{\hyperlink{player_8h_a898606140dee9ce0adf096de00824d94}{MAX\+\_\+X}}~1152
+\item 
+\#define \mbox{\hyperlink{player_8h_aafcf7a22fac9162858c6f00742c6bad9}{MIN\+\_\+Y}}~432-\/145
+\item 
+\#define \mbox{\hyperlink{player_8h_a985cc18be96dda7f59fd0400725e4aef}{MAX\+\_\+Y}}~864
+\item 
+\#define \mbox{\hyperlink{player_8h_a96e1ab37afb0d4b92dbe0cd5b72c527e}{MIN\+\_\+\+X\+\_\+\+P2}}~100
+\item 
+\#define \mbox{\hyperlink{player_8h_a758fc630c73ace44a95eb36f2e904791}{MAX\+\_\+\+X\+\_\+\+P2}}~850 + 150
+\item 
+\#define \mbox{\hyperlink{player_8h_af5998f8e86258814d30012fe249a9b34}{MIN\+\_\+\+Y\+\_\+\+P2}}~40
+\item 
+\#define \mbox{\hyperlink{player_8h_a5090db507983879ce9da999d7666beed}{MAX\+\_\+\+Y\+\_\+\+P2}}~210 + 152
+\item 
+\#define \mbox{\hyperlink{player_8h_a5c1058ca07435746edc1230a9ff6c11f}{HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MIN}}~45
+\item 
+\#define \mbox{\hyperlink{player_8h_a68e0dc46aaef9f48d071d0fa9e03deba}{HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MIN}}~80
+\item 
+\#define \mbox{\hyperlink{player_8h_acaf155ac08cc3b6b50cc9b4d6c578d55}{HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MAX}}~120
+\item 
+\#define \mbox{\hyperlink{player_8h_a16fa8a4e4b713b4b225459e1e4cf1a55}{HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MAX}}~155
+\item 
+\#define \mbox{\hyperlink{player_8h_a53883c93579256f112fc3f3b147bb7b5}{HIT\+\_\+\+REV\+\_\+\+P1\+\_\+\+X\+\_\+\+MAX}}~55
+\item 
+\#define \mbox{\hyperlink{player_8h_a3e234c95f6a6c2d42e73cbe551567156}{HIT\+\_\+\+REV\+\_\+\+P1\+\_\+\+X\+\_\+\+MIN}}~-\/20
+\item 
+\#define \mbox{\hyperlink{player_8h_a79491081ef765dd1a62950492c952697}{HIT\+\_\+\+P2\+\_\+\+X\+\_\+\+MIN}}~-\/20
+\item 
+\#define \mbox{\hyperlink{player_8h_a4a9ce30b658a822460631b5b1c05d40d}{HIT\+\_\+\+P2\+\_\+\+Y\+\_\+\+MIN}}~15
+\item 
+\#define \mbox{\hyperlink{player_8h_a04b31227043747277ec5fc5e1f8d0441}{HIT\+\_\+\+P2\+\_\+\+X\+\_\+\+MAX}}~120
+\item 
+\#define \mbox{\hyperlink{player_8h_ae616925b1bfe67722d6beebc1184187a}{HIT\+\_\+\+P2\+\_\+\+Y\+\_\+\+MAX}}~160
+\item 
+\#define \mbox{\hyperlink{player_8h_a54f5d13e61e5c46150a8d0566df11e55}{HIT\+\_\+\+REV\+\_\+\+P2\+\_\+\+X\+\_\+\+MAX}}~110
+\item 
+\#define \mbox{\hyperlink{player_8h_a0d8764b495c7a9375e617b088b28c4b1}{HIT\+\_\+\+REV\+\_\+\+P2\+\_\+\+X\+\_\+\+MIN}}~40
+\item 
+\#define \mbox{\hyperlink{player_8h_a6fa72e5103b7954f3ac30112b53fbf65}{HIT\+\_\+\+RANGE\+\_\+X}}~((\mbox{\hyperlink{player_8h_acaf155ac08cc3b6b50cc9b4d6c578d55}{HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MAX}} -\/ \mbox{\hyperlink{player_8h_a5c1058ca07435746edc1230a9ff6c11f}{HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MIN}}) / 2)
+\item 
+\#define \mbox{\hyperlink{player_8h_a7b0e9ebbbbc7d8cfadcbf482fe45d518}{HIT\+\_\+\+RANGE\+\_\+Y}}~((\mbox{\hyperlink{player_8h_a16fa8a4e4b713b4b225459e1e4cf1a55}{HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MAX}} -\/ \mbox{\hyperlink{player_8h_a68e0dc46aaef9f48d071d0fa9e03deba}{HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MIN}}) / 2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{player_8h_aba3b0443f0841c242d11e13c8ce9a93f}{Player\+\_\+numb}} \{ \mbox{\hyperlink{player_8h_aba3b0443f0841c242d11e13c8ce9a93fa77d1b58e26a2a3d61ce38e09764cbc19}{PLAYER1}}
+, \mbox{\hyperlink{player_8h_aba3b0443f0841c242d11e13c8ce9a93fa32a327d66c65387bb124f6c9408ff90b}{PLAYER2}}
+ \}
+\begin{DoxyCompactList}\small\item\em Usado para diferenciar os jogadores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{player_8h_ae12dde8a743f428142ff61264932b12d}{create\+Player1}} ()
+\begin{DoxyCompactList}\small\item\em Cria um player1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{player_8h_a16487212d88062a2e98461a72589fd0d}{create\+Player2}} ()
+\begin{DoxyCompactList}\small\item\em Cria um player2. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{player_8h_ad48d198199b5394ca6d2c011b68b55a7}{draw\+Player}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Desenha um jogador no ecrã \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_aebf1cfe5a7220081746277fea85f90be}{update\+Player\+Direction}} (\mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}{Player\+\_\+direction}} direction, \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a direção para onde o jogador está virado. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_ab66110fb0d7b7aac2529e08854bb2ea7}{get\+\_\+current\+\_\+hit\+\_\+limits}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, int \texorpdfstring{$\ast$}{*}x\+\_\+min, int \texorpdfstring{$\ast$}{*}x\+\_\+max, int \texorpdfstring{$\ast$}{*}y\+\_\+min, int \texorpdfstring{$\ast$}{*}y\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador ("{}hit box"{}) \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_af30e741069695a76a6d924e92dcd2f55}{change\+Player\+Movement\+KBD}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, uint8\+\_\+t \mbox{\hyperlink{kbd_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}})
+\begin{DoxyCompactList}\small\item\em Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a1a6afaf0d332baeef551992870db9733}{update\+Player\+Movements\+Timer}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, int \mbox{\hyperlink{timer_8c_a617a47c70795bcff659815ad0efd2266}{counter}}, bool can\+Hit\+After\+Serve)
+\begin{DoxyCompactList}\small\item\em Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_aef22a432b4c1d0dbd7d62a12e26238fc}{update\+Player\+Movement\+Mouse}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, bool is\+LB, int \texorpdfstring{$\ast$}{*}new\+BallX, bool can\+Hit\+After\+Serve)
+\begin{DoxyCompactList}\small\item\em Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse. \end{DoxyCompactList}\item 
+bool() \mbox{\hyperlink{player_8h_a4e99d0c614e7b2a18c1bcbec8f801581}{stop\+Player}} (uint8\+\_\+t \mbox{\hyperlink{kbd_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}}, \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6b}{Player\+\_\+movement}} movement)
+\begin{DoxyCompactList}\small\item\em Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a8a89d3fb6ec24f5d02d9a39f22bb1770}{move\+Player}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a627132ca125211b450893aa10da565dd}{move\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação de movimento para um novo sprite. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a600593cb4c9ee5bc003166c0089a6a79}{hit\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação de acertar a bola para um novo sprite. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a77881de54e0d6eb7e4f1829fb0a015ec}{start\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação de serviço para um novo sprite. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_afe122b85fa4055dfe38736466073239f}{choose\+Start\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação da escolha de local de serviço. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a601db67e1486e6183cf30f7585a13c99}{reset\+Player}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, bool has\+Scored)
+\begin{DoxyCompactList}\small\item\em Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_ab13501c91f74b1c69fe80d58746bf8d7}{destroy\+Player1}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player1)
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para o jogagor 1. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8h_a536803a8596407082169ffca16774a4d}{destroy\+Player2}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player2)
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para o jogagor2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{player_8h_acaf155ac08cc3b6b50cc9b4d6c578d55}\label{player_8h_acaf155ac08cc3b6b50cc9b4d6c578d55} 
+\index{player.h@{player.h}!HIT\_P1\_X\_MAX@{HIT\_P1\_X\_MAX}}
+\index{HIT\_P1\_X\_MAX@{HIT\_P1\_X\_MAX}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P1\_X\_MAX}{HIT\_P1\_X\_MAX}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MAX~120}
+
+\Hypertarget{player_8h_a5c1058ca07435746edc1230a9ff6c11f}\label{player_8h_a5c1058ca07435746edc1230a9ff6c11f} 
+\index{player.h@{player.h}!HIT\_P1\_X\_MIN@{HIT\_P1\_X\_MIN}}
+\index{HIT\_P1\_X\_MIN@{HIT\_P1\_X\_MIN}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P1\_X\_MIN}{HIT\_P1\_X\_MIN}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MIN~45}
+
+\Hypertarget{player_8h_a16fa8a4e4b713b4b225459e1e4cf1a55}\label{player_8h_a16fa8a4e4b713b4b225459e1e4cf1a55} 
+\index{player.h@{player.h}!HIT\_P1\_Y\_MAX@{HIT\_P1\_Y\_MAX}}
+\index{HIT\_P1\_Y\_MAX@{HIT\_P1\_Y\_MAX}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P1\_Y\_MAX}{HIT\_P1\_Y\_MAX}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MAX~155}
+
+\Hypertarget{player_8h_a68e0dc46aaef9f48d071d0fa9e03deba}\label{player_8h_a68e0dc46aaef9f48d071d0fa9e03deba} 
+\index{player.h@{player.h}!HIT\_P1\_Y\_MIN@{HIT\_P1\_Y\_MIN}}
+\index{HIT\_P1\_Y\_MIN@{HIT\_P1\_Y\_MIN}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P1\_Y\_MIN}{HIT\_P1\_Y\_MIN}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MIN~80}
+
+\Hypertarget{player_8h_a04b31227043747277ec5fc5e1f8d0441}\label{player_8h_a04b31227043747277ec5fc5e1f8d0441} 
+\index{player.h@{player.h}!HIT\_P2\_X\_MAX@{HIT\_P2\_X\_MAX}}
+\index{HIT\_P2\_X\_MAX@{HIT\_P2\_X\_MAX}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P2\_X\_MAX}{HIT\_P2\_X\_MAX}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P2\+\_\+\+X\+\_\+\+MAX~120}
+
+\Hypertarget{player_8h_a79491081ef765dd1a62950492c952697}\label{player_8h_a79491081ef765dd1a62950492c952697} 
+\index{player.h@{player.h}!HIT\_P2\_X\_MIN@{HIT\_P2\_X\_MIN}}
+\index{HIT\_P2\_X\_MIN@{HIT\_P2\_X\_MIN}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P2\_X\_MIN}{HIT\_P2\_X\_MIN}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P2\+\_\+\+X\+\_\+\+MIN~-\/20}
+
+\Hypertarget{player_8h_ae616925b1bfe67722d6beebc1184187a}\label{player_8h_ae616925b1bfe67722d6beebc1184187a} 
+\index{player.h@{player.h}!HIT\_P2\_Y\_MAX@{HIT\_P2\_Y\_MAX}}
+\index{HIT\_P2\_Y\_MAX@{HIT\_P2\_Y\_MAX}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P2\_Y\_MAX}{HIT\_P2\_Y\_MAX}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P2\+\_\+\+Y\+\_\+\+MAX~160}
+
+\Hypertarget{player_8h_a4a9ce30b658a822460631b5b1c05d40d}\label{player_8h_a4a9ce30b658a822460631b5b1c05d40d} 
+\index{player.h@{player.h}!HIT\_P2\_Y\_MIN@{HIT\_P2\_Y\_MIN}}
+\index{HIT\_P2\_Y\_MIN@{HIT\_P2\_Y\_MIN}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_P2\_Y\_MIN}{HIT\_P2\_Y\_MIN}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+P2\+\_\+\+Y\+\_\+\+MIN~15}
+
+\Hypertarget{player_8h_a6fa72e5103b7954f3ac30112b53fbf65}\label{player_8h_a6fa72e5103b7954f3ac30112b53fbf65} 
+\index{player.h@{player.h}!HIT\_RANGE\_X@{HIT\_RANGE\_X}}
+\index{HIT\_RANGE\_X@{HIT\_RANGE\_X}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_RANGE\_X}{HIT\_RANGE\_X}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+RANGE\+\_\+X~((\mbox{\hyperlink{player_8h_acaf155ac08cc3b6b50cc9b4d6c578d55}{HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MAX}} -\/ \mbox{\hyperlink{player_8h_a5c1058ca07435746edc1230a9ff6c11f}{HIT\+\_\+\+P1\+\_\+\+X\+\_\+\+MIN}}) / 2)}
+
+\Hypertarget{player_8h_a7b0e9ebbbbc7d8cfadcbf482fe45d518}\label{player_8h_a7b0e9ebbbbc7d8cfadcbf482fe45d518} 
+\index{player.h@{player.h}!HIT\_RANGE\_Y@{HIT\_RANGE\_Y}}
+\index{HIT\_RANGE\_Y@{HIT\_RANGE\_Y}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_RANGE\_Y}{HIT\_RANGE\_Y}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+RANGE\+\_\+Y~((\mbox{\hyperlink{player_8h_a16fa8a4e4b713b4b225459e1e4cf1a55}{HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MAX}} -\/ \mbox{\hyperlink{player_8h_a68e0dc46aaef9f48d071d0fa9e03deba}{HIT\+\_\+\+P1\+\_\+\+Y\+\_\+\+MIN}}) / 2)}
+
+\Hypertarget{player_8h_a53883c93579256f112fc3f3b147bb7b5}\label{player_8h_a53883c93579256f112fc3f3b147bb7b5} 
+\index{player.h@{player.h}!HIT\_REV\_P1\_X\_MAX@{HIT\_REV\_P1\_X\_MAX}}
+\index{HIT\_REV\_P1\_X\_MAX@{HIT\_REV\_P1\_X\_MAX}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_REV\_P1\_X\_MAX}{HIT\_REV\_P1\_X\_MAX}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+REV\+\_\+\+P1\+\_\+\+X\+\_\+\+MAX~55}
+
+\Hypertarget{player_8h_a3e234c95f6a6c2d42e73cbe551567156}\label{player_8h_a3e234c95f6a6c2d42e73cbe551567156} 
+\index{player.h@{player.h}!HIT\_REV\_P1\_X\_MIN@{HIT\_REV\_P1\_X\_MIN}}
+\index{HIT\_REV\_P1\_X\_MIN@{HIT\_REV\_P1\_X\_MIN}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_REV\_P1\_X\_MIN}{HIT\_REV\_P1\_X\_MIN}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+REV\+\_\+\+P1\+\_\+\+X\+\_\+\+MIN~-\/20}
+
+\Hypertarget{player_8h_a54f5d13e61e5c46150a8d0566df11e55}\label{player_8h_a54f5d13e61e5c46150a8d0566df11e55} 
+\index{player.h@{player.h}!HIT\_REV\_P2\_X\_MAX@{HIT\_REV\_P2\_X\_MAX}}
+\index{HIT\_REV\_P2\_X\_MAX@{HIT\_REV\_P2\_X\_MAX}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_REV\_P2\_X\_MAX}{HIT\_REV\_P2\_X\_MAX}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+REV\+\_\+\+P2\+\_\+\+X\+\_\+\+MAX~110}
+
+\Hypertarget{player_8h_a0d8764b495c7a9375e617b088b28c4b1}\label{player_8h_a0d8764b495c7a9375e617b088b28c4b1} 
+\index{player.h@{player.h}!HIT\_REV\_P2\_X\_MIN@{HIT\_REV\_P2\_X\_MIN}}
+\index{HIT\_REV\_P2\_X\_MIN@{HIT\_REV\_P2\_X\_MIN}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{HIT\_REV\_P2\_X\_MIN}{HIT\_REV\_P2\_X\_MIN}}
+{\footnotesize\ttfamily \#define HIT\+\_\+\+REV\+\_\+\+P2\+\_\+\+X\+\_\+\+MIN~40}
+
+\Hypertarget{player_8h_a898606140dee9ce0adf096de00824d94}\label{player_8h_a898606140dee9ce0adf096de00824d94} 
+\index{player.h@{player.h}!MAX\_X@{MAX\_X}}
+\index{MAX\_X@{MAX\_X}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_X}{MAX\_X}}
+{\footnotesize\ttfamily \#define MAX\+\_\+X~1152}
+
+\Hypertarget{player_8h_a758fc630c73ace44a95eb36f2e904791}\label{player_8h_a758fc630c73ace44a95eb36f2e904791} 
+\index{player.h@{player.h}!MAX\_X\_P2@{MAX\_X\_P2}}
+\index{MAX\_X\_P2@{MAX\_X\_P2}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_X\_P2}{MAX\_X\_P2}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+X\+\_\+\+P2~850 + 150}
+
+\Hypertarget{player_8h_a985cc18be96dda7f59fd0400725e4aef}\label{player_8h_a985cc18be96dda7f59fd0400725e4aef} 
+\index{player.h@{player.h}!MAX\_Y@{MAX\_Y}}
+\index{MAX\_Y@{MAX\_Y}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_Y}{MAX\_Y}}
+{\footnotesize\ttfamily \#define MAX\+\_\+Y~864}
+
+\Hypertarget{player_8h_a5090db507983879ce9da999d7666beed}\label{player_8h_a5090db507983879ce9da999d7666beed} 
+\index{player.h@{player.h}!MAX\_Y\_P2@{MAX\_Y\_P2}}
+\index{MAX\_Y\_P2@{MAX\_Y\_P2}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_Y\_P2}{MAX\_Y\_P2}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+Y\+\_\+\+P2~210 + 152}
+
+\Hypertarget{player_8h_aee4957cfaf5640c7a69e8e201823a7cb}\label{player_8h_aee4957cfaf5640c7a69e8e201823a7cb} 
+\index{player.h@{player.h}!MIN\_X@{MIN\_X}}
+\index{MIN\_X@{MIN\_X}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_X}{MIN\_X}}
+{\footnotesize\ttfamily \#define MIN\+\_\+X~0}
+
+\Hypertarget{player_8h_a96e1ab37afb0d4b92dbe0cd5b72c527e}\label{player_8h_a96e1ab37afb0d4b92dbe0cd5b72c527e} 
+\index{player.h@{player.h}!MIN\_X\_P2@{MIN\_X\_P2}}
+\index{MIN\_X\_P2@{MIN\_X\_P2}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_X\_P2}{MIN\_X\_P2}}
+{\footnotesize\ttfamily \#define MIN\+\_\+\+X\+\_\+\+P2~100}
+
+\Hypertarget{player_8h_aafcf7a22fac9162858c6f00742c6bad9}\label{player_8h_aafcf7a22fac9162858c6f00742c6bad9} 
+\index{player.h@{player.h}!MIN\_Y@{MIN\_Y}}
+\index{MIN\_Y@{MIN\_Y}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_Y}{MIN\_Y}}
+{\footnotesize\ttfamily \#define MIN\+\_\+Y~432-\/145}
+
+\Hypertarget{player_8h_af5998f8e86258814d30012fe249a9b34}\label{player_8h_af5998f8e86258814d30012fe249a9b34} 
+\index{player.h@{player.h}!MIN\_Y\_P2@{MIN\_Y\_P2}}
+\index{MIN\_Y\_P2@{MIN\_Y\_P2}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_Y\_P2}{MIN\_Y\_P2}}
+{\footnotesize\ttfamily \#define MIN\+\_\+\+Y\+\_\+\+P2~40}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{player_8h_aba3b0443f0841c242d11e13c8ce9a93f}\label{player_8h_aba3b0443f0841c242d11e13c8ce9a93f} 
+\index{player.h@{player.h}!Player\_numb@{Player\_numb}}
+\index{Player\_numb@{Player\_numb}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{Player\_numb}{Player\_numb}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{player_8h_aba3b0443f0841c242d11e13c8ce9a93f}{Player\+\_\+numb}}}
+
+
+
+Usado para diferenciar os jogadores. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER1@{PLAYER1}!player.h@{player.h}}\index{player.h@{player.h}!PLAYER1@{PLAYER1}}}\Hypertarget{player_8h_aba3b0443f0841c242d11e13c8ce9a93fa77d1b58e26a2a3d61ce38e09764cbc19}\label{player_8h_aba3b0443f0841c242d11e13c8ce9a93fa77d1b58e26a2a3d61ce38e09764cbc19} 
+PLAYER1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER2@{PLAYER2}!player.h@{player.h}}\index{player.h@{player.h}!PLAYER2@{PLAYER2}}}\Hypertarget{player_8h_aba3b0443f0841c242d11e13c8ce9a93fa32a327d66c65387bb124f6c9408ff90b}\label{player_8h_aba3b0443f0841c242d11e13c8ce9a93fa32a327d66c65387bb124f6c9408ff90b} 
+PLAYER2&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{player_8h_af30e741069695a76a6d924e92dcd2f55}\label{player_8h_af30e741069695a76a6d924e92dcd2f55} 
+\index{player.h@{player.h}!changePlayerMovementKBD@{changePlayerMovementKBD}}
+\index{changePlayerMovementKBD@{changePlayerMovementKBD}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{changePlayerMovementKBD()}{changePlayerMovementKBD()}}
+{\footnotesize\ttfamily void() change\+Player\+Movement\+KBD (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{uint8\+\_\+t}]{scancode }\end{DoxyParamCaption})}
+
+
+
+Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujo movimento vai ser atualizado \\
+\hline
+{\em scancode} & Valor do scancode a analisar \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8h_af30e741069695a76a6d924e92dcd2f55_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8h_afe122b85fa4055dfe38736466073239f}\label{player_8h_afe122b85fa4055dfe38736466073239f} 
+\index{player.h@{player.h}!chooseStartAnim@{chooseStartAnim}}
+\index{chooseStartAnim@{chooseStartAnim}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{chooseStartAnim()}{chooseStartAnim()}}
+{\footnotesize\ttfamily void() choose\+Start\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação da escolha de local de serviço. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que vai ter a animação de escolha de serviço atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_ae12dde8a743f428142ff61264932b12d}\label{player_8h_ae12dde8a743f428142ff61264932b12d} 
+\index{player.h@{player.h}!createPlayer1@{createPlayer1}}
+\index{createPlayer1@{createPlayer1}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{createPlayer1()}{createPlayer1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() create\+Player1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria um player1. 
+
+\begin{DoxyReturn}{Returns}
+Retorna um apontador para um \doxylink{struct_player}{Player} 
+\end{DoxyReturn}
+\Hypertarget{player_8h_a16487212d88062a2e98461a72589fd0d}\label{player_8h_a16487212d88062a2e98461a72589fd0d} 
+\index{player.h@{player.h}!createPlayer2@{createPlayer2}}
+\index{createPlayer2@{createPlayer2}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{createPlayer2()}{createPlayer2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() create\+Player2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria um player2. 
+
+\begin{DoxyReturn}{Returns}
+Retorna um apontador para um \doxylink{struct_player}{Player} 
+\end{DoxyReturn}
+\Hypertarget{player_8h_ab13501c91f74b1c69fe80d58746bf8d7}\label{player_8h_ab13501c91f74b1c69fe80d58746bf8d7} 
+\index{player.h@{player.h}!destroyPlayer1@{destroyPlayer1}}
+\index{destroyPlayer1@{destroyPlayer1}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{destroyPlayer1()}{destroyPlayer1()}}
+{\footnotesize\ttfamily void() destroy\+Player1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player1 }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para o jogagor 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player1} & jogador que vamos libertar a memória \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{player_8h_ab13501c91f74b1c69fe80d58746bf8d7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8h_a536803a8596407082169ffca16774a4d}\label{player_8h_a536803a8596407082169ffca16774a4d} 
+\index{player.h@{player.h}!destroyPlayer2@{destroyPlayer2}}
+\index{destroyPlayer2@{destroyPlayer2}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{destroyPlayer2()}{destroyPlayer2()}}
+{\footnotesize\ttfamily void() destroy\+Player2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player2 }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para o jogagor2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player2} & jogador que vamos libertar a memória \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{player_8h_a536803a8596407082169ffca16774a4d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8h_ad48d198199b5394ca6d2c011b68b55a7}\label{player_8h_ad48d198199b5394ca6d2c011b68b55a7} 
+\index{player.h@{player.h}!drawPlayer@{drawPlayer}}
+\index{drawPlayer@{drawPlayer}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{drawPlayer()}{drawPlayer()}}
+{\footnotesize\ttfamily int() draw\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Desenha um jogador no ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & jogador a desenhar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna 1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8h_ad48d198199b5394ca6d2c011b68b55a7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8h_ab66110fb0d7b7aac2529e08854bb2ea7}\label{player_8h_ab66110fb0d7b7aac2529e08854bb2ea7} 
+\index{player.h@{player.h}!get\_current\_hit\_limits@{get\_current\_hit\_limits}}
+\index{get\_current\_hit\_limits@{get\_current\_hit\_limits}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{get\_current\_hit\_limits()}{get\_current\_hit\_limits()}}
+{\footnotesize\ttfamily void() get\+\_\+current\+\_\+hit\+\_\+limits (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{int \texorpdfstring{$\ast$}{*}}]{x\+\_\+min,  }\item[{int \texorpdfstring{$\ast$}{*}}]{x\+\_\+max,  }\item[{int \texorpdfstring{$\ast$}{*}}]{y\+\_\+min,  }\item[{int \texorpdfstring{$\ast$}{*}}]{y\+\_\+max }\end{DoxyParamCaption})}
+
+
+
+Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador ("{}hit box"{}) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que queremos obter os limites \\
+\hline
+{\em x\+\_\+min} & O minimo valor de x para considerar que ocorreu colisão \\
+\hline
+{\em y\+\_\+min} & O minimo valor de y para considerar que ocorreu colisão \\
+\hline
+{\em x\+\_\+max} & O valor máximo de x para considerar que ocorreu colisão \\
+\hline
+{\em y\+\_\+max} & O valor máximo de y para considerar que ocorreu colisão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a600593cb4c9ee5bc003166c0089a6a79}\label{player_8h_a600593cb4c9ee5bc003166c0089a6a79} 
+\index{player.h@{player.h}!hitAnim@{hitAnim}}
+\index{hitAnim@{hitAnim}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{hitAnim()}{hitAnim()}}
+{\footnotesize\ttfamily void() hit\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação de acertar a bola para um novo sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que vai ter a animação de acertar a bola atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a627132ca125211b450893aa10da565dd}\label{player_8h_a627132ca125211b450893aa10da565dd} 
+\index{player.h@{player.h}!moveAnim@{moveAnim}}
+\index{moveAnim@{moveAnim}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{moveAnim()}{moveAnim()}}
+{\footnotesize\ttfamily void() move\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação de movimento para um novo sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cuja animação de movimento vai ser atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a8a89d3fb6ec24f5d02d9a39f22bb1770}\label{player_8h_a8a89d3fb6ec24f5d02d9a39f22bb1770} 
+\index{player.h@{player.h}!movePlayer@{movePlayer}}
+\index{movePlayer@{movePlayer}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{movePlayer()}{movePlayer()}}
+{\footnotesize\ttfamily void() move\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujos valores de posição vão ser atualizados \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a601db67e1486e6183cf30f7585a13c99}\label{player_8h_a601db67e1486e6183cf30f7585a13c99} 
+\index{player.h@{player.h}!resetPlayer@{resetPlayer}}
+\index{resetPlayer@{resetPlayer}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{resetPlayer()}{resetPlayer()}}
+{\footnotesize\ttfamily void() reset\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{bool}]{has\+Scored }\end{DoxyParamCaption})}
+
+
+
+Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador a repor \\
+\hline
+{\em has\+Scored} & Indica se o jogador foi quem marcou o ponto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a77881de54e0d6eb7e4f1829fb0a015ec}\label{player_8h_a77881de54e0d6eb7e4f1829fb0a015ec} 
+\index{player.h@{player.h}!startAnim@{startAnim}}
+\index{startAnim@{startAnim}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{startAnim()}{startAnim()}}
+{\footnotesize\ttfamily void() start\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação de serviço para um novo sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que vai ter a animação de serviço atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a4e99d0c614e7b2a18c1bcbec8f801581}\label{player_8h_a4e99d0c614e7b2a18c1bcbec8f801581} 
+\index{player.h@{player.h}!stopPlayer@{stopPlayer}}
+\index{stopPlayer@{stopPlayer}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{stopPlayer()}{stopPlayer()}}
+{\footnotesize\ttfamily bool() stop\+Player (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scancode,  }\item[{\mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6b}{Player\+\_\+movement}}}]{movement }\end{DoxyParamCaption})}
+
+
+
+Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scancode} & Valor do scancode/breakcode do teclado \\
+\hline
+{\em movement} & Direção do movimento do jogador \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se o jogador deve parar ou falso caso contrário 
+\end{DoxyReturn}
+\Hypertarget{player_8h_aebf1cfe5a7220081746277fea85f90be}\label{player_8h_aebf1cfe5a7220081746277fea85f90be} 
+\index{player.h@{player.h}!updatePlayerDirection@{updatePlayerDirection}}
+\index{updatePlayerDirection@{updatePlayerDirection}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{updatePlayerDirection()}{updatePlayerDirection()}}
+{\footnotesize\ttfamily void() update\+Player\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}{Player\+\_\+direction}}}]{direction,  }\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a direção para onde o jogador está virado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & Nova direção do jogador \\
+\hline
+{\em player} & Jogador que vai ter a direção atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_aef22a432b4c1d0dbd7d62a12e26238fc}\label{player_8h_aef22a432b4c1d0dbd7d62a12e26238fc} 
+\index{player.h@{player.h}!updatePlayerMovementMouse@{updatePlayerMovementMouse}}
+\index{updatePlayerMovementMouse@{updatePlayerMovementMouse}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{updatePlayerMovementMouse()}{updatePlayerMovementMouse()}}
+{\footnotesize\ttfamily void() update\+Player\+Movement\+Mouse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{bool}]{is\+LB,  }\item[{int \texorpdfstring{$\ast$}{*}}]{new\+BallX,  }\item[{bool}]{can\+Hit\+After\+Serve }\end{DoxyParamCaption})}
+
+
+
+Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujos movimentos vão ser atualizados \\
+\hline
+{\em is\+LB} & Indica se o mouse tem o botão esquerdo ativo \\
+\hline
+{\em new\+BallX} & Retorna o novo valor de X para a bola quando o jogador escolhe um local para fazer o serviço \\
+\hline
+{\em can\+Hit\+After\+Serve} & Indica se o jogador pode atingir a bola depois de servir \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a1a6afaf0d332baeef551992870db9733}\label{player_8h_a1a6afaf0d332baeef551992870db9733} 
+\index{player.h@{player.h}!updatePlayerMovementsTimer@{updatePlayerMovementsTimer}}
+\index{updatePlayerMovementsTimer@{updatePlayerMovementsTimer}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{updatePlayerMovementsTimer()}{updatePlayerMovementsTimer()}}
+{\footnotesize\ttfamily void() update\+Player\+Movements\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{int}]{counter,  }\item[{bool}]{can\+Hit\+After\+Serve }\end{DoxyParamCaption})}
+
+
+
+Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujos movimentos vão ser atualizados \\
+\hline
+{\em counter} & Valor do counter ligado às interrupções do timer \\
+\hline
+{\em can\+Hit\+After\+Serve} & Indica se o jogador já pode iniciar a animação de acertar a bola depois de servir \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8h_a1a6afaf0d332baeef551992870db9733_cgraph}
+\end{center}
+\end{figure}

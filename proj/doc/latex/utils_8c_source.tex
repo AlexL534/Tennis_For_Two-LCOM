@@ -1,0 +1,45 @@
+\doxysection{utils.\+c}
+\hypertarget{utils_8c_source}{}\label{utils_8c_source}\index{src/devices/utils.c@{src/devices/utils.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ int(util\_get\_LSB)(uint16\_t\ val,\ uint8\_t\ *lsb)\ \{}
+\DoxyCodeLine{00006\ \ \ \textcolor{comment}{//gets\ the\ LSB\ of\ a\ 8bit\ value}}
+\DoxyCodeLine{00007\ \ \ }
+\DoxyCodeLine{00008\ \ \ \textcolor{keywordflow}{if}(lsb\ ==\ NULL)\{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00010\ \ \ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ *lsb\ =\ val\ \&\ 0XFF;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ int(util\_get\_MSB)(uint16\_t\ val,\ uint8\_t\ *msb)\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{comment}{//gets\ the\ MSB\ of\ a\ 8bit\ value}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}(msb\ ==\ NULL)\{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00022\ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ *msb\ =\ (val>>8)\ \&\ 0XFF;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ int\ (util\_sys\_inb)(\textcolor{keywordtype}{int}\ port,\ uint8\_t\ *value)\ \{}
+\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//auxiliary\ function\ to\ help\ use\ the\ sys\_inb\ with\ 8bit\ values}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ uint32\_t\ aux\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{if}(sys\_inb(port,\&aux)!=0)\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00035\ \ \ \}}
+\DoxyCodeLine{00036\ \ \ *value\ =\ (uint8\_t)(aux);}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}

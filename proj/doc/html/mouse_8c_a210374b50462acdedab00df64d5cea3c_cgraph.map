@@ -1,0 +1,10 @@
+<map id="mouse_ih" name="mouse_ih">
+<area shape="rect" id="Node000001" title="Trata das interrupções que são recebidas relativas ao mouse." alt="" coords="5,31,84,56"/>
+<area shape="rect" id="Node000002" href="$mouse_8c.html#a10b8f7f4e29602aa0b6a9dee5437e5d5" title="Lê um byte proveniente do mouse." alt="" coords="132,31,257,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,41,117,41,117,46,84,46"/>
+<area shape="rect" id="Node000003" href="$mouse_8c.html#ae61f9a128e7b7ac6922e520f40b8ae02" title="Lê o status atual do KBC para verificar se podemos ler os valores correspondentes ao mouse." alt="" coords="305,5,441,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,32,290,27,291,32,258,37"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title=" " alt="" coords="489,31,580,56"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="258,41,474,41,474,46,258,46"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="442,26,475,31,474,37,442,31"/>
+</map>

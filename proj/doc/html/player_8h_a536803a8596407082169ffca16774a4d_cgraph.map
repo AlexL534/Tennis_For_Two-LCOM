@@ -1,0 +1,6 @@
+<map id="destroyPlayer2" name="destroyPlayer2">
+<area shape="rect" id="Node000001" title="Liberta a memória alocada para o jogagor2." alt="" coords="5,5,115,31"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#a4725427cc5b2e17c2ee8baef2702dde4" title="Liberta a memória alocada para o jogagor 1." alt="" coords="163,5,272,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,24,148,24,148,30,115,29"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="162,12,129,12,129,6,162,7"/>
+</map>

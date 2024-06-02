@@ -1,0 +1,412 @@
+\doxysection{src/menu.c File Reference}
+\hypertarget{menu_8c}{}\label{menu_8c}\index{src/menu.c@{src/menu.c}}
+{\ttfamily \#include "{}menu.\+h"{}}\newline
+{\ttfamily \#include "{}color.\+h"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for menu.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{menu_8c_a8284b4c6b0cc181d46bfc483ee34c53c}{initialize\+\_\+menu}} (bool \mbox{\hyperlink{game_8c_afed9580c08822ff877a48ee659476ded}{is\+Start\+Menu}})
+\begin{DoxyCompactList}\small\item\em inicializa sprites do menu \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{menu_8c_ae1c099a1f108788da4ee8d599b16973e}{draw\+\_\+field}} (int x\+\_\+offset, int y\+\_\+offset, \mbox{\hyperlink{struct_sprite}{Sprite}} sprite)
+\begin{DoxyCompactList}\small\item\em desenha um sprite na tela \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{menu_8c_ad0ba205fba215f5c7928e393ec61c6dd}{update\+\_\+selected}} (unsigned char code, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}state, \mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu)
+\begin{DoxyCompactList}\small\item\em atualiza parâmetros state e menu caso necessário \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{menu_8c_adefbc5f41c410b8229c8df14746118ec}{kbd\+\_\+handler\+\_\+menu}} (\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}state, \mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu)
+\begin{DoxyCompactList}\small\item\em chama funções relevantes quando há uma interrupção vinda do teclado e o jogo está no menu \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{menu_8c_a560ad17efe1f7e07491713687f023c29}{draw\+\_\+menu}} (\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu)
+\begin{DoxyCompactList}\small\item\em desenha o menu \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{menu_8c_ac39cb824fa9ceb1cdc8ed290839c67fe}{timer\+\_\+handler\+\_\+menu}} (\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu, \mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}mouse, bool \mbox{\hyperlink{game_8c_afed9580c08822ff877a48ee659476ded}{is\+Start\+Menu}})
+\begin{DoxyCompactList}\small\item\em chama funções relevantes para lidar com interrupções vindas do timer quando o jogo está no menu \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{menu_8c_ac60256cef07d9fe26a9bb6d6d7e77c6c}{choose\+\_\+number\+\_\+sprite}} (uint8\+\_\+t num, \mbox{\hyperlink{struct_sprite}{Sprite}} \texorpdfstring{$\ast$}{*}sprite)
+\begin{DoxyCompactList}\small\item\em escolhe um sprite que corresponde a um numero de 0 a 9 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menu_8c_ae66a6356a06ed7e29828607f8952b8b5}{update\+\_\+selected\+\_\+pause}} (unsigned char code, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}game\+\_\+state, \mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu)
+\begin{DoxyCompactList}\small\item\em atualiza variáveis game\+\_\+state e menu quando nessessário \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menu_8c_a360db76432e92e8732a5d6aceb6230a4}{draw\+Pause}} (\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu)
+\begin{DoxyCompactList}\small\item\em desenha o menu de pausa \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{menu_8c_a8dd42fca0475bd872c920fb178cf53c0}{create\+Mouse}} ()
+\begin{DoxyCompactList}\small\item\em Cria um objeto \doxylink{struct_mouse}{Mouse}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menu_8c_a82d18f57b26b5a67420fde32127a5ec8}{draw\+Mouse}} (\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}mouse)
+\begin{DoxyCompactList}\small\item\em Desenha o mouse na tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_8c_a58859d551237a4326889b94998fc1ea7}{destroy\+Mouse}} (\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}mouse)
+\begin{DoxyCompactList}\small\item\em Destrói um objeto \doxylink{struct_mouse}{Mouse}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menu_8c_a72ffb589e4aadf944eb3fbdbd2cfc1db}{update\+Mouse\+Position}} (\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}mouse, int dx, int dy, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_8c_a55e3b716efe14c394071eb587ef1aa86}{update\+\_\+selected\+\_\+mouse}} (\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu, \mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}mouse, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}game\+\_\+state, bool \mbox{\hyperlink{game_8c_afed9580c08822ff877a48ee659476ded}{is\+Start\+Menu}})
+\begin{DoxyCompactList}\small\item\em usa o rato para atualizar select do menu \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_8c_a1c5d075afeab32abb5f9685a29bfe8a0}{menu\+Mouse\+Handler}} (bool start, \mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu, \mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}mouse, \mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}game\+\_\+state)
+\begin{DoxyCompactList}\small\item\em chama funções relevantes quando há uma interrupção vinda do mouse e o jogo está no menu \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{menu_8c_ac60256cef07d9fe26a9bb6d6d7e77c6c}\label{menu_8c_ac60256cef07d9fe26a9bb6d6d7e77c6c} 
+\index{menu.c@{menu.c}!choose\_number\_sprite@{choose\_number\_sprite}}
+\index{choose\_number\_sprite@{choose\_number\_sprite}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{choose\_number\_sprite()}{choose\_number\_sprite()}}
+{\footnotesize\ttfamily int() choose\+\_\+number\+\_\+sprite (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num,  }\item[{\mbox{\hyperlink{struct_sprite}{Sprite}} \texorpdfstring{$\ast$}{*}}]{sprite }\end{DoxyParamCaption})}
+
+
+
+escolhe um sprite que corresponde a um numero de 0 a 9 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & número que indica o sprite a ser escolhido \\
+\hline
+{\em sprite} & pointer que recebe o sprite do número indicado no parâmetro num \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+\Hypertarget{menu_8c_a8dd42fca0475bd872c920fb178cf53c0}\label{menu_8c_a8dd42fca0475bd872c920fb178cf53c0} 
+\index{menu.c@{menu.c}!createMouse@{createMouse}}
+\index{createMouse@{createMouse}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{createMouse()}{createMouse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*} create\+Mouse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria um objeto \doxylink{struct_mouse}{Mouse}. 
+
+\begin{DoxyReturn}{Returns}
+Retorna um apontador para o \doxylink{struct_mouse}{Mouse}. 
+\end{DoxyReturn}
+\Hypertarget{menu_8c_a58859d551237a4326889b94998fc1ea7}\label{menu_8c_a58859d551237a4326889b94998fc1ea7} 
+\index{menu.c@{menu.c}!destroyMouse@{destroyMouse}}
+\index{destroyMouse@{destroyMouse}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{destroyMouse()}{destroyMouse()}}
+{\footnotesize\ttfamily void destroy\+Mouse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}}]{mouse }\end{DoxyParamCaption})}
+
+
+
+Destrói um objeto \doxylink{struct_mouse}{Mouse}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse} & Apontador para o objeto \doxylink{struct_mouse}{Mouse} a ser destruído. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_8c_ae1c099a1f108788da4ee8d599b16973e}\label{menu_8c_ae1c099a1f108788da4ee8d599b16973e} 
+\index{menu.c@{menu.c}!draw\_field@{draw\_field}}
+\index{draw\_field@{draw\_field}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_field()}{draw\_field()}}
+{\footnotesize\ttfamily int() draw\+\_\+field (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+offset,  }\item[{int}]{y\+\_\+offset,  }\item[{\mbox{\hyperlink{struct_sprite}{Sprite}}}]{sprite }\end{DoxyParamCaption})}
+
+
+
+desenha um sprite na tela 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+offset} & coordenada x inicial \\
+\hline
+{\em y\+\_\+offset} & coordenada y inicial \\
+\hline
+{\em sprite} & sprite a ser desenhado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c_ae1c099a1f108788da4ee8d599b16973e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_a560ad17efe1f7e07491713687f023c29}\label{menu_8c_a560ad17efe1f7e07491713687f023c29} 
+\index{menu.c@{menu.c}!draw\_menu@{draw\_menu}}
+\index{draw\_menu@{draw\_menu}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{draw\_menu()}{draw\_menu()}}
+{\footnotesize\ttfamily int() draw\+\_\+menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu }\end{DoxyParamCaption})}
+
+
+
+desenha o menu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & menu a ser desenhado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c_a560ad17efe1f7e07491713687f023c29_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_a82d18f57b26b5a67420fde32127a5ec8}\label{menu_8c_a82d18f57b26b5a67420fde32127a5ec8} 
+\index{menu.c@{menu.c}!drawMouse@{drawMouse}}
+\index{drawMouse@{drawMouse}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{drawMouse()}{drawMouse()}}
+{\footnotesize\ttfamily int draw\+Mouse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}}]{mouse }\end{DoxyParamCaption})}
+
+
+
+Desenha o mouse na tela. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse} & Apontador para o objeto \doxylink{struct_mouse}{Mouse} a ser desenhado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna 1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c_a82d18f57b26b5a67420fde32127a5ec8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_a360db76432e92e8732a5d6aceb6230a4}\label{menu_8c_a360db76432e92e8732a5d6aceb6230a4} 
+\index{menu.c@{menu.c}!drawPause@{drawPause}}
+\index{drawPause@{drawPause}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{drawPause()}{drawPause()}}
+{\footnotesize\ttfamily int draw\+Pause (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu }\end{DoxyParamCaption})}
+
+
+
+desenha o menu de pausa 
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & pointer para menu com os sprites nessessários \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c_a360db76432e92e8732a5d6aceb6230a4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_a8284b4c6b0cc181d46bfc483ee34c53c}\label{menu_8c_a8284b4c6b0cc181d46bfc483ee34c53c} 
+\index{menu.c@{menu.c}!initialize\_menu@{initialize\_menu}}
+\index{initialize\_menu@{initialize\_menu}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{initialize\_menu()}{initialize\_menu()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}() initialize\+\_\+menu (\begin{DoxyParamCaption}\item[{bool}]{is\+Start\+Menu }\end{DoxyParamCaption})}
+
+
+
+inicializa sprites do menu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Start\+Menu} & permite escolher o menu a inicializar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna um apontador para o menu ou null caso algo falhe 
+\end{DoxyReturn}
+\Hypertarget{menu_8c_adefbc5f41c410b8229c8df14746118ec}\label{menu_8c_adefbc5f41c410b8229c8df14746118ec} 
+\index{menu.c@{menu.c}!kbd\_handler\_menu@{kbd\_handler\_menu}}
+\index{kbd\_handler\_menu@{kbd\_handler\_menu}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{kbd\_handler\_menu()}{kbd\_handler\_menu()}}
+{\footnotesize\ttfamily int() kbd\+\_\+handler\+\_\+menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{state,  }\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu }\end{DoxyParamCaption})}
+
+
+
+chama funções relevantes quando há uma interrupção vinda do teclado e o jogo está no menu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & code da tecla premida \\
+\hline
+{\em state} & pointer para variável Game\+\_\+state que pode ou não ser atualizada \\
+\hline
+{\em menu} & pointer para menu onde selected pode ou não ser atualizada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{menu_8c_adefbc5f41c410b8229c8df14746118ec_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_a1c5d075afeab32abb5f9685a29bfe8a0}\label{menu_8c_a1c5d075afeab32abb5f9685a29bfe8a0} 
+\index{menu.c@{menu.c}!menuMouseHandler@{menuMouseHandler}}
+\index{menuMouseHandler@{menuMouseHandler}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{menuMouseHandler()}{menuMouseHandler()}}
+{\footnotesize\ttfamily void menu\+Mouse\+Handler (\begin{DoxyParamCaption}\item[{bool}]{start,  }\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu,  }\item[{\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}}]{mouse,  }\item[{\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+chama funções relevantes quando há uma interrupção vinda do mouse e o jogo está no menu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Booleano que indica se o menu atual é o inicial ou não \\
+\hline
+{\em menu} & Ponteiro para o menu \\
+\hline
+{\em mouse} & Ponteiro para o mouse \\
+\hline
+{\em game\+\_\+state} & Ponteiro para o Game\+\_\+state representando o estado atual do jogo. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c_a1c5d075afeab32abb5f9685a29bfe8a0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_ac39cb824fa9ceb1cdc8ed290839c67fe}\label{menu_8c_ac39cb824fa9ceb1cdc8ed290839c67fe} 
+\index{menu.c@{menu.c}!timer\_handler\_menu@{timer\_handler\_menu}}
+\index{timer\_handler\_menu@{timer\_handler\_menu}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{timer\_handler\_menu()}{timer\_handler\_menu()}}
+{\footnotesize\ttfamily int() timer\+\_\+handler\+\_\+menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu,  }\item[{\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}}]{mouse,  }\item[{bool}]{is\+Start\+Menu }\end{DoxyParamCaption})}
+
+
+
+chama funções relevantes para lidar com interrupções vindas do timer quando o jogo está no menu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & menu a ser atualizado \\
+\hline
+{\em mouse} & mouse a ser atualizado \\
+\hline
+{\em is\+Start\+Menu} & escolhe entre menu inicial ou menu de pausa \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_8c_ac39cb824fa9ceb1cdc8ed290839c67fe_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_ad0ba205fba215f5c7928e393ec61c6dd}\label{menu_8c_ad0ba205fba215f5c7928e393ec61c6dd} 
+\index{menu.c@{menu.c}!update\_selected@{update\_selected}}
+\index{update\_selected@{update\_selected}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{update\_selected()}{update\_selected()}}
+{\footnotesize\ttfamily int() update\+\_\+selected (\begin{DoxyParamCaption}\item[{unsigned char}]{code,  }\item[{\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{state,  }\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu }\end{DoxyParamCaption})}
+
+
+
+atualiza parâmetros state e menu caso necessário 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & code da tecla premida \\
+\hline
+{\em state} & pointer para variável Game\+\_\+state que pode ou não ser atualizada \\
+\hline
+{\em menu} & pointer para menu onde selected pode ou não ser atualizada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+\Hypertarget{menu_8c_a55e3b716efe14c394071eb587ef1aa86}\label{menu_8c_a55e3b716efe14c394071eb587ef1aa86} 
+\index{menu.c@{menu.c}!update\_selected\_mouse@{update\_selected\_mouse}}
+\index{update\_selected\_mouse@{update\_selected\_mouse}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{update\_selected\_mouse()}{update\_selected\_mouse()}}
+{\footnotesize\ttfamily void update\+\_\+selected\+\_\+mouse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu,  }\item[{\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}}]{mouse,  }\item[{\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+state,  }\item[{bool}]{is\+Start\+Menu }\end{DoxyParamCaption})}
+
+
+
+usa o rato para atualizar select do menu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & pointer para menu \\
+\hline
+{\em mouse} & pointer para o mouse \\
+\hline
+{\em game\+\_\+state} & estado do jogo \\
+\hline
+{\em is\+Start\+Menu} & booleano que indica se o menu é o inicial ou não \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{menu_8c_a55e3b716efe14c394071eb587ef1aa86_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{menu_8c_ae66a6356a06ed7e29828607f8952b8b5}\label{menu_8c_ae66a6356a06ed7e29828607f8952b8b5} 
+\index{menu.c@{menu.c}!update\_selected\_pause@{update\_selected\_pause}}
+\index{update\_selected\_pause@{update\_selected\_pause}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{update\_selected\_pause()}{update\_selected\_pause()}}
+{\footnotesize\ttfamily int update\+\_\+selected\+\_\+pause (\begin{DoxyParamCaption}\item[{unsigned char}]{code,  }\item[{\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+state,  }\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu }\end{DoxyParamCaption})}
+
+
+
+atualiza variáveis game\+\_\+state e menu quando nessessário 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & code da tecla premida \\
+\hline
+{\em game\+\_\+state} & pointer para state do jogo \\
+\hline
+{\em menu} & pointer para menu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se algum erro ocorrer, 0 caso contrário 
+\end{DoxyReturn}
+\Hypertarget{menu_8c_a72ffb589e4aadf944eb3fbdbd2cfc1db}\label{menu_8c_a72ffb589e4aadf944eb3fbdbd2cfc1db} 
+\index{menu.c@{menu.c}!updateMousePosition@{updateMousePosition}}
+\index{updateMousePosition@{updateMousePosition}!menu.c@{menu.c}}
+\doxysubsubsection{\texorpdfstring{updateMousePosition()}{updateMousePosition()}}
+{\footnotesize\ttfamily int update\+Mouse\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_mouse}{Mouse}} \texorpdfstring{$\ast$}{*}}]{mouse,  }\item[{int}]{delta\+\_\+x,  }\item[{int}]{delta\+\_\+y,  }\item[{\mbox{\hyperlink{states_8h_a33e243da48884e73997b5c5fa62864d4}{Game\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
+
+
+
+Atualiza a posição do mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse} & Apontador para o objeto \doxylink{struct_mouse}{Mouse} a ser atualizado. \\
+\hline
+{\em delta\+\_\+x} & Mudança na coordenada x. \\
+\hline
+{\em delta\+\_\+y} & Mudança na coordenada y. \\
+\hline
+{\em state} & Estado atual do jogo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna 1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}

@@ -1,0 +1,17 @@
+<map id="destroyElements" name="destroyElements">
+<area shape="rect" id="Node000001" title="Liberta a memória alocada pelo programa durante a sua execução." alt="" coords="5,129,125,155"/>
+<area shape="rect" id="Node000002" href="$ball_8c.html#a58458435cb64f9457ae60a1d3af2a1fd" title="Liberta a memória alocada para as estruturas que compõe a bola." alt="" coords="195,5,282,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,127,115,85,142,61,172,40,180,35,183,40,175,44,146,65,119,89,79,131"/>
+<area shape="rect" id="Node000003" href="$menu_8c.html#a58859d551237a4326889b94998fc1ea7" title="Destrói um objeto Mouse." alt="" coords="187,55,291,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="92,126,172,89,186,83,188,88,174,94,94,131"/>
+<area shape="rect" id="Node000004" href="$player_8c.html#a4725427cc5b2e17c2ee8baef2702dde4" title="Liberta a memória alocada para o jogagor 1." alt="" coords="184,104,293,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="125,131,169,124,170,129,126,136"/>
+<area shape="rect" id="Node000005" href="$player_8c.html#aa12e3b9c1010ffa65a90785f423e8852" title="Liberta a memória alocada para o jogagor2." alt="" coords="352,104,461,129"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="126,143,210,144,304,138,345,131,346,136,304,143,210,149,126,148"/>
+<area shape="rect" id="Node000006" href="$video_8c.html#aabacb1f8185b8fc5c1918a668442fb2b" title="Liberta a memória alocada para o segundo buffer." alt="" coords="173,205,304,231"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="97,153,196,197,194,201,95,158"/>
+<area shape="rect" id="Node000007" href="$game__score_8c.html#a8ad8aba23bce21161b341413a93c8f61" title="Liberta a memória alocada para os Sprites das pontuações." alt="" coords="187,255,291,280"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="79,153,119,195,146,219,175,240,185,246,182,250,172,244,142,223,115,199,75,157"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="294,122,337,123,337,128,294,128"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="351,111,308,110,308,105,351,106"/>
+</map>

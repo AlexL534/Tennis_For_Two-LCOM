@@ -1,0 +1,7 @@
+<map id="drawScoreText" name="drawScoreText">
+<area shape="rect" id="Node000001" title="Desenha o texto que aparece antes das pontuações e que permite distinguir as pontuações do player 1 e..." alt="" coords="5,5,113,31"/>
+<area shape="rect" id="Node000002" href="$video_8c.html#ac431ebc57a4886a1b8bd4be8e8725462" title="Desenha a cor num dos píxeis do ecrã" alt="" coords="161,5,264,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,15,146,15,146,21,114,21"/>
+<area shape="rect" id="Node000003" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="312,5,451,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="264,15,297,15,297,21,264,21"/>
+</map>

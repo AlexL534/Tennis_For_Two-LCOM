@@ -1,0 +1,377 @@
+\doxysection{src/player.c File Reference}
+\hypertarget{player_8c}{}\label{player_8c}\index{src/player.c@{src/player.c}}
+{\ttfamily \#include "{}player.\+h"{}}\newline
+{\ttfamily \#include "{}devices/video.\+h"{}}\newline
+{\ttfamily \#include "{}color.\+h"{}}\newline
+{\ttfamily \#include "{}devices/i8042.\+h"{}}\newline
+Include dependency graph for player.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{player_8c_ae12dde8a743f428142ff61264932b12d}{create\+Player1}} ()
+\begin{DoxyCompactList}\small\item\em Cria um player1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() \mbox{\hyperlink{player_8c_a16487212d88062a2e98461a72589fd0d}{create\+Player2}} ()
+\begin{DoxyCompactList}\small\item\em Cria um player2. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{player_8c_ad48d198199b5394ca6d2c011b68b55a7}{draw\+Player}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Desenha um jogador no ecrã \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_aebf1cfe5a7220081746277fea85f90be}{update\+Player\+Direction}} (\mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}{Player\+\_\+direction}} direction, \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a direção para onde o jogador está virado. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_af30e741069695a76a6d924e92dcd2f55}{change\+Player\+Movement\+KBD}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, uint8\+\_\+t \mbox{\hyperlink{kbd_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}})
+\begin{DoxyCompactList}\small\item\em Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a1a6afaf0d332baeef551992870db9733}{update\+Player\+Movements\+Timer}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, int \mbox{\hyperlink{timer_8c_a617a47c70795bcff659815ad0efd2266}{counter}}, bool can\+Hit\+After\+Serve)
+\begin{DoxyCompactList}\small\item\em Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player_8c_ae703e8c6f5216451580c30a8009233a5}{update\+Player\+Movement\+Mouse}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, bool is\+LB, int \texorpdfstring{$\ast$}{*}new\+BallX, bool can\+Hit\+After\+Serve)
+\begin{DoxyCompactList}\small\item\em Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse. \end{DoxyCompactList}\item 
+bool() \mbox{\hyperlink{player_8c_a4e99d0c614e7b2a18c1bcbec8f801581}{stop\+Player}} (uint8\+\_\+t \mbox{\hyperlink{kbd_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}}, \mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6b}{Player\+\_\+movement}} movement)
+\begin{DoxyCompactList}\small\item\em Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_ab66110fb0d7b7aac2529e08854bb2ea7}{get\+\_\+current\+\_\+hit\+\_\+limits}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, int \texorpdfstring{$\ast$}{*}x\+\_\+min, int \texorpdfstring{$\ast$}{*}x\+\_\+max, int \texorpdfstring{$\ast$}{*}y\+\_\+min, int \texorpdfstring{$\ast$}{*}y\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador ("{}hit box"{}) \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a8a89d3fb6ec24f5d02d9a39f22bb1770}{move\+Player}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a627132ca125211b450893aa10da565dd}{move\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação de movimento para um novo sprite. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a600593cb4c9ee5bc003166c0089a6a79}{hit\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação de acertar a bola para um novo sprite. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a77881de54e0d6eb7e4f1829fb0a015ec}{start\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação de serviço para um novo sprite. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_afe122b85fa4055dfe38736466073239f}{choose\+Start\+Anim}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Atualiza a animação da escolha de local de serviço. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a601db67e1486e6183cf30f7585a13c99}{reset\+Player}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player, bool has\+Scored)
+\begin{DoxyCompactList}\small\item\em Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_a4725427cc5b2e17c2ee8baef2702dde4}{destroy\+Player1}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para o jogagor 1. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{player_8c_aa12e3b9c1010ffa65a90785f423e8852}{destroy\+Player2}} (\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada para o jogagor2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{player_8c_af30e741069695a76a6d924e92dcd2f55}\label{player_8c_af30e741069695a76a6d924e92dcd2f55} 
+\index{player.c@{player.c}!changePlayerMovementKBD@{changePlayerMovementKBD}}
+\index{changePlayerMovementKBD@{changePlayerMovementKBD}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{changePlayerMovementKBD()}{changePlayerMovementKBD()}}
+{\footnotesize\ttfamily void() change\+Player\+Movement\+KBD (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{uint8\+\_\+t}]{scancode }\end{DoxyParamCaption})}
+
+
+
+Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujo movimento vai ser atualizado \\
+\hline
+{\em scancode} & Valor do scancode a analisar \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8c_af30e741069695a76a6d924e92dcd2f55_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8c_afe122b85fa4055dfe38736466073239f}\label{player_8c_afe122b85fa4055dfe38736466073239f} 
+\index{player.c@{player.c}!chooseStartAnim@{chooseStartAnim}}
+\index{chooseStartAnim@{chooseStartAnim}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{chooseStartAnim()}{chooseStartAnim()}}
+{\footnotesize\ttfamily void() choose\+Start\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação da escolha de local de serviço. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que vai ter a animação de escolha de serviço atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_ae12dde8a743f428142ff61264932b12d}\label{player_8c_ae12dde8a743f428142ff61264932b12d} 
+\index{player.c@{player.c}!createPlayer1@{createPlayer1}}
+\index{createPlayer1@{createPlayer1}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{createPlayer1()}{createPlayer1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() create\+Player1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria um player1. 
+
+\begin{DoxyReturn}{Returns}
+Retorna um apontador para um \doxylink{struct_player}{Player} 
+\end{DoxyReturn}
+\Hypertarget{player_8c_a16487212d88062a2e98461a72589fd0d}\label{player_8c_a16487212d88062a2e98461a72589fd0d} 
+\index{player.c@{player.c}!createPlayer2@{createPlayer2}}
+\index{createPlayer2@{createPlayer2}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{createPlayer2()}{createPlayer2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}() create\+Player2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria um player2. 
+
+\begin{DoxyReturn}{Returns}
+Retorna um apontador para um \doxylink{struct_player}{Player} 
+\end{DoxyReturn}
+\Hypertarget{player_8c_a4725427cc5b2e17c2ee8baef2702dde4}\label{player_8c_a4725427cc5b2e17c2ee8baef2702dde4} 
+\index{player.c@{player.c}!destroyPlayer1@{destroyPlayer1}}
+\index{destroyPlayer1@{destroyPlayer1}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{destroyPlayer1()}{destroyPlayer1()}}
+{\footnotesize\ttfamily void() destroy\+Player1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player1 }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para o jogagor 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player1} & jogador que vamos libertar a memória \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{player_8c_a4725427cc5b2e17c2ee8baef2702dde4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8c_aa12e3b9c1010ffa65a90785f423e8852}\label{player_8c_aa12e3b9c1010ffa65a90785f423e8852} 
+\index{player.c@{player.c}!destroyPlayer2@{destroyPlayer2}}
+\index{destroyPlayer2@{destroyPlayer2}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{destroyPlayer2()}{destroyPlayer2()}}
+{\footnotesize\ttfamily void() destroy\+Player2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player2 }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada para o jogagor2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player2} & jogador que vamos libertar a memória \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{player_8c_aa12e3b9c1010ffa65a90785f423e8852_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8c_ad48d198199b5394ca6d2c011b68b55a7}\label{player_8c_ad48d198199b5394ca6d2c011b68b55a7} 
+\index{player.c@{player.c}!drawPlayer@{drawPlayer}}
+\index{drawPlayer@{drawPlayer}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{drawPlayer()}{drawPlayer()}}
+{\footnotesize\ttfamily int() draw\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Desenha um jogador no ecrã 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & jogador a desenhar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna 1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8c_ad48d198199b5394ca6d2c011b68b55a7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{player_8c_ab66110fb0d7b7aac2529e08854bb2ea7}\label{player_8c_ab66110fb0d7b7aac2529e08854bb2ea7} 
+\index{player.c@{player.c}!get\_current\_hit\_limits@{get\_current\_hit\_limits}}
+\index{get\_current\_hit\_limits@{get\_current\_hit\_limits}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{get\_current\_hit\_limits()}{get\_current\_hit\_limits()}}
+{\footnotesize\ttfamily void() get\+\_\+current\+\_\+hit\+\_\+limits (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{int \texorpdfstring{$\ast$}{*}}]{x\+\_\+min,  }\item[{int \texorpdfstring{$\ast$}{*}}]{x\+\_\+max,  }\item[{int \texorpdfstring{$\ast$}{*}}]{y\+\_\+min,  }\item[{int \texorpdfstring{$\ast$}{*}}]{y\+\_\+max }\end{DoxyParamCaption})}
+
+
+
+Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador ("{}hit box"{}) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que queremos obter os limites \\
+\hline
+{\em x\+\_\+min} & O minimo valor de x para considerar que ocorreu colisão \\
+\hline
+{\em y\+\_\+min} & O minimo valor de y para considerar que ocorreu colisão \\
+\hline
+{\em x\+\_\+max} & O valor máximo de x para considerar que ocorreu colisão \\
+\hline
+{\em y\+\_\+max} & O valor máximo de y para considerar que ocorreu colisão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a600593cb4c9ee5bc003166c0089a6a79}\label{player_8c_a600593cb4c9ee5bc003166c0089a6a79} 
+\index{player.c@{player.c}!hitAnim@{hitAnim}}
+\index{hitAnim@{hitAnim}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{hitAnim()}{hitAnim()}}
+{\footnotesize\ttfamily void() hit\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação de acertar a bola para um novo sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que vai ter a animação de acertar a bola atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a627132ca125211b450893aa10da565dd}\label{player_8c_a627132ca125211b450893aa10da565dd} 
+\index{player.c@{player.c}!moveAnim@{moveAnim}}
+\index{moveAnim@{moveAnim}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{moveAnim()}{moveAnim()}}
+{\footnotesize\ttfamily void() move\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação de movimento para um novo sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cuja animação de movimento vai ser atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a8a89d3fb6ec24f5d02d9a39f22bb1770}\label{player_8c_a8a89d3fb6ec24f5d02d9a39f22bb1770} 
+\index{player.c@{player.c}!movePlayer@{movePlayer}}
+\index{movePlayer@{movePlayer}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{movePlayer()}{movePlayer()}}
+{\footnotesize\ttfamily void() move\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujos valores de posição vão ser atualizados \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a601db67e1486e6183cf30f7585a13c99}\label{player_8c_a601db67e1486e6183cf30f7585a13c99} 
+\index{player.c@{player.c}!resetPlayer@{resetPlayer}}
+\index{resetPlayer@{resetPlayer}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{resetPlayer()}{resetPlayer()}}
+{\footnotesize\ttfamily void() reset\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{bool}]{has\+Scored }\end{DoxyParamCaption})}
+
+
+
+Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador a repor \\
+\hline
+{\em has\+Scored} & Indica se o jogador foi quem marcou o ponto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a77881de54e0d6eb7e4f1829fb0a015ec}\label{player_8c_a77881de54e0d6eb7e4f1829fb0a015ec} 
+\index{player.c@{player.c}!startAnim@{startAnim}}
+\index{startAnim@{startAnim}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{startAnim()}{startAnim()}}
+{\footnotesize\ttfamily void() start\+Anim (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a animação de serviço para um novo sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador que vai ter a animação de serviço atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a4e99d0c614e7b2a18c1bcbec8f801581}\label{player_8c_a4e99d0c614e7b2a18c1bcbec8f801581} 
+\index{player.c@{player.c}!stopPlayer@{stopPlayer}}
+\index{stopPlayer@{stopPlayer}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{stopPlayer()}{stopPlayer()}}
+{\footnotesize\ttfamily bool() stop\+Player (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scancode,  }\item[{\mbox{\hyperlink{states_8h_a9af57e173e3a0c8a302de822825a4e6b}{Player\+\_\+movement}}}]{movement }\end{DoxyParamCaption})}
+
+
+
+Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scancode} & Valor do scancode/breakcode do teclado \\
+\hline
+{\em movement} & Direção do movimento do jogador \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se o jogador deve parar ou falso caso contrário 
+\end{DoxyReturn}
+\Hypertarget{player_8c_aebf1cfe5a7220081746277fea85f90be}\label{player_8c_aebf1cfe5a7220081746277fea85f90be} 
+\index{player.c@{player.c}!updatePlayerDirection@{updatePlayerDirection}}
+\index{updatePlayerDirection@{updatePlayerDirection}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{updatePlayerDirection()}{updatePlayerDirection()}}
+{\footnotesize\ttfamily void() update\+Player\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{states_8h_a9b991f34e4d6a5adf8dff5d4a6e02001}{Player\+\_\+direction}}}]{direction,  }\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+Atualiza a direção para onde o jogador está virado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & Nova direção do jogador \\
+\hline
+{\em player} & Jogador que vai ter a direção atualizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_ae703e8c6f5216451580c30a8009233a5}\label{player_8c_ae703e8c6f5216451580c30a8009233a5} 
+\index{player.c@{player.c}!updatePlayerMovementMouse@{updatePlayerMovementMouse}}
+\index{updatePlayerMovementMouse@{updatePlayerMovementMouse}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{updatePlayerMovementMouse()}{updatePlayerMovementMouse()}}
+{\footnotesize\ttfamily void update\+Player\+Movement\+Mouse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{bool}]{is\+LB,  }\item[{int \texorpdfstring{$\ast$}{*}}]{new\+BallX,  }\item[{bool}]{can\+Hit\+After\+Serve }\end{DoxyParamCaption})}
+
+
+
+Atualiza os movimentos/estados do jogador tendo em conta informações recebidas do mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujos movimentos vão ser atualizados \\
+\hline
+{\em is\+LB} & Indica se o mouse tem o botão esquerdo ativo \\
+\hline
+{\em new\+BallX} & Retorna o novo valor de X para a bola quando o jogador escolhe um local para fazer o serviço \\
+\hline
+{\em can\+Hit\+After\+Serve} & Indica se o jogador pode atingir a bola depois de servir \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8c_a1a6afaf0d332baeef551992870db9733}\label{player_8c_a1a6afaf0d332baeef551992870db9733} 
+\index{player.c@{player.c}!updatePlayerMovementsTimer@{updatePlayerMovementsTimer}}
+\index{updatePlayerMovementsTimer@{updatePlayerMovementsTimer}!player.c@{player.c}}
+\doxysubsubsection{\texorpdfstring{updatePlayerMovementsTimer()}{updatePlayerMovementsTimer()}}
+{\footnotesize\ttfamily void() update\+Player\+Movements\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_player}{Player}} \texorpdfstring{$\ast$}{*}}]{player,  }\item[{int}]{counter,  }\item[{bool}]{can\+Hit\+After\+Serve }\end{DoxyParamCaption})}
+
+
+
+Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jogador cujos movimentos vão ser atualizados \\
+\hline
+{\em counter} & Valor do counter ligado às interrupções do timer \\
+\hline
+{\em can\+Hit\+After\+Serve} & Indica se o jogador já pode iniciar a animação de acertar a bola depois de servir \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{player_8c_a1a6afaf0d332baeef551992870db9733_cgraph}
+\end{center}
+\end{figure}

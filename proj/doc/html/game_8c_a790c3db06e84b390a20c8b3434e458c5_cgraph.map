@@ -1,0 +1,9 @@
+<map id="loadBackground" name="loadBackground">
+<area shape="rect" id="Node000001" title="Carrega o background no inicio da execução do programa." alt="" coords="5,5,120,31"/>
+<area shape="rect" id="Node000002" href="$background_8c.html#a7a98efc52d4b565bdc586720d036d060" title="Desenha e inicializa o background do jogo." alt="" coords="168,5,287,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,15,153,15,153,21,121,21"/>
+<area shape="rect" id="Node000003" href="$video_8c.html#ac431ebc57a4886a1b8bd4be8e8725462" title="Desenha a cor num dos píxeis do ecrã" alt="" coords="335,5,437,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="287,15,320,15,320,21,287,21"/>
+<area shape="rect" id="Node000004" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="485,5,624,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="438,15,470,15,470,21,438,21"/>
+</map>

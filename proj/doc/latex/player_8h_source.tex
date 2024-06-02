@@ -1,0 +1,111 @@
+\doxysection{player.\+h}
+\hypertarget{player_8h_source}{}\label{player_8h_source}\index{src/player.h@{src/player.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLAYER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLAYER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}states.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}xpms.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}sprite.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MIN\_X\ \ 0\ \ \ }}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MAX\_X\ \ 1152}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MIN\_Y\ \ 432-\/145\ }\textcolor{comment}{//player\ height\ is\ 150}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAX\_Y\ \ 864}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MIN\_X\_P2\ \ 100\ \ \ }}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MAX\_X\_P2\ \ 850\ +\ 150}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MIN\_Y\_P2\ 40}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ MAX\_Y\_P2\ 210\ +\ 152}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//HITBOX\ player\ 1\ normal\ anim}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ HIT\_P1\_X\_MIN\ 45}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ HIT\_P1\_Y\_MIN\ 80}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ HIT\_P1\_X\_MAX\ 120}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ HIT\_P1\_Y\_MAX\ 155}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//HITBOX\ player\ 1\ reverse\ anim\ (y\ is\ the\ same\ as\ the\ normal\ anim)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ HIT\_REV\_P1\_X\_MAX\ 55}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ HIT\_REV\_P1\_X\_MIN\ -\/20}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//HITBOX\ player\ 2\ normal\ anim}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ HIT\_P2\_X\_MIN\ -\/20}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ HIT\_P2\_Y\_MIN\ 15}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ HIT\_P2\_X\_MAX\ 120}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ HIT\_P2\_Y\_MAX\ 160}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//HITBOX\ player\ 2\ reverse\ anim\ (y\ is\ the\ same\ as\ the\ normal\ anim)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ HIT\_REV\_P2\_X\_MAX\ 110}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ HIT\_REV\_P2\_X\_MIN\ 40}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Defines\ the\ range\ from\ the\ player's\ racket\ to\ the\ ball,\ representing\ the\ area\ within\ which\ the\ player\ can\ potentially\ hit\ the\ ball.}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ HIT\_RANGE\_X\ ((HIT\_P1\_X\_MAX\ -\/\ HIT\_P1\_X\_MIN)\ /\ 2)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ HIT\_RANGE\_Y\ ((HIT\_P1\_Y\_MAX\ -\/\ HIT\_P1\_Y\_MIN)\ /\ 2)}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{00045\ \ \ PLAYER1,}
+\DoxyCodeLine{00046\ \ \ PLAYER2}
+\DoxyCodeLine{00047\ \}\ Player\_numb;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_player_a9336ebf25087d91c818ee6e9ec29f8c1}{x}},\ y;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_player_a98f2e0dfcdbd3de203bc2e72c511fe68}{xspeed}},\ yspeed;}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ moveanim,\ \mbox{\hyperlink{struct_player_a29e560862dfeb4dd292bdbdd10d465e0}{hitanim}},\ startanim;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ currentSprite;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ move[2];}
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ moverev[2];}
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ hit[4];}
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ hitrev[4];}
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ start[6];}
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{struct_sprite}{Sprite}}\ startrev[6];}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ Player\_direction\ \mbox{\hyperlink{struct_player_a99f26e6ee9fcd62f75203b5402df8098}{direction}};}
+\DoxyCodeLine{00104\ \ \ Player\_state\ \mbox{\hyperlink{struct_player_adc6e5733fc3c22f0a7b2914188c49c90}{state}};}
+\DoxyCodeLine{00105\ \ \ Player\_movement\ \mbox{\hyperlink{struct_player_aa0f51fc6388e5bb5c88b6c58bc65bf4e}{movement}};}
+\DoxyCodeLine{00106\ \ \ Player\_numb\ \mbox{\hyperlink{struct_player_aa1c9eadcd0c2852953150b1bdddca9f3}{player\_numb}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \}\ \mbox{\hyperlink{struct_player}{Player}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \mbox{\hyperlink{struct_player}{Player}}\ *(createPlayer1)();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00120\ \mbox{\hyperlink{struct_player}{Player}}\ *(createPlayer2)();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00127\ int\ (drawPlayer)(\mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ void\ (updatePlayerDirection)(Player\_direction\ direction,\ \mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00144\ void\ (get\_current\_hit\_limits)(\mbox{\hyperlink{struct_player}{Player}}\ *player,\textcolor{keywordtype}{int}\ *x\_min,\ \textcolor{keywordtype}{int}\ *x\_max,\ \textcolor{keywordtype}{int}\ *y\_min,\ \textcolor{keywordtype}{int}\ *y\_max);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ void\ (changePlayerMovementKBD)(\mbox{\hyperlink{struct_player}{Player}}\ *player,\ uint8\_t\ scancode);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00159\ void\ (updatePlayerMovementsTimer)(\mbox{\hyperlink{struct_player}{Player}}\ *player,\ \textcolor{keywordtype}{int}\ counter,\ \textcolor{keywordtype}{bool}\ canHitAfterServe);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00168\ void\ (updatePlayerMovementMouse)(\mbox{\hyperlink{struct_player}{Player}}\ *player,\ \textcolor{keywordtype}{bool}\ isLB,\ \textcolor{keywordtype}{int}\ *newBallX,\ \textcolor{keywordtype}{bool}\ canHitAfterServe);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00176\ bool\ (stopPlayer)(uint8\_t\ scancode,\ Player\_movement\ movement);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00182\ void\ (movePlayer)(\mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00188\ void\ (moveAnim)(\mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00194\ void\ (hitAnim)(\mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00200\ void\ (startAnim)(\mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00206\ void\ (chooseStartAnim)(\mbox{\hyperlink{struct_player}{Player}}\ *player);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00213\ void\ (resetPlayer)(\mbox{\hyperlink{struct_player}{Player}}\ *player,\ \textcolor{keywordtype}{bool}\ hasScored);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00219\ void\ (destroyPlayer1)(\mbox{\hyperlink{struct_player}{Player}}\ *player1);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00225\ void\ (destroyPlayer2)(\mbox{\hyperlink{struct_player}{Player}}\ *player2);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

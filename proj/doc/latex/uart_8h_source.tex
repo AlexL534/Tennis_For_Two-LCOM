@@ -1,0 +1,73 @@
+\doxysection{uart.\+h}
+\hypertarget{uart_8h_source}{}\label{uart_8h_source}\index{src/devices/uart.h@{src/devices/uart.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ UART\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ UART\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{/*Uart\ adresses*/}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ RBR\ 0}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ THR\ 0}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DLL\ 0}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ DLM\ 1}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ IER\ 1}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ IIR\ 2}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ LCR\ 3}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MCR\ 4}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ LSR\ 5}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MSR\ 6}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SR\ 7}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{/*Line\ Control\ Register\ (LCR)*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//Number\ of\ bits\ per\ char}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ B5\_CHAR\ 0}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ B6\_CHAR\ BIT(0)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ B7\_CHAR\ BIT(1)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ B8\_CHAR\ (BIT(0)\ |\ BIT(1))}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//stop\ bits}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ STOP\_B1\ 0}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ STOP\_B2\ BIT(2)}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//Parity\ control}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ NO\_PARITY\ 0}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ODD\_PARITY\ BIT(3)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ EVEN\_PAROTY\ (BIT(3)\ |\ BIT(4))}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ PARITY\_B1\ (BIT(5)\ |\ BIT(3))}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ PARITY\_B0\ (BIT(5)\ |\ BIT(4)\ |\ BIT(3))}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//divisor\ Latch}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ DLAB\ BIT(7)}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{/*Line\ status\ reguster\ (LSR)*/}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ RECEIVER\_DATA\ BIT(0)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ OVERRUN\_ERROR\ BIT(1)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ PARITY\_ERROR\ BIT(2)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ FRAMING\_ERROR\ BIT(3)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ BREAK\_INTERRUPT\ BIT(4)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ HOLDING\_REGISTER\_EMPTY\ BIT(5)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ EMPTY\_REGISTER\ BIT(6)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ FIFO\_ERROR\ BIT(7)}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*Interrupt\ enable\ register\ (IER)*/}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ EN\_REG\_DATA\_AVAILABLE\ BIT(0)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ EN\_TRANS\_HOLD\_REG\_EMPTY\ BIT(1)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ EN\_RECEIVE\_LINE\_STATUS\ BIT(2)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ EN\_MODEM\_STATUS\ BIT(3)}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{/*Interrupt\ Identification\ Register\ (IIR)*/}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ INTERRUPT\_PENDING\ BIT(0)}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{/*fifo\ control\ register\ (FCR)*/}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ EN\_BOTH\_FIFOS\ BIT(0)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ CLEAR\_BYTES\_RCVR\ BIT(1)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ CLEAR\_BYTES\_XMIT\ BIT(2)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ EN\_64\_BYTE\ BIT(5)}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

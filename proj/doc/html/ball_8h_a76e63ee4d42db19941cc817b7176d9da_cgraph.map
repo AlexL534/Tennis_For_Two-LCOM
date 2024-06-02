@@ -1,0 +1,5 @@
+<map id="checkCollisionLine" name="checkCollisionLine">
+<area shape="rect" id="Node000001" title="Verifica se ocorreu alguma colisão com as linhas laterais do campo." alt="" coords="5,5,136,31"/>
+<area shape="rect" id="Node000002" href="$video_8c.html#a6ab0ad9050aeae34a4efe59baae49543" title="Retorna a altura máxima do modo gráfico em uso." alt="" coords="184,5,256,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,15,169,15,169,21,136,21"/>
+</map>

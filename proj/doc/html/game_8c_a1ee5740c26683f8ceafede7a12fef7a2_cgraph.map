@@ -1,0 +1,61 @@
+<map id="timerHandler" name="timerHandler">
+<area shape="rect" id="Node000001" title="Executa ações que necessitam das informações fornecidas pelo Timer após uma interrupção deste (atuali..." alt="" coords="5,304,100,329"/>
+<area shape="rect" id="Node000002" href="$ball_8c.html#a76e63ee4d42db19941cc817b7176d9da" title="Verifica se ocorreu alguma colisão com as linhas laterais do campo." alt="" coords="148,7,279,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,303,58,255,72,186,84,148,100,110,121,75,146,43,151,38,155,42,150,46,125,78,105,113,89,150,77,187,63,256,57,304"/>
+<area shape="rect" id="Node000004" href="$ball_8c.html#a29460a8e2e41f21b6f15db6218ef5a25" title="Verifica se ocorreu uma colisão e atualiza so valores de direção e inclinação de acordo com a posição..." alt="" coords="160,353,267,379"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="97,327,157,346,155,351,96,332"/>
+<area shape="rect" id="Node000006" href="$ball_8c.html#a1b2120f0b08d3765060386e893bc7cf8" title="Desenha a bola no ecrã" alt="" coords="178,205,249,231"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="66,302,101,271,147,240,163,231,166,236,149,244,104,275,69,306"/>
+<area shape="rect" id="Node000009" href="$player_8c.html#ad48d198199b5394ca6d2c011b68b55a7" title="Desenha um jogador no ecrã" alt="" coords="170,255,257,280"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="96,301,155,282,157,287,97,306"/>
+<area shape="rect" id="Node000010" href="$game__score_8c.html#a985eb14c237a6f0b226e99e890ce9ecd" title="Desenha no ecrã as pontuações no quadro de pontuações." alt="" coords="172,107,255,132"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="55,303,66,271,84,228,111,182,146,141,157,134,160,138,150,145,115,185,89,230,71,273,60,305"/>
+<area shape="rect" id="Node000011" href="$game__score_8c.html#a955e108fba3f12c51254f50c3ef542b9" title="Desenha o texto que aparece antes das pontuações e que permite distinguir as pontuações do player 1 e..." alt="" coords="159,156,267,181"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="58,302,91,249,117,218,146,191,153,186,156,191,150,195,121,221,96,252,63,305"/>
+<area shape="rect" id="Node000012" href="$ball_8c.html#a04bf29d50d5e683ca9c631a50af22137" title="Atualiza os valores de x e y (move a bola no plano)" alt="" coords="176,304,251,329"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="101,314,161,314,161,319,101,319"/>
+<area shape="rect" id="Node000013" href="$background_8c.html#a1a995466be75309cb6df8d59dc7af36b" title="Atualiza o background para criar um novo frame, apagando os conteúdos que se encontravam antes no buf..." alt="" coords="148,57,279,83"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="53,303,61,263,78,207,105,146,124,117,146,92,150,89,153,93,150,96,128,121,110,148,83,208,66,264,58,304"/>
+<area shape="rect" id="Node000016" href="$ball_8c.html#abe7520ce9248e983a1470c5273078184" title="Reseta os valores da bola (posição, direção, ...) tendo em conta o jogador que marcou." alt="" coords="177,403,250,428"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="69,327,104,357,149,388,164,395,162,400,147,392,101,361,66,332"/>
+<area shape="rect" id="Node000017" href="$player_8c.html#a601db67e1486e6183cf30f7585a13c99" title="Repõe os valores de posição de estado do jogador quando algum dos jogadores marca algum ponto." alt="" coords="169,452,257,477"/>
+<area shape="poly" id="edge21_Node000001_Node000017" title=" " alt="" coords="63,328,96,380,121,411,150,437,158,443,155,447,146,441,117,414,92,384,59,331"/>
+<area shape="rect" id="Node000018" href="$player2_8c.html#af15a17da655f72041895ad06116a81b9" title="Atualiza os movimentos/estados/animações do jogador 2 tendo em conta as informações da bola (posição,..." alt="" coords="155,501,272,527"/>
+<area shape="poly" id="edge22_Node000001_Node000018" title=" " alt="" coords="60,329,71,361,89,403,116,447,150,487,156,492,153,496,146,491,111,451,85,405,66,363,55,331"/>
+<area shape="rect" id="Node000020" href="$player_8c.html#a1a6afaf0d332baeef551992870db9733" title="Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer." alt="" coords="327,552,523,577"/>
+<area shape="poly" id="edge31_Node000001_Node000020" title=" " alt="" coords="58,330,64,371,79,428,91,459,106,488,126,514,150,536,189,557,232,570,277,576,320,576,320,581,276,581,231,575,187,562,146,540,122,517,102,490,86,461,74,430,59,372,52,330"/>
+<area shape="rect" id="Node000025" href="$game__score_8c.html#a3bea81ffbf032beb1be1dc1ffd1a87e8" title="Atualiza o XPM a usar tendo em conta a nova pontuação de um certo jogador." alt="" coords="152,603,275,628"/>
+<area shape="poly" id="edge32_Node000001_Node000025" title=" " alt="" coords="58,329,64,375,80,442,107,515,126,550,150,582,163,593,159,597,146,585,122,553,102,517,75,443,59,376,53,330"/>
+<area shape="rect" id="Node000003" href="$video_8c.html#a6ab0ad9050aeae34a4efe59baae49543" title="Retorna a altura máxima do modo gráfico em uso." alt="" coords="389,5,461,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,16,374,16,374,21,279,22"/>
+<area shape="rect" id="Node000005" href="$player_8c.html#ab66110fb0d7b7aac2529e08854bb2ea7" title="Obtém os limites atuais para considerar que a bola atingiu a raquete do jogador (&quot;hit box&quot;)" alt="" coords="351,377,498,403"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="268,369,337,377,336,383,267,375"/>
+<area shape="rect" id="Node000007" href="$video_8c.html#ac431ebc57a4886a1b8bd4be8e8725462" title="Desenha a cor num dos píxeis do ecrã" alt="" coords="373,205,476,231"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="249,215,358,215,358,221,249,221"/>
+<area shape="rect" id="Node000008" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="571,131,709,156"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="476,204,522,190,597,160,599,165,524,195,477,209"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="256,255,358,231,359,236,258,260"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="256,129,280,141,295,154,305,167,314,179,328,190,360,204,358,209,325,195,310,183,300,170,291,158,277,146,254,134"/>
+<area shape="poly" id="edge13_Node000011_Node000007" title=" " alt="" coords="268,179,359,200,358,205,267,184"/>
+<area shape="poly" id="edge17_Node000013_Node000003" title=" " alt="" coords="267,54,374,28,375,33,269,59"/>
+<area shape="poly" id="edge16_Node000013_Node000008" title=" " alt="" coords="279,66,394,71,459,79,523,91,565,105,602,121,600,126,563,110,522,97,458,84,394,77,279,72"/>
+<area shape="rect" id="Node000014" href="$video_8c.html#a22f112737bd26dc7a59867387c61e1fd" title="Retorna o segundo buffer." alt="" coords="361,107,488,132"/>
+<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="271,81,354,100,353,105,270,86"/>
+<area shape="rect" id="Node000015" href="$video_8c.html#aa8c7f7dd95e9037a546aa1948003a0ea" title="Retorna a largura máxima do modo gráfico em uso." alt="" coords="389,156,460,181"/>
+<area shape="poly" id="edge19_Node000013_Node000015" title=" " alt="" coords="259,81,280,92,295,105,305,118,314,130,328,141,351,152,375,159,374,164,349,157,325,146,310,133,300,121,291,108,277,96,257,86"/>
+<area shape="poly" id="edge23_Node000018_Node000005" title=" " alt="" coords="251,498,277,486,341,448,394,410,397,414,344,452,280,491,253,503"/>
+<area shape="rect" id="Node000019" href="$player_8c.html#a600593cb4c9ee5bc003166c0089a6a79" title="Atualiza a animação de acertar a bola para um novo sprite." alt="" coords="607,465,673,491"/>
+<area shape="poly" id="edge24_Node000018_Node000019" title=" " alt="" coords="272,506,591,479,592,485,273,512"/>
+<area shape="poly" id="edge25_Node000018_Node000020" title=" " alt="" coords="270,525,355,545,354,551,269,530"/>
+<area shape="poly" id="edge27_Node000020_Node000019" title=" " alt="" coords="454,549,570,500,592,491,593,496,572,504,456,554"/>
+<area shape="rect" id="Node000021" href="$player_8c.html#afe122b85fa4055dfe38736466073239f" title="Atualiza a animação da escolha de local de serviço." alt="" coords="579,613,701,639"/>
+<area shape="poly" id="edge26_Node000020_Node000021" title=" " alt="" coords="475,575,523,589,582,606,581,611,522,594,474,580"/>
+<area shape="rect" id="Node000022" href="$player_8c.html#a627132ca125211b450893aa10da565dd" title="Atualiza a animação de movimento para um novo sprite." alt="" coords="599,663,681,688"/>
+<area shape="poly" id="edge28_Node000020_Node000022" title=" " alt="" coords="496,575,524,589,540,604,549,620,558,635,572,649,586,657,583,662,569,653,553,638,545,622,536,608,521,594,494,580"/>
+<area shape="rect" id="Node000023" href="$player_8c.html#a8a89d3fb6ec24f5d02d9a39f22bb1770" title="Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento." alt="" coords="595,515,685,540"/>
+<area shape="poly" id="edge29_Node000020_Node000023" title=" " alt="" coords="501,549,580,535,581,540,502,554"/>
+<area shape="rect" id="Node000024" href="$player_8c.html#a77881de54e0d6eb7e4f1829fb0a015ec" title="Atualiza a animação de serviço para um novo sprite." alt="" coords="601,564,679,589"/>
+<area shape="poly" id="edge30_Node000020_Node000024" title=" " alt="" coords="523,567,586,571,586,576,523,573"/>
+<area shape="rect" id="Node000026" href="$game__score_8c.html#a04085ece17a830bed80319f96871c662" title="Escolhe o XPM a carregar tendo em conta a pontuação fornecida." alt="" coords="362,603,487,628"/>
+<area shape="poly" id="edge33_Node000025_Node000026" title=" " alt="" coords="275,613,347,613,347,618,275,618"/>
+</map>

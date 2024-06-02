@@ -1,0 +1,7 @@
+<map id="drawBackground" name="drawBackground">
+<area shape="rect" id="Node000001" title="Desenha e inicializa o background do jogo." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$video_8c.html#ac431ebc57a4886a1b8bd4be8e8725462" title="Desenha a cor num dos píxeis do ecrã" alt="" coords="172,5,275,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,15,157,15,157,21,125,21"/>
+<area shape="rect" id="Node000003" href="$video_8c.html#a448bd567fb86fdb9acd3f7f82dfc3be6" title="Retorna a quantidade de bytes por píxel no modo gráfico em uso." alt="" coords="323,5,461,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,15,308,15,308,21,275,21"/>
+</map>

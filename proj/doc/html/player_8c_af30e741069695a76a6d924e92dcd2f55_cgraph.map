@@ -1,0 +1,7 @@
+<map id="changePlayerMovementKBD" name="changePlayerMovementKBD">
+<area shape="rect" id="Node000001" title="Muda o movimento/estado do jogador tendo em conta valores de scancodes do teclado." alt="" coords="5,31,192,56"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#a4e99d0c614e7b2a18c1bcbec8f801581" title="Indica se o jogador deve ou não parar tendo em conta os breakcodes/scancodes do teclado." alt="" coords="273,5,357,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,30,258,22,259,27,193,35"/>
+<area shape="rect" id="Node000003" href="$player_8c.html#aebf1cfe5a7220081746277fea85f90be" title="Atualiza a direção para onde o jogador está virado." alt="" coords="240,55,389,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,51,225,55,225,60,192,56"/>
+</map>

@@ -1,0 +1,196 @@
+\doxysection{src/game.c File Reference}
+\hypertarget{game_8c}{}\label{game_8c}\index{src/game.c@{src/game.c}}
+{\ttfamily \#include "{}game.\+h"{}}\newline
+{\ttfamily \#include "{}background.\+h"{}}\newline
+Include dependency graph for game.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{game_8c_abb99030e6fb0a594bddca1fba40803e8}{game\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Loop principal do jogo onde se encontra a função driver receive. \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{game_8c_a6673adfded87b0043f1a6e7624c486dd}{destroy\+Elements}} ()
+\begin{DoxyCompactList}\small\item\em Liberta a memória alocada pelo programa durante a sua execução. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8c_a790c3db06e84b390a20c8b3434e458c5}{load\+Background}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o background no inicio da execução do programa. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8c_a4343a5e3073a30dfb0463707faee7bc3}{keyboard\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Executa ações relacionadas com o Keyboard após uma interrupção deste (atualizar a direção de movimento dos jogadores, ...) \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8c_a1ee5740c26683f8ceafede7a12fef7a2}{timer\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Executa ações que necessitam das informações fornecidas pelo Timer após uma interrupção deste (atualizar posições, gerar novos frames, animações, etc..) \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8c_a4a38393d764fbfdd5cb83e4f6673462f}{mouse\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Executa ações relacionadas com o \doxylink{struct_mouse}{Mouse} após uma interrupção deste (Iniciar o movimento de batida na bola, mover o cursor no menu, ...) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{game_8c_a843192ddd3f13e666ea08f17baf7dcfd}{player1\+Score}} = 0
+\item 
+int \mbox{\hyperlink{game_8c_a7d3ea8ffa2aea35d9cfe631cd6a517b1}{player2\+Score}} = 0
+\item 
+bool \mbox{\hyperlink{game_8c_afed9580c08822ff877a48ee659476ded}{is\+Start\+Menu}} =true
+\item 
+bool \mbox{\hyperlink{game_8c_acf7a2d1d4e7d9289b6a9d6da3d4eaf64}{initial\+\_\+load}} =true
+\item 
+int \mbox{\hyperlink{game_8c_a617a47c70795bcff659815ad0efd2266}{counter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game_8c_a6673adfded87b0043f1a6e7624c486dd}\label{game_8c_a6673adfded87b0043f1a6e7624c486dd} 
+\index{game.c@{game.c}!destroyElements@{destroyElements}}
+\index{destroyElements@{destroyElements}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{destroyElements()}{destroyElements()}}
+{\footnotesize\ttfamily void() destroy\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Liberta a memória alocada pelo programa durante a sua execução. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8c_a6673adfded87b0043f1a6e7624c486dd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8c_abb99030e6fb0a594bddca1fba40803e8}\label{game_8c_abb99030e6fb0a594bddca1fba40803e8} 
+\index{game.c@{game.c}!gameLoop@{gameLoop}}
+\index{gameLoop@{gameLoop}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{gameLoop()}{gameLoop()}}
+{\footnotesize\ttfamily int() game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loop principal do jogo onde se encontra a função driver receive. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{game_8c_abb99030e6fb0a594bddca1fba40803e8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8c_a4343a5e3073a30dfb0463707faee7bc3}\label{game_8c_a4343a5e3073a30dfb0463707faee7bc3} 
+\index{game.c@{game.c}!keyboardHandler@{keyboardHandler}}
+\index{keyboardHandler@{keyboardHandler}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{keyboardHandler()}{keyboardHandler()}}
+{\footnotesize\ttfamily int() keyboard\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executa ações relacionadas com o Keyboard após uma interrupção deste (atualizar a direção de movimento dos jogadores, ...) 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8c_a4343a5e3073a30dfb0463707faee7bc3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8c_a790c3db06e84b390a20c8b3434e458c5}\label{game_8c_a790c3db06e84b390a20c8b3434e458c5} 
+\index{game.c@{game.c}!loadBackground@{loadBackground}}
+\index{loadBackground@{loadBackground}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{loadBackground()}{loadBackground()}}
+{\footnotesize\ttfamily int() load\+Background (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Carrega o background no inicio da execução do programa. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8c_a790c3db06e84b390a20c8b3434e458c5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8c_a4a38393d764fbfdd5cb83e4f6673462f}\label{game_8c_a4a38393d764fbfdd5cb83e4f6673462f} 
+\index{game.c@{game.c}!mouseHandler@{mouseHandler}}
+\index{mouseHandler@{mouseHandler}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{mouseHandler()}{mouseHandler()}}
+{\footnotesize\ttfamily int() mouse\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executa ações relacionadas com o \doxylink{struct_mouse}{Mouse} após uma interrupção deste (Iniciar o movimento de batida na bola, mover o cursor no menu, ...) 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{game_8c_a4a38393d764fbfdd5cb83e4f6673462f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game_8c_a1ee5740c26683f8ceafede7a12fef7a2}\label{game_8c_a1ee5740c26683f8ceafede7a12fef7a2} 
+\index{game.c@{game.c}!timerHandler@{timerHandler}}
+\index{timerHandler@{timerHandler}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{timerHandler()}{timerHandler()}}
+{\footnotesize\ttfamily int() timer\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executa ações que necessitam das informações fornecidas pelo Timer após uma interrupção deste (atualizar posições, gerar novos frames, animações, etc..) 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro ou zero caso tenha corrido tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8c_a1ee5740c26683f8ceafede7a12fef7a2_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{game_8c_a617a47c70795bcff659815ad0efd2266}\label{game_8c_a617a47c70795bcff659815ad0efd2266} 
+\index{game.c@{game.c}!counter@{counter}}
+\index{counter@{counter}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{counter}{counter}}
+{\footnotesize\ttfamily int counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{game_8c_acf7a2d1d4e7d9289b6a9d6da3d4eaf64}\label{game_8c_acf7a2d1d4e7d9289b6a9d6da3d4eaf64} 
+\index{game.c@{game.c}!initial\_load@{initial\_load}}
+\index{initial\_load@{initial\_load}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{initial\_load}{initial\_load}}
+{\footnotesize\ttfamily bool initial\+\_\+load =true}
+
+\Hypertarget{game_8c_afed9580c08822ff877a48ee659476ded}\label{game_8c_afed9580c08822ff877a48ee659476ded} 
+\index{game.c@{game.c}!isStartMenu@{isStartMenu}}
+\index{isStartMenu@{isStartMenu}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{isStartMenu}{isStartMenu}}
+{\footnotesize\ttfamily bool is\+Start\+Menu =true}
+
+\Hypertarget{game_8c_a843192ddd3f13e666ea08f17baf7dcfd}\label{game_8c_a843192ddd3f13e666ea08f17baf7dcfd} 
+\index{game.c@{game.c}!player1Score@{player1Score}}
+\index{player1Score@{player1Score}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{player1Score}{player1Score}}
+{\footnotesize\ttfamily int player1\+Score = 0}
+
+\Hypertarget{game_8c_a7d3ea8ffa2aea35d9cfe631cd6a517b1}\label{game_8c_a7d3ea8ffa2aea35d9cfe631cd6a517b1} 
+\index{game.c@{game.c}!player2Score@{player2Score}}
+\index{player2Score@{player2Score}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{player2Score}{player2Score}}
+{\footnotesize\ttfamily int player2\+Score = 0}
+

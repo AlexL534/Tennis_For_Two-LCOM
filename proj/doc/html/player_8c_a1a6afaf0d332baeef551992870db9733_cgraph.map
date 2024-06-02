@@ -1,0 +1,13 @@
+<map id="updatePlayerMovementsTimer" name="updatePlayerMovementsTimer">
+<area shape="rect" id="Node000001" title="Atualiza os movimentos/animações/estados do jogador tendo em conta valores recebidos do timer." alt="" coords="5,104,201,129"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#afe122b85fa4055dfe38736466073239f" title="Atualiza a animação da escolha de local de serviço." alt="" coords="249,5,372,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,101,248,40,261,34,263,39,250,44,130,106"/>
+<area shape="rect" id="Node000003" href="$player_8c.html#a600593cb4c9ee5bc003166c0089a6a79" title="Atualiza a animação de acertar a bola para um novo sprite." alt="" coords="277,55,344,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,101,262,76,263,81,160,106"/>
+<area shape="rect" id="Node000004" href="$player_8c.html#a627132ca125211b450893aa10da565dd" title="Atualiza a animação de movimento para um novo sprite." alt="" coords="269,104,352,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,114,255,114,255,119,202,119"/>
+<area shape="rect" id="Node000005" href="$player_8c.html#a8a89d3fb6ec24f5d02d9a39f22bb1770" title="Atualiza os valores de posição do jogador tendo em conta a sua direção de movimento." alt="" coords="266,153,355,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="160,127,252,149,251,155,159,132"/>
+<area shape="rect" id="Node000006" href="$player_8c.html#a77881de54e0d6eb7e4f1829fb0a015ec" title="Atualiza a animação de serviço para um novo sprite." alt="" coords="271,203,350,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="131,128,250,188,265,194,262,199,248,192,128,132"/>
+</map>

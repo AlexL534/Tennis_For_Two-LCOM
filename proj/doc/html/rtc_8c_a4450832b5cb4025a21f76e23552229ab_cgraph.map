@@ -1,0 +1,10 @@
+<map id="get_date" name="get_date">
+<area shape="rect" id="Node000001" title="Obtém a data atual." alt="" coords="5,31,77,56"/>
+<area shape="rect" id="Node000002" href="$rtc_8c.html#af5a9e61ba5f5e18f7f1248caf75d325c" title="Lê os valores que estão no rtc." alt="" coords="127,5,206,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,34,112,26,113,31,78,39"/>
+<area shape="rect" id="Node000004" href="$rtc_8c.html#a6bca50f878e8aa5990fc360be0cfc334" title="Programa o RTC para enviar valores em binário." alt="" coords="125,55,208,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="78,48,111,54,110,59,77,53"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a79a031a8611f5b2d6afa4158e92b0fb4" title=" " alt="" coords="256,31,347,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="207,23,242,29,241,35,206,28"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="208,57,241,51,242,57,209,63"/>
+</map>

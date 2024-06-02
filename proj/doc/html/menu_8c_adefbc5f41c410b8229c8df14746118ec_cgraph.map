@@ -1,0 +1,7 @@
+<map id="kbd_handler_menu" name="kbd_handler_menu">
+<area shape="rect" id="Node000001" title="chama funções relevantes quando há uma interrupção vinda do teclado e o jogo está no menu" alt="" coords="5,31,136,56"/>
+<area shape="rect" id="Node000002" href="$kbd_8c.html#afdfb6322f4a75773b745fc6cc6c20d27" title="Usado para obter o valor do scancode em outros documentos." alt="" coords="191,5,294,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,31,176,25,177,30,137,36"/>
+<area shape="rect" id="Node000003" href="$menu_8c.html#ad0ba205fba215f5c7928e393ec61c6dd" title="atualiza parâmetros state e menu caso necessário" alt="" coords="184,55,301,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,50,170,55,169,60,136,55"/>
+</map>

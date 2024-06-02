@@ -1,0 +1,185 @@
+\doxysection{src/background.c File Reference}
+\hypertarget{background_8c}{}\label{background_8c}\index{src/background.c@{src/background.c}}
+{\ttfamily \#include "{}background.\+h"{}}\newline
+{\ttfamily \#include "{}devices/video.\+h"{}}\newline
+{\ttfamily \#include "{}xpms.\+h"{}}\newline
+Include dependency graph for background.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{background_8c_a7a98efc52d4b565bdc586720d036d060}{draw\+Background}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}background)
+\begin{DoxyCompactList}\small\item\em Desenha e inicializa o background do jogo. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{background_8c_a4a45eb0b35cf9e179ebc729d46321ea4}{draw\+Date\+Background}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}background, int day, int month, int year)
+\begin{DoxyCompactList}\small\item\em Desenha a data no background do menu. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{background_8c_a707ae0dab0a202f55e54ae381b020a8f}{draw\+Elements\+In\+Menu\+Background}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}background, uint32\+\_\+t \texorpdfstring{$\ast$}{*}element, int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em Desenha um elemento no background de um menu. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{background_8c_a3ec7341bd83a8071740672fff7936f31}{initialize\+Menu\+Background}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}background, bool is\+Start, \mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}menu, int day, int month, int year)
+\begin{DoxyCompactList}\small\item\em Inicializa os valores necessários para que o background do menu funcione. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{background_8c_a1a995466be75309cb6df8d59dc7af36b}{refresh\+Background}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}background)
+\begin{DoxyCompactList}\small\item\em Atualiza o background para criar um novo frame, apagando os conteúdos que se encontravam antes no buffer da gráfica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{background_8c_a7a98efc52d4b565bdc586720d036d060}\label{background_8c_a7a98efc52d4b565bdc586720d036d060} 
+\index{background.c@{background.c}!drawBackground@{drawBackground}}
+\index{drawBackground@{drawBackground}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{drawBackground()}{drawBackground()}}
+{\footnotesize\ttfamily int() draw\+Background (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{background }\end{DoxyParamCaption})}
+
+
+
+Desenha e inicializa o background do jogo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em background} & Buffer com o conteúdo do background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8c_a7a98efc52d4b565bdc586720d036d060_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{background_8c_a4a45eb0b35cf9e179ebc729d46321ea4}\label{background_8c_a4a45eb0b35cf9e179ebc729d46321ea4} 
+\index{background.c@{background.c}!drawDateBackground@{drawDateBackground}}
+\index{drawDateBackground@{drawDateBackground}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{drawDateBackground()}{drawDateBackground()}}
+{\footnotesize\ttfamily int() draw\+Date\+Background (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{background,  }\item[{int}]{day,  }\item[{int}]{month,  }\item[{int}]{year }\end{DoxyParamCaption})}
+
+
+
+Desenha a data no background do menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em background} & Buffer com o conteúdo do background \\
+\hline
+{\em day} & Dia atual \\
+\hline
+{\em month} & Mês atual \\
+\hline
+{\em year} & Ano atual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8c_a4a45eb0b35cf9e179ebc729d46321ea4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{background_8c_a707ae0dab0a202f55e54ae381b020a8f}\label{background_8c_a707ae0dab0a202f55e54ae381b020a8f} 
+\index{background.c@{background.c}!drawElementsInMenuBackground@{drawElementsInMenuBackground}}
+\index{drawElementsInMenuBackground@{drawElementsInMenuBackground}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{drawElementsInMenuBackground()}{drawElementsInMenuBackground()}}
+{\footnotesize\ttfamily int() draw\+Elements\+In\+Menu\+Background (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{background,  }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{element,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Desenha um elemento no background de um menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em background} & Buffer com o conteúdo do background \\
+\hline
+{\em element} & Elemento a desenhar \\
+\hline
+{\em x} & posição x inicial \\
+\hline
+{\em y} & posição y inicial \\
+\hline
+{\em width} & Comprimento do elemento \\
+\hline
+{\em height} & Altura do elemento \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8c_a707ae0dab0a202f55e54ae381b020a8f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{background_8c_a3ec7341bd83a8071740672fff7936f31}\label{background_8c_a3ec7341bd83a8071740672fff7936f31} 
+\index{background.c@{background.c}!initializeMenuBackground@{initializeMenuBackground}}
+\index{initializeMenuBackground@{initializeMenuBackground}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{initializeMenuBackground()}{initializeMenuBackground()}}
+{\footnotesize\ttfamily int() initialize\+Menu\+Background (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{background,  }\item[{bool}]{is\+Start,  }\item[{\mbox{\hyperlink{struct_menu}{Menu}} \texorpdfstring{$\ast$}{*}}]{menu,  }\item[{int}]{day,  }\item[{int}]{month,  }\item[{int}]{year }\end{DoxyParamCaption})}
+
+
+
+Inicializa os valores necessários para que o background do menu funcione. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em background} & Buffer com o conteúdo do background \\
+\hline
+{\em is\+Start} & Usado para verificar qual menu é que vai ser inicializado \\
+\hline
+{\em menu} & \doxylink{struct_menu}{Menu} que vai ter o seu background inicializado \\
+\hline
+{\em day} & Dia atual \\
+\hline
+{\em month} & Mês atual \\
+\hline
+{\em year} & Ano atual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8c_a3ec7341bd83a8071740672fff7936f31_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{background_8c_a1a995466be75309cb6df8d59dc7af36b}\label{background_8c_a1a995466be75309cb6df8d59dc7af36b} 
+\index{background.c@{background.c}!refreshBackground@{refreshBackground}}
+\index{refreshBackground@{refreshBackground}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{refreshBackground()}{refreshBackground()}}
+{\footnotesize\ttfamily int() refresh\+Background (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{background }\end{DoxyParamCaption})}
+
+
+
+Atualiza o background para criar um novo frame, apagando os conteúdos que se encontravam antes no buffer da gráfica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em background} & Buffer com o conteúdo do background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu algum erro e 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{background_8c_a1a995466be75309cb6df8d59dc7af36b_cgraph}
+\end{center}
+\end{figure}

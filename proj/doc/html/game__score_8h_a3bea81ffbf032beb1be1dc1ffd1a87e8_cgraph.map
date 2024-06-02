@@ -1,0 +1,5 @@
+<map id="updateXPMScore" name="updateXPMScore">
+<area shape="rect" id="Node000001" title="Atualiza o XPM a usar tendo em conta a nova pontuação de um certo jogador." alt="" coords="5,5,128,31"/>
+<area shape="rect" id="Node000002" href="$game__score_8c.html#a04085ece17a830bed80319f96871c662" title="Escolhe o XPM a carregar tendo em conta a pontuação fornecida." alt="" coords="176,5,301,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,15,161,15,161,21,129,21"/>
+</map>

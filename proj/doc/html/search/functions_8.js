@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['main_0',['main',['../proj_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'proj.c']]],
+  ['map_5fvram_1',['map_vram',['../video_8c.html#abc385863ded0f571af451a585678924d',1,'map_VRAM(uint16_t mode):&#160;video.c'],['../video_8h.html#abc385863ded0f571af451a585678924d',1,'map_VRAM(uint16_t mode):&#160;video.c']]],
+  ['menumousehandler_2',['menumousehandler',['../menu_8c.html#a1c5d075afeab32abb5f9685a29bfe8a0',1,'menuMouseHandler(bool start, Menu *menu, Mouse *mouse, Game_state *game_state):&#160;menu.c'],['../menu_8h.html#a1c5d075afeab32abb5f9685a29bfe8a0',1,'menuMouseHandler(bool start, Menu *menu, Mouse *mouse, Game_state *game_state):&#160;menu.c']]],
+  ['mouse_5fih_3',['mouse_ih',['../mouse_8c.html#a210374b50462acdedab00df64d5cea3c',1,'mouse_ih():&#160;mouse.c'],['../mouse_8h.html#a210374b50462acdedab00df64d5cea3c',1,'mouse_ih():&#160;mouse.c']]],
+  ['mouse_5finsert_5fbyte_4',['mouse_insert_byte',['../mouse_8c.html#a144c63749f22e7983cdf8b906c116489',1,'mouse_insert_byte():&#160;mouse.c'],['../mouse_8h.html#a144c63749f22e7983cdf8b906c116489',1,'mouse_insert_byte():&#160;mouse.c']]],
+  ['mouse_5finsert_5fin_5fpacket_5',['mouse_insert_in_packet',['../mouse_8c.html#af837743794fafd56bad8c533a038cde3',1,'mouse_insert_in_packet():&#160;mouse.c'],['../mouse_8h.html#af837743794fafd56bad8c533a038cde3',1,'mouse_insert_in_packet():&#160;mouse.c']]],
+  ['mouse_5fread_5fbyte_6',['mouse_read_byte',['../mouse_8c.html#a10b8f7f4e29602aa0b6a9dee5437e5d5',1,'mouse_read_byte():&#160;mouse.c'],['../mouse_8h.html#a10b8f7f4e29602aa0b6a9dee5437e5d5',1,'mouse_read_byte():&#160;mouse.c']]],
+  ['mouse_5fread_5fstatus_7',['mouse_read_status',['../mouse_8c.html#ae61f9a128e7b7ac6922e520f40b8ae02',1,'mouse_read_status(uint8_t *status):&#160;mouse.c'],['../mouse_8h.html#ae61f9a128e7b7ac6922e520f40b8ae02',1,'mouse_read_status(uint8_t *status):&#160;mouse.c']]],
+  ['mouse_5fsubscribe_5fint_8',['mouse_subscribe_int',['../mouse_8c.html#a20285aed4b3ef45812cd967532dd09db',1,'mouse_subscribe_int(uint8_t *bit_no):&#160;mouse.c'],['../mouse_8h.html#a20285aed4b3ef45812cd967532dd09db',1,'mouse_subscribe_int(uint8_t *bit_no):&#160;mouse.c']]],
+  ['mouse_5funsubscribe_5fint_9',['mouse_unsubscribe_int',['../mouse_8c.html#a3ecf823d80520009ae5e0d76ae40a3c3',1,'mouse_unsubscribe_int():&#160;mouse.c'],['../mouse_8h.html#a3ecf823d80520009ae5e0d76ae40a3c3',1,'mouse_unsubscribe_int():&#160;mouse.c']]],
+  ['mouse_5fwrite_5fbyte_10',['mouse_write_byte',['../mouse_8c.html#a1915d6d44e7601a3f464cb114293c62d',1,'mouse_write_byte(uint8_t command):&#160;mouse.c'],['../mouse_8h.html#a1915d6d44e7601a3f464cb114293c62d',1,'mouse_write_byte(uint8_t command):&#160;mouse.c']]],
+  ['mouse_5fwrite_5fcommand_11',['mouse_write_command',['../mouse_8c.html#a43d043452226084726d071537c062e8b',1,'mouse_write_command(uint8_t command, int port):&#160;mouse.c'],['../mouse_8h.html#a43d043452226084726d071537c062e8b',1,'mouse_write_command(uint8_t command, int port):&#160;mouse.c']]],
+  ['mousehandler_12',['mousehandler',['../game_8c.html#a4a38393d764fbfdd5cb83e4f6673462f',1,'mouseHandler():&#160;game.c'],['../game_8h.html#a4a38393d764fbfdd5cb83e4f6673462f',1,'mouseHandler():&#160;game.c']]],
+  ['moveanim_13',['moveanim',['../player_8c.html#a627132ca125211b450893aa10da565dd',1,'moveAnim(Player *player):&#160;player.c'],['../player_8h.html#a627132ca125211b450893aa10da565dd',1,'moveAnim(Player *player):&#160;player.c']]],
+  ['moveball_14',['moveball',['../ball_8c.html#a04bf29d50d5e683ca9c631a50af22137',1,'moveBall(Ball *ball, bool slow):&#160;ball.c'],['../ball_8h.html#a04bf29d50d5e683ca9c631a50af22137',1,'moveBall(Ball *ball, bool slow):&#160;ball.c']]],
+  ['moveplayer_15',['moveplayer',['../player_8c.html#a8a89d3fb6ec24f5d02d9a39f22bb1770',1,'movePlayer(Player *player):&#160;player.c'],['../player_8h.html#a8a89d3fb6ec24f5d02d9a39f22bb1770',1,'movePlayer(Player *player):&#160;player.c']]]
+];

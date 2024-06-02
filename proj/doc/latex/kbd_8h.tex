@@ -1,0 +1,158 @@
+\doxysection{src/devices/kbd.h File Reference}
+\hypertarget{kbd_8h}{}\label{kbd_8h}\index{src/devices/kbd.h@{src/devices/kbd.h}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+Include dependency graph for kbd.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{kbd_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kbd_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{kbd_8h_ac866afe9d476c71bc2d698854fa354d4}{kbd\+\_\+read\+\_\+status}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em Lê o estado do KBC para verificar se já podemos efetuar a leitura do scancode. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{kbd_8h_ab276451dfe91dcf661c46583b70ad70b}{kbd\+\_\+read\+\_\+scancode}} ()
+\begin{DoxyCompactList}\small\item\em Lê um scancode enviado pelo teclado no KBC. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{kbd_8h_a4ac9231a99a664d6a9f0b69767e0d707}{kbd\+\_\+subscribe\+\_\+int}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Inicia as interrupções para o keyboard. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{kbd_8h_aee0a7b54ee426fade9c780418d110fe0}{kbd\+\_\+unsubscribe\+\_\+int}} ()
+\begin{DoxyCompactList}\small\item\em Desativa as interrupções para o keyboard. \end{DoxyCompactList}\item 
+uint8\+\_\+t() \mbox{\hyperlink{kbd_8h_afdfb6322f4a75773b745fc6cc6c20d27}{get\+\_\+scancode}} ()
+\begin{DoxyCompactList}\small\item\em Usado para obter o valor do scancode em outros documentos. \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{kbd_8h_ab49525fc31c5090151f46077a83e3fed}{get\+\_\+\+KBD\+\_\+hook\+\_\+id}} ()
+\begin{DoxyCompactList}\small\item\em Usado para obter o valor do hook id em outros documentos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kbd_8h_a8b39af9368fdfcbc0cddbda128c00557}{set\+\_\+scancode}} (uint8\+\_\+t fake\+\_\+scancode)
+\begin{DoxyCompactList}\small\item\em Envia um scancode falso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kbd_8h_ab49525fc31c5090151f46077a83e3fed}\label{kbd_8h_ab49525fc31c5090151f46077a83e3fed} 
+\index{kbd.h@{kbd.h}!get\_KBD\_hook\_id@{get\_KBD\_hook\_id}}
+\index{get\_KBD\_hook\_id@{get\_KBD\_hook\_id}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{get\_KBD\_hook\_id()}{get\_KBD\_hook\_id()}}
+{\footnotesize\ttfamily int() get\+\_\+\+KBD\+\_\+hook\+\_\+id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Usado para obter o valor do hook id em outros documentos. 
+
+\begin{DoxyReturn}{Returns}
+Valor do hook\+\_\+id 
+\end{DoxyReturn}
+\Hypertarget{kbd_8h_afdfb6322f4a75773b745fc6cc6c20d27}\label{kbd_8h_afdfb6322f4a75773b745fc6cc6c20d27} 
+\index{kbd.h@{kbd.h}!get\_scancode@{get\_scancode}}
+\index{get\_scancode@{get\_scancode}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{get\_scancode()}{get\_scancode()}}
+{\footnotesize\ttfamily uint8\+\_\+t() get\+\_\+scancode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Usado para obter o valor do scancode em outros documentos. 
+
+\begin{DoxyReturn}{Returns}
+Valor do scancode 
+\end{DoxyReturn}
+\Hypertarget{kbd_8h_ab276451dfe91dcf661c46583b70ad70b}\label{kbd_8h_ab276451dfe91dcf661c46583b70ad70b} 
+\index{kbd.h@{kbd.h}!kbd\_read\_scancode@{kbd\_read\_scancode}}
+\index{kbd\_read\_scancode@{kbd\_read\_scancode}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_read\_scancode()}{kbd\_read\_scancode()}}
+{\footnotesize\ttfamily int() kbd\+\_\+read\+\_\+scancode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lê um scancode enviado pelo teclado no KBC. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu um erro, 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kbd_8h_ab276451dfe91dcf661c46583b70ad70b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{kbd_8h_ac866afe9d476c71bc2d698854fa354d4}\label{kbd_8h_ac866afe9d476c71bc2d698854fa354d4} 
+\index{kbd.h@{kbd.h}!kbd\_read\_status@{kbd\_read\_status}}
+\index{kbd\_read\_status@{kbd\_read\_status}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_read\_status()}{kbd\_read\_status()}}
+{\footnotesize\ttfamily int() kbd\+\_\+read\+\_\+status (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{status }\end{DoxyParamCaption})}
+
+
+
+Lê o estado do KBC para verificar se já podemos efetuar a leitura do scancode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & status of the KBC \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu um erro, 0 se correu tudo bem 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{kbd_8h_ac866afe9d476c71bc2d698854fa354d4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{kbd_8h_a4ac9231a99a664d6a9f0b69767e0d707}\label{kbd_8h_a4ac9231a99a664d6a9f0b69767e0d707} 
+\index{kbd.h@{kbd.h}!kbd\_subscribe\_int@{kbd\_subscribe\_int}}
+\index{kbd\_subscribe\_int@{kbd\_subscribe\_int}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_subscribe\_int()}{kbd\_subscribe\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+Inicia as interrupções para o keyboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+no} & Valor inicial do hook\+\_\+id \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se ocorreu um erro, 0 se correu tudo bem 
+\end{DoxyReturn}
+\Hypertarget{kbd_8h_aee0a7b54ee426fade9c780418d110fe0}\label{kbd_8h_aee0a7b54ee426fade9c780418d110fe0} 
+\index{kbd.h@{kbd.h}!kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}}
+\index{kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_unsubscribe\_int()}{kbd\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Desativa as interrupções para o keyboard. 
+
+\begin{DoxyReturn}{Returns}
+1 se ocorreu um erro, 0 se correu tudo bem 
+\end{DoxyReturn}
+\Hypertarget{kbd_8h_a8b39af9368fdfcbc0cddbda128c00557}\label{kbd_8h_a8b39af9368fdfcbc0cddbda128c00557} 
+\index{kbd.h@{kbd.h}!set\_scancode@{set\_scancode}}
+\index{set\_scancode@{set\_scancode}!kbd.h@{kbd.h}}
+\doxysubsubsection{\texorpdfstring{set\_scancode()}{set\_scancode()}}
+{\footnotesize\ttfamily void set\+\_\+scancode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{fake\+\_\+scancode }\end{DoxyParamCaption})}
+
+
+
+Envia um scancode falso. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fake\+\_\+scancode} & Valor falso do scancode a ser definido. \\
+\hline
+\end{DoxyParams}
