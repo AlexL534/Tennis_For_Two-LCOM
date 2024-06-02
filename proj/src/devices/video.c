@@ -6,7 +6,6 @@
 static vbe_mode_info_t mode_info;
 static char *video_mem;		/* Process (virtual) address to which VRAM is mapped */
 static char *second_buffer;
-//static char *base_mem;
 
 static unsigned h_res;	        /* Horizontal resolution in pixels */
 static unsigned v_res;	        /* Vertical resolution in pixels */
