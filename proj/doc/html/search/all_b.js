@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['para_20a_20unidade_20curricular_20de_20laboratório_20de_20computadores_20teve_20como_20objetivo_20a_20aplicação_20dos_20conceitos_20apresentados_20durante_20as_20aulas_20relacioandos_20com_20os_20vários_20dispositivos_20de_20um_20computador_20o_20rato_20ou_20o_20teclado_0',['Este projeto foi desenvolvido para a unidade curricular de Laboratório de *Computadores. Teve como objetivo a aplicação dos conceitos apresentados durante as aulas relacioandos com os vários dispositivos de um computador o rato ou o teclado.',['../index.html',1,'']]],
-  ['pause_5fmenu_1',['pause_menu',['../struct_menu.html#a1518a672353d2075346218998fbc20bd',1,'Menu']]],
-  ['play_5fbutton_2',['play_button',['../struct_menu.html#a6b7b3eabc4f25f5d28f5cd28ce87018b',1,'Menu']]],
-  ['play_5fbutton_5fhover_3',['play_button_hover',['../struct_menu.html#a1b03afbf82b95c282679564eb0b1e92e',1,'Menu']]],
-  ['player_4',['Player',['../struct_player.html',1,'']]],
-  ['player_5fnumb_5',['player_numb',['../struct_player.html#aa1c9eadcd0c2852953150b1bdddca9f3',1,'Player']]],
-  ['projeto_20foi_20desenvolvido_20para_20a_20unidade_20curricular_20de_20laboratório_20de_20computadores_20teve_20como_20objetivo_20a_20aplicação_20dos_20conceitos_20apresentados_20durante_20as_20aulas_20relacioandos_20com_20os_20vários_20dispositivos_20de_20um_20computador_20o_20rato_20ou_20o_20teclado_6',['Este projeto foi desenvolvido para a unidade curricular de Laboratório de *Computadores. Teve como objetivo a aplicação dos conceitos apresentados durante as aulas relacioandos com os vários dispositivos de um computador o rato ou o teclado.',['../index.html',1,'']]]
+  ['selected_0',['selected',['../struct_menu.html#ab7f6d86d06cedb6ae463f6321298829f',1,'Menu']]],
+  ['small_1',['small',['../struct_ball.html#a42d730a052ede2248e8c91a8244da080',1,'Ball']]],
+  ['speaker_5fctrl_2',['SPEAKER_CTRL',['../group__i8254.html#ga51b3a5e3d4811ca063fe25e35560ab40',1,'i8254.h']]],
+  ['sprite_3',['sprite',['../struct_sprite.html',1,'Sprite'],['../struct_mouse.html#a7c54302f990f134ca6e37a2e9ef9999d',1,'Mouse::sprite']]],
+  ['start_4',['start',['../struct_player.html#a25726e595983fe878ce1867b7807fcd4',1,'Player']]],
+  ['startanim_5',['startanim',['../struct_player.html#ad88ed1d5ea764ec366192f09453960d6',1,'Player']]],
+  ['state_6',['state',['../struct_player.html#adc6e5733fc3c22f0a7b2914188c49c90',1,'Player']]]
 ];

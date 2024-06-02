@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['este_20projeto_20foi_20desenvolvido_20para_20a_20unidade_20curricular_20de_20laboratório_20de_20computadores_20teve_20como_20objetivo_20a_20aplicação_20dos_20conceitos_20apresentados_20durante_20as_20aulas_20relacioandos_20com_20os_20vários_20dispositivos_20de_20um_20computador_20o_20rato_20ou_20o_20teclado_0',['Este projeto foi desenvolvido para a unidade curricular de Laboratório de *Computadores. Teve como objetivo a aplicação dos conceitos apresentados durante as aulas relacioandos com os vários dispositivos de um computador o rato ou o teclado.',['../index.html',1,'']]]
+  ['height_0',['height',['../struct_sprite.html#a509290c21d570ff479c1b9d9b1fe8810',1,'Sprite']]],
+  ['hit_1',['hit',['../struct_player.html#ae78119a3fe70ecb80157dc2c07f3dbdb',1,'Player']]],
+  ['hitanim_2',['hitanim',['../struct_player.html#a29e560862dfeb4dd292bdbdd10d465e0',1,'Player']]],
+  ['hitrev_3',['hitrev',['../struct_player.html#a9f9349b4bddc64374416b1060e1d0b2d',1,'Player']]]
 ];

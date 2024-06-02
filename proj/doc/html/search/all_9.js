@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['medium_0',['medium',['../struct_ball.html#a9d4a43b2cc94d78271217517312a6434',1,'Ball']]],
-  ['menu_1',['Menu',['../struct_menu.html',1,'']]],
-  ['mouse_2',['Mouse',['../struct_mouse.html',1,'']]],
-  ['move_3',['move',['../struct_player.html#a4c751b0950e3cbe5843206deda0c2c49',1,'Player']]],
-  ['moveanim_4',['moveanim',['../struct_player.html#a3aab02a602f726428b7d6994ca1b6769',1,'Player']]],
-  ['movement_5',['movement',['../struct_player.html#aa0f51fc6388e5bb5c88b6c58bc65bf4e',1,'Player']]],
-  ['moverev_6',['moverev',['../struct_player.html#a5d01de266b4598e77f201d3ee252a534',1,'Player']]]
+  ['quit_0',['quit',['../struct_menu.html#a3ec2fe4dc553654c7fbed455fd81627d',1,'Menu']]],
+  ['quit_5fhover_1',['quit_hover',['../struct_menu.html#a7d77c19227e39fd18486b37501f07464',1,'Menu']]],
+  ['quit_5fpause_2',['quit_pause',['../struct_menu.html#ac44f22fc5c9662c2ea8f8abc53010581',1,'Menu']]],
+  ['quit_5fpause_5fhover_3',['quit_pause_hover',['../struct_menu.html#a2a05041fa7e59a4ee0cf6ab2734290a6',1,'Menu']]]
 ];
