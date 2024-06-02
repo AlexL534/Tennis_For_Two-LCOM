@@ -101,6 +101,11 @@ int (gameLoop)(){
       game_state = START_MENU;
       player1Score = 0;
       player2Score = 0;
+      resetBall(ball, PLAYER1);
+      resetPlayer(player1, true);
+      resetPlayer(player2, false);
+      ball->x = 9999;
+      canHitAfterServe = false;
 
       //updates the date to use in the menu
       if(get_date(&day,&month,&year) != 0){
