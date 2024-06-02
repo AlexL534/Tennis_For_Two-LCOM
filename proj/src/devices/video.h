@@ -11,27 +11,6 @@
 int (map_VRAM)(uint16_t mode);
 
 /**
- * @brief Desenha uma linha horizontal no ecrã
- * @param x valor inicial de x
- * @param y valor inicial de y
- * @param len comprimento da linha
- * @param color cor da linha
- * @returns 1 se ocorrer um erro e 0 caso tenha corrido tudo bem
-*/
-int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
-
-/**
- * @brief Desenha um retângulo no ecrã
- * @param x valor inicial de x
- * @param y valor inicial de y
- * @param width comprimento do retângulo
- * @param height altura do retângulo
- * @param color cor do retângulo
- * @returns 1 se ocorrer um erro e 0 caso tenha corrido tudo bem
-*/
-int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
-
-/**
  * @brief Desenha a cor num dos píxeis do ecrã
  * @param x valor do x
  * @param y valor o y
@@ -39,16 +18,6 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
  * @returns 1 se ocorrer um erro e 0 caso tenha corrido tudo bem
 */
 int (vg_draw_color)(uint16_t x, uint16_t y, uint32_t color);
-
-/**
- * @brief Desenha um xpm no ecrã
- * @param xpm xpm a desenhar
- * @param type tipo de modo de imagem a usar
- * @param x valor inicial de x
- * @param y valor inicial de y
- * @returns 1 se ocorrer um erro e 0 caso tenha corrido tudo bem
-*/
-int (draw_xpm)(xpm_map_t xpm, enum xpm_image_type type, uint16_t x, uint16_t y);
 
 /**
  * @brief Retorna a informação do modo gráfico em uso para que possa ser usada em outros documentos

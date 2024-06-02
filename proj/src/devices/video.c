@@ -129,52 +129,6 @@ void (swap_buffer)(){
   memcpy(video_mem, second_buffer, h_res * v_res * get_bytes_per_pixel());
 }
 
-
-//draws a line with a specific color
-int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
-
-  for(int i = 0; i < len; i++){
-    //draws a pixel in a given coordinate
-    if(vg_draw_color(x + i, y, color) != 0){
-      return EXIT_FAILURE;
-    }
-  }
-
-  return EXIT_SUCCESS;
-}
-
-
-//draws a rectangle with a specific color
-int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color){
-
-  for(int i = 0; i < height; i++){
-    //draws a line starting in the given coordinates and with a specific width
-    if(vg_draw_hline(x, y + i, width, color) != 0){
-      return EXIT_FAILURE;
-    }
-  }
-
-  return EXIT_SUCCESS;
-}
-
-//draws a xpm image on the screen
-int (draw_xpm)(xpm_map_t xpm, enum xpm_image_type type, uint16_t x, uint16_t y){
-  xpm_image_t img; // pixmap and metadata
-  uint32_t *map; // pixmap itself
-  // get the pixmap from the XPM
-  map = (uint32_t *) xpm_load(xpm, type, &img);
-  //loops throught the pixmap and draws the color on the screen
-  for(int i = 0; i < img.height; i++){
-    for(int j = 0; j < img.width; j++){
-      if(vg_draw_color(x + j, y + i, *map) != 0){
-        return EXIT_FAILURE;
-      };
-      map++;
-    }
-  }
-  return EXIT_SUCCESS;
-}
-
 void (free_second_buffer)(){
   if(second_buffer == NULL){
     return;
