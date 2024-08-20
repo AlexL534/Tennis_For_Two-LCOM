@@ -1,5 +1,8 @@
 # LCOM Project
 
+
+**FINAL GRADE: 17**
+
 LCOM Project for group T10G04.
 
 Group members:
