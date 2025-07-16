@@ -12,5 +12,5 @@ Group members:
 3. Rafael Campeão (up202207553@up.pt)
 4. Alexandre Lopes (up202207015@up.pt)
 
-Check Relatório_LCOM.pdf in project/docs for a better overview of the project.
+Check Relatório_LCOM.pdf in project/doc for a better overview of the project.
 
